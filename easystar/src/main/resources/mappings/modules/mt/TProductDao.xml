@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TProductDao">
+    
+	<sql id="tProductColumns">
+		a.id AS "id",
+		a.pro_userid AS "proUserid",
+		a.pro_name AS "proName",
+		a.pro_price AS "proPrice",
+		a.pro_url AS "proUrl",
+		a.pro_url_info AS "proUrlInfo",
+		a.pro_jstype AS "proJstype",
+		a.pro_rztype AS "proRztype",
+		a.createtime AS "createtime",
+		a.pro_remarks AS "proRemarks",
+		a.pro_reserve1 AS "proReserve1",
+		a.pro_reserve2 AS "proReserve2",
+		a.pro_reserve3 AS "proReserve3",
+		a.pro_reserve4 AS "proReserve4",
+		a.pro_reserve5 AS "proReserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tProductJoins">
+	</sql>
+    
+	<select id="get" resultType="TProduct">
+		SELECT 
+			<include refid="tProductColumns"/>
+		FROM t_product a
+		<include refid="tProductJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TProduct">
+		SELECT 
+			<include refid="tProductColumns"/>
+		FROM t_product a
+		<include refid="tProductJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TProduct">
+		SELECT 
+			<include refid="tProductColumns"/>
+		FROM t_product a
+		<include refid="tProductJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_product(
+			id,
+			pro_userid,
+			pro_name,
+			pro_price,
+			pro_url,
+			pro_url_info,
+			pro_jstype,
+			pro_rztype,
+			createtime,
+			pro_remarks,
+			pro_reserve1,
+			pro_reserve2,
+			pro_reserve3,
+			pro_reserve4,
+			pro_reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{proUserid},
+			#{proName},
+			#{proPrice},
+			#{proUrl},
+			#{proUrlInfo},
+			#{proJstype},
+			#{proRztype},
+			#{createtime},
+			#{proRemarks},
+			#{proReserve1},
+			#{proReserve2},
+			#{proReserve3},
+			#{proReserve4},
+			#{proReserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_product SET 	
+			pro_userid = #{proUserid},
+			pro_name = #{proName},
+			pro_price = #{proPrice},
+			pro_url = #{proUrl},
+			pro_url_info = #{proUrlInfo},
+			pro_jstype = #{proJstype},
+			pro_rztype = #{proRztype},
+			createtime = #{createtime},
+			pro_remarks = #{proRemarks},
+			pro_reserve1 = #{proReserve1},
+			pro_reserve2 = #{proReserve2},
+			pro_reserve3 = #{proReserve3},
+			pro_reserve4 = #{proReserve4},
+			pro_reserve5 = #{proReserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_product SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
