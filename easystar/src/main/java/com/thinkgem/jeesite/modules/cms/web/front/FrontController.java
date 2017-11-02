@@ -36,6 +36,9 @@ import com.thinkgem.jeesite.modules.cms.service.CommentService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.mt.entity.TProduct;
+import com.thinkgem.jeesite.modules.mt.service.TProductService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 
 /**
  * 网站Controller
@@ -58,7 +61,8 @@ public class FrontController extends BaseController{
 	private CategoryService categoryService;
 	@Autowired
 	private SiteService siteService;
-	
+	@Autowired
+	private TProductService tProductService;
 	/**
 	 * 网站首页
 	 */
@@ -339,5 +343,35 @@ public class FrontController extends BaseController{
             return article.getCustomContentView();
         }
     }
+    
+    /**
+	 * 跳转到注册页面
+	 */
+	@RequestMapping(value = "toreg")
+	public String toreg(User user,Model model){
+		System.out.println("============");
+		model.addAttribute("user", user);
+		return "modules/sys/userReg";
+	}
+    
+    /**
+     * 跳转到产品中心页面
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="productList")
+	public String productList(TProduct tProduct,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "8") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		Category category = categoryService.get("4bbd32c498c945b78a98e423b52f8684");
+        model.addAttribute("category", category);
+        Page<TProduct> page = tProductService.findPage(new Page<TProduct>(request, response, pageSize), tProduct); 
+		model.addAttribute("page", page);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontproductList";
+	}
+    
+    
 	
 }

@@ -15,6 +15,14 @@
         	return false;
         }
 	</script>
+	<style type="text/css">
+		.input-xlarge {
+		width: 177px;
+		}
+		.table th, .table td{
+			text-align: center
+		}
+	</style>
 </head>
 <body>
 	<ul class="nav nav-tabs">
@@ -25,6 +33,27 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>产品名称：</label>
+				<form:input path="proName" htmlEscape="false" maxlength="45" class="input-medium"/>
+			</li>
+			<li><label>产品类型：</label>
+				<form:select path="proType" class="input-xlarge " >
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('proType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			<li><label>结算方式：</label>
+				<form:select path="proJstype" class="input-xlarge " >
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('proJstype')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			<li><label>认证方式：</label>
+				<form:select path="proRztype" class="input-xlarge " >
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('proRztype')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -33,7 +62,12 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>更新时间</th>
+				<th>产品名称</th>
+				<th>产品价格</th>
+				<th>产品类型</th>
+				<th>结算方式</th>
+				<th>认证方式</th>
+				<th>发布时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="mt:tProduct:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -41,9 +75,24 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="tProduct">
 			<tr>
-				<td><a href="${ctx}/mt/tProduct/form?id=${tProduct.id}">
-					<fmt:formatDate value="${tProduct.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
+				<td>
+					${tProduct.proName}
+				</td>
+				<td>
+					${tProduct.proPrice}
+				</td>
+				<td>
+					${fns:getDictLabel(tProduct.proType, 'proType', '')}
+				</td>
+				<td>
+					${fns:getDictLabel(tProduct.proJstype, 'proJstype', '')}
+				</td>
+				<td>
+					${fns:getDictLabel(tProduct.proRztype, 'proRztype', '')}
+				</td>
+				<td>
+					<fmt:formatDate value="${tProduct.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
 				<td>
 					${tProduct.remarks}
 				</td>
@@ -55,6 +104,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" >${page}</div>
 </body>
 </html>

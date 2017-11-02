@@ -21,6 +21,8 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
+import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 产品表Controller
@@ -51,6 +53,7 @@ public class TProductController extends BaseController {
 	public String list(TProduct tProduct, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<TProduct> page = tProductService.findPage(new Page<TProduct>(request, response), tProduct); 
 		model.addAttribute("page", page);
+		model.addAttribute("tProduct", tProduct);
 		return "modules/mt/tProductList";
 	}
 
@@ -67,6 +70,10 @@ public class TProductController extends BaseController {
 		if (!beanValidator(model, tProduct)){
 			return form(tProduct, model);
 		}
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String pro_userId=principal.getId();
+		tProduct.setProUserid(pro_userId);
 		tProductService.save(tProduct);
 		addMessage(redirectAttributes, "保存产品表成功");
 		return "redirect:"+Global.getAdminPath()+"/mt/tProduct/?repage";

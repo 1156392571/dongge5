@@ -22,6 +22,7 @@ public class TProduct extends DataEntity<TProduct> {
 	private String proPrice;		// 产品价格
 	private String proUrl;		// 产品图片地址
 	private String proUrlInfo;		// pro_url_info
+	private String proType;		// 产品类型：
 	private String proJstype;		// 结算方式：1.日结，2.周结，3.月结，4.季度结
 	private String proRztype;		// 资料认证方式：1.企业认证2.网站认证3.个人认证
 	private Date createtime;		// createdate
@@ -85,6 +86,14 @@ public class TProduct extends DataEntity<TProduct> {
 		this.proUrlInfo = proUrlInfo;
 	}
 	
+	@Length(min=0, max=1, message="产品类型长度必须介于 0 和 1 之间")
+	public String getProType() {
+		return proType;
+	}
+
+	public void setProType(String proType) {
+		this.proType = proType;
+	}
 	@Length(min=0, max=1, message="结算类型长度必须介于 0 和 1 之间")
 	public String getProJstype() {
 		return proJstype;

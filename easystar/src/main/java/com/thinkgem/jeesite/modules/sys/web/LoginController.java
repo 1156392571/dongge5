@@ -27,6 +27,7 @@ import com.thinkgem.jeesite.common.utils.CookieUtils;
 import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
@@ -74,7 +75,8 @@ public class LoginController extends BaseController{
 //		view += "jar:file:/D:/GitHub/jeesite/src/main/webapp/WEB-INF/lib/jeesite.jar!";
 //		view += "/"+getClass().getName().replaceAll("\\.", "/").replace(getClass().getSimpleName(), "")+"view/sysLogin";
 //		view += ".jsp";
-		return "modules/sys/sysLogin";
+//		return "modules/sys/sysLogin";
+		return "modules/sys/userlogin";
 	}
 
 	/**
@@ -123,7 +125,7 @@ public class LoginController extends BaseController{
 	        return renderString(response, model);
 		}
 		
-		return "modules/sys/sysLogin";
+		return "modules/sys/userlogin";
 	}
 
 	/**
@@ -223,4 +225,6 @@ public class LoginController extends BaseController{
 		}
 		return loginFailNum >= 3;
 	}
+	
+	
 }

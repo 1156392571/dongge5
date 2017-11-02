@@ -26,6 +26,7 @@
                     <c:set var="menuCategoryId" value=",${category.id},"/>
 		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''}"><a href="${category.url}" target="${category.target}"><span>${category.name}</span></a></li>
 		    	</c:if></c:forEach>
+			    <!-- 
 			    <li id="siteSwitch" class="dropdown">
 			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="站点"><i class="icon-retweet"></i></a>
 					<ul class="dropdown-menu">
@@ -37,12 +38,17 @@
 				    <ul class="dropdown-menu">
 				      <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 				    </ul>
-				    <!--[if lte IE 6]><script type="text/javascript">$('#themeSwitch').hide();</script><![endif]-->
 			    </li>
+			     -->
+			     <li style="margin-left: 50px;"><a>登录</a></li>
+			     <li><a>注册</a></li>
             </ul>
+            <!--  
             <form class="navbar-form pull-right" action="${ctx}/search" method="get">
               	<input type="text" name="q" maxlength="20" style="width:65px;" placeholder="全站搜索..." value="${q}">
             </form>
+            -->
+            
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -53,6 +59,69 @@
 		</div>
 		<hr style="margin:20px 0 10px;">
 		<footer>
+			<!-- ====这是新新加的底部 -->
+			<div class="footer-bar">
+			<div class="footer">
+				<ul>
+					<li style="text-align: center;">扫描关注米兔二维码 找合作更方便<br> 
+					<img src="${ctxStatic}/zui/img/metoo.png" style="width: 110px;height: 110px;"></li>
+				</ul>
+				<ul>
+					<li>用户帮助</li>
+					<li class="lireq"><a href="/misc.php?mod=faq" target="_blank">常见问题</a></li>
+					<li class="lireq"><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=7"
+						target="_blank">联系我们</a></li>
+					<li class="lireq"><a href="/yiyehezuo/" target="_blank">BD加油站</a></li>
+				</ul>
+				<ul>
+					<li>商务合作</li>
+					<li class="lireq"><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=4"
+						target="_blank">市场合作</a></li>
+					<li class="lireq"><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=5"
+						target="_blank">合作伙伴</a></li>
+					<li class="lireq"><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=3"
+						target="_blank">广告投放</a></li>
+				</ul>
+				<ul>
+					<li>关于我们</li>
+					<li class="lireq"><a href="/topic-about.html" target="_blank">米兔介绍</a></li>
+					<li class="lireq"><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=8"
+						target="_blank">加入我们</a></li>
+					<li class="lireq"><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=2"
+						target="_blank">免责声明</a></li>
+				</ul>
+				<ul class="a1">
+					<li style="text-align: center;">关注米兔微信公众号<br>
+					<img src="${ctxStatic}/zui/img/metoo.png" style="width: 110px;height: 110px;"></li>
+				</ul>
+			</div>
+			<div class="footer_b">
+				<span style="float: left">Copyright © 2017, 版权所有 <a href="http://www.167mitu.com/">metoo.com</a>
+				沪ICP备14053992号-2 </span>
+				<span style="float: right;margin-right: 50px;">${fns:getDate('yyyy年MM月dd日 E')}</span>
+				<br> <a key="5975a14b2548be7a81d18924"
+					logo_size="83x30" logo_type="realname"
+					href="https://v.pinpaibao.com.cn/authenticate/cert/?site=www.bdwork.com&amp;at=realname"
+					target="_blank"><script
+						src="//static.anquan.org/static/outer/js/aq_auth.js"
+						type="text/javascript"></script><b id="aqLogoJHSOQ"
+					style="display: none;"></b><img
+					src="//static.anquan.org/static/outer/image/sm_83x30.png?id=www.bdwork.com?t=7"
+					alt="安全联盟认证" width="83" height="30" style="border: none;"></a> <a
+					id="___szfw_logo___"
+					href="https://credit.szfw.org/CX20170816035602590333.html"
+					target="_blank"><img src="http://icon.szfw.org/sf.png"
+					border="0" style="height: 35px;"></a>
+				<script type="text/javascript">(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script>
+				<a id="___szfw_logo___"
+					href="https://credit.szfw.org/CX20170816035602200918.html"
+					target="_blank"><img src="http://icon.szfw.org/silver.jpg"
+					border="0" style="height: 35px;"></a>
+				<script type="textjavascript">(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script>
+			</div>
+		</div>
+		
+		
 			<div class="footer_nav"><a href="${ctx}/guestbook" target="_blank">公共留言</a> | <a href="${ctx}/search" target="_blank">全站搜索</a> | <a href="${ctx}/map-${site.id}${fns:getUrlSuffix()}" target="_blank">站点地图</a> | <a href="mailto:thinkgem@163.com">技术支持</a> | <a href="${pageContext.request.contextPath}${fns:getAdminPath()}" target="_blank">后台管理</a></div>
 			<div class="pull-right">${fns:getDate('yyyy年MM月dd日 E')}</div><div class="copyright">${site.copyright}</div>
       	</footer>

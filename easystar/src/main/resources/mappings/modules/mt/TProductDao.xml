@@ -9,6 +9,7 @@
 		a.pro_price AS "proPrice",
 		a.pro_url AS "proUrl",
 		a.pro_url_info AS "proUrlInfo",
+		a.pro_type AS "proType",
 		a.pro_jstype AS "proJstype",
 		a.pro_rztype AS "proRztype",
 		a.createtime AS "createtime",
@@ -44,6 +45,21 @@
 		<include refid="tProductJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="proUserid !=null and proUserid !=''">
+				and a.pro_userid=#{proUserid}
+			</if>
+			<if test="proName !=null and proName !=''">
+				and a.pro_name=#{proName}
+			</if>
+			<if test="proType !=null and proType !=''">
+				and a.pro_type=#{proType}
+			</if>
+			<if test="proJstype !=null and proJstype !=''">
+				and a.pro_jstype=#{proJstype}
+			</if>
+			<if test="proRztype !=null and proRztype !=''">
+				and a.pro_rztype=#{proRztype}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -105,7 +121,7 @@
 			#{proUrlInfo},
 			#{proJstype},
 			#{proRztype},
-			#{createtime},
+			now(),
 			#{proRemarks},
 			#{proReserve1},
 			#{proReserve2},
@@ -130,7 +146,7 @@
 			pro_url_info = #{proUrlInfo},
 			pro_jstype = #{proJstype},
 			pro_rztype = #{proRztype},
-			createtime = #{createtime},
+			createtime = now(),
 			pro_remarks = #{proRemarks},
 			pro_reserve1 = #{proReserve1},
 			pro_reserve2 = #{proReserve2},

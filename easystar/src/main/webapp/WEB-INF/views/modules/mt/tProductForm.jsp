@@ -28,7 +28,17 @@
 	<link href="${ctxStatic}/modules/cms/front/themes/mt/upload/css/style.css" type="text/css" rel="stylesheet" />
 	<script src="${ctxStatic}/modules/cms/front/themes/mt/upload/js/webuploader.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/modules/cms/front/themes/mt/upload/js/productupload.js" type="text/javascript"></script>
-	
+	<style type="text/css">
+		#s2id_proJstype{
+			width: 284px;
+		}
+		#s2id_proRztype{
+			width: 284px;
+		}
+		#s2id_proType{
+			width: 284px;
+		}
+	</style>
 </head>
 <body>
 	<ul class="nav nav-tabs">
@@ -82,10 +92,15 @@
 		</div>
 		
 		
-		
-		
-		
-		
+		<div class="control-group">
+			<label class="control-label">产品类型：</label>
+			<div class="controls">
+				<form:select path="proType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('proType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">结算方式：</label>
 			<div class="controls">
