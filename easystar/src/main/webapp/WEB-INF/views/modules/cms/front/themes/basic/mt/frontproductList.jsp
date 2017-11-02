@@ -7,22 +7,17 @@
 	<meta name="decorator" content="cms_default_${site.theme}"/>
 	<meta name="description" content="${category.description}" />
 	<meta name="keywords" content="${category.keywords}" />
-		<link rel="stylesheet" href="${ctxStatic}/zui/css/zui.min.css">
-		<link rel="stylesheet" href="${ctxStatic}/zui/css/zui.lite.min.css">
-		<script src="${ctxStatic}/zui/js/jquery.js"></script>
-		<script src="${ctxStatic}/zui/js/zui.js"></script>
 <style>
 body {
 	font-family: microsoft yahei !important;
 }
 
-body, input, button, select, textarea {
-	font: 14px/1.5 Tahoma, Helvetica, 'SimSun', sans-serif;
-	color: #444;
-}
-
 a {
 	color: #333;
+	text-decoration: none;
+}
+
+a:HOVER{
 	text-decoration: none;
 }
 
@@ -43,7 +38,7 @@ ol, ul {
 }
 
 .nav-item, .main-body {
-	width: 1200px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -254,59 +249,7 @@ i {
 	color: #369;
 }
 
-.footer {
-	width: 1200px;
-	margin: 0 auto;
-	padding: 20px 0;
-	font-size: 12px;
-	color: #fff;
-	line-height: 35px;
-	font-weight: 700;
-	overflow: hidden;
-}
 
-.footer ul {
-	width: 20%;
-	float: left;
-	font-size: 14px;
-}
-
-.footer-bar {
-	width: 1200px;
-	background: #444;
-}
-
-.footer_b {
-	width: 100%;
-	background: #1e1e1e;
-	line-height: 40px;
-	color: #fff;
-	text-align: center;
-	padding-bottom: 12px;
-}
-
-.footer li a {
-	font-size: 12px;
-	color: #fff;
-	font-weight: normal;
-}
-
-.footer_b a {
-	color: #fff;
-}
-
-
-.navbar .brand{
-	margin-top: 10px;
-	font-size:14px;
-}
-.container{
-	height: 60px;
-	width: 1200px; 
-}
-.nav-collapse{
-	margin-top: 10px;
-}
 .lireq{
 	height: 35px;
 	line-height: 35px;

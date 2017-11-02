@@ -8,11 +8,60 @@
 	<%@include file="/WEB-INF/views/modules/cms/front/include/head.jsp" %>
 	<!-- Baidu tongji analytics --><script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="//hm.baidu.com/hm.js?82116c626a8d504a5c0675073362ef6f";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
 	<sitemesh:head/>
+	<style type="text/css">
+		.footer {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 20px 0;
+	font-size: 12px;
+	color: #fff;
+	line-height: 35px;
+	font-weight: 700;
+	overflow: hidden;
+}
+
+.footer ul {
+	width: 15%;
+	float: left;
+	font-size: 14px;
+	list-style-type:none
+}
+
+.footer-bar {
+	width: 100%;
+	background: #444;
+}
+
+.footer_b {
+	width: 100%;
+	background: #1e1e1e;
+	line-height: 40px;
+	color: #fff;
+	text-align: center;
+	padding-bottom: 12px;
+}
+
+
+.footer li a {
+	font-size: 12px;
+	color: #fff;
+	font-weight: normal;
+}
+
+.footer_b a {
+	color: #fff;
+}
+.lireq{
+	height: 35px;
+	line-height: 35px;
+}
+
+	</style>
 </head>
 <body>
 	<div class="navbar navbar-fixed-top" style="position:static;margin-bottom:10px;">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container" style="width: 85%">
           <c:choose>
    			<c:when test="${not empty site.logo}">
    				<img alt="${site.title}" src="${site.logo}" class="container" onclick="location='${ctx}/index-${site.id}${fns:getUrlSuffix()}'">
@@ -53,8 +102,8 @@
         </div>
       </div>
     </div>
-	<div class="container">
-		<div class="content">
+	<div class="container" style="width: 85%">
+		<div class="content" style="width: 100%">
 			<sitemesh:body/>
 		</div>
 		<hr style="margin:20px 0 10px;">
@@ -63,7 +112,7 @@
 			<div class="footer-bar">
 			<div class="footer">
 				<ul>
-					<li style="text-align: center;">扫描关注米兔二维码 找合作更方便<br> 
+					<li style="text-align: center;">找合作下载米兔APP更方便<br> 
 					<img src="${ctxStatic}/zui/img/metoo.png" style="width: 110px;height: 110px;"></li>
 				</ul>
 				<ul>
@@ -121,9 +170,10 @@
 			</div>
 		</div>
 		
-		
+			<!-- 
 			<div class="footer_nav"><a href="${ctx}/guestbook" target="_blank">公共留言</a> | <a href="${ctx}/search" target="_blank">全站搜索</a> | <a href="${ctx}/map-${site.id}${fns:getUrlSuffix()}" target="_blank">站点地图</a> | <a href="mailto:thinkgem@163.com">技术支持</a> | <a href="${pageContext.request.contextPath}${fns:getAdminPath()}" target="_blank">后台管理</a></div>
 			<div class="pull-right">${fns:getDate('yyyy年MM月dd日 E')}</div><div class="copyright">${site.copyright}</div>
+      		 -->
       	</footer>
     </div> <!-- /container -->
 </body>

@@ -362,7 +362,7 @@ public class FrontController extends BaseController{
     @RequestMapping(value="productList")
 	public String productList(TProduct tProduct,HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "8") Integer pageSize,Model model) {
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		Category category = categoryService.get("4bbd32c498c945b78a98e423b52f8684");
