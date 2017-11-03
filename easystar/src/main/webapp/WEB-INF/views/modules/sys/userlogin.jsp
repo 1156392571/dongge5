@@ -33,6 +33,9 @@
 	text-align: center;
 	vertical-align: middle;
 }
+ ._reg{
+ 	cursor: pointer;
+ }
 
 </style>
 <script type="text/javascript">
@@ -71,10 +74,13 @@
 		}
 	}
 	
-	
+	//跳转到登录页面
 	function toreg(){
-		alert("44");
 		window.location.href="${ctx}/toreg";
+	}
+	//跳转到忘记密码页面
+	function toreg(){
+		window.location.href="${ctx}/toforget";
 	}
 </script>
 </head>
@@ -82,10 +88,8 @@
 	<div class="page-container">
 		<h1>Login</h1>
 		<form id="inputForm" action="${pageContext.request.contextPath}/a/login" method="post" class="form-horizontal">
-<%-- 			<form:input path="loginName" htmlEscape="false" class="username" maxlength="255" placeholder="用户名或手机号"/> --%>
 			<input type="text" id="username" class="username" name="username" placeholder="用户名">
 			<input type="password" id="password" class="username" name="password" placeholder="密码">
-<%-- 			<form:password path="password" htmlEscape="false" class="password" minlength="6" placeholder="密码"/> --%>
 			<div class="connect">
 				<span style="float: left;border-radius:6px;" class="code" id="checkCode"
 					onclick="createCode()"></span> 
@@ -98,7 +102,7 @@
 			</div>
 		</form>
 		<div class="connect">
-			<span style="float: left">忘记密码</span> <span style="float: right" onclick="toreg()">注册</span>
+			<span class="_reg" style="float: left" onclick="toforget()">忘记密码</span> <span class="_reg" style="float: right" onclick="toreg()">注册</span>
 		</div>
 	</div>
 </body>
