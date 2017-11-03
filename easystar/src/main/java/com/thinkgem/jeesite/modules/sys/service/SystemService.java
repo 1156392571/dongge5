@@ -5,8 +5,10 @@ package com.thinkgem.jeesite.modules.sys.service;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Group;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.security.Digests;
@@ -23,9 +26,12 @@ import com.thinkgem.jeesite.common.security.shiro.session.SessionDAO;
 import com.thinkgem.jeesite.common.service.BaseService;
 import com.thinkgem.jeesite.common.service.ServiceException;
 import com.thinkgem.jeesite.common.utils.CacheUtils;
+import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.Encodes;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.Servlets;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.dao.MenuDao;
 import com.thinkgem.jeesite.modules.sys.dao.RoleDao;
 import com.thinkgem.jeesite.modules.sys.dao.UserDao;
@@ -60,6 +66,8 @@ public class SystemService extends BaseService implements InitializingBean {
 	private SessionDAO sessionDao;
 	@Autowired
 	private SystemAuthorizingRealm systemRealm;
+	@Autowired
+	private TUserService tUserService;
 	
 	public SessionDAO getSessionDao() {
 		return sessionDao;
@@ -539,7 +547,80 @@ public class SystemService extends BaseService implements InitializingBean {
 			identityService.deleteUser(userId);
 		}
 	}
-	
-	///////////////// Synchronized to the Activiti end //////////////////
+
+		@Transactional(readOnly = false)
+		public void saveRegister(TUser tUser){
+	// 设置：系统自动生成代码的用户信息
+			User user = new User();
+			user.setId("myself");
+			user.setLoginName("myself");
+
+			// 新增的 user
+			User userNew = new User();
+			// 登录名:
+			String t_userId = tUser.getTLoginname();
+			userNew.setLoginName(t_userId);
+			// 密码
+			String password = tUser.getReserve1();
+			userNew.setPassword(this.entryptPassword(password));
+			// 姓名
+			String t_name = tUser.getTName();
+			userNew.setName(t_name);
+			// 工号
+			String no = "gonghao";
+			userNew.setNo(no);
+			// 邮箱
+			String email = tUser.getTEmail();
+			userNew.setEmail(email);
+			// 电话
+			String mobile = tUser.getTPhone();
+			userNew.setMobile(mobile);
+			// 手机
+			String phone = tUser.getTPhone();
+			userNew.setPhone(phone);
+
+
+			// 用户类型
+			String user_type = "3";
+			userNew.setUserType(user_type);
+			// 是否允许登录
+			String login_flag = "1";
+			userNew.setLoginFlag(login_flag);
+
+			// 定义：用户角色
+			List<Role> newRoleList = Lists.newArrayList();
+			List<Role> roleList = this.findRole(new Role());
+
+			for (Role r : roleList){
+				if("user".equals(r.getRoleType().trim()))
+				{
+					newRoleList.add(r);
+					Map roleMap = new HashMap();
+					roleMap.put("id",r.getId());
+					List<Map<String,Object>> reRoleList = roleDao.selectRole(roleMap);
+					String officeid = reRoleList.get(0).get("office_id").toString();
+
+					/*Map officeMap = new HashMap();
+					officeMap.put("id",officeid)
+					List<Map<String,Object>> reofficeMapList = roleDao.selectSysOffice(officeMap);*/
+
+					Office office = new Office();
+					office.setId(officeid);
+					office.setParent(office);
+					userNew.setCompany(office);
+					userNew.setOffice(office);
+				}
+
+			}
+			userNew.setRoleList(newRoleList);
+			userNew.setCreateBy(user);
+			userNew.setUpdateBy(user);
+			this.saveUser(userNew);
+			tUser.setCreateBy(user);
+			tUser.setUpdateBy(user);
+			//用户的t_userid为登录名
+			tUser.setTUserid(t_userId);
+			tUserService.save(tUser);
+		}
 	
 }

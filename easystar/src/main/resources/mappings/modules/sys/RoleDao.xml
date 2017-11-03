@@ -201,4 +201,39 @@
 		WHERE id = #{id}
 	</update>
 	
+	<!-- 查询role单表 by leicz 20170922 begin -->
+	<select id="selectRole" resultType="java.util.HashMap"
+			parameterType="java.util.HashMap">
+		SELECT * FROM sys_role where 1=1
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<if test="office_id != null">
+			and office_id = #{office_id}
+		</if>
+		<if test="name != null">
+			and name = #{name}
+		</if>
+		<if test="enname != null">
+			and enname = #{enname}
+		</if>
+		<if test="role_type != null">
+			and role_type = #{role_type}
+		</if>
+		<if test="is_sys != null">
+			and is_sys = #{is_sys}
+		</if>
+		<if test="useable != null">
+			and useable = #{useable}
+		</if>
+		<if test="del_flag != null">
+			and del_flag = #{del_flag}
+		</if>
+		<if test="create_by != null">
+			and create_by = #{create_by}
+		</if>
+
+	</select>
+	<!-- 查询role单表 by leicz 20170922 end -->
+
 </mapper>

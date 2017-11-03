@@ -3,6 +3,9 @@
  */
 package com.thinkgem.jeesite.modules.sys.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.sys.entity.Role;
@@ -36,5 +39,7 @@ public interface RoleDao extends CrudDao<Role> {
 	public int deleteRoleOffice(Role role);
 
 	public int insertRoleOffice(Role role);
+
+	public List<Map<String, Object>> selectRole(Map roleMap);
 
 }

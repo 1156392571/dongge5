@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.config.Global;
@@ -37,8 +38,11 @@ import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
+import com.thinkgem.jeesite.modules.sys.entity.Dict;
 import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
 
 /**
  * 网站Controller
@@ -63,6 +67,9 @@ public class FrontController extends BaseController{
 	private SiteService siteService;
 	@Autowired
 	private TProductService tProductService;
+	@Autowired
+	private SystemService systemService;
+	
 	/**
 	 * 网站首页
 	 */
@@ -348,11 +355,22 @@ public class FrontController extends BaseController{
 	 * 跳转到注册页面
 	 */
 	@RequestMapping(value = "toreg")
-	public String toreg(User user,Model model){
+	public String toreg(TUser tUser,Model model){
 		System.out.println("============");
-		model.addAttribute("user", user);
+		model.addAttribute("tUser", tUser);
 		return "modules/sys/userReg";
 	}
+	
+	/**
+	 * 保存注册
+	 */
+	@RequestMapping(value = "saveRegister")
+	public String saveRegister(TUser tUser,Model model,RedirectAttributes redirectAttributes) {
+		//先判断短信开关的状态
+			systemService.saveRegister(tUser);
+			return "modules/sys/userReg";
+	}
+	
     
     /**
      * 跳转到产品中心页面
