@@ -79,7 +79,7 @@
 		window.location.href="${ctx}/toreg";
 	}
 	//跳转到忘记密码页面
-	function toreg(){
+	function toforget(){
 		window.location.href="${ctx}/toforget";
 	}
 </script>
@@ -90,6 +90,7 @@
 		<form id="inputForm" action="${pageContext.request.contextPath}/a/login" method="post" class="form-horizontal">
 			<input type="text" id="username" class="username" name="username" placeholder="用户名">
 			<input type="password" id="password" class="username" name="password" placeholder="密码">
+			<input type="hidden" name="type" value="1">
 			<div class="connect">
 				<span style="float: left;border-radius:6px;" class="code" id="checkCode"
 					onclick="createCode()"></span> 

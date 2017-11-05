@@ -27,9 +27,12 @@ import com.thinkgem.jeesite.common.utils.CookieUtils;
 import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.cms.entity.Site;
+import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
@@ -42,7 +45,6 @@ public class LoginController extends BaseController{
 	
 	@Autowired
 	private SessionDAO sessionDAO;
-	
 	/**
 	 * 管理登录
 	 */
@@ -133,9 +135,8 @@ public class LoginController extends BaseController{
 	 */
 	@RequiresPermissions("user")
 	@RequestMapping(value = "${adminPath}")
-	public String index(HttpServletRequest request, HttpServletResponse response) {
+	public String index(HttpServletRequest request, HttpServletResponse response,Model model) {
 		Principal principal = UserUtils.getPrincipal();
-
 		// 登录成功后，验证码计算器清零
 		isValidateCodeLogin(principal.getLoginName(), false, true);
 		
@@ -182,7 +183,17 @@ public class LoginController extends BaseController{
 ////			request.getSession().setAttribute("aaa", "aa");
 ////		}
 //		System.out.println("==========================b");
-		return "modules/sys/sysIndex";
+		User user=UserUtils.getByLoginName(principal.getLoginName());
+		if("3".equals(user.getUserType())){
+			System.out.println("普通用户登陆");
+			Site site = CmsUtils.getSite(Site.defaultSiteId());
+			model.addAttribute("site", site);
+			model.addAttribute("isIndex", true);
+			return "modules/cms/front/themes/"+site.getTheme()+"/frontIndex";
+		}else{
+			System.out.println("系统用户登陆");
+			return "modules/sys/sysIndex";
+		}
 	}
 	
 	/**

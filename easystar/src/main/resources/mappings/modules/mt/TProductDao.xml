@@ -14,10 +14,10 @@
 		a.pro_rztype AS "proRztype",
 		a.createtime AS "createtime",
 		a.pro_remarks AS "proRemarks",
-		a.pro_reserve1 AS "proReserve1",
-		a.pro_reserve2 AS "proReserve2",
-		a.pro_reserve3 AS "proReserve3",
-		a.pro_reserve4 AS "proReserve4",
+		b.t_company AS "proReserve1",
+		b.t_companyurl AS "proReserve2",
+		b.wx AS "proReserve3",
+		b.t_phone AS "proReserve4",
 		a.pro_reserve5 AS "proReserve5",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -28,6 +28,7 @@
 	</sql>
 	
 	<sql id="tProductJoins">
+		left join t_user b on a.pro_userid=b.t_userid
 	</sql>
     
 	<select id="get" resultType="TProduct">
@@ -60,13 +61,22 @@
 			<if test="proRztype !=null and proRztype !=''">
 				and a.pro_rztype=#{proRztype}
 			</if>
+			<if test='proReserve1=="1"'>
+				ORDER BY CAST(a.pro_price AS DECIMAL) DESC
+			</if>
+			<if test='proReserve1=="2"'>
+				ORDER BY CAST(a.pro_price AS DECIMAL) ASC
+			</if>
+			<if test='proReserve1=="3"'>
+				ORDER BY a.createtime DESC
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+<!-- 				ORDER BY a.update_date DESC -->
 			</otherwise>
 		</choose>
 	</select>

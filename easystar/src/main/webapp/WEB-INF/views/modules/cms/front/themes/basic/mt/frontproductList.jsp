@@ -255,13 +255,21 @@ i {
 	line-height: 35px;
 }
 </style>
+<script type="text/javascript">
+	
+</script>
+<script src="${ctxStatic}/reg-login/product.js"></script>
 </head>
 <body>
 	<div>
+		<input type="hidden" id="protype" value="${tProduct.proType}">
+		<input type="hidden" id="pxrule" value="${tProduct.proReserve1}">
+		<input type="hidden" id="rztype" value="${tProduct.proRztype}">
+		<input type="hidden" id="jstype" value="${tProduct.proJstype}">
 		<div class="main-body">
 			<div>
 				<div class="sub_nav">
-					<a href="/forum-40-1.html" class="a1">合作信息</a> <a
+					<a href="/forum-40-1.html" class="a1">产品信息</a> <a
 						href="/member.php?mod=qudao_list">渠道商</a> <a
 						href="/home.php?mod=spacecp&amp;ac=qudaoshang&amp;op=detail"
 						class="apply_btn">申请渠道商入驻</a>
@@ -272,58 +280,55 @@ i {
 							<tr>
 								<td class="sort_type_l">产品类型</td>
 								<td>
-									<ul class="cl">
-										<li class="a"><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">不限</a></li>
-										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=1&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">软件</a></li>
-										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=2&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">游戏</a></li>
+									<ul id="cplx" class="cl">
+										<li><a href="javascript:protype('0')">不限</a></li>
+										<li><a href="javascript:protype('1')">软件</a></li>
+										<li><a href="javascript:protype('2')"">游戏</a></li>
 									</ul>
 								</td>
 							</tr>
 							<tr>
 								<td class="sort_type_l">排序规则</td>
 								<td>
-									<ul class="cl a1">
-										<li class="a"><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">不限</a></li>
+									<ul id="pxgz" class="cl a1">
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=1&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">由高到低</a></li>
+											href="javascript:pxrule('0')">不限</a></li>
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=2&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">由低到高</a></li>
+											href="javascript:pxrule('1')">由高到低</a></li>
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=3&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">发布时间</a></li>
+											href="javascript:pxrule('2')">由低到高</a></li>
+										<li><a
+											href="javascript:pxrule('3')">发布时间</a></li>
 									</ul>
 								</td>
 							</tr>
 							<tr>
 								<td class="sort_type_l">资料认证</td>
 								<td>
-									<ul class="cl">
-										<li class="a"><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">不限</a></li>
+									<ul id="zlrz" class="cl">
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=1&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">企业认证</a></li>
+											href="javascript:rztype('0')">不限</a></li>
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=2&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">网站认证</a></li>
+											href="javascript:rztype('1')">企业认证</a></li>
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=3&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">个人认证</a></li>
+											href="javascript:rztype('2')">网站认证</a></li>
+										<li><a
+											href="javascript:rztype('3')">个人认证</a></li>
 									</ul>
 								</td>
 							</tr>
 							<tr>
 								<td class="sort_type_l">结算条件</td>
 								<td>
-									<ul class="cl">
-										<li class="a"><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=&amp;searchzypp=&amp;searchkey=">不限</a></li>
+									<ul id="jstj" class="cl">
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=1&amp;searchzypp=&amp;searchkey=">日结</a></li>
+											href="javascript:jstype('0')">不限</a></li>
 										<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=2&amp;searchzypp=&amp;searchkey=">周结</a></li>
+											href="javascript:jstype('1')">日结</a></li>
+										<li><a
+											href="javascript:jstype('2')">周结</a></li>
 											<li><a
-											href="/member.php?mod=qudao_list&amp;searchzylx=&amp;searchppss=&amp;searchtglx=&amp;searchcjhy=&amp;searchcjdq=&amp;searchjstj=2&amp;searchzypp=&amp;searchkey=">月结</a></li>
+											href="javascript:jstype('3')">月结</a></li>
 									</ul>
 								</td>
 							</tr>
@@ -349,25 +354,35 @@ i {
 				</div>
 				<div class="channel_partner" id="keyword">
 					<ul>
+						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">图片</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品名称</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品类型</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品价格</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">结算方式</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">认证方式</p>
+							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">联系方式</p>
+							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">发布时间</p>
+						</li>
 						<c:forEach items="${page.list}" var="productList"> 
-							<li style="height: 180px">
-								<a href="#" > 
-									<b><span>
-									<img style="height: 160px;" src="${pageContext.request.contextPath}/${productList.proUrl}"></span></b>
-								</a>
-									<span>产品名称：${productList.proName}</span><br>
-									<span>产品类型：${fns:getDictLabel(productList.proType, 'proType', '')}</span><br>  
-									<span>产品价格：${productList.proPrice}</span><br>
-									<span>结算方式：${fns:getDictLabel(productList.proJstype, 'proJstype', '')}</span><br>
-									<span>认证方式：${fns:getDictLabel(productList.proRztype, 'proRztype', '')}</span><br>
-									<span>发布时间：<fmt:formatDate value="${productList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></span><br>
-									<span>
-										<img src="${ctxStatic}/zui/img/company.png" title="123">
-										<img src="${ctxStatic}/zui/img/www.png">
-										<img src="${ctxStatic}/zui/img/phone.png">
-										<img src="${ctxStatic}/zui/img/wx.png">
-									</span><br>
-								
+							<li style="height: 30px;width: 100%">
+<!-- 								<a href="#" >  -->
+									<p style="float:left; width: 10%;text-align: center">
+										<img style="width: 30px;height: 30px" src="${pageContext.request.contextPath}/${productList.proUrl}">
+									</p>
+<!-- 								</a> -->
+									<p style="float:left; width: 10%;text-align: center">${productList.proName}</p>
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proType, 'proType', '')}</p>  
+									<p style="float:left;width: 10%;text-align: center">${productList.proPrice}</p>
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proJstype, 'proJstype', '')}</p>
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proRztype, 'proRztype', '')}</p>
+									<p style="float:left;width: 20%;text-align: center">
+										<img src="${ctxStatic}/zui/img/company.png" title="${productList.proReserve1}">
+										<img src="${ctxStatic}/zui/img/www.png" title="${productList.proReserve2}">
+										<img src="${ctxStatic}/zui/img/phone.png" title="${productList.proReserve4}">
+										<img src="${ctxStatic}/zui/img/wx.png" title="${productList.proReserve3}">
+									</p>
+									<p style="float:left;width: 20%;text-align: center"><fmt:formatDate value="${productList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 							</li>
 						</c:forEach>
 					</ul>

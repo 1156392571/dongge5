@@ -59,6 +59,28 @@
 	</style>
 </head>
 <body>
+	<div style="position: fixed;width: 7%;left:0px;top: 20%;text-align: left;">
+		<img alt="" src="${ctxStatic}/zui/img/open_im.png"><br>
+	</div>
+	<div id="ggshow_1" style="position: fixed;width: 7%;left:0px;bottom: 10%;text-align: left;">
+		<img alt="" src="${ctxStatic}/zui/img/gg1.jpg" style="width: 100px;"><br>
+		<a href="javascript:closegg('1')"><img alt="" src="${ctxStatic}/zui/img/ad_close.gif"></a>
+	</div>
+	<div id="ggshow_2" style="position: fixed;width: 7%;right:0px;bottom: 10%;text-align: right;">
+		<img alt="" src="${ctxStatic}/zui/img/gg2.jpg" style="width: 100px;"><br>
+		<a href="javascript:closegg('2')"><img alt="" src="${ctxStatic}/zui/img/ad_close.gif"></a>
+	</div>
+	<script type="text/javascript">
+		function closegg(id){
+			if(id=="1"){
+				$("#ggshow_1").css("display","none");
+			}else{
+				$("#ggshow_2").css("display","none");
+			}
+			
+		}
+	</script>
+
 	<div class="navbar navbar-fixed-top" style="position:static;margin-bottom:10px;">
       <div class="navbar-inner">
         <div class="container" style="width: 85%">
@@ -89,7 +111,7 @@
 				    </ul>
 			    </li>
 			     -->
-			     <li style="margin-left: 50px;"><a>登录</a></li>
+			     <li style="margin-left: 150px;"><a>登录</a></li>
 			     <li><a>注册</a></li>
             </ul>
             <!--  
@@ -101,6 +123,10 @@
           </div><!--/.nav-collapse -->
         </div>
       </div>
+    </div>
+    <div class="container" style="width: 85%;">
+    	<img alt="" src="${ctxStatic}/zui/img/h_gg1.jpg">
+    	<img alt="" src="${ctxStatic}/zui/img/h_gg2.gif">
     </div>
 	<div class="container" style="width: 85%">
 		<div class="content" style="width: 100%">

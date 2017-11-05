@@ -586,8 +586,8 @@ public class SystemService extends BaseService implements InitializingBean {
 			// 是否允许登录
 			String login_flag = "1";
 			userNew.setLoginFlag(login_flag);
-
 			// 定义：用户角色
+			String sysUserRole = "92fa95db9bf0411d9e6a9b7727e85ea6";
 			List<Role> newRoleList = Lists.newArrayList();
 			List<Role> roleList = this.findRole(new Role());
 
@@ -599,7 +599,7 @@ public class SystemService extends BaseService implements InitializingBean {
 					roleMap.put("id",r.getId());
 					List<Map<String,Object>> reRoleList = roleDao.selectRole(roleMap);
 					String officeid = reRoleList.get(0).get("office_id").toString();
-
+					System.out.println(officeid);
 					/*Map officeMap = new HashMap();
 					officeMap.put("id",officeid)
 					List<Map<String,Object>> reofficeMapList = roleDao.selectSysOffice(officeMap);*/

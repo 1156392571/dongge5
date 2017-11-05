@@ -72,13 +72,13 @@ public class FrontController extends BaseController{
 	
 	/**
 	 * 网站首页
-	 */
+	 * */
 	@RequestMapping
 	public String index(Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		model.addAttribute("isIndex", true);
-		return "modules/cms/front/themes/"+site.getTheme()+"/frontIndex";
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontIndex";
 	}
 	
 	/**
@@ -356,7 +356,6 @@ public class FrontController extends BaseController{
 	 */
 	@RequestMapping(value = "toreg")
 	public String toreg(TUser tUser,Model model){
-		System.out.println("============");
 		model.addAttribute("tUser", tUser);
 		return "modules/sys/userReg";
 	}
@@ -366,9 +365,9 @@ public class FrontController extends BaseController{
 	 */
 	@RequestMapping(value = "saveRegister")
 	public String saveRegister(TUser tUser,Model model,RedirectAttributes redirectAttributes) {
-		//先判断短信开关的状态
+		//保存注册信息
 			systemService.saveRegister(tUser);
-			return "modules/sys/userReg";
+			return "modules/sys/userlogin";
 	}
 	
     
@@ -387,6 +386,7 @@ public class FrontController extends BaseController{
         model.addAttribute("category", category);
         Page<TProduct> page = tProductService.findPage(new Page<TProduct>(request, response, pageSize), tProduct); 
 		model.addAttribute("page", page);
+		model.addAttribute("tProduct", tProduct);
 		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontproductList";
 	}
     

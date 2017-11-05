@@ -72,7 +72,7 @@ public class TProductController extends BaseController {
 		}
 		//获取当前发布用户
 		Principal principal = UserUtils.getPrincipal();
-		String pro_userId=principal.getId();
+		String pro_userId=principal.getLoginName();
 		tProduct.setProUserid(pro_userId);
 		tProductService.save(tProduct);
 		addMessage(redirectAttributes, "保存产品表成功");
