@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/zui.min.css">
+		<link rel="stylesheet" href="css/zui.lite.min.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/zui.js"></script>
+		<title></title>
+		<style>
+			body{
+			    font-family: microsoft yahei !important;
+			}
+			body, input, button, select, textarea {
+			    font: 12px/1.5 Tahoma,Helvetica,'SimSun',sans-serif;
+			    color: #444;
+			}
+			a{
+				color: #333;
+				text-decoration: none;
+			}
+			blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+			    margin: 0;
+			    padding: 0;
+			}
+			ol,ul{
+			    list-style: none;
+			}
+			.nav-bar{
+				height: 35px;
+   				background: #f5f5f5;
+			    height: 35px;
+			}
+			.nav-item,.main-body{
+				width:1200px;
+				margin: 0 auto;
+			}
+			.nav-item-1{
+				float: left;
+			}
+			.nav-item .item-site{
+			    float: left;
+			}
+			.nav-item-2{
+				float:right;
+			}
+			.item-site{
+				line-height: 35px;
+			}
+			.site-nav-item{
+				float: left;
+    			margin-right: 7px;
+    			margin-left: 12px;
+    			cursor: auto;
+    			padding: 0 10px;
+    			    
+			}
+			.sub_nav{
+				display: block;
+    			border-bottom: 1px solid #e9491a;
+			}
+			.sub_nav a {
+			    margin-bottom: -1px;
+			    padding: 0 25px;
+			    border: 1px solid #f2b19c;
+			    background: #f9ede1;
+			    border-bottom: none;
+			    line-height: 35px;
+			    font-size: 16px;
+			    display: inline-block;
+			}
+			.sub_nav a.a1 {
+			    border: 1px solid #e9491a;
+			    color: #fff;
+			    background: #e9491a;
+			    font-weight: 700;
+			}
+			a.apply_btn {
+			    width: 180px;
+			    padding: 0 30px 0 20px;
+			    float: right;
+			    border-radius: 3px;
+			    border: none;
+			    background: #e92a0b url(/static/append/common/icon_common.png) no-repeat 180px -438px;
+			    color: #fff;
+			    text-align: center;
+			    font-size: 14px;
+			}
+			
+			.ui.container {
+			    width: 1040px;
+			    padding: 0 20px;
+			    margin: 0 auto;
+			}
+			.ui.segment {
+			    width: 840px;
+			    margin: 50px auto;
+			    padding: 20px;
+				border-radius: 4px;
+			    border: 1px solid #e3e9ed;
+			    box-shadow: none;
+			    background: #fff;
+			}
+			.ui.divider:not(.vertical):not(.horizontal) {
+			    border-top: 1px solid rgba(34,36,38,0.15);
+			    border-bottom: 1px solid rgba(255,255,255,0.1);
+			}
+			.ui.divider {
+			    font-size: 1rem;
+			}
+			.ui.divider {
+			    margin: 1rem 0rem;
+			    line-height: 1;
+			    height: 0em;
+			    font-weight: bold;
+			    text-transform: uppercase;
+			    letter-spacing: 0.05em;
+			    color: rgba(0,0,0,0.85);
+			    -webkit-user-select: none;
+			    -moz-user-select: none;
+			    -ms-user-select: none;
+			    user-select: none;
+			    -webkit-tap-highlight-color: rgba(0,0,0,0);
+			}
+			.ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+			    font-size: 1.285em;
+			}
+			.ui.header {
+			    border: none;
+			    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Liberation Sans","PingFang SC","Microsoft YaHei","Hiragino Sans GB","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
+			    font-weight: bold;
+			    line-height: 1.33em;
+			    color: rgba(0,0,0,0.8);
+			}
+		    .footer {
+			    width: 1200px;
+			    margin: 0 auto;
+			    padding: 20px 0;
+			    font-size: 12px;
+			    color: #fff;
+			    line-height: 35px;
+			    font-weight: 700;
+			    overflow: hidden;
+			}
+			.footer ul {
+			    width: 20%;
+			    float: left;
+			    font-size: 14px;
+			}
+			.footer-bar {
+			    width: 100%;
+			    background: #444;
+			}
+			.footer_b {
+			    width: 100%;
+			    background: #1e1e1e;
+			    line-height: 40px;
+			    color: #fff;
+			    text-align: center;
+		        padding-bottom: 12px;
+			}
+			.footer li a {
+			    font-size: 12px;
+			    color: #fff;
+			    font-weight: normal;
+			}
+			.footer_b a {
+			    color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="nav-bar">
+				<div class="nav-item">
+					<ul class="nav-item-1">
+						<li class="item-site">
+							找合作，就上BD沃客！
+						</li>
+					</ul>
+					<ul class="nav-item-2">
+						<li class="item-site">
+							<a class="site-nav-item" href="">登录</a>
+						</li>
+						<li class="item-site">
+							<a class="site-nav-item" href="">注册</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="main-body">
+				<div>
+					<div class="sub_nav">
+						<a href="/forum-40-1.html" class="a1">合作信息</a>
+						<a href="/member.php?mod=qudao_list">渠道商</a>
+						<a href="/home.php?mod=spacecp&amp;ac=qudaoshang&amp;op=detail" class="apply_btn">申请渠道商入驻</a> 
+					</div>
+					<div class="ui container">
+						<div class="ui segment">
+						<div class="ui header">
+						登录
+						</div>
+						<div class="ui divider"></div>
+						<form class="form-horizontal">
+						  <div class="form-group">
+						    <label for="exampleInputAccount9" class="col-sm-2 required">账号</label>
+						    <div class="col-md-6 col-sm-10">
+						      <input type="text" class="form-control" id="exampleInputAccount9" placeholder="电子邮件/手机号/用户名">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword4" class="col-sm-2 required">密码</label>
+						    <div class="col-md-6 col-sm-10">
+						      <input type="password" class="form-control" id="exampleInputPassword4" placeholder="密码">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputMoney1" class="col-sm-2 required">捐赠金额</label>
+						    <div class="col-md-6 col-sm-10">
+						    <div class="input-group">
+						      <span class="input-group-addon">￥</span>
+						      <input type="number" class="form-control" id="exampleInputMoney1" placeholder="最低捐赠金额为 ￥10.00">
+						      <span class="input-group-addon">.00</span>
+						    </div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputAddress7" class="col-sm-2">地址</label>
+						    <div class="col-sm-3">
+						      <select class="form-control" id="exampleInputAddress7">
+						        <option>北京</option>
+						        <option>上海</option>
+						      </select>
+						    </div>
+						    <div class="col-sm-3">
+						      <input type="text" class="form-control" id="exampleInputAddress8" placeholder="市/县">
+						    </div>
+						    <div class="col-sm-4">
+						      <input type="text" class="form-control" id="exampleInputAddress9" placeholder="详细地址">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <div class="checkbox">
+						        <label>
+						          <input type="checkbox"> <a>我已阅读并接受用户协议</a>
+						        </label>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <div class="checkbox">
+						        <label>
+						          <input type="checkbox"> 记住我
+						        </label>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						        <label>
+						          <a href="http://zui.sexy/#view/form">更多表单样式请点击</a>
+						        </label>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-default">登录</button>
+						    </div>
+						  </div>
+						</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bar">
+			    <div class="footer">
+			        <ul>
+			            <li style="text-align:center;">下载BD沃客APP 找合作更方便<br>
+			            <img src="/static/append/common/code_downapp.jpg"></li>
+			        </ul>
+			        <ul>
+			            <li>用户帮助</li>
+			            <li><a href="/misc.php?mod=faq" target="_blank">常见问题</a></li>
+			            <li><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=7" target="_blank">联系我们</a></li>
+			            <li><a href="/yiyehezuo/" target="_blank">BD加油站</a></li>
+			        </ul>
+			        <ul>
+			            <li>商务合作</li>
+			            <li><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=4" target="_blank">市场合作</a></li>
+			            <li><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=5" target="_blank">合作伙伴</a></li>
+			            <li><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=3" target="_blank">广告投放</a></li>
+			        </ul>
+			        <ul>
+			            <li>关于我们</li>
+			            <li><a href="/topic-about.html" target="_blank">BD沃客介绍</a></li>
+			            <li><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=8" target="_blank">加入我们</a></li>
+			            <li><a href="/portal.php?mod=topic&amp;topicid=1&amp;mode=2" target="_blank">免责声明</a></li>
+			        </ul>
+			        <ul class="a1">
+			            <li style="text-align:center;">关注BD沃客微信公众号<br>
+			            <img src="/static/append/common/code_wechat.png"></li>
+			        </ul>
+			    </div>
+			    <div class="footer_b">
+ 
+			Copyright © 2017, 版权所有
+			<a href="http://www.bdwork.com/">bdwork.com</a> 沪ICP备14053992号-2 <br>
+			<a key="5975a14b2548be7a81d18924" logo_size="83x30" logo_type="realname" href="https://v.pinpaibao.com.cn/authenticate/cert/?site=www.bdwork.com&amp;at=realname" target="_blank"><script src="//static.anquan.org/static/outer/js/aq_auth.js" type="text/javascript"></script><b id="aqLogoJHSOQ" style="display: none;"></b><img src="//static.anquan.org/static/outer/image/sm_83x30.png?id=www.bdwork.com?t=7" alt="安全联盟认证" width="83" height="30" style="border: none;"></a>
+			<a id="___szfw_logo___" href="https://credit.szfw.org/CX20170816035602590333.html" target="_blank"><img src="http://icon.szfw.org/sf.png" border="0" style="height:35px;"></a>
+			<script type="text/javascript">(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script>
+			<a id="___szfw_logo___" href="https://credit.szfw.org/CX20170816035602200918.html" target="_blank"><img src="http://icon.szfw.org/silver.jpg" border="0" style="height:35px;"></a>
+			<script type="textjavascript">(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script>
+			</div>
+			</div>
+				
+		</div>
+	</body>
+</html>
