@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>产品中心</title>
+	<title>米兔首页</title>
 	<meta name="decorator" content="cms_default_${site.theme}"/>
 	<meta name="description" content="${category.description}" />
 	<meta name="keywords" content="${category.keywords}" />
@@ -27,80 +27,6 @@ blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5,
 	padding: 0;
 }
 
-ol, ul {
-	list-style: none;
-}
-
-.nav-bar {
-	height: 35px;
-	background: #f5f5f5;
-	height: 35px;
-}
-
-.nav-item, .main-body {
-	width: 100%;
-	margin: 0 auto;
-}
-
-.nav-item-1 {
-	float: left;
-}
-
-.nav-item .item-site {
-	float: left;
-}
-
-.nav-item-2 {
-	float: right;
-}
-
-.item-site {
-	line-height: 35px;
-}
-
-.site-nav-item {
-	float: left;
-	margin-right: 7px;
-	margin-left: 12px;
-	cursor: auto;
-	padding: 0 10px;
-}
-
-.sub_nav {
-	display: block;
-	border-bottom: 1px solid #e9491a;
-}
-
-.sub_nav a {
-	margin-bottom: -1px;
-	padding: 0 25px;
-	border: 1px solid #f2b19c;
-	background: #f9ede1;
-	border-bottom: none;
-	line-height: 35px;
-	font-size: 16px;
-	display: inline-block;
-}
-
-.sub_nav a.a1 {
-	border: 1px solid #e9491a;
-	color: #fff;
-	background: #e9491a;
-	font-weight: 700;
-}
-
-a.apply_btn {
-	width: 180px;
-	padding: 0 30px 0 20px;
-	float: right;
-	border-radius: 3px;
-	border: none;
-	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
-		180px -438px;
-	color: #fff;
-	text-align: center;
-	font-size: 14px;
-}
 
 .multi_options {
 	margin: 0 0 10px;
@@ -249,6 +175,41 @@ i {
 	color: #369;
 }
 
+.sub_nav {
+	display: block;
+	border-bottom: 1px solid #e9491a;
+}
+
+.sub_nav a {
+	margin-bottom: -1px;
+	padding: 0 25px;
+	border: 1px solid #f2b19c;
+	background: #f9ede1;
+	border-bottom: none;
+	line-height: 35px;
+	font-size: 16px;
+	display: inline-block;
+}
+
+.sub_nav a.a1 {
+	border: 1px solid #e9491a;
+	color: #fff;
+	background: #e9491a;
+	font-weight: 700;
+}
+
+a.apply_btn {
+	width: 180px;
+	padding: 0 30px 0 20px;
+	float: right;
+	border-radius: 3px;
+	border: none;
+	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
+		180px -438px;
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+}
 
 .lireq{
 	height: 35px;
@@ -336,6 +297,7 @@ i {
 					</table>
 				</div>
 
+				<!-- 
 				<div class="sort_head">
 					<table cellspacing="0" cellpadding="0">
 						<tbody>
@@ -352,8 +314,9 @@ i {
 						</tbody>
 					</table>
 				</div>
+				 -->
 				<div class="channel_partner" id="keyword">
-					<ul>
+					<ul style="background-color: #f5f5f5">
 						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">图片</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品名称</p>

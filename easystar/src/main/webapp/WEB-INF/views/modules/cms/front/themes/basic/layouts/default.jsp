@@ -8,8 +8,16 @@
 	<%@include file="/WEB-INF/views/modules/cms/front/include/head.jsp" %>
 	<!-- Baidu tongji analytics --><script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="//hm.baidu.com/hm.js?82116c626a8d504a5c0675073362ef6f";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
 	<sitemesh:head/>
-	<style type="text/css">
-		.footer {
+<style type="text/css">
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:HOVER{
+	text-decoration: none;
+}
+.footer {
 	width: 1200px;
 	margin: 0 auto;
 	padding: 20px 0;
@@ -24,7 +32,7 @@
 	width: 15%;
 	float: left;
 	font-size: 14px;
-	list-style-type:none
+	list-style-type: none
 }
 
 .footer-bar {
@@ -41,7 +49,6 @@
 	padding-bottom: 12px;
 }
 
-
 .footer li a {
 	font-size: 12px;
 	color: #fff;
@@ -51,16 +58,104 @@
 .footer_b a {
 	color: #fff;
 }
-.lireq{
+
+ol, ul {
+	list-style: none;
+}
+
+.item-site {
+	line-height: 35px;
+}
+
+.site-nav-item {
+	float: left;
+	margin-right: 7px;
+	margin-left: 12px;
+	cursor: auto;
+	padding: 0 10px;
+}
+
+.nav-bar {
+	height: 35px;
+	background: #f5f5f5;
+}
+
+.nav-item, .main-body {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.nav-item-1 {
+	margin-left:10%;
+	float: left;
+}
+
+.nav-item .item-site {
+	float: left;
+}
+
+.nav-item-2 {
+	margin-right:10%;
+	float: right;
+}
+
+
+.lireq {
 	height: 35px;
 	line-height: 35px;
 }
 
-	</style>
+.head_ul {
+	width: 100%;
+	background-color: #fff;
+	box-shadow: #e7e7e7 0 1px 3px;
+	border-bottom: 1px solid rgb(231, 231, 231);
+	margin-bottom: 10px;
+}
+
+.sub_nav_1 {
+	padding-top:50px;
+	width:80%;
+	margin-left:10%;
+	display: block;
+}
+
+.sub_nav_1 a {
+	margin-bottom: -1px;
+	padding: 0 25px;
+	border-bottom: thin;
+	line-height: 35px;
+	font-size: 16px;
+	display: inline-block;
+}
+.sub_nav_1 a:hover{
+	border-bottom: 1px red solid;
+}
+
+.sub_nav_1 a.a1 {
+	border: 1px solid #e9491a;
+	color: #fff;
+	background: #e9491a;
+	font-weight: 700;
+}
+
+a.apply_btn_1 {
+	width: 100px;
+	padding: 0 10px 0 10px;
+	float: right;
+	border-radius: 3px;
+	border: none;
+	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
+		180px -438px;
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+}
+</style>
 </head>
 <body>
 	<div style="position: fixed;width: 7%;left:0px;top: 20%;text-align: left;">
-		<img alt="" src="${ctxStatic}/zui/img/open_im.png"><br>
+		<a target=blank href=tencent://message/?uin=1156392571&Site=qq号码说明&Menu=yes><img alt="" src="${ctxStatic}/zui/img/open_im.png"></a><br>
 	</div>
 	<div id="ggshow_1" style="position: fixed;width: 7%;left:0px;bottom: 10%;text-align: left;">
 		<img alt="" src="${ctxStatic}/zui/img/gg1.jpg" style="width: 100px;"><br>
@@ -77,10 +172,9 @@
 			}else{
 				$("#ggshow_2").css("display","none");
 			}
-			
 		}
 	</script>
-
+<!-- 
 	<div class="navbar navbar-fixed-top" style="position:static;margin-bottom:10px;">
       <div class="navbar-inner">
         <div class="container" style="width: 85%">
@@ -97,7 +191,6 @@
                     <c:set var="menuCategoryId" value=",${category.id},"/>
 		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''}"><a href="${category.url}" target="${category.target}"><span>${category.name}</span></a></li>
 		    	</c:if></c:forEach>
-			    <!-- 
 			    <li id="siteSwitch" class="dropdown">
 			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="站点"><i class="icon-retweet"></i></a>
 					<ul class="dropdown-menu">
@@ -110,25 +203,58 @@
 				      <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 				    </ul>
 			    </li>
-			     -->
 			     <li style="margin-left: 150px;"><a>登录</a></li>
 			     <li><a>注册</a></li>
             </ul>
-            <!--  
             <form class="navbar-form pull-right" action="${ctx}/search" method="get">
               	<input type="text" name="q" maxlength="20" style="width:65px;" placeholder="全站搜索..." value="${q}">
             </form>
-            -->
             
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>
-    <div class="container" style="width: 85%;">
-    	<img alt="" src="${ctxStatic}/zui/img/h_gg1.jpg">
-    	<img alt="" src="${ctxStatic}/zui/img/h_gg2.gif">
+     -->
+	<div class="nav-bar">
+		<div class="nav-item">
+			<ul class="nav-item-1">
+				<li class="item-site">找合作，就上168米兔！</li>
+			</ul>
+			<ul class="nav-item-2">
+				<c:if test="${empty fns:getUser().name}">
+					<li class="item-site"><a class="site-nav-item" href="${pageContext.request.contextPath}/a">登录</a></li>
+					<li class="item-site"><a class="site-nav-item" href="${pageContext.request.contextPath}/f/toreg">注册</a></li>
+				</c:if>
+				<c:if test="${not empty fns:getUser().name}">
+					<li class="item-site"><img src="${pageContext.request.contextPath}/uploads/1/product/20171102/1509600625629_1509074477404.png" style="width: 30px;height: 30px;border-radius:15px;">${fns:getUser().name}</li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+	<div class="head_ul">
+		<div class="sub_nav_1">
+			<a href="javascript:void(0)"  class="a1">找产品</a> 
+			<a href="javascript:void(0)" >渠道商</a>
+			<a href="javascript:void(0)" >找工作</a>
+			<a href="javascript:void(0)" >找房源</a>
+			<a href="javascript:void(0)" >找商店</a>
+			<a href="javascript:void(0)" class="apply_btn_1" style="">免费发布信息</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('.sub_nav_1 a').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
+		})
+	
+	</script>
+	
+	
+	
+	<div class="container" style="width: 80%;">
+    	<img alt="" src="${ctxStatic}/zui/img/h_gg1.jpg" style="width: 100%">
+    	<img alt="" src="${ctxStatic}/zui/img/h_gg2.gif" style="width: 100%">
     </div>
-	<div class="container" style="width: 85%">
+	<div class="container" style="width: 80%">
 		<div class="content" style="width: 100%">
 			<sitemesh:body/>
 		</div>
