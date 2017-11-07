@@ -134,7 +134,7 @@ i {
 .channel_partner li {
 	width: 396px;
 	height: 150px;
-	padding: 15px;
+	padding: 15px 0 15px 0;
 	font-size: 12px;
 	color: #666;
 	display: inline-block;
@@ -214,6 +214,17 @@ a.apply_btn {
 .lireq{
 	height: 35px;
 	line-height: 35px;
+}
+/*
+给li标签加上样式效果
+*/
+.ul_add li{
+	transition: opacity 0.3s ease-in-out:;
+}
+
+.ul_add li:hover{
+	box-shadow: #f5813d 0 0 7px;
+	border-radius: 3px;
 }
 </style>
 <script type="text/javascript">
@@ -327,13 +338,13 @@ a.apply_btn {
 							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">联系方式</p>
 							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">发布时间</p>
 						</li>
+					</ul>
+					<ul class="ul_add">
 						<c:forEach items="${page.list}" var="productList"> 
 							<li style="height: 30px;width: 100%">
-<!-- 								<a href="#" >  -->
 									<p style="float:left; width: 10%;text-align: center">
 										<img style="width: 30px;height: 30px" src="${pageContext.request.contextPath}/${productList.proUrl}">
 									</p>
-<!-- 								</a> -->
 									<p style="float:left; width: 10%;text-align: center">${productList.proName}</p>
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proType, 'proType', '')}</p>  
 									<p style="float:left;width: 10%;text-align: center">${productList.proPrice}</p>

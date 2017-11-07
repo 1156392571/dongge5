@@ -42,7 +42,9 @@ import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
 import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 网站Controller
@@ -391,5 +393,35 @@ public class FrontController extends BaseController{
 	}
     
     
+    /**
+	 * 跳转到前台发布信息页面
+	 */
+	@RequestMapping(value = "postmessage")
+	public String postmessage(TProduct tProduct,Model model,RedirectAttributes redirectAttributes) {
+		Principal principal = UserUtils.getPrincipal();
+		//判断用户是否已经登录，未登录直接进入登录页面，已登录进入发布信息页面
+		if(principal!=null){
+			model.addAttribute("tProduct", tProduct);
+			Site site = CmsUtils.getSite(Site.defaultSiteId());
+			model.addAttribute("site", site);
+			Category category = categoryService.get("4bbd32c498c945b78a98e423b52f8684");
+	        model.addAttribute("category", category);
+			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpostMessage";
+		}else{
+			return "modules/sys/userlogin";
+		}
+	}
 	
+	/**
+	 * 保存用户发布的产品信息
+	 */
+	@RequestMapping(value = "saveproduct")
+	public String saveproduct(TProduct tProduct, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String pro_userId=principal.getLoginName();
+		tProduct.setProUserid(pro_userId);
+		tProductService.save(tProduct);
+        return "redirect:"+Global.getFrontPath()+"/productList/?repage";
+	}
 }
