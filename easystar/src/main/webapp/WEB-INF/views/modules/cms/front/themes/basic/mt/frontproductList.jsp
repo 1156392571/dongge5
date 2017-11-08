@@ -241,10 +241,9 @@ a.apply_btn {
 		<div class="main-body">
 			<div>
 				<div class="sub_nav">
-					<a href="/forum-40-1.html" class="a1">产品信息</a> <a
-						href="/member.php?mod=qudao_list">渠道商</a> <a
-						href="/home.php?mod=spacecp&amp;ac=qudaoshang&amp;op=detail"
-						class="apply_btn">申请渠道商入驻</a>
+					<a href="" class="a1">产品信息</a> <a
+						href="">渠道商</a> <a
+						href="" class="apply_btn">申请渠道商入驻</a>
 				</div>
 				<div class="multi_options">
 					<table id="fontsearch" class="tsm">

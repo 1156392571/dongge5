@@ -52,7 +52,7 @@ $(function(){
 		var pxrule=$("#pxrule").val();
 		var rztype=$("#rztype").val();
 		var jstype=$("#jstype").val();
-		var url="productList?proType="+protype+"&proReserve1="+pxrule
+		var url=ctx+"/productList?proType="+protype+"&proReserve1="+pxrule
 				+"&proRztype="+rztype+"&proJstype="+jstype;
 		window.location.href=url;
 	}
@@ -118,6 +118,3 @@ $(function(){
 		}
 	}
 	
-	
-	$(function(){
-	})

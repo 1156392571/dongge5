@@ -9,6 +9,10 @@
 	<!-- Baidu tongji analytics --><script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="//hm.baidu.com/hm.js?82116c626a8d504a5c0675073362ef6f";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
 	<sitemesh:head/>
 <style type="text/css">
+body {
+	font-family: microsoft yahei !important;
+}
+
 a {
 	color: #333;
 	text-decoration: none;
@@ -238,7 +242,7 @@ a.apply_btn_1 {
 			<a href="javascript:void(0)" >找工作</a>
 			<a href="javascript:void(0)" >找房源</a>
 			<a href="javascript:void(0)" >找商店</a>
-			<a href="javascript:void(0)" class="apply_btn_1" style="">免费发布信息</a>
+			<a href="${ctx}/postmessage" class="apply_btn_1">免费发布信息</a>
 		</div>
 	</div>
 	<script type="text/javascript">
