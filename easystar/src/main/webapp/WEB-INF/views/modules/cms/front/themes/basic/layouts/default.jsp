@@ -237,8 +237,8 @@ a.apply_btn_1 {
 	</div>
 	<div class="head_ul">
 		<div class="sub_nav_1">
-			<a href="javascript:void(0)"  class="a1">找产品</a> 
-			<a href="javascript:void(0)" >渠道商</a>
+			<a href="${ctx}/productList" >找产品</a> 
+			<a href="${ctx}/taskList" >找任务</a>
 			<a href="javascript:void(0)" >找工作</a>
 			<a href="javascript:void(0)" >找房源</a>
 			<a href="javascript:void(0)" >找商店</a>

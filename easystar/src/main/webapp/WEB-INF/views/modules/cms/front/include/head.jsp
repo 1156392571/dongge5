@@ -12,3 +12,4 @@
 	<link href="${ctxStaticTheme}/style.css" type="text/css" rel="stylesheet" />
 	<script src="${ctxStaticTheme}/script.js" type="text/javascript"></script>
 </c:if>
+<script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}', ctxw='${ctxw}';</script>

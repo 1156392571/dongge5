@@ -38,8 +38,10 @@ import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
+import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
+import com.thinkgem.jeesite.modules.mt.service.TTaskService;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -71,6 +73,8 @@ public class FrontController extends BaseController{
 	private TProductService tProductService;
 	@Autowired
 	private SystemService systemService;
+	@Autowired
+	private TTaskService tTaskService;
 	
 	/**
 	 * 网站首页
@@ -424,4 +428,32 @@ public class FrontController extends BaseController{
 		tProductService.save(tProduct);
         return "redirect:"+Global.getFrontPath()+"/productList/?repage";
 	}
+	
+	
+	/**
+	 * 图片工具
+	 */
+	@RequestMapping(value = "tophoto")
+	public String tophoto(Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/example";
+	}
+	
+	/**
+	 * 跳转到发布任务页面
+	 */
+    @RequestMapping(value="taskList")
+	public String taskList(TTask tTask,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+        Page<TTask> page = tTaskService.findPage(new Page<TTask>(request, response, pageSize),tTask); 
+		model.addAttribute("page", page);
+		model.addAttribute("tTask", tTask);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/fronttaskList";
+	}
+	
+	
 }

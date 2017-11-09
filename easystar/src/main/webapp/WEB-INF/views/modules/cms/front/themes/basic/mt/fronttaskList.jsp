@@ -228,11 +228,11 @@ a.apply_btn {
 }
 </style>
 <script type="text/javascript">
-$(function(){
-	$(".sub_nav_1 a").eq(0).addClass("a1");
-})
+	$(function(){
+		$(".sub_nav_1 a").eq(1).addClass("a1");
+	})
 </script>
-<script src="${ctxStatic}/reg-login/product.js"></script>
+<script src="${ctxStatic}/reg-login/task.js"></script>
 </head>
 <body>
 	<div>
@@ -243,20 +243,21 @@ $(function(){
 		<div class="main-body">
 			<div>
 				<div class="sub_nav">
-					<a href="" class="a1">产品信息</a> <a
+					<a href="" class="a1">任务信息</a> <a
 						href="">渠道商</a> <a
-						href="" class="apply_btn">免费发布产品信息</a>
+						href="" class="apply_btn">免费发布任务</a>
 				</div>
 				<div class="multi_options">
 					<table id="fontsearch" class="tsm">
 						<tbody>
 							<tr>
-								<td class="sort_type_l">产品类型</td>
+								<td class="sort_type_l">任务类型</td>
 								<td>
 									<ul id="cplx" class="cl">
 										<li><a href="javascript:protype('0')">不限</a></li>
-										<li><a href="javascript:protype('1')">软件</a></li>
-										<li><a href="javascript:protype('2')"">游戏</a></li>
+										<li><a href="javascript:protype('1')">CPA</a></li>
+										<li><a href="javascript:protype('2')">CPS</a></li>
+										<li><a href="javascript:protype('3')">地推</a></li>
 									</ul>
 								</td>
 							</tr>
@@ -266,6 +267,8 @@ $(function(){
 									<ul id="pxgz" class="cl a1">
 										<li><a
 											href="javascript:pxrule('0')">不限</a></li>
+										<li><a
+											href="javascript:pxrule('0')">有效时间</a></li>
 										<li><a
 											href="javascript:pxrule('1')">由高到低</a></li>
 										<li><a
@@ -287,21 +290,6 @@ $(function(){
 											href="javascript:rztype('2')">网站认证</a></li>
 										<li><a
 											href="javascript:rztype('3')">个人认证</a></li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td class="sort_type_l">结算条件</td>
-								<td>
-									<ul id="jstj" class="cl">
-										<li><a
-											href="javascript:jstype('0')">不限</a></li>
-										<li><a
-											href="javascript:jstype('1')">日结</a></li>
-										<li><a
-											href="javascript:jstype('2')">周结</a></li>
-											<li><a
-											href="javascript:jstype('3')">月结</a></li>
 									</ul>
 								</td>
 							</tr>
@@ -330,34 +318,37 @@ $(function(){
 				<div class="channel_partner" id="keyword">
 					<ul style="background-color: #f5f5f5">
 						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">图片</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品名称</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品类型</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">产品价格</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">结算方式</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">会员昵称</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务名称</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务单价</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务类型</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">认证方式</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">联系方式</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">发布时间</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务数量</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">做单要求</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">做单技巧</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">联系方式</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">发布时间</p>
 						</li>
 					</ul>
 					<ul class="ul_add">
-						<c:forEach items="${page.list}" var="productList"> 
+						<c:forEach items="${page.list}" var="taskList"> 
 							<li style="height: 30px;width: 100%">
 									<p style="float:left; width: 10%;text-align: center">
-										<img style="width: 30px;height: 30px" src="${pageContext.request.contextPath}/${productList.proUrl}">
+										<img style="width: 30px;height: 30px" src="${pageContext.request.contextPath}/${taskList.proUrl}">
 									</p>
-									<p style="float:left; width: 10%;text-align: center">${productList.proName}</p>
-									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proType, 'proType', '')}</p>  
-									<p style="float:left;width: 10%;text-align: center">${productList.proPrice}</p>
-									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proJstype, 'proJstype', '')}</p>
-									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(productList.proRztype, 'proRztype', '')}</p>
-									<p style="float:left;width: 20%;text-align: center">
-										<img src="${ctxStatic}/zui/img/company.png" title="${productList.proReserve1}">
-										<img src="${ctxStatic}/zui/img/www.png" title="${productList.proReserve2}">
-										<img src="${ctxStatic}/zui/img/phone.png" title="${productList.proReserve4}">
-										<img src="${ctxStatic}/zui/img/wx.png" title="${productList.proReserve3}">
+									<p style="float:left; width: 10%;text-align: center">${taskList.taskUserid}</p>
+									<p style="float:left; width: 10%;text-align: center">${taskList.taskName}</p>
+									<p style="float:left;width: 10%;text-align: center">${taskList.taskPrice}</p>  
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskList.taskType, 'taskType', '')}</p>
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}</p>
+									<p style="float:left;width: 10%;text-align: center">${taskList.taskAmount}</p>
+									<p style="float:left;width: 10%;text-align: center">${taskList.taskAsk}</p>
+									<p style="float:left;width: 10%;text-align: center">${taskList.taskSkill}</p>
+									<p style="float:left;width: 10%;text-align: center">
+										<img src="${ctxStatic}/zui/img/phone.png" title="${taskList.proReserve4}">
+										<img src="${ctxStatic}/zui/img/wx.png" title="${taskList.proReserve3}">
 									</p>
-									<p style="float:left;width: 20%;text-align: center"><fmt:formatDate value="${productList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 							</li>
 						</c:forEach>
 					</ul>

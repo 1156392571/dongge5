@@ -270,6 +270,90 @@
 				</div>
 				
 			</div>
+			
+			<div class="header_wp" id="header_wp">
+<div class="header">
+<div class="logo"><a href="./">BD沃客网</a></div><div id="scbar" class="cl">
+<form id="scbar_form" method="post" autocomplete="off" onsubmit="return searchChk();" action="search.php?searchsubmit=yes" style="float:left;"> <!-- target="_blank" -->
+<input type="hidden" name="mod" id="scbar_mod" value="search" />
+<input type="hidden" name="formhash" value="b029d7c2" />
+
+<input type="hidden" name="srhfid" value="2" />
+<input type="hidden" name="srhlocality" value="forum::forumdisplay" />
+<select id="srchtype" name="srchtype" class="search_type">
+<option value="title">标题</option><option value="brand">品牌</option><option value="offer">提供</option><option value="need">需求</option></select>
+<input type="text" name="srchtxt" id="scbar_txt" class="xg1" value="请输入搜索内容"  />
+<a href="javascript:;" id="scbar_type" class="xg1" onclick="showMenu(this.id)" hidefocus="true">搜索</a>
+<button type="submit" name="searchsubmit" id="scbar_btn" sc="1" value="true"></button>
+</form>
+</div>
+<ul id="scbar_type_menu" class="p_pop" style="display: none;"><li><a href="javascript:;" rel="curforum" fid="2" >本版</a></li><li><a href="javascript:;" rel="forum" class="curtype">帖子</a></li><li><a href="javascript:;" rel="user">用户</a></li></ul>
+<script type="text/javascript">
+initSearchmenu('scbar', '');   
+function searchChk(){
+if(jQuery("#scbar_txt").val()==""){
+showDialog("请输入关键字！");
+return false;
+}
+}
+</script>
+<div class="search_link">
+<a href="/search.php?mod=user" target="_blank">搜索用户</a>
+<a href="http://www.bdwork.com/search.php?act=pubsearch">高级搜索</a>
+</div>
+ 
+
+<div class="post_h">
+<a id="post_newthread" class="post_btn" onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&amp;action=nav">免费发布合作信息</a>	
+</div><ul id="nv">
+<li class="a" ><a href="/">找合作</a></li>
+<li ><a href="/home.php?mod=spacecp&amp;ac=search">找人</a></li>
+<li  > <a href="/forum-40-1.html">找效果渠道</a></li>
+<li ><a href="/forum-43-1.html">找分销代理</a></li>
+<li  > <a href="/brand/index">找品牌</a></li>
+<li > <a href="/serviceprovider/index">找服务商</a></li>
+<li > <a href="/media/index">找媒体</a></li> 
+ 
+ 
+<li id="mn_N4f89" ><a href="xj_event-event_center.html" hidefocus="true"  >活动</a></li>
+ 
+ 
+ 
+ 
+<li id="mn_Neff2" ><a href="http://www.bdwork.com/yiyehezuo/" hidefocus="true"  >BD加油站</a></li>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<li class="app"><a href="misc.php?mod=mobile" onMouseOver="showMenu({'ctrlid':'app_down'});" >APP下载</a>
+<i id="app_down_menu" style="position: absolute; z-index: 301; display: none;">扫码下载BD沃客APP<br />找合作更方便</i>
+</li>
+</ul>
+</div>
+</div>
+			
+			
+			
+			
+			
 			<div class="main-body">
 				<div>
 					<ol class="breadcrumb">

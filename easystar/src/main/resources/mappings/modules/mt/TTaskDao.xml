@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TTaskDao">
+    
+	<sql id="tTaskColumns">
+		a.id AS "id",
+		a.task_userid AS "taskUserid",
+		a.task_name AS "taskName",
+		a.task_price AS "taskPrice",
+		a.task_amount AS "taskAmount",
+		a.task_yxsj AS "taskYxsj",
+		a.task_ask AS "taskAsk",
+		a.task_skill AS "taskSkill",
+		a.task_phone AS "taskPhone",
+		a.task_qq AS "taskQq",
+		a.task_type AS "taskType",
+		a.task_rztype AS "taskRztype",
+		a.createtime AS "createtime",
+		a.task_remarks AS "taskRemarks",
+		a.task_reserve1 AS "taskReserve1",
+		a.task_reserve2 AS "taskReserve2",
+		a.task_reserve3 AS "taskReserve3",
+		a.task_reserve4 AS "taskReserve4",
+		a.task_reserve5 AS "taskReserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tTaskJoins">
+	left join t_user b on a.task_userid=b.t_userid
+	</sql>
+    
+	<select id="get" resultType="TTask">
+		SELECT 
+			<include refid="tTaskColumns"/>
+		FROM t_task a
+		<include refid="tTaskJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TTask">
+		SELECT 
+			<include refid="tTaskColumns"/>
+		FROM t_task a
+		<include refid="tTaskJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="taskUserid !=null and taskUserid !=''">
+				and a.task_userid=#{taskUserid}
+			</if>
+			<if test="taskName !=null and taskName !=''">
+				and a.task_name=#{taskName}
+			</if>
+			<if test="taskPrice !=null and taskPrice !=''">
+				and a.task_price=#{taskPrice}
+			</if>
+			<if test="taskAmount !=null and taskAmount !=''">
+				and a.task_amount=#{taskUserid}
+			</if>
+			<if test="taskType !=null and taskType !=''">
+				and a.task_type=#{taskType}
+			</if>
+			<if test="taskRztype !=null and taskRztype !=''">
+				and a.task_type=#{taskRztype}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TTask">
+		SELECT 
+			<include refid="tTaskColumns"/>
+		FROM t_task a
+		<include refid="tTaskJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_task(
+			id,
+			task_userid,
+			task_name,
+			task_price,
+			task_amount,
+			task_yxsj,
+			task_ask,
+			task_skill,
+			task_phone,
+			task_qq,
+			task_type,
+			task_rztype,
+			createtime,
+			task_remarks,
+			task_reserve1,
+			task_reserve2,
+			task_reserve3,
+			task_reserve4,
+			task_reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{taskUserid},
+			#{taskName},
+			#{taskPrice},
+			#{taskAmount},
+			#{taskYxsj},
+			#{taskAsk},
+			#{taskSkill},
+			#{taskPhone},
+			#{taskQq},
+			#{taskType},
+			#{taskRztype},
+			now(),
+			#{taskRemarks},
+			#{taskReserve1},
+			#{taskReserve2},
+			#{taskReserve3},
+			#{taskReserve4},
+			#{taskReserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_task SET 	
+			task_userid = #{taskUserid},
+			task_name = #{taskName},
+			task_price = #{taskPrice},
+			task_amount = #{taskAmount},
+			task_yxsj = #{taskYxsj},
+			task_ask = #{taskAsk},
+			task_skill = #{taskSkill},
+			task_phone = #{taskPhone},
+			task_qq = #{taskQq},
+			task_type = #{taskType},
+			task_rztype = #{taskRztype},
+			createtime = #{createtime},
+			task_remarks = #{taskRemarks},
+			task_reserve1 = #{taskReserve1},
+			task_reserve2 = #{taskReserve2},
+			task_reserve3 = #{taskReserve3},
+			task_reserve4 = #{taskReserve4},
+			task_reserve5 = #{taskReserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_task SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

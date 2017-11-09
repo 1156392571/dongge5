@@ -77,7 +77,7 @@ jQuery(function() {
                 chunked: false,//是否分片处理大文件的上传
                 chunkSize: 512 * 1024,
                 
-                server: ctx+'/upload?method=upload',//上传地址
+                server: '../a/upload?method=upload',//上传地址
                 
                 method:'POST',
                 
