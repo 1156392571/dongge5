@@ -398,7 +398,7 @@ public class FrontController extends BaseController{
     
     
     /**
-	 * 跳转到前台发布信息页面
+	 * 跳转到前台发布产品信息页面
 	 */
 	@RequestMapping(value = "postmessage")
 	public String postmessage(TProduct tProduct,Model model,RedirectAttributes redirectAttributes) {
@@ -431,16 +431,6 @@ public class FrontController extends BaseController{
 	
 	
 	/**
-	 * 图片工具
-	 */
-	@RequestMapping(value = "tophoto")
-	public String tophoto(Model model) {
-		Site site = CmsUtils.getSite(Site.defaultSiteId());
-		model.addAttribute("site", site);
-		return "modules/cms/front/themes/"+site.getTheme()+"/mt/example";
-	}
-	
-	/**
 	 * 跳转到发布任务页面
 	 */
     @RequestMapping(value="taskList")
@@ -453,6 +443,55 @@ public class FrontController extends BaseController{
 		model.addAttribute("page", page);
 		model.addAttribute("tTask", tTask);
 		return "modules/cms/front/themes/"+site.getTheme()+"/mt/fronttaskList";
+	}
+	
+    /**
+	 * 跳转到前台发布任务信息页面
+	 */
+	@RequestMapping(value = "postTask")
+	public String postTask(TTask tTask,Model model,RedirectAttributes redirectAttributes) {
+		Principal principal = UserUtils.getPrincipal();
+		//判断用户是否已经登录，未登录直接进入登录页面，已登录进入发布信息页面
+		if(principal!=null){
+			model.addAttribute("tTask", tTask);
+			Site site = CmsUtils.getSite(Site.defaultSiteId());
+			model.addAttribute("site", site);
+			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpostTask";
+		}else{
+			return "modules/sys/userlogin";
+		}
+	}
+	
+	/**
+	 * 保存用户发布的产品信息
+	 */
+	@RequestMapping(value = "saveTask")
+	public String saveTask(TTask tTask, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String pro_userId=principal.getLoginName();
+		tTask.setTaskUserid(pro_userId);
+		tTaskService.save(tTask);
+        return "redirect:"+Global.getFrontPath()+"/taskList/?repage";
+	}
+	
+	/**
+	 * 
+	 * 用户申请任务订单，需要跳转到一个申请订单的页面
+	 * 里面会显示这条任务的详情，同时会有接单以及交单两个按钮
+	 */
+	@RequestMapping(value = "taskdetail")
+	public String taskdetail(TTask tTask,Model model,RedirectAttributes redirectAttributes) {
+		Principal principal = UserUtils.getPrincipal();
+		//判断用户是否已经登录，未登录直接进入登录页面，已登录进入任务详情页面
+		if(principal!=null){
+			model.addAttribute("tTask", tTask);
+			Site site = CmsUtils.getSite(Site.defaultSiteId());
+			model.addAttribute("site", site);
+			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpostTask";
+		}else{
+			return "modules/sys/userlogin";
+		}
 	}
 	
 	

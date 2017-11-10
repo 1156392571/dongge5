@@ -67,13 +67,28 @@
 			<if test="taskRztype !=null and taskRztype !=''">
 				and a.task_type=#{taskRztype}
 			</if>
+			<!-- 有效时间进行排序 -->
+			<if test='taskReserve1=="1"'>
+				order by a.task_yxsj ASC
+			</if>
+			<!-- 价格由高到低 -->
+			<if test='taskReserve1=="2"'>
+				order by a.task_price DESC
+			</if>
+			<!-- 价格由低到高 -->
+			<if test='taskReserve1=="3"'>
+				order by a.task_price ASC
+			</if>
+			<if test='taskReserve1=="4"'>
+				order by a.createtime DESC
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+<!-- 				ORDER BY a.update_date DESC -->
 			</otherwise>
 		</choose>
 	</select>

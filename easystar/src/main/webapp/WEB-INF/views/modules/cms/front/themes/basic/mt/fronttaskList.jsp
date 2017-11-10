@@ -143,7 +143,7 @@ i {
 }
 
 .channel_partner li a {
-	width: 100%;
+/* 	width: 100%; */
 	text-decoration: none;
 	display: block;
 }
@@ -218,14 +218,26 @@ a.apply_btn {
 /*
 给li标签加上样式效果
 */
-.ul_add li{
-	transition: opacity 0.3s ease-in-out:;
+/* .ul_add li{ */
+/* 	transition: opacity 0.3s ease-in-out:; */
+/* } */
+
+/* .ul_add li:hover{ */
+/* 	box-shadow: #f5813d 0 0 7px; */
+/* 	border-radius: 3px; */
+/* } */
+
+.btn_tj{
+	float:left;
+	border: 1px #e9491a solid;
+	width: 50px;
+	height: 30px;
+	border-radius:5px;
+	background-color:#e9491a;
+	line-height: 30px;
+	font-size:15px; 
 }
 
-.ul_add li:hover{
-	box-shadow: #f5813d 0 0 7px;
-	border-radius: 3px;
-}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -236,16 +248,15 @@ a.apply_btn {
 </head>
 <body>
 	<div>
-		<input type="hidden" id="protype" value="${tProduct.proType}">
-		<input type="hidden" id="pxrule" value="${tProduct.proReserve1}">
-		<input type="hidden" id="rztype" value="${tProduct.proRztype}">
-		<input type="hidden" id="jstype" value="${tProduct.proJstype}">
+		<input type="hidden" id="tasktype" value="${tTask.taskType}">
+		<input type="hidden" id="pxrule" value="${tTask.taskReserve1}">
+		<input type="hidden" id="rztype" value="${tTask.taskRztype}">
 		<div class="main-body">
 			<div>
 				<div class="sub_nav">
 					<a href="" class="a1">任务信息</a> <a
 						href="">渠道商</a> <a
-						href="" class="apply_btn">免费发布任务</a>
+						href="${ctx}/postTask" class="apply_btn">免费发布任务</a>
 				</div>
 				<div class="multi_options">
 					<table id="fontsearch" class="tsm">
@@ -254,10 +265,10 @@ a.apply_btn {
 								<td class="sort_type_l">任务类型</td>
 								<td>
 									<ul id="cplx" class="cl">
-										<li><a href="javascript:protype('0')">不限</a></li>
-										<li><a href="javascript:protype('1')">CPA</a></li>
-										<li><a href="javascript:protype('2')">CPS</a></li>
-										<li><a href="javascript:protype('3')">地推</a></li>
+										<li><a href="javascript:tasktype('0')">不限</a></li>
+										<li><a href="javascript:tasktype('1')">CPA</a></li>
+										<li><a href="javascript:tasktype('2')">CPS</a></li>
+										<li><a href="javascript:tasktype('3')">地推</a></li>
 									</ul>
 								</td>
 							</tr>
@@ -268,13 +279,13 @@ a.apply_btn {
 										<li><a
 											href="javascript:pxrule('0')">不限</a></li>
 										<li><a
-											href="javascript:pxrule('0')">有效时间</a></li>
+											href="javascript:pxrule('1')">有效时间</a></li>
 										<li><a
-											href="javascript:pxrule('1')">由高到低</a></li>
+											href="javascript:pxrule('2')">由高到低</a></li>
 										<li><a
-											href="javascript:pxrule('2')">由低到高</a></li>
+											href="javascript:pxrule('3')">由低到高</a></li>
 										<li><a
-											href="javascript:pxrule('3')">发布时间</a></li>
+											href="javascript:pxrule('4')">发布时间</a></li>
 									</ul>
 								</td>
 							</tr>
@@ -297,58 +308,42 @@ a.apply_btn {
 					</table>
 				</div>
 
-				<!-- 
-				<div class="sort_head">
-					<table cellspacing="0" cellpadding="0">
-						<tbody>
-							<tr>
-								<td colspan="2">
-									<div class="tf" style="float: left;">
-										&nbsp;<a href="">默认排序</a>
-										&nbsp;<a href="">入驻时间</a>
-										&nbsp;<a href="" class="a1 ">好评率</a>
-									</div>
-
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				 -->
 				<div class="channel_partner" id="keyword">
 					<ul style="background-color: #f5f5f5">
 						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">会员昵称</p>
+							<p style="width: 8%;float: left;text-align: center;font-size: 16px;">会员昵称</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务名称</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务单价</p>
+							<p style="width: 7%;float: left;text-align: center;font-size: 16px;">任务单价</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务类型</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">认证方式</p>
+							<p style="width: 5%;float: left;text-align: center;font-size: 16px;">认证方式</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务数量</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">做单要求</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">做单技巧</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">联系方式</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">发布时间</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">操作</p>
 						</li>
 					</ul>
 					<ul class="ul_add">
 						<c:forEach items="${page.list}" var="taskList"> 
 							<li style="height: 30px;width: 100%">
-									<p style="float:left; width: 10%;text-align: center">
-										<img style="width: 30px;height: 30px" src="${pageContext.request.contextPath}/${taskList.proUrl}">
-									</p>
-									<p style="float:left; width: 10%;text-align: center">${taskList.taskUserid}</p>
+									<p style="float:left; width: 8%;text-align: center">${taskList.taskUserid}</p>
 									<p style="float:left; width: 10%;text-align: center">${taskList.taskName}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskList.taskPrice}</p>  
+									<p style="float:left;width: 7%;text-align: center">${taskList.taskPrice}</p>  
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskList.taskType, 'taskType', '')}</p>
-									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}</p>
+									<p style="float:left;width: 5%;text-align: center">${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskList.taskAmount}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskList.taskAsk}</p>
+									<p style="float:left;width: 10%;text-align: center;" title="${taskList.taskAsk}">${fns:abbr(taskList.taskAsk,20)}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskList.taskSkill}</p>
 									<p style="float:left;width: 10%;text-align: center">
-										<img src="${ctxStatic}/zui/img/phone.png" title="${taskList.proReserve4}">
-										<img src="${ctxStatic}/zui/img/wx.png" title="${taskList.proReserve3}">
+										<img src="${ctxStatic}/zui/img/phone.png" title="${taskList.taskPhone}">
+										<img style="width:22px ;height:22px;" src="${ctxStatic}/zui/img/qq.png" title="${taskList.taskQq}">
 									</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+									<p style="float:left;width: 10%;text-align: center">
+										<a class="btn_tj" href="" style="margin-left: 20px;color: #fff">申请</a> 
+										<a class="btn_tj" href="" style="margin-left: 10px;color: #fff">交单</a> 
+									</p>
 							</li>
 						</c:forEach>
 					</ul>
@@ -356,7 +351,7 @@ a.apply_btn {
 				<div class="pagination" style="text-align: center;display: block;">${page}</div>
 				<script type="text/javascript">
 					function page(n,s){
-						location="${ctx}/productList?pageNo="+n+"&pageSize="+s;
+						location="${ctx}/taskList?pageNo="+n+"&pageSize="+s;
 					}
 				</script>
 			</div>

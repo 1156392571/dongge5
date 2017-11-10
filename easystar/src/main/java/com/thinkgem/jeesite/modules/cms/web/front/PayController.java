@@ -57,12 +57,12 @@ public class PayController extends BaseController {
 		  BigDecimal b1 = new BigDecimal(Double.parseDouble(amount));
 	      BigDecimal b2 = new BigDecimal(100);
 	      double b3=b1.multiply(b2).doubleValue();
-		  Pingpp.apiKey = "sk_test_ibbTe5jLGCi5rzfH4OqPW9KC ";
+		  Pingpp.apiKey = "sk_live_8aTCa1yPeLG4iPebrDvj9i5S ";
 		  Map<String, Object> chargeParams = new HashMap<String, Object>();
 		  chargeParams.put("order_no",order_no);
 		  chargeParams.put("amount", b3);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
 		  Map<String, String> app = new HashMap<String, String>();
-		  app.put("id", "app_1Gqj58ynP0mHeX1q");
+		  app.put("id", "app_n1eDy5DuffbHSivv");
 		  chargeParams.put("app", app);
 		  chargeParams.put("channel", paytype);
 		  chargeParams.put("currency", "cny");
