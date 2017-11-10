@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TTaskOrderDao">
+    
+	<sql id="tTaskOrderColumns">
+		a.id AS "id",
+		a.to_taskid AS "toTaskid",
+		a.to_posterid AS "toPosterid",
+		a.to_type AS "toType",
+		a.to_name AS "toName",
+		a.to_cardid AS "toCardid",
+		a.to_phone AS "toPhone",
+		a.createtime AS "createtime",
+		a.completetime AS "completetime",
+		a.to_paytype AS "toPaytype",
+		a.to_photourl AS "toPhotourl",
+		a.to_photoinfo AS "toPhotoinfo",
+		a.to_remarks AS "toRemarks",
+		a.to_reserve1 AS "toReserve1",
+		a.to_reserve2 AS "toReserve2",
+		a.to_reserve3 AS "toReserve3",
+		a.to_reserve4 AS "toReserve4",
+		a.to_reserve5 AS "toReserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tTaskOrderJoins">
+	</sql>
+    
+	<select id="get" resultType="TTaskOrder">
+		SELECT 
+			<include refid="tTaskOrderColumns"/>
+		FROM t_task_order a
+		<include refid="tTaskOrderJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TTaskOrder">
+		SELECT 
+			<include refid="tTaskOrderColumns"/>
+		FROM t_task_order a
+		<include refid="tTaskOrderJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TTaskOrder">
+		SELECT 
+			<include refid="tTaskOrderColumns"/>
+		FROM t_task_order a
+		<include refid="tTaskOrderJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_task_order(
+			id,
+			to_taskid,
+			to_posterid,
+			to_type,
+			to_name,
+			to_cardid,
+			to_phone,
+			createtime,
+			completetime,
+			to_paytype,
+			to_photourl,
+			to_photoinfo,
+			to_remarks,
+			to_reserve1,
+			to_reserve2,
+			to_reserve3,
+			to_reserve4,
+			to_reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{toTaskid},
+			#{toPosterid},
+			#{toType},
+			#{toName},
+			#{toCardid},
+			#{toPhone},
+			#{createtime},
+			#{completetime},
+			#{toPaytype},
+			#{toPhotourl},
+			#{toPhotoinfo},
+			#{toRemarks},
+			#{toReserve1},
+			#{toReserve2},
+			#{toReserve3},
+			#{toReserve4},
+			#{toReserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_task_order SET 	
+			to_taskid = #{toTaskid},
+			to_posterid = #{toPosterid},
+			to_type = #{toType},
+			to_name = #{toName},
+			to_cardid = #{toCardid},
+			to_phone = #{toPhone},
+			createtime = #{createtime},
+			completetime = #{completetime},
+			to_paytype = #{toPaytype},
+			to_photourl = #{toPhotourl},
+			to_photoinfo = #{toPhotoinfo},
+			to_remarks = #{toRemarks},
+			to_reserve1 = #{toReserve1},
+			to_reserve2 = #{toReserve2},
+			to_reserve3 = #{toReserve3},
+			to_reserve4 = #{toReserve4},
+			to_reserve5 = #{toReserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_task_order SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 根据任务id和用户id查看是否之前申请过 -->
+	<select id="checkpost" resultType="TTaskOrder">
+		select <include refid="tTaskOrderColumns"/>
+		from t_task_order a 
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="toTaskid !=null and toTaskid !=''">
+				and a.to_taskid=#{toTaskid}
+			</if>
+			<if test="toPosterid !=null and toPosterid !=''">
+				and a.to_posterid=#{toPosterid}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 保存申请任务的信息 -->
+	<insert id="saveTaskorder">
+		INSERT INTO t_task_order(
+			id,
+			to_taskid,
+			to_posterid,
+			to_type,
+			createtime,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{toTaskid},
+			#{toPosterid},
+			#{toType},
+			now(),
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+</mapper>

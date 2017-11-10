@@ -23,6 +23,7 @@ import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.servlet.ValidateCodeServlet;
+import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.cms.entity.Article;
@@ -39,8 +40,10 @@ import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
+import com.thinkgem.jeesite.modules.mt.entity.TTaskOrder;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
+import com.thinkgem.jeesite.modules.mt.service.TTaskOrderService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskService;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
 import com.thinkgem.jeesite.modules.sys.entity.User;
@@ -75,7 +78,8 @@ public class FrontController extends BaseController{
 	private SystemService systemService;
 	@Autowired
 	private TTaskService tTaskService;
-	
+	@Autowired
+	private TTaskOrderService tTaskOrderService;
 	/**
 	 * 网站首页
 	 * */
@@ -485,14 +489,58 @@ public class FrontController extends BaseController{
 		Principal principal = UserUtils.getPrincipal();
 		//判断用户是否已经登录，未登录直接进入登录页面，已登录进入任务详情页面
 		if(principal!=null){
-			model.addAttribute("tTask", tTask);
+			//这一步是会显示该任务的详情
+			TTask tTask1=tTaskService.get(tTask);
+			model.addAttribute("tTask", tTask1);
 			Site site = CmsUtils.getSite(Site.defaultSiteId());
 			model.addAttribute("site", site);
-			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpostTask";
+			//查看当前用户是否已经申请过了，如果已经在申请了，显示剩余多长时间，如果失败或者未申请，都可以重新进行申请
+			String toPosterid=principal.getLoginName();
+			String toTaskid=tTask.getId();
+			//===================添加的地方========================
+			TTaskOrder taskorder=new TTaskOrder();
+			taskorder.setToTaskid(toTaskid);
+			taskorder.setToPosterid(toPosterid);
+			//查看是否申请过
+			taskorder=tTaskOrderService.checkpost(taskorder);
+			model.addAttribute("taskorder", taskorder);
+			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontTaskdetail";
 		}else{
 			return "modules/sys/userlogin";
 		}
 	}
 	
+	/**
+	 * 申请该任务，则插入数据，更改状态为申请中，同时任务数也相应的减1，前台在该申请数量为0的时候，不让用户再进行申请了
+	 */
+	/**
+	 * 保存用户发布的产品信息
+	 */
+	@RequestMapping(value = "saveTaskorder")
+	public String saveTaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String toPosterid=principal.getLoginName();
+		tTaskOrder.setToPosterid(toPosterid);
+		String id=IdGen.uuid();
+		tTaskOrder.setId(id);
+		tTaskOrderService.saveTaskorder(tTaskOrder);
+        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+	}
 	
+	/**
+	 * 交单格式，手机号，姓名，身份证号
+	 * 
+	 */
+	@RequestMapping(value = "updTaskorder")
+	public String updTaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String toPosterid=principal.getLoginName();
+		tTaskOrder.setToPosterid(toPosterid);
+		String id=IdGen.uuid();
+		tTaskOrder.setId(id);
+		tTaskOrderService.saveTaskorder(tTaskOrder);
+        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+	}
 }
