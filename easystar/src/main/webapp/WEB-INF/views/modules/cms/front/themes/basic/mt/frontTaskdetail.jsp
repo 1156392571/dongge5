@@ -7,10 +7,8 @@
 <meta name="decorator" content="cms_default_${site.theme}" />
 <meta name="description" content="${category.description}" />
 <meta name="keywords" content="${category.keywords}" />
-<link href="${ctxStatic}/jquery-select2/3.4/select2.min.css"
-	rel="stylesheet" />
-<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js"
-	type="text/javascript"></script>
+<link href="${ctxStatic}/jquery-select2/3.4/select2.min.css" rel="stylesheet" />
+<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/common/mustache.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
 <style type="text/css">
@@ -70,37 +68,55 @@ function cancel(id){
 	margin-bottom: 10px;
 }
 </style>
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<!-- 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 </head>
 <body>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">模态框（Modal）标题 </h4>
+      </div>
+      <div class="modal-body">
+        <p>在这里添加一些文本</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">提交更改</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- 模态框（Modal） -->
-<div class="modal fade" style="width: 100%;margin-left: 0;background-color: rgba(0,0,0,0.3)" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	<div class="modal-dialog">
-		<div class="modal-content" >
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					&times;
-				</button>
-				<h4 class="modal-title" id="myModalLabel">
-					模态框（Modal）标题
-				</h4>
-			</div>
-			<div class="modal-body">
-				在这里添加一些文本
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-				</button>
-				<button type="button" class="btn btn-primary">
-					提交更改
-				</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-</div>
+<!-- <div class="modal fade" style="width: 100%;margin-left: 0;background-color: rgba(0,0,0,0.3)" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" > -->
+<!-- 	<div class="modal-dialog"> -->
+<!-- 		<div class="modal-content" > -->
+<!-- 			<div class="modal-header"> -->
+<!-- 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> -->
+<!-- 					&times; -->
+<!-- 				</button> -->
+<!-- 				<h4 class="modal-title" id="myModalLabel"> -->
+<!-- 					模态框（Modal）标题 -->
+<!-- 				</h4> -->
+<!-- 			</div> -->
+<!-- 			<div class="modal-body"> -->
+<!-- 				在这里添加一些文本 -->
+<!-- 			</div> -->
+<!-- 			<div class="modal-footer"> -->
+<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭 -->
+<!-- 				</button> -->
+<!-- 				<button type="button" class="btn btn-primary"> -->
+<!-- 					提交更改 -->
+<!-- 				</button> -->
+<!-- 			</div> -->
+<!-- 		</div>/.modal-content -->
+<!-- 	</div>/.modal -->
+<!-- </div> -->
 
 
 
