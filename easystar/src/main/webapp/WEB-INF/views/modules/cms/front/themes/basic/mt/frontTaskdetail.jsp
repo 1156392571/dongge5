@@ -155,7 +155,7 @@ function cancel(id){
 		<c:choose>
 			<c:when test="${not empty taskorder}">
 				<c:if test="${taskorder.toType=='1'}">
-					申请中（显示倒计时）
+					申请中（<span id="timer"></span>）
 					<div style="margin-bottom: 20px;width: 80%;height:50px;margin-left: 50px;text-align:center">
 						<div class="btn_tj" style="margin-left: 45%" onclick="cancel('${taskorder.id}')">取消参与</div>
 						<div class="btn_tj" style="margin-left:20px" data-toggle="modal" data-target="#myModal">交单</div>
@@ -188,7 +188,32 @@ function cancel(id){
 				</c:if>
 			</c:otherwise>
 		</c:choose>
-		
+<script type="text/javascript">
+$(function(){
+	leftTimer("2017-11-11 23:21:12");
+})
+function leftTimer(stringTime){
+	setInterval(function(){
+		var leftTime = (new Date(stringTime)) - (new Date()); //计算剩余的毫秒数 
+		var days = parseInt(leftTime / 1000 / 60 / 60 / 24 , 10); //计算剩余的天数 
+		var hours = parseInt(leftTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
+		var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+		var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数 
+		days = checkTime(days); 
+		hours = checkTime(hours); 
+		minutes = checkTime(minutes); 
+		seconds = checkTime(seconds); 
+		document.getElementById("timer").innerHTML = days+"天" + hours+"小时" + minutes+"分"+seconds+"秒";
+	},1000);
+	 
+} 
+function checkTime(i){ //将0-9的数字前面加上0，例1变为01 
+	if(i<10){ 
+		i = "0" + i; 
+	} 
+	return i; 
+}
+</script>
 	</div>
 </body>
 </html>
