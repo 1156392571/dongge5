@@ -556,20 +556,17 @@ public class FrontController extends BaseController{
 	
 	
 	/**
-	 * 交单格式，手机号，姓名，身份证号
+	 * 交单格式，手机号，姓名，身份证号,id
 	 * 
 	 */
-	@RequestMapping(value = "updTaskorder")
+	@RequestMapping(value = "handTaskorder")
 	public String updTaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
-		//获取当前发布用户
 		Principal principal = UserUtils.getPrincipal();
-		String toPosterid=principal.getLoginName();
-		tTaskOrder.setToPosterid(toPosterid);
-		String id=IdGen.uuid();
-		tTaskOrder.setId(id);
-		tTaskOrder.preInsert();
-		System.out.println(tTaskOrder);
-//		tTaskOrderService.saveTaskorder(tTaskOrder);
-        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+		if(principal!=null){
+			tTaskOrderService.handTaskorder(tTaskOrder);
+	        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+		}else{
+			return "modules/sys/userlogin";
+		}
 	}
 }

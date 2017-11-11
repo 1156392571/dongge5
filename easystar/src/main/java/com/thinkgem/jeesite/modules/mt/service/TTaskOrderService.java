@@ -60,5 +60,10 @@ public class TTaskOrderService extends CrudService<TTaskOrderDao, TTaskOrder> {
 	public void cancelTaskorder(String id) {
 		tTaskOrderDao.cancelTaskorder(id);
 	}
+
+	@Transactional(readOnly = false)
+	public void handTaskorder(TTaskOrder tTaskOrder) {
+		tTaskOrderDao.handTaskorder(tTaskOrder);
+	}
 	
 }

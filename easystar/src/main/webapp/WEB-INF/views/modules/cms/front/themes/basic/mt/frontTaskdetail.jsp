@@ -29,7 +29,11 @@ function join(id){
 
 //交单
 function hand(id){
-	window.location.href="";
+	var toName=$("#toName").val();
+	var toPhone=$("#toPhone").val();
+	var toCardid=$("#toCardid").val();
+	window.location.href="${ctx}/handTaskorder?id="+id+"&toName="+toName
+	+"&toPhone="+toPhone+"&toCardid="+toCardid;
 }
 
 //取消参与
@@ -67,6 +71,14 @@ function cancel(id){
 	font-size: 18px;
 	margin-bottom: 10px;
 }
+.input-xlarge{
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	border-radius:5px;
+	font-size: 16px;
+	border: 1px #c7bebe solid
+}
 </style>
 <!-- <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -74,49 +86,31 @@ function cancel(id){
 
 </head>
 <body>
+<!-- =================遮罩部分============================ -->
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">模态框（Modal）标题 </h4>
+        <div class="modal-title" style="text-align: center;font-size: 16px;color: #0064ff">任务提交</div>
       </div>
-      <div class="modal-body">
-        <p>在这里添加一些文本</p>
+      <div class="modal-body" style="text-align: center;">
+      	<span>例如：张三</span><br>
+        <input class="input-xlarge" placeholder="做单真实姓名" id="toName" /><br><br>
+        <span>例如：420115124572489634</span><br>
+        <input class="input-xlarge" placeholder="做单身份证号" id="toCardid" /><br><br>
+        <span>例如：15527124456</span><br>
+        <input class="input-xlarge" placeholder="做单电话号码" id="toPhone" /><br><br>
+        
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="text-align: center">
+        <button type="button" class="btn btn-primary" onclick="hand('${taskorder.id}')">提交</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">提交更改</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-<!-- 模态框（Modal） -->
-<!-- <div class="modal fade" style="width: 100%;margin-left: 0;background-color: rgba(0,0,0,0.3)" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" > -->
-<!-- 	<div class="modal-dialog"> -->
-<!-- 		<div class="modal-content" > -->
-<!-- 			<div class="modal-header"> -->
-<!-- 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> -->
-<!-- 					&times; -->
-<!-- 				</button> -->
-<!-- 				<h4 class="modal-title" id="myModalLabel"> -->
-<!-- 					模态框（Modal）标题 -->
-<!-- 				</h4> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-body"> -->
-<!-- 				在这里添加一些文本 -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-footer"> -->
-<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭 -->
-<!-- 				</button> -->
-<!-- 				<button type="button" class="btn btn-primary"> -->
-<!-- 					提交更改 -->
-<!-- 				</button> -->
-<!-- 			</div> -->
-<!-- 		</div>/.modal-content -->
-<!-- 	</div>/.modal -->
-<!-- </div> -->
+<!-- ============================================= -->
 
 
 
