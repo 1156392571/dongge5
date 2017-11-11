@@ -18,5 +18,7 @@ public interface TTaskOrderDao extends CrudDao<TTaskOrder> {
 	TTaskOrder checkpost(TTaskOrder taskorder);
 
 	void saveTaskorder(TTaskOrder tTaskOrder);
+
+	void cancelTaskorder(String id);
 	
 }

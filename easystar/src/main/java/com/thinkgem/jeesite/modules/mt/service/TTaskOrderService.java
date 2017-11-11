@@ -46,12 +46,19 @@ public class TTaskOrderService extends CrudService<TTaskOrderDao, TTaskOrder> {
 		super.delete(tTaskOrder);
 	}
 
+	@Transactional(readOnly = false)
 	public TTaskOrder checkpost(TTaskOrder taskorder) {
 		return tTaskOrderDao.checkpost(taskorder);
 	}
 
+	@Transactional(readOnly = false)
 	public void saveTaskorder(TTaskOrder tTaskOrder) {
 		tTaskOrderDao.saveTaskorder(tTaskOrder);
+	}
+
+	@Transactional(readOnly = false)
+	public void cancelTaskorder(String id) {
+		tTaskOrderDao.cancelTaskorder(id);
 	}
 	
 }

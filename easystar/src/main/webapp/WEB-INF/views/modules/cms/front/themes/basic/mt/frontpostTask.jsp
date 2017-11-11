@@ -38,6 +38,11 @@
 	font-size: 15px;
 }
 </style>
+<script type="text/javascript">
+	$(function(){
+		$(".sub_nav_1 a").eq(1).addClass("a1");
+	})
+</script>
 </head>
 <body>
 	<div style="text-align: center;">

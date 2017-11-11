@@ -53,5 +53,15 @@ public class TTaskService extends CrudService<TTaskDao, TTask> {
 		page.setList(tTaskDao.findPageAndself(tTask));
 		return page;
 	}
+
+	@Transactional(readOnly = false)
+	public void updateAmount(String id) {
+		tTaskDao.updateAmount(id);
+	}
+
+	@Transactional(readOnly = false)
+	public void updateaddAmount(String id) {
+		tTaskDao.updateaddAmount(id);
+	}
 	
 }

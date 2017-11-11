@@ -228,7 +228,6 @@ a.apply_btn {
 /* } */
 
 .btn_tj{
-	float:left;
 	border: 1px #e9491a solid;
 	width: 50px;
 	height: 30px;
@@ -311,11 +310,11 @@ a.apply_btn {
 				<div class="channel_partner" id="keyword">
 					<ul style="background-color: #f5f5f5">
 						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
-							<p style="width: 8%;float: left;text-align: center;font-size: 16px;">会员昵称</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务名称</p>
+							<p style="width: 7%;float: left;text-align: center;font-size: 16px;">会员昵称</p>
+							<p style="width: 8%;float: left;text-align: center;font-size: 16px;">任务名称</p>
 							<p style="width: 7%;float: left;text-align: center;font-size: 16px;">任务单价</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务类型</p>
-							<p style="width: 5%;float: left;text-align: center;font-size: 16px;">认证方式</p>
+							<p style="width: 8%;float: left;text-align: center;font-size: 16px;">认证方式</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务数量</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">做单要求</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">做单技巧</p>
@@ -327,11 +326,11 @@ a.apply_btn {
 					<ul class="ul_add">
 						<c:forEach items="${page.list}" var="taskList"> 
 							<li style="height: 30px;width: 100%">
-									<p style="float:left; width: 8%;text-align: center">${taskList.taskUserid}</p>
-									<p style="float:left; width: 10%;text-align: center">${taskList.taskName}</p>
+									<p style="float:left; width: 7%;text-align: center">${taskList.taskUserid}</p>
+									<p style="float:left; width: 8%;text-align: center">${taskList.taskName}</p>
 									<p style="float:left;width: 7%;text-align: center">${taskList.taskPrice}</p>  
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskList.taskType, 'taskType', '')}</p>
-									<p style="float:left;width: 5%;text-align: center">${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}</p>
+									<p style="float:left;width: 8%;text-align: center">${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskList.taskAmount}</p>
 									<p style="float:left;width: 10%;text-align: center;" title="${taskList.taskAsk}">${fns:abbr(taskList.taskAsk,20)}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskList.taskSkill}</p>
@@ -341,8 +340,7 @@ a.apply_btn {
 									</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="" style="margin-left: 20px;color: #fff">申请</a> 
-										<a class="btn_tj" href="" style="margin-left: 10px;color: #fff">交单</a> 
+										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 30px">申请</a> 
 									</p>
 							</li>
 						</c:forEach>

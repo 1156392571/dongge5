@@ -199,4 +199,15 @@
 		WHERE id = #{id}
 	</update>
 	
+	<update id="updateAmount">
+		UPDATE t_task SET 
+			task_amount=task_amount-1
+		WHERE id = #{id}
+	</update>
+	
+	<update id="updateaddAmount">
+		UPDATE t_task SET 
+			task_amount=task_amount+1
+		WHERE id = #{id}
+	</update>
 </mapper>

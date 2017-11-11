@@ -491,6 +491,7 @@ public class FrontController extends BaseController{
 		if(principal!=null){
 			//这一步是会显示该任务的详情
 			TTask tTask1=tTaskService.get(tTask);
+			System.out.println(tTask1+"===");
 			model.addAttribute("tTask", tTask1);
 			Site site = CmsUtils.getSite(Site.defaultSiteId());
 			model.addAttribute("site", site);
@@ -513,20 +514,46 @@ public class FrontController extends BaseController{
 	/**
 	 * 申请该任务，则插入数据，更改状态为申请中，同时任务数也相应的减1，前台在该申请数量为0的时候，不让用户再进行申请了
 	 */
-	/**
-	 * 保存用户发布的产品信息
-	 */
 	@RequestMapping(value = "saveTaskorder")
 	public String saveTaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
 		//获取当前发布用户
 		Principal principal = UserUtils.getPrincipal();
-		String toPosterid=principal.getLoginName();
-		tTaskOrder.setToPosterid(toPosterid);
-		String id=IdGen.uuid();
-		tTaskOrder.setId(id);
-		tTaskOrderService.saveTaskorder(tTaskOrder);
-        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+		if(principal!=null){
+			String toPosterid=principal.getLoginName();
+			//同时改变任务的数量-1
+			tTaskService.updateAmount(tTaskOrder.getToTaskid());
+			tTaskOrder.setToPosterid(toPosterid);
+			String id=IdGen.uuid();
+			tTaskOrder.setId(id);
+			//任务订单状态为正在申请中
+			tTaskOrder.setToType("1");
+			tTaskOrder.preInsert();
+			tTaskOrderService.saveTaskorder(tTaskOrder);
+		    return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+		}else{
+			return "modules/sys/userlogin";
+		}
 	}
+	
+	
+	/**
+	 * 取消参与任务
+	 */
+	@RequestMapping(value = "cancelTaskorder")
+	public String cancelTaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		if(principal!=null){
+			tTaskOrderService.cancelTaskorder(tTaskOrder.getId());
+			tTaskOrder=tTaskOrderService.get(tTaskOrder.getId());
+			tTaskService.updateaddAmount(tTaskOrder.getToTaskid());
+	        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+		}else{
+			return "modules/sys/userlogin";
+		}
+	}
+	
+	
 	
 	/**
 	 * 交单格式，手机号，姓名，身份证号
@@ -540,7 +567,9 @@ public class FrontController extends BaseController{
 		tTaskOrder.setToPosterid(toPosterid);
 		String id=IdGen.uuid();
 		tTaskOrder.setId(id);
-		tTaskOrderService.saveTaskorder(tTaskOrder);
+		tTaskOrder.preInsert();
+		System.out.println(tTaskOrder);
+//		tTaskOrderService.saveTaskorder(tTaskOrder);
         return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
 	}
 }

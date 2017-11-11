@@ -8,6 +8,11 @@
 	<meta name="description" content="JeeSite ${site.description}" />
 	<meta name="keywords" content="JeeSite ${site.keywords}" />
 </head>
+<script type="text/javascript">
+	$(function(){
+		$(".sub_nav_1 a").eq(0).addClass("a1");
+	})
+</script>
 <body>
     <div class="hero-unit" style="padding-bottom:35px;margin:10px 0;">
       <c:set var="article" value="${fnc:getArticle('2')}"/>

@@ -18,5 +18,9 @@ import com.thinkgem.jeesite.modules.mt.entity.TTask;
 public interface TTaskDao extends CrudDao<TTask> {
 
 	List<TTask> findPageAndself(TTask tTask);
+
+	void updateAmount(String id);
+
+	void updateaddAmount(String id);
 	
 }
