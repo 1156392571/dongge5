@@ -211,7 +211,11 @@
 	
 	<update id="handTaskorder">
 		update t_task_order set to_type='2',to_name = #{toName},
-			to_cardid = #{toCardid},
-			to_phone = #{toPhone}, where id=#{id}
+			to_cardid = #{toCardid},to_paytype='1',completetime=now(),
+			to_phone = #{toPhone} where id=#{id}
+	</update>
+	
+	<update id="outtime">
+		update t_task_order set to_type='3',del_flag='1' where id=#{id}
 	</update>
 </mapper>

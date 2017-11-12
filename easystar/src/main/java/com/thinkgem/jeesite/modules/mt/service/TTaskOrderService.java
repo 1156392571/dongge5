@@ -65,5 +65,10 @@ public class TTaskOrderService extends CrudService<TTaskOrderDao, TTaskOrder> {
 	public void handTaskorder(TTaskOrder tTaskOrder) {
 		tTaskOrderDao.handTaskorder(tTaskOrder);
 	}
+
+	@Transactional(readOnly = false)
+	public void outtime(TTaskOrder tTaskOrder) {
+		tTaskOrderDao.outtime(tTaskOrder);
+	}
 	
 }

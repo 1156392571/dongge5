@@ -564,9 +564,25 @@ public class FrontController extends BaseController{
 		Principal principal = UserUtils.getPrincipal();
 		if(principal!=null){
 			tTaskOrderService.handTaskorder(tTaskOrder);
+			tTaskOrder=tTaskOrderService.get(tTaskOrder.getId());
 	        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
 		}else{
 			return "modules/sys/userlogin";
 		}
 	}
+	
+	/**
+	 * 超时执行的操作
+	 */
+	@RequestMapping(value = "outtime")
+	public String outtime(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
+		Principal principal = UserUtils.getPrincipal();
+		if(principal!=null){
+			tTaskOrder=tTaskOrderService.get(tTaskOrder.getId());
+	        return "redirect:"+Global.getFrontPath()+"/taskdetail?id="+tTaskOrder.getToTaskid();
+		}else{
+			return "modules/sys/userlogin";
+		}
+	}
+	
 }

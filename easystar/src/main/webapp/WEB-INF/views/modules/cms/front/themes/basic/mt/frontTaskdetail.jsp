@@ -18,9 +18,6 @@
 $(function(){
 	$(".sub_nav_1 a").eq(1).addClass("a1");
 })
-    function a(){
-    setInterval(a,5000);
-}
 
 //参与任务
 function join(id){
@@ -79,13 +76,16 @@ function cancel(id){
 	font-size: 16px;
 	border: 1px #c7bebe solid
 }
+.timedesc{
+	text-align: center;
+	font-size: 40px;
+}
 </style>
-<!-- <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
-<!-- 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 </head>
 <body>
+<input type="hidden" id="createtime" value="<fmt:formatDate value="${taskorder.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>">
+<input type="hidden" id="taskYxsj" value="${tTask.taskYxsj}">
+<input type="hidden" id="toid" value="${taskorder.id}">
 <!-- =================遮罩部分============================ -->
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
   <div class="modal-dialog" role="document">
@@ -130,6 +130,8 @@ function cancel(id){
 				剩余数量：${tTask.taskAmount}<br>
 				联系电话：${tTask.taskPhone}<br>
 				联系 QQ：${tTask.taskQq}<br>
+				有效时间：${tTask.taskYxsj}分钟<br>
+				发布时间：<fmt:formatDate value="${tTask.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/><br>
 			</div>
 			<div class="skew-title">
 				<span>任务要求</span>
@@ -149,11 +151,11 @@ function cancel(id){
 		<c:choose>
 			<c:when test="${not empty taskorder}">
 				<c:if test="${taskorder.toType=='1'}">
-					申请中（<span id="timer"></span>）
 					<div style="margin-bottom: 20px;width: 80%;height:50px;margin-left: 50px;text-align:center">
 						<div class="btn_tj" style="margin-left: 45%" onclick="cancel('${taskorder.id}')">取消参与</div>
-						<div class="btn_tj" style="margin-left:20px" data-toggle="modal" data-target="#myModal">交单</div>
+						<div class="btn_tj" style="margin-left:30px" data-toggle="modal" data-target="#myModal">交单</div>
 					</div>
+					<div id="timer" class="timedesc"></div>
 				</c:if>
 				<c:if test="${taskorder.toType=='2'}">
 					<!-- 申请成功（不能再进行申请） -->
@@ -184,7 +186,24 @@ function cancel(id){
 		</c:choose>
 <script type="text/javascript">
 $(function(){
-	leftTimer("2017-11-11 23:21:12");
+	var createtime=$("#createtime").val();
+	var taskYxsj=$("#taskYxsj").val();
+	var date=new Date(createtime);
+	var min=date.getMinutes();
+	date.setMinutes(min+parseInt(taskYxsj));
+	var y = date.getFullYear();  
+    var m = date.getMonth() + 1;  
+    m = m < 10 ? ('0' + m) : m;  
+    var d = date.getDate();  
+    d = d < 10 ? ('0' + d) : d;  
+    var h = date.getHours();  
+    h=h < 10 ? ('0' + h) : h;  
+    var minute = date.getMinutes();  
+    minute = minute < 10 ? ('0' + minute) : minute;  
+    var second=date.getSeconds();  
+    second=second < 10 ? ('0' + second) : second;  
+    var  formatDateTime=y + '-' + m + '-' + d+' '+h+':'+minute+':'+second; 
+	leftTimer(formatDateTime)
 })
 function leftTimer(stringTime){
 	setInterval(function(){
@@ -196,8 +215,13 @@ function leftTimer(stringTime){
 		days = checkTime(days); 
 		hours = checkTime(hours); 
 		minutes = checkTime(minutes); 
-		seconds = checkTime(seconds); 
-		document.getElementById("timer").innerHTML = days+"天" + hours+"小时" + minutes+"分"+seconds+"秒";
+		seconds = checkTime(seconds);
+		if(leftTime<0){
+			var toid=$("#toid").val();
+			window.location.href="${ctx}/outtime?id="+toid;
+		}else{
+			document.getElementById("timer").innerHTML = days+"天" + hours+"小时" + minutes+"分"+seconds+"秒";
+		}
 	},1000);
 	 
 } 

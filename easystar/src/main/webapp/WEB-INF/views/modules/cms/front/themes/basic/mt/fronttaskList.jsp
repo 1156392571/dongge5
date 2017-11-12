@@ -332,8 +332,8 @@ a.apply_btn {
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskList.taskType, 'taskType', '')}</p>
 									<p style="float:left;width: 8%;text-align: center">${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskList.taskAmount}</p>
-									<p style="float:left;width: 10%;text-align: center;" title="${taskList.taskAsk}">${fns:abbr(taskList.taskAsk,20)}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskList.taskSkill}</p>
+									<p style="float:left;width: 10%;text-align: center" title="${taskList.taskAsk}">${fns:abbr(taskList.taskAsk,20)}</p>
+									<p style="float:left;width: 10%;text-align: center" title="${taskList.taskSkill}">${fns:abbr(taskList.taskSkill,20)}</p>
 									<p style="float:left;width: 10%;text-align: center">
 										<img src="${ctxStatic}/zui/img/phone.png" title="${taskList.taskPhone}">
 										<img style="width:22px ;height:22px;" src="${ctxStatic}/zui/img/qq.png" title="${taskList.taskQq}">
