@@ -680,14 +680,12 @@ public class FrontController extends BaseController{
 	 * 获取担保平台list
 	 */
 	@RequestMapping(value="dbplatformList")
-	public String MytaskList(TDbPlatform tDbPlatform,HttpServletRequest request,HttpServletResponse response,
-			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+	public String MytaskList(TDbPlatform tDbPlatform,HttpServletRequest request,HttpServletResponse response,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		//此处获取担保平台的倒序10条数据
-        Page<TDbPlatform> page = tDbPlatformService.findPageLimit(new Page<TDbPlatform>(request, response, pageSize),tDbPlatform); 
-        model.addAttribute("page", page);
+        List<TDbPlatform> list = tDbPlatformService.findPageLimit(tDbPlatform); 
+        model.addAttribute("list", list);
 		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontdbplatformList";
 	}
 	

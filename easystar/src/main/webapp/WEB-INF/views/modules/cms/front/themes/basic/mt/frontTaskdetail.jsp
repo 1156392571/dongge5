@@ -67,6 +67,7 @@ function cancel(id){
 .innertext{
 	font-size: 18px;
 	margin-bottom: 10px;
+	line-height: 30px;
 }
 .input-xlarge{
 	width: 200px;
@@ -79,6 +80,13 @@ function cancel(id){
 .timedesc{
 	text-align: center;
 	font-size: 40px;
+}
+.textsize{
+	background-color: #fff;
+	border: 0;
+	font-size:16px; 
+	line-height: 30px;
+	color:#555;
 }
 </style>
 </head>
@@ -137,13 +145,13 @@ function cancel(id){
 				<span>任务要求</span>
 			</div>
 			<div class="innertext">
-				<pre>${tTask.taskAsk};</pre>
+				<pre class="textsize">${tTask.taskAsk}</pre>
 			</div>
 			<div class="skew-title">
 				<span>任务技巧</span>
 			</div>
 			<div class="innertext">
-				<pre>${tTask.taskSkill}</pre>
+				<pre class="textsize">${tTask.taskSkill}</pre>
 			</div>
 	</div>
 	</div>

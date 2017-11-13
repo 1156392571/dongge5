@@ -47,10 +47,8 @@ public class TDbPlatformService extends CrudService<TDbPlatformDao, TDbPlatform>
 		super.delete(tDbPlatform);
 	}
 
-	public Page<TDbPlatform> findPageLimit(Page<TDbPlatform> page, TDbPlatform tDbPlatform) {
-		tDbPlatform.setPage(page);
-		page.setList(tDbPlatformDao.findPageLimit(tDbPlatform));
-		return page;
+	public List<TDbPlatform> findPageLimit(TDbPlatform tDbPlatform) {
+		return tDbPlatformDao.findPageLimit(tDbPlatform);
 	}
 	
 }
