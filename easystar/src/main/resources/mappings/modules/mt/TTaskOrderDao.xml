@@ -12,6 +12,7 @@
 		a.to_phone AS "toPhone",
 		a.createtime AS "createtime",
 		a.completetime AS "completetime",
+		a.to_checkstatus AS "toCheckstatus",
 		a.to_paytype AS "toPaytype",
 		a.to_photourl AS "toPhotourl",
 		a.to_photoinfo AS "toPhotoinfo",
@@ -87,6 +88,7 @@
 			to_phone,
 			createtime,
 			completetime,
+			to_checkstatus,
 			to_paytype,
 			to_photourl,
 			to_photoinfo,
@@ -112,6 +114,7 @@
 			#{toPhone},
 			#{createtime},
 			#{completetime},
+			#{toCheckstatus},
 			#{toPaytype},
 			#{toPhotourl},
 			#{toPhotoinfo},
@@ -140,6 +143,7 @@
 			to_phone = #{toPhone},
 			createtime = #{createtime},
 			completetime = #{completetime},
+			to_checkstatus=#{toCheckstatus},
 			to_paytype = #{toPaytype},
 			to_photourl = #{toPhotourl},
 			to_photoinfo = #{toPhotoinfo},
@@ -211,7 +215,7 @@
 	
 	<update id="handTaskorder">
 		update t_task_order set to_type='2',to_name = #{toName},
-			to_cardid = #{toCardid},to_paytype='1',completetime=now(),
+			to_cardid = #{toCardid},to_checkstatus='1',completetime=now(),
 			to_phone = #{toPhone} where id=#{id}
 	</update>
 	

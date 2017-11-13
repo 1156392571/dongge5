@@ -25,6 +25,7 @@ public class TTaskOrder extends DataEntity<TTaskOrder> {
 	private String toPhone;		// 提交订单时的手机号码
 	private Date createtime;		// 创建时间
 	private Date completetime;		// 交单时间
+	private String toCheckstatus;	// 任务订单是否审核：1.正在审核中2.审核成功3.审核失败
 	private String toPaytype;		// 任务订单是否已经打款：1.已打款2.未打款
 	private String toPhotourl;		// 任务订单截图
 	private String toPhotoinfo;		// 任务订单截图info
@@ -113,6 +114,15 @@ public class TTaskOrder extends DataEntity<TTaskOrder> {
 
 	public void setCompletetime(Date completetime) {
 		this.completetime = completetime;
+	}
+	
+	@Length(min=0, max=1, message="任务审核状态长度必须介于 0 和 1 之间")
+	public String getToCheckstatus() {
+		return toCheckstatus;
+	}
+
+	public void setToCheckstatus(String toCheckstatus) {
+		this.toCheckstatus = toCheckstatus;
 	}
 	
 	@Length(min=0, max=1, message="任务订单打款状态长度必须介于 0 和 1 之间")
