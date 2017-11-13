@@ -38,10 +38,12 @@ import com.thinkgem.jeesite.modules.cms.service.CommentService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.mt.entity.TDbPlatform;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TTaskOrder;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.mt.service.TDbPlatformService;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskOrderService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskService;
@@ -80,6 +82,9 @@ public class FrontController extends BaseController{
 	private TTaskService tTaskService;
 	@Autowired
 	private TTaskOrderService tTaskOrderService;
+	@Autowired
+	private TDbPlatformService tDbPlatformService;
+	
 	/**
 	 * 网站首页
 	 * */
@@ -88,7 +93,8 @@ public class FrontController extends BaseController{
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		model.addAttribute("isIndex", true);
-		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontIndex";
+//		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontIndex";
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontproductList";
 	}
 	
 	/**
@@ -585,4 +591,118 @@ public class FrontController extends BaseController{
 		}
 	}
 	
+	/**
+	 * 我的中心
+	 */
+	@RequestMapping(value="mycenter")
+	public String taskList(Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMycenter";
+	}
+	
+	
+	/**
+	 * 用户获取自己下面的发布的产品列表
+	 */
+	@RequestMapping(value = "MyproductList")
+	public String MyproductList(TProduct tProduct,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		Principal principal = UserUtils.getPrincipal();
+		String proUserid=principal.getLoginName();
+		tProduct.setProUserid(proUserid);
+        Page<TProduct> page = tProductService.findPage(new Page<TProduct>(request, response, pageSize), tProduct); 
+		model.addAttribute("page", page);
+		model.addAttribute("tProduct", tProduct);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyproductList";
+	}
+	
+	
+	/**
+	 * 用户获取自己下面发布的任务列表
+	 */
+	@RequestMapping(value="MytaskList")
+	public String MytaskList(TTask tTask,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		Principal principal = UserUtils.getPrincipal();
+		String taskUserid=principal.getLoginName();
+		tTask.setTaskUserid(taskUserid);
+        Page<TTask> page = tTaskService.findPage(new Page<TTask>(request, response, pageSize),tTask); 
+		model.addAttribute("page", page);
+		model.addAttribute("tTask", tTask);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMytaskList";
+	}
+	
+	/**
+	 * 用户获取自己下面发布的任务被别人申请的列表(审核中，审核成功，审核失败，未打款，已打款)
+	 */
+	@RequestMapping(value="MytaskBypostedList")
+	public String MytaskBypostedList(TTaskOrder tTaskOrder,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		Principal principal = UserUtils.getPrincipal();
+		String taskUserid=principal.getLoginName();
+		tTaskOrder.setToReserve1(taskUserid);
+        Page<TTaskOrder> page = tTaskOrderService.findPageByposted(new Page<TTaskOrder>(request, response, pageSize),tTaskOrder); 
+		model.addAttribute("page", page);
+		model.addAttribute("tTaskOrder", tTaskOrder);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMytaskBypostedList";
+	}
+	
+	
+	/**
+	 * 用户获取自己下面申请的任务列表
+	 */
+	@RequestMapping(value="MytaskorderList")
+	public String MytaskList(TTaskOrder tTaskOrder,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		Principal principal = UserUtils.getPrincipal();
+		String toPosterid=principal.getLoginName();
+		tTaskOrder.setToPosterid(toPosterid);
+        Page<TTaskOrder> page = tTaskOrderService.findPageByPosterid(new Page<TTaskOrder>(request, response, pageSize),tTaskOrder); 
+		model.addAttribute("page", page);
+		model.addAttribute("tTaskOrder", tTaskOrder);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMytaskorderList";
+	}
+	
+	/**
+	 * 获取担保平台list
+	 */
+	@RequestMapping(value="dbplatformList")
+	public String MytaskList(TDbPlatform tDbPlatform,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		//此处获取担保平台的倒序10条数据
+        Page<TDbPlatform> page = tDbPlatformService.findPageLimit(new Page<TDbPlatform>(request, response, pageSize),tDbPlatform); 
+        model.addAttribute("page", page);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontdbplatformList";
+	}
+	
+	/**
+	 * 担保申请提交
+	 */
+	@RequestMapping(value="dbsubmit")
+	public String dbsubmit(TDbPlatform tDbPlatform,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		//保存提交的内容
+		tDbPlatformService.save(tDbPlatform);
+		return "redirect:"+Global.getFrontPath()+"/dbplatformList";
+	}
+	
+	
 }
+

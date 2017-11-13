@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.mt.dao;
 
+import java.util.List;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.mt.entity.TTaskOrder;
@@ -24,5 +26,9 @@ public interface TTaskOrderDao extends CrudDao<TTaskOrder> {
 	void handTaskorder(TTaskOrder tTaskOrder);
 
 	void outtime(TTaskOrder tTaskOrder);
+
+	List<TTaskOrder> findPageByposted(TTaskOrder tTaskOrder);
+
+	List<TTaskOrder> findPageByPosterid(TTaskOrder tTaskOrder);
 	
 }

@@ -137,13 +137,13 @@ function cancel(id){
 				<span>任务要求</span>
 			</div>
 			<div class="innertext">
-				${tTask.taskAsk};
+				<pre>${tTask.taskAsk};</pre>
 			</div>
 			<div class="skew-title">
 				<span>任务技巧</span>
 			</div>
 			<div class="innertext">
-				${tTask.taskSkill}
+				<pre>${tTask.taskSkill}</pre>
 			</div>
 	</div>
 	</div>

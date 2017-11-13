@@ -159,7 +159,8 @@ a.apply_btn_1 {
 </head>
 <body>
 	<div style="position: fixed;width: 7%;left:0px;top: 20%;text-align: left;">
-		<a target=blank href=tencent://message/?uin=1156392571&Site=qq号码说明&Menu=yes><img alt="" src="${ctxStatic}/zui/img/open_im.png"></a><br>
+<%-- 		<a target=blank href=tencent://message/?uin=1156392571&Site=qq号码说明&Menu=yes><img alt="" src="${ctxStatic}/zui/img/open_im.png"></a><br> --%>
+		<a target=blank href="http://wpa.qq.com/msgrd?v=3&uin=1156392571&site=qq&menu=yes"><img alt="" src="${ctxStatic}/zui/img/open_im.png"></a><br>
 	</div>
 	<div id="ggshow_1" style="position: fixed;width: 7%;left:0px;bottom: 10%;text-align: left;">
 		<img alt="" src="${ctxStatic}/zui/img/gg1.jpg" style="width: 100px;"><br>
@@ -230,7 +231,7 @@ a.apply_btn_1 {
 					<li class="item-site"><a class="site-nav-item" href="${pageContext.request.contextPath}/f/toreg">注册</a></li>
 				</c:if>
 				<c:if test="${not empty fns:getUser().name}">
-					<li class="item-site"><img src="${pageContext.request.contextPath}/uploads/1/product/20171102/1509600625629_1509074477404.png" style="width: 30px;height: 30px;border-radius:15px;">${fns:getUser().name}</li>
+					<li class="item-site"><a class="site-nav-item" href="${ctx}/mycenter"><img src="${pageContext.request.contextPath}/uploads/1/product/20171102/1509600625629_1509074477404.png" style="width: 30px;height: 30px;border-radius:15px;">${fns:getUser().name}</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -239,7 +240,7 @@ a.apply_btn_1 {
 		<div class="sub_nav_1">
 			<a href="${ctx}/productList" >找产品</a> 
 			<a href="${ctx}/taskList" >找任务</a>
-			<a href="javascript:void(0)" >找工作</a>
+			<a href="javascript:void(0)" >找担保</a>
 			<a href="javascript:void(0)" >找房源</a>
 			<a href="javascript:void(0)" >找商店</a>
 			<a href="${ctx}/postmessage" class="apply_btn_1">免费发布信息</a>
@@ -249,7 +250,6 @@ a.apply_btn_1 {
 		$(function(){
 			$('.sub_nav_1 a').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
 		})
-	
 	</script>
 	
 	

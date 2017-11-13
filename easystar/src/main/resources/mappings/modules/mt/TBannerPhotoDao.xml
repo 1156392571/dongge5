@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TBannerPhotoDao">
+    
+	<sql id="tBannerPhotoColumns">
+		a.id AS "id",
+		a.bp_name AS "bpName",
+		a.bp_url AS "bpUrl",
+		a.bp_urlinfo AS "bpUrlinfo",
+		a.bp_type AS "bpType",
+		a.bp_status AS "bpStatus",
+		a.createtime AS "createtime",
+		a.bp_remarks AS "bpRemarks",
+		a.bp_reserve1 AS "bpReserve1",
+		a.bp_reserve2 AS "bpReserve2",
+		a.bp_reserve3 AS "bpReserve3",
+		a.bp_reserve4 AS "bpReserve4",
+		a.bp_reserve5 AS "bpReserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tBannerPhotoJoins">
+	</sql>
+    
+	<select id="get" resultType="TBannerPhoto">
+		SELECT 
+			<include refid="tBannerPhotoColumns"/>
+		FROM t_banner_photo a
+		<include refid="tBannerPhotoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TBannerPhoto">
+		SELECT 
+			<include refid="tBannerPhotoColumns"/>
+		FROM t_banner_photo a
+		<include refid="tBannerPhotoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TBannerPhoto">
+		SELECT 
+			<include refid="tBannerPhotoColumns"/>
+		FROM t_banner_photo a
+		<include refid="tBannerPhotoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_banner_photo(
+			id,
+			bp_name,
+			bp_url,
+			bp_urlinfo,
+			bp_type,
+			bp_status,
+			createtime,
+			bp_remarks,
+			bp_reserve1,
+			bp_reserve2,
+			bp_reserve3,
+			bp_reserve4,
+			bp_reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{bpName},
+			#{bpUrl},
+			#{bpUrlinfo},
+			#{bpType},
+			#{bpStatus},
+			#{createtime},
+			#{bpRemarks},
+			#{bpReserve1},
+			#{bpReserve2},
+			#{bpReserve3},
+			#{bpReserve4},
+			#{bpReserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_banner_photo SET 	
+			bp_name = #{bpName},
+			bp_url = #{bpUrl},
+			bp_urlinfo = #{bpUrlinfo},
+			bp_type = #{bpType},
+			bp_status = #{bpStatus},
+			createtime = #{createtime},
+			bp_remarks = #{bpRemarks},
+			bp_reserve1 = #{bpReserve1},
+			bp_reserve2 = #{bpReserve2},
+			bp_reserve3 = #{bpReserve3},
+			bp_reserve4 = #{bpReserve4},
+			bp_reserve5 = #{bpReserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_banner_photo SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

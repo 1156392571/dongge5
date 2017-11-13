@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TDbPlatformDao">
+    
+	<sql id="tDbPlatformColumns">
+		a.id AS "id",
+		a.db_jfuserid AS "dbJfuserid",
+		a.db_jfphone AS "dbJfphone",
+		a.db_yfuserid AS "dbYfuserid",
+		a.db_yfphone AS "dbYfphone",
+		a.db_type AS "dbType",
+		a.db_ifhasht AS "dbIfhasht",
+		a.db_ifhasyh AS "dbIfhasyh",
+		a.db_status AS "dbStatus",
+		a.createtime AS "createtime",
+		a.completetime AS "completetime",
+		a.db_remarks AS "dbRemarks",
+		a.db_reserve1 AS "dbReserve1",
+		a.db_reserve2 AS "dbReserve2",
+		a.db_reserve3 AS "dbReserve3",
+		a.db_reserve4 AS "dbReserve4",
+		a.db_reserve5 AS "dbReserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tDbPlatformJoins">
+	</sql>
+    
+	<select id="get" resultType="TDbPlatform">
+		SELECT 
+			<include refid="tDbPlatformColumns"/>
+		FROM t_db_platform a
+		<include refid="tDbPlatformJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TDbPlatform">
+		SELECT 
+			<include refid="tDbPlatformColumns"/>
+		FROM t_db_platform a
+		<include refid="tDbPlatformJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TDbPlatform">
+		SELECT 
+			<include refid="tDbPlatformColumns"/>
+		FROM t_db_platform a
+		<include refid="tDbPlatformJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_db_platform(
+			id,
+			db_jfuserid,
+			db_jfphone,
+			db_yfuserid,
+			db_yfphone,
+			db_type,
+			db_ifhasht,
+			db_ifhasyh,
+			db_status,
+			createtime,
+			completetime,
+			db_remarks,
+			db_reserve1,
+			db_reserve2,
+			db_reserve3,
+			db_reserve4,
+			db_reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{dbJfuserid},
+			#{dbJfphone},
+			#{dbYfuserid},
+			#{dbYfphone},
+			#{dbType},
+			#{dbIfhasht},
+			#{dbIfhasyh},
+			#{dbStatus},
+			now(),
+			#{completetime},
+			#{dbRemarks},
+			#{dbReserve1},
+			#{dbReserve2},
+			#{dbReserve3},
+			#{dbReserve4},
+			#{dbReserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_db_platform SET 	
+			db_jfuserid = #{dbJfuserid},
+			db_jfphone = #{dbJfphone},
+			db_yfuserid = #{dbYfuserid},
+			db_yfphone = #{dbYfphone},
+			db_type = #{dbType},
+			db_ifhasht = #{dbIfhasht},
+			db_ifhasyh = #{dbIfhasyh},
+			db_status = #{dbStatus},
+			createtime = #{createtime},
+			completetime = #{completetime},
+			db_remarks = #{dbRemarks},
+			db_reserve1 = #{dbReserve1},
+			db_reserve2 = #{dbReserve2},
+			db_reserve3 = #{dbReserve3},
+			db_reserve4 = #{dbReserve4},
+			db_reserve5 = #{dbReserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_db_platform SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="findPageLimit" resultType="TDbPlatform">
+		SELECT 
+			<include refid="tDbPlatformColumns"/>
+		FROM t_db_platform a
+		<include refid="tDbPlatformJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+		limit 10
+	</select>
+	
+</mapper>

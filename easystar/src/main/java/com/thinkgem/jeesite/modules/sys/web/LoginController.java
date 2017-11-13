@@ -190,7 +190,7 @@ public class LoginController extends BaseController{
 			Site site = CmsUtils.getSite(Site.defaultSiteId());
 			model.addAttribute("site", site);
 			model.addAttribute("isIndex", true);
-			return "modules/cms/front/themes/"+site.getTheme()+"/frontIndex";
+			return "modules/cms/front/themes/"+site.getTheme()+"/frontproductList";
 		}else{
 			System.out.println("系统用户登陆");
 			return "modules/sys/sysIndex";

@@ -70,5 +70,17 @@ public class TTaskOrderService extends CrudService<TTaskOrderDao, TTaskOrder> {
 	public void outtime(TTaskOrder tTaskOrder) {
 		tTaskOrderDao.outtime(tTaskOrder);
 	}
+
+	public Page<TTaskOrder> findPageByposted(Page<TTaskOrder> page, TTaskOrder tTaskOrder) {
+		tTaskOrder.setPage(page);
+		page.setList(tTaskOrderDao.findPageByposted(tTaskOrder));
+		return page;
+	}
+
+	public Page<TTaskOrder> findPageByPosterid(Page<TTaskOrder> page, TTaskOrder tTaskOrder) {
+		tTaskOrder.setPage(page);
+		page.setList(tTaskOrderDao.findPageByPosterid(tTaskOrder));
+		return page;
+	}
 	
 }

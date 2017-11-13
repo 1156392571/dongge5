@@ -222,4 +222,45 @@
 	<update id="outtime">
 		update t_task_order set to_type='3',del_flag='1' where id=#{id}
 	</update>
+	
+	<select id="findPageByposted" resultType="TTaskOrder">
+		select 
+		b.id AS "id",
+		b.to_taskid AS "toTaskid",
+		b.to_posterid AS "toPosterid",
+		b.to_type AS "toType",
+		b.to_name AS "toName",
+		b.to_cardid AS "toCardid",
+		b.to_phone AS "toPhone",
+		b.createtime AS "createtime",
+		b.completetime AS "completetime",
+		b.to_checkstatus AS "toCheckstatus",
+		b.to_paytype AS "toPaytype",
+		b.to_photourl AS "toPhotourl",
+		b.to_photoinfo AS "toPhotoinfo",
+		b.to_remarks AS "toRemarks",
+		a.task_name AS "toReserve1"
+		from t_task a,t_task_order b where a.id=b.to_taskid and b.to_type='2' and a.task_userid=#{toReserve1}
+	</select>
+	
+	<select id="findPageByPosterid" resultType="TTaskOrder">
+		select 
+		b.id AS "id",
+		b.to_taskid AS "toTaskid",
+		b.to_posterid AS "toPosterid",
+		b.to_type AS "toType",
+		b.to_name AS "toName",
+		b.to_cardid AS "toCardid",
+		b.to_phone AS "toPhone",
+		b.createtime AS "createtime",
+		b.completetime AS "completetime",
+		b.to_checkstatus AS "toCheckstatus",
+		b.to_paytype AS "toPaytype",
+		b.to_photourl AS "toPhotourl",
+		b.to_photoinfo AS "toPhotoinfo",
+		b.to_remarks AS "toRemarks",
+		a.task_name AS "toReserve1"
+		from t_task a,t_task_order b where a.id=b.to_taskid and b.del_flag=0 and b.to_posterid=#{toPosterid}
+	</select>
+	
 </mapper>
