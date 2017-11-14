@@ -627,7 +627,7 @@ public class FrontController extends BaseController{
 	@RequestMapping(value="MytaskList")
 	public String MytaskList(TTask tTask,HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+            @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		Principal principal = UserUtils.getPrincipal();
@@ -645,7 +645,7 @@ public class FrontController extends BaseController{
 	@RequestMapping(value="MytaskBypostedList")
 	public String MytaskBypostedList(TTaskOrder tTaskOrder,HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+            @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		Principal principal = UserUtils.getPrincipal();
@@ -664,7 +664,7 @@ public class FrontController extends BaseController{
 	@RequestMapping(value="MytaskorderList")
 	public String MytaskList(TTaskOrder tTaskOrder,HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+            @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		Principal principal = UserUtils.getPrincipal();
