@@ -180,7 +180,7 @@
 			task_qq = #{taskQq},
 			task_type = #{taskType},
 			task_rztype = #{taskRztype},
-			createtime = #{createtime},
+			createtime = now(),
 			task_remarks = #{taskRemarks},
 			task_reserve1 = #{taskReserve1},
 			task_reserve2 = #{taskReserve2},

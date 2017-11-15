@@ -226,7 +226,7 @@ function leftTimer(stringTime){
 		seconds = checkTime(seconds);
 		if(leftTime<0){
 			var toid=$("#toid").val();
-			window.location.href="${ctx}/outtime?id="+toid;
+			//window.location.href="${ctx}/outtime?id="+toid;
 		}else{
 			document.getElementById("timer").innerHTML = days+"天" + hours+"小时" + minutes+"分"+seconds+"秒";
 		}

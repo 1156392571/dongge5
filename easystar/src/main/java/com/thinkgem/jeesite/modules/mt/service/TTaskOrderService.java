@@ -82,5 +82,10 @@ public class TTaskOrderService extends CrudService<TTaskOrderDao, TTaskOrder> {
 		page.setList(tTaskOrderDao.findPageByPosterid(tTaskOrder));
 		return page;
 	}
+
+	@Transactional(readOnly = false)
+	public void checktaskorder(TTaskOrder tTaskOrder) {
+		tTaskOrderDao.checktaskorder(tTaskOrder);
+	}
 	
 }

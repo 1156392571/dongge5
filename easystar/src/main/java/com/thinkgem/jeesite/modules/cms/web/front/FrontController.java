@@ -420,7 +420,7 @@ public class FrontController extends BaseController{
 			model.addAttribute("site", site);
 			Category category = categoryService.get("4bbd32c498c945b78a98e423b52f8684");
 	        model.addAttribute("category", category);
-			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpostMessage";
+			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpostProduct";
 		}else{
 			return "modules/sys/userlogin";
 		}
@@ -608,7 +608,7 @@ public class FrontController extends BaseController{
 	@RequestMapping(value = "MyproductList")
 	public String MyproductList(TProduct tProduct,HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+            @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		Principal principal = UserUtils.getPrincipal();
@@ -701,6 +701,66 @@ public class FrontController extends BaseController{
 		return "redirect:"+Global.getFrontPath()+"/dbplatformList";
 	}
 	
+	/**
+	 * 查看产品信息的详情
+	 */
+	@RequestMapping(value="getproductdetail")
+	public String getproductdetail(TProduct tProduct,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		//保存提交的内容
+		tProduct=tProductService.get(tProduct);
+		model.addAttribute("tProduct", tProduct);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontProductdetailByself";
+	}
+	
+	/**
+	 * 修改用户发布的产品信息
+	 */
+	@RequestMapping(value = "updateProduct")
+	public String updateProduct(TProduct tProduct, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String pro_userId=principal.getLoginName();
+		tProduct.setProUserid(pro_userId);
+		tProductService.save(tProduct);
+        return "redirect:"+Global.getFrontPath()+"/MyproductList/?repage";
+	}
+	
+	/**
+	 * 查看任务信息的详情
+	 */
+	@RequestMapping(value="gettaskdetail")
+	public String gettaskdetail(TTask tTask,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		//保存提交的内容
+		tTask=tTaskService.get(tTask);
+		model.addAttribute("tTask", tTask);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontTaskdetailByself";
+	}
+	
+	/**
+	 * 修改用户发布的任务信息
+	 */
+	@RequestMapping(value = "updateTask")
+	public String updateTask(TTask tTask, Model model, RedirectAttributes redirectAttributes) {
+		//获取当前发布用户
+		Principal principal = UserUtils.getPrincipal();
+		String pro_userId=principal.getLoginName();
+		tTask.setTaskUserid(pro_userId);
+		tTaskService.save(tTask);
+        return "redirect:"+Global.getFrontPath()+"/MytaskList/?repage";
+	}
+	
+	/**
+	 * 通过或失败别人的申请
+	 */
+	@RequestMapping(value = "checktaskorder")
+	public String checktaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
+		tTaskOrderService.checktaskorder(tTaskOrder);
+        return "redirect:"+Global.getFrontPath()+"/MytaskBypostedList/?repage";
+	}
 	
 }
 

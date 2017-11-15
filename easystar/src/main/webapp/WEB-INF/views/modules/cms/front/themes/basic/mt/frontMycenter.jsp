@@ -204,6 +204,7 @@ cursor: pointer;
 				</c:if>
 				<c:if test="${not empty fns:getUser().name}">
 					<li class="item-site"><a class="site-nav-item" href="${ctx}/mycenter"><img src="${pageContext.request.contextPath}/uploads/1/product/20171102/1509600625629_1509074477404.png" style="width: 30px;height: 30px;border-radius:15px;">${fns:getUser().name}</a></li>
+					<li class="item-site"><a class="site-nav-item" href="${pageContext.request.contextPath}/a/logout">退出</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -247,6 +248,9 @@ cursor: pointer;
 			<div class="leftinfo" data-spm-ab="main" data-spm-ab-max-idx="48">
 				<ul class="service-bd" role="menubar">
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
+						aria-haspopup="true" data-groupid="106" class="J_Cat a-all">
+						<span class="cp">账号管理</span></li>
+					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="101" class="J_Cat a-all">
 						<span class="cp">个人资料</span></li>
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
@@ -261,9 +265,6 @@ cursor: pointer;
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="105" class="J_Cat a-all">
 						<span class="cp" onclick="t4()">我申请过的任务</span></li>
-					<li data-closeper="" aria-label="查看更多" role="menuitem"
-						aria-haspopup="true" data-groupid="106" class="J_Cat a-all">
-						<span class="cp">账号管理</span></li>
 				</ul>
 			</div>
 			<div class="contentright" data-spm-ab="main" data-spm-ab-max-idx="48">

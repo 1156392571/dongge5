@@ -259,8 +259,17 @@
 		b.to_photourl AS "toPhotourl",
 		b.to_photoinfo AS "toPhotoinfo",
 		b.to_remarks AS "toRemarks",
-		a.task_name AS "toReserve1"
+		a.task_name AS "toReserve1",
+		a.task_userid AS "toReserve2"
 		from t_task a,t_task_order b where a.id=b.to_taskid and b.del_flag=0 and b.to_posterid=#{toPosterid}
 	</select>
+	
+	<update id="checktaskorder">
+		update t_task_order set 
+		<if test='toCheckstatus=="2"'>
+			to_paytype='2',
+		</if>
+		to_checkstatus=#{toCheckstatus} where id=#{id}
+	</update>
 	
 </mapper>

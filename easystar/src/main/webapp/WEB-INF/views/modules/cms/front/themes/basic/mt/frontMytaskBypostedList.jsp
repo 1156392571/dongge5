@@ -125,7 +125,7 @@ i {
 }
 
 .channel_partner {
-	border: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
 	background: #fff;
 }
 
@@ -259,12 +259,19 @@ a.apply_btn {
 									<p style="float:left; width: 10%;text-align: center">${taskorderList.toReserve1}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPosterid}</p>  
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toName}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskorderList.toCardid}</p>
+									<p style="float:left;width: 10%;text-align: center" title="${taskorderList.toCardid}">${fn:substring(taskorderList.toCardid, 0, 5)}****${fn:substring(taskorderList.toCardid, 15, 18)}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPhone}</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 30px">审核</a> 
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
+									<p style="float:left;width: 20%;text-align: center">
+										<c:if test="${taskorderList.toCheckstatus==1}">
+										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=2" style="color: #fff;margin-left: 30px;float: left">通过</a> 
+										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=3" style="color: #fff;float: left;margin-left: 20px;">失败</a>
+										</c:if>
+										<c:if test="${taskorderList.toPaytype==2}">
+										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskorderList.id}" style="color: #fff;float: left;margin-left: 20px;">已付款</a>	
+										</c:if>
 									</p>
 							</li>
 						</c:forEach>

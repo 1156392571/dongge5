@@ -125,7 +125,7 @@ i {
 }
 
 .channel_partner {
-	border: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
 	background: #fff;
 }
 
@@ -243,28 +243,29 @@ a.apply_btn {
 					<ul style="background-color: #f5f5f5">
 						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务名称</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">申请人</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">发布人</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">真实姓名</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">身份证号</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">电话号码</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">创建时间</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">完成时间</p>
+							<p style="width: 15%;float: left;text-align: center;font-size: 16px;">创建时间</p>
+							<p style="width: 15%;float: left;text-align: center;font-size: 16px;">完成时间</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">审核状态</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">操作</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">操作</p>
 						</li>
 					</ul>
 					<ul class="ul_add">
 						<c:forEach items="${page.list}" var="taskorderList"> 
 							<li style="height: 30px;width: 100%">
 									<p style="float:left; width: 10%;text-align: center">${taskorderList.toReserve1}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPosterid}</p>  
+									<p style="float:left;width: 10%;text-align: center">${taskorderList.toReserve2}</p>  
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toName}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskorderList.toCardid}</p>
+									<p style="float:left;width: 10%;text-align: center" title="${taskorderList.toCardid}">${fn:substring(taskorderList.toCardid, 0, 5)}****${fn:substring(taskorderList.toCardid, 15, 18)}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPhone}</p>
-									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+									<p style="float:left;width: 15%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+									<p style="float:left;width: 15%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
 									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 30px">查看</a> 
+										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 20px">查看</a> 
 									</p>
 							</li>
 						</c:forEach>

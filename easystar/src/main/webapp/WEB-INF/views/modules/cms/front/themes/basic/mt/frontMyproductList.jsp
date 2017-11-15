@@ -125,7 +125,7 @@ i {
 }
 
 .channel_partner {
-	border: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
 	background: #fff;
 }
 
@@ -141,7 +141,7 @@ i {
 }
 
 .channel_partner li a {
-	width: 100%;
+/* 	width: 100%; */
 	text-decoration: none;
 	display: block;
 }
@@ -215,7 +215,7 @@ a.apply_btn {
 }
 .btn_tj{
 	border: 1px #e9491a solid;
-	width: 30px;
+ 	width: 50px;
 	height: 30px;
 	border-radius:5px;
 	background-color:#e9491a;
@@ -278,7 +278,7 @@ $(function(){
 									</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${productList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;">查看</a> 
+										<a class="btn_tj" href="${ctx}/getproductdetail?id=${productList.id}" style="color: #fff; margin-left: 20px;">查看</a> 
 									</p>
 							</li>
 						</c:forEach>

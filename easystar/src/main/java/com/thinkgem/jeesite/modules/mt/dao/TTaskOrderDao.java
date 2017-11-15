@@ -30,5 +30,7 @@ public interface TTaskOrderDao extends CrudDao<TTaskOrder> {
 	List<TTaskOrder> findPageByposted(TTaskOrder tTaskOrder);
 
 	List<TTaskOrder> findPageByPosterid(TTaskOrder tTaskOrder);
+
+	void checktaskorder(TTaskOrder tTaskOrder);
 	
 }
