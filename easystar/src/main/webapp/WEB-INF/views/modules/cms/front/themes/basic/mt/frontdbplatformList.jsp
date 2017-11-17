@@ -335,7 +335,7 @@ function handup(){
 					${fn:substring(tDbPlatform.dbYfphone, 0, 3)}****${fn:substring(tDbPlatform.dbYfphone, 7, 11)}
 				</td>
 				<td>
-					${tDbPlatform.dbStatus}
+					${fns:getDictLabel(tDbPlatform.dbStatus, 'dbStatus', '')}
 				</td>
 			</tr>
 		</c:forEach>

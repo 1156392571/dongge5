@@ -46,23 +46,23 @@ function cancel(id){
 	border-radius:5px;
 	background-color:#e9491a;
 	line-height: 35px;
-	font-size:15px; 
+				font-size:15px; 
 	color: #fff;cursor:pointer;text-align: center;float:left;
 }
 
 .skew-title {
     width: 128px;
     height: 48px;
-    text-align: center;
+  			  text-align: center;
     line-height: 48px;
     background: #1FC16E;
-    transform: skew(-30deg);
+   								 transform: skew(-30deg);
 }
 .skew-title span {
     font-size: 16px;
     color: #FFF;
     width: 128px;
-    height: 48px;
+    		height: 48px;
 }
 .innertext{
 	font-size: 18px;
@@ -133,8 +133,8 @@ function cancel(id){
 				发布者ID：${tTask.taskUserid}<br>
 				任务名称：${tTask.taskName}<br>
 				任务价格：${tTask.taskPrice}元<br>
-				任务类型：${fns:getDictLabel(taskList.taskType, 'taskType', '')}<br>
-				认证类型：${fns:getDictLabel(taskList.taskRztype, 'taskRztype', '')}<br>
+				任务类型：${fns:getDictLabel(tTask.taskType, 'taskType', '')}<br>
+				认证类型：${fns:getDictLabel(tTask.taskRztype, 'taskRztype', '')}<br>
 				剩余数量：${tTask.taskAmount}<br>
 				联系电话：${tTask.taskPhone}<br>
 				联系 QQ：${tTask.taskQq}<br>

@@ -250,7 +250,7 @@ a.apply_btn {
 							<p style="width: 15%;float: left;text-align: center;font-size: 16px;">创建时间</p>
 							<p style="width: 15%;float: left;text-align: center;font-size: 16px;">完成时间</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">审核状态</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">操作</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">打款状态</p>
 						</li>
 					</ul>
 					<ul class="ul_add">
@@ -264,9 +264,12 @@ a.apply_btn {
 									<p style="float:left;width: 15%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 15%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toPaytype, 'toPaytype', '')}</p>
+									<!-- 
 									<p style="float:left;width: 10%;text-align: center">
 										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 20px">查看</a> 
 									</p>
+									 -->
 							</li>
 						</c:forEach>
 					</ul>

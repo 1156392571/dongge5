@@ -245,9 +245,9 @@ a.apply_btn_1 {
 			<a href="${ctx}/productList" >找产品</a> 
 			<a href="${ctx}/taskList" >找任务</a>
 			<a href="${ctx}/dbplatformList" >找担保</a>
-			<a href="javascript:void(0)" >找房源</a>
-			<a href="javascript:void(0)" >找商店</a>
-			<a href="${ctx}/postmessage" class="apply_btn_1">免费发布信息</a>
+			<a href="javascript:void(0)" >担保简介</a>
+			<a href="javascript:void(0)" >关于我们</a>
+			<a href="" class="apply_btn_1">合作快速通道</a>
 		</div>
 	</div>
 	<script type="text/javascript">

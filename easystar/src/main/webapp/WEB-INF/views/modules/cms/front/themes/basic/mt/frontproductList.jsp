@@ -245,7 +245,7 @@ $(function(){
 				<div class="sub_nav">
 					<a href="" class="a1">产品信息</a> <a
 						href="">渠道商</a> <a
-						href="" class="apply_btn">免费发布产品信息</a>
+						href="${ctx}/postmessage" class="apply_btn">免费发布产品信息</a>
 				</div>
 				<div class="multi_options">
 					<table id="fontsearch" class="tsm">
@@ -256,7 +256,7 @@ $(function(){
 									<ul id="cplx" class="cl">
 										<li><a href="javascript:protype('0')">不限</a></li>
 										<li><a href="javascript:protype('1')">软件</a></li>
-										<li><a href="javascript:protype('2')"">游戏</a></li>
+										<li><a href="javascript:protype('2')">游戏</a></li>
 									</ul>
 								</td>
 							</tr>

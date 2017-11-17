@@ -250,7 +250,8 @@ a.apply_btn {
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">创建时间</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">完成时间</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">审核状态</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">操作</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">付款状态</p>
+							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">操作</p>
 						</li>
 					</ul>
 					<ul class="ul_add">
@@ -264,13 +265,16 @@ a.apply_btn {
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
-									<p style="float:left;width: 20%;text-align: center">
+									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toPaytype, 'toPaytype', '')}</p>
+									<p style="float:left;width: 10%;text-align: center">
 										<c:if test="${taskorderList.toCheckstatus==1}">
 										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=2" style="color: #fff;margin-left: 30px;float: left">通过</a> 
 										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=3" style="color: #fff;float: left;margin-left: 20px;">失败</a>
 										</c:if>
-										<c:if test="${taskorderList.toPaytype==2}">
-										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskorderList.id}" style="color: #fff;float: left;margin-left: 20px;">已付款</a>	
+										<c:if test="${taskorderList.toCheckstatus==2}">
+											<c:if test="${taskorderList.toPaytype==2}">
+											<a class="btn_tj" href="" style="color: #fff;float: left;margin-left: 10px;width: 80px;">向他付款</a>	
+											</c:if>
 										</c:if>
 									</p>
 							</li>
