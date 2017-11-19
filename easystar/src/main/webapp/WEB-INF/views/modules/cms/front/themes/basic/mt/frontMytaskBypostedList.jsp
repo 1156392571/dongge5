@@ -242,8 +242,8 @@ a.apply_btn {
 				<div class="channel_partner" id="keyword">
 					<ul style="background-color: #f5f5f5">
 						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">任务名称</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">申请人</p>
+							<p style="width: 8%;float: left;text-align: center;font-size: 16px;">任务名称</p>
+							<p style="width: 7%;float: left;text-align: center;font-size: 16px;">申请人</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">真实姓名</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">身份证号</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">电话号码</p>
@@ -251,25 +251,33 @@ a.apply_btn {
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">完成时间</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">审核状态</p>
 							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">付款状态</p>
-							<p style="width: 10%;float: left;text-align: center;font-size: 16px;">操作</p>
+							<p style="width: 15%;float: left;text-align: center;font-size: 16px;">操作</p>
 						</li>
 					</ul>
 					<ul class="ul_add">
 						<c:forEach items="${page.list}" var="taskorderList"> 
 							<li style="height: 30px;width: 100%">
-									<p style="float:left; width: 10%;text-align: center">${taskorderList.toReserve1}</p>
-									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPosterid}</p>  
+									<p style="float:left; width: 8%;text-align: center">${taskorderList.toReserve1}</p>
+									<p style="float:left;width: 7%;text-align: center">${taskorderList.toPosterid}</p>  
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toName}</p>
 									<p style="float:left;width: 10%;text-align: center" title="${taskorderList.toCardid}">${fn:substring(taskorderList.toCardid, 0, 5)}****${fn:substring(taskorderList.toCardid, 15, 18)}</p>
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPhone}</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
-									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toPaytype, 'toPaytype', '')}</p>
 									<p style="float:left;width: 10%;text-align: center">
+										<c:if test="${not empty taskorderList.toPaytype}">
+											${fns:getDictLabel(taskorderList.toPaytype, 'toPaytype', '')}
+										</c:if>
+										<c:if test="${empty taskorderList.toPaytype}">
+											&nbsp;
+										</c:if>
+										
+									</p>
+									<p style="float:left;width: 15%;text-align: center">
 										<c:if test="${taskorderList.toCheckstatus==1}">
-										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=2" style="color: #fff;margin-left: 30px;float: left">通过</a> 
-										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=3" style="color: #fff;float: left;margin-left: 20px;">失败</a>
+										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=2" style="color: #fff;float: left">通过</a> 
+										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=3" style="color: #fff;float: left;margin-left: 10px;">失败</a>
 										</c:if>
 										<c:if test="${taskorderList.toCheckstatus==2}">
 											<c:if test="${taskorderList.toPaytype==2}">

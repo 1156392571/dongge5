@@ -214,7 +214,7 @@
 	</update>
 	
 	<update id="handTaskorder">
-		update t_task_order set to_type='2',to_name = #{toName},
+		update t_task_order set to_type='2',to_name = #{toName},to_photourl=#{toPhotourl},to_photoinfo=#{toPhotoinfo},
 			to_cardid = #{toCardid},to_checkstatus='1',completetime=now(),
 			to_phone = #{toPhone} where id=#{id}
 	</update>

@@ -232,8 +232,10 @@ a.apply_btn_1 {
 				</c:if>
 				<c:if test="${not empty fns:getUser().name}">
 					<li class="item-site">
-						<a class="site-nav-item" href="${ctx}/mycenter"><img src="${pageContext.request.contextPath}/uploads/1/product/20171102/1509600625629_1509074477404.png" style="width: 30px;height: 30px;border-radius:15px;">
-						${fns:getUser().name}</a>
+						<a class="site-nav-item" href="${ctx}/mycenter">
+							<img src="${pageContext.request.contextPath}/uploads/1/product/20171102/1509600625629_1509074477404.png" style="width: 30px;height: 30px;border-radius:15px;">
+							${fns:getUser().name}
+						</a>
 					</li>
 					<li class="item-site"><a class="site-nav-item" href="${pageContext.request.contextPath}/a/logout">退出</a></li>
 				</c:if>

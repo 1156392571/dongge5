@@ -62,7 +62,7 @@ public class UpLoaderController
             }
             */
         }else if(("2").equals(ImageType)){
-            ImageClass =  "banner";
+            ImageClass =  "taskorder";
         }else if(("3").equals(ImageType)){
         	ImageClass="match";
         }else{
