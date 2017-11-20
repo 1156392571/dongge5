@@ -12,7 +12,7 @@ public class Phonecall {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// 调用
-		String ret = callFromVOS("008615527124409", "008615972006146");
+		String ret = callFromVOS("008615527124409", "00861596491368");
 		System.out.print(ret);
 	}
 

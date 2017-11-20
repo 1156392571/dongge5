@@ -225,7 +225,10 @@ cursor: pointer;
 			$('.sub_nav_1 a').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
 			$('.service-bd li').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
 		})
-		
+		function t0(){
+			alert("===");
+			$("#iframe").attr("src","${ctx}/Mydatasource");
+		}
 		function t1(){
 			$("#iframe").attr("src","${ctx}/MyproductList");
 		}
@@ -252,7 +255,7 @@ cursor: pointer;
 						<span class="cp">账号管理</span></li>
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="101" class="J_Cat a-all">
-						<span class="cp">个人资料</span></li>
+						<span class="cp" onclick="t0()">个人资料</span></li>
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="102" class="J_Cat a-all">
 						<span class="cp" onclick="t1()">我发布的产品</span></li>

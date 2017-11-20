@@ -47,6 +47,7 @@ import com.thinkgem.jeesite.modules.mt.service.TDbPlatformService;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskOrderService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskService;
+import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -84,6 +85,9 @@ public class FrontController extends BaseController{
 	private TTaskOrderService tTaskOrderService;
 	@Autowired
 	private TDbPlatformService tDbPlatformService;
+	@Autowired
+	private TUserService tUserService;
+	
 	
 	/**
 	 * 网站首页
@@ -760,6 +764,20 @@ public class FrontController extends BaseController{
 	public String checktaskorder(TTaskOrder tTaskOrder, Model model, RedirectAttributes redirectAttributes) {
 		tTaskOrderService.checktaskorder(tTaskOrder);
         return "redirect:"+Global.getFrontPath()+"/MytaskBypostedList/?repage";
+	}
+	
+	/**
+	 * 我的个人资料
+	 */
+	@RequestMapping(value="Mydatasource")
+	public String mydatasource(TUser tUser,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		Principal principal = UserUtils.getPrincipal();
+		String id=principal.getId();
+		tUser=tUserService.get(id);
+		model.addAttribute("tUser", tUser);
+		model.addAttribute("site", site);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMydatasource";
 	}
 	
 }

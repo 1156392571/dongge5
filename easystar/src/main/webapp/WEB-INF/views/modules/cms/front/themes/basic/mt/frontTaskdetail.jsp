@@ -211,15 +211,10 @@ ol, ul {
 <script type="text/javascript">
 	function sub(id) {
 		if (id == "1") {
-			$("#person").css("display", "");
-			$("#partner").css("display", "none");
-			$("#per_par").val("1");
+			$("#sfzh").css("display", "");
 		} else {
-			$("#partner").css("display", "");
-			$("#person").css("display", "none");
-			$("#per_par").val("2");
+			$("#sfzh").css("display", "none");
 		}
-
 	}
 </script>
 
@@ -249,26 +244,12 @@ ol, ul {
 				</ul>
 	 </div>
       <div class="modal-body" id="person" style="text-align: center;">
-<!--       	<span>例如：张三</span><br> -->
         <input class="input-xlarge" placeholder="做单真实姓名" id="toName" /><br><br>
-<!--         <span>例如：420115124572489634</span><br> -->
-        <input class="input-xlarge" placeholder="做单身份证号" id="toCardid" /><br><br>
-<!--         <span>例如：15527124456</span><br> -->
-        <input class="input-xlarge" placeholder="做单电话号码" id="toPhone" /><br><br>
+        <div id="sfzh"><input class="input-xlarge" placeholder="做单身份证号" id="toCardid" /><br><br></div>
+        <input class="input-xlarge" placeholder="做单电话号码" id="toPhone" /><br>
       </div>
-      <div class="modal-body" id="partner" style="text-align: center;display: none">
-      	<span>例如：李四</span><br>
-        <input class="input-xlarge" placeholder="做单真实姓名" id="toName" /><br><br>
-        <span>例如：420115124572489634</span><br>
-        <input class="input-xlarge" placeholder="做单身份证号" id="toCardid" /><br><br>
-        <span>例如：15527124456</span><br>
-        <input class="input-xlarge" placeholder="做单电话号码" id="toPhone" /><br><br>
-      </div>
-      
       
        <!-- ==================================================================== -->
-<%-- 		<form:hidden path="proUrl"/> --%>
-<%-- 		<form:hidden path="proUrlInfo"/> --%>
 		<input type="hidden" id="toPhotourl">
 		<input type="hidden" id="toPhotoinfo">
 		<div class="control-group">
