@@ -104,7 +104,7 @@ public class UpLoaderController
     
     
     //校验并保存图片
-    private static final String[] IMAGE_TYPE = { ".jpg", ".jpge", ".bmp", ".png", "gif",".zip" };
+    private static final String[] IMAGE_TYPE = { ".jpg", ".jpge", ".bmp", ".png", ".gif",".zip" };
     private String getEnourPath(HttpServletRequest request, MultipartFile file,String filePathGen) {
             Boolean flag = false;
             System.out.println(file.getOriginalFilename());

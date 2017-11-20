@@ -273,8 +273,8 @@ ol, ul {
 		<input type="hidden" id="toPhotoinfo">
 		<div class="control-group">
 <!-- 			<label class="control-label" style="width: 35%">产品图片：</label> -->
-				<div class="controls">
-					<div class="width_auto" style="width: 420px;">
+				<div class="controls" style="width: 100%;text-align: center;">
+					<div class="width_auto" style="width: 50%;margin-left: 25%">
 					    <div class="upload_container" >
 					        <!--头部，相册选择和格式选择-->
 					        <div id="uploader" >
@@ -299,7 +299,7 @@ ol, ul {
       
       
       
-      <div class="modal-footer" style="text-align: center">
+      <div class="modal-footer" style="text-align: center;background-color: #fff;border-top: 0">
         <button type="button" class="btn btn-primary" onclick="hand('${taskorder.id}')">提交</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
       </div>

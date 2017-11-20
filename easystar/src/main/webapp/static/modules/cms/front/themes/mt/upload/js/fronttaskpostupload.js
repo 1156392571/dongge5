@@ -84,7 +84,7 @@ jQuery(function() {
                 //这里可以根据 index 或者其他，使用变量形式
                 accept: {
                     title: 'Images',
-                    extensions: 'gif,jpg,jpeg,bmp,png,doc',
+                    extensions: 'gif,jpg,jpeg,bmp,png,doc,zip',
                     mimeTypes: 'image/*'
                 },
                 
@@ -94,7 +94,7 @@ jQuery(function() {
                 
                 fileSizeLimit: 10 * 1024 * 1024,    // 总共的最大限制10M
                 
-                fileSingleSizeLimit: 3 * 1024 * 1024    // 单文件的最大限制3M
+                fileSingleSizeLimit: 6 * 1024 * 1024    // 单文件的最大限制3M
             });
     		
 
