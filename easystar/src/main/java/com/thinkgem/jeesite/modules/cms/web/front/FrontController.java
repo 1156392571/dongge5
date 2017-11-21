@@ -773,8 +773,9 @@ public class FrontController extends BaseController{
 	public String mydatasource(TUser tUser,Model model) {
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		Principal principal = UserUtils.getPrincipal();
-		String id=principal.getId();
-		tUser=tUserService.get(id);
+		String loginName=principal.getLoginName();
+		tUser=tUserService.getUserByLoginName(loginName);
+		System.out.println(tUser);
 		model.addAttribute("tUser", tUser);
 		model.addAttribute("site", site);
 		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMydatasource";

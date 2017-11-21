@@ -226,7 +226,6 @@ cursor: pointer;
 			$('.service-bd li').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
 		})
 		function t0(){
-			alert("===");
 			$("#iframe").attr("src","${ctx}/Mydatasource");
 		}
 		function t1(){

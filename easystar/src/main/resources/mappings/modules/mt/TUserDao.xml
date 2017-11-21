@@ -172,5 +172,11 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+	<select id="getUserByLoginName" resultType="TUser">
+		SELECT 
+			<include refid="tUserColumns"/>
+		FROM t_user a
+		<include refid="tUserJoins"/>
+		WHERE a.t_userid = #{loginName}
+	</select>
 </mapper>

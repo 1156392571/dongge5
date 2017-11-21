@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.mt.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,8 @@ import com.thinkgem.jeesite.modules.mt.dao.TUserDao;
 @Service
 @Transactional(readOnly = true)
 public class TUserService extends CrudService<TUserDao, TUser> {
-
+    @Autowired TUserDao tUserDao;
+    
 	public TUser get(String id) {
 		return super.get(id);
 	}
@@ -43,5 +45,10 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 	public void delete(TUser tUser) {
 		super.delete(tUser);
 	}
+
+	@Transactional(readOnly = false)
+    public TUser getUserByLoginName(String loginName){
+        return tUserDao.getUserByLoginName(loginName);
+    }
 	
 }

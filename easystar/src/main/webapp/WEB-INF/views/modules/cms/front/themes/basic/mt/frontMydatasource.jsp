@@ -202,7 +202,7 @@ a.apply_btn {
 	float: right;
 	border-radius: 3px;
 	border: none;
-	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
+	background: #e92a0b url() no-repeat
 		180px -438px;
 	color: #fff;
 	text-align: center;
@@ -233,10 +233,9 @@ a.apply_btn {
 </head>
 <body>
 	<div>
-		<h3>基本信息</h3>
-		<hr style="height: 1px;color: #333">
+		<h3>基本信息${tUser.tName}</h3>
+		<hr style="height: 1px;color: #333;width: 90%">
 		<div>
-		
 		</div>
 	</div>
 </body>

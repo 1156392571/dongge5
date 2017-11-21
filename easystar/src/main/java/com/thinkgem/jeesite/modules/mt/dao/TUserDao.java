@@ -14,5 +14,7 @@ import com.thinkgem.jeesite.modules.mt.entity.TUser;
  */
 @MyBatisDao
 public interface TUserDao extends CrudDao<TUser> {
+
+    TUser getUserByLoginName(String loginName);
 	
 }
