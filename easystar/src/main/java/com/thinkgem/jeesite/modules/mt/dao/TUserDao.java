@@ -16,5 +16,13 @@ import com.thinkgem.jeesite.modules.mt.entity.TUser;
 public interface TUserDao extends CrudDao<TUser> {
 
     TUser getUserByLoginName(String loginName);
+
+    int updUser(TUser tUser);
+
+    int updSysUser(TUser tUser);
+
+    void updsysuserPassword(String password, String loginName);
+
+    String getPassword(String loginName);
 	
 }

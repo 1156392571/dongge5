@@ -558,25 +558,25 @@ public class SystemService extends BaseService implements InitializingBean {
 			// 新增的 user
 			User userNew = new User();
 			// 登录名:
-			String t_userId = tUser.getTLoginname();
+			String t_userId = tUser.gettLoginname();
 			userNew.setLoginName(t_userId);
 			// 密码
 			String password = tUser.getReserve1();
 			userNew.setPassword(this.entryptPassword(password));
 			// 姓名
-			String t_name = tUser.getTName();
+			String t_name = tUser.gettName();
 			userNew.setName(t_name);
 			// 工号
 			String no = "gonghao";
 			userNew.setNo(no);
 			// 邮箱
-			String email = tUser.getTEmail();
+			String email = tUser.gettEmail();
 			userNew.setEmail(email);
 			// 电话
-			String mobile = tUser.getTPhone();
+			String mobile = tUser.gettPhone();
 			userNew.setMobile(mobile);
 			// 手机
-			String phone = tUser.getTPhone();
+			String phone = tUser.gettPhone();
 			userNew.setPhone(phone);
 
 
@@ -619,7 +619,7 @@ public class SystemService extends BaseService implements InitializingBean {
 			tUser.setCreateBy(user);
 			tUser.setUpdateBy(user);
 			//用户的t_userid为登录名
-			tUser.setTUserid(t_userId);
+			tUser.settUserid(t_userId);
 			tUserService.save(tUser);
 		}
 	

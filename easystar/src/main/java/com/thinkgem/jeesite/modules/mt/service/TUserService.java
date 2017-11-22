@@ -50,5 +50,29 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     public TUser getUserByLoginName(String loginName){
         return tUserDao.getUserByLoginName(loginName);
     }
+
+	@Transactional(readOnly = false)
+    public int updUser(TUser tUser)
+    {
+       
+        return tUserDao.updUser(tUser);
+    }
+
+	@Transactional(readOnly = false)
+    public int updSysUser(TUser tUser)
+    {
+        return tUserDao.updSysUser(tUser);
+    }
+
+	@Transactional(readOnly = false)
+    public void updsysuserPassword(String password, String loginName)
+    {
+	    tUserDao.updsysuserPassword(password,loginName);   
+    }
+
+    public String getPassword(String loginName)
+    {
+        return tUserDao.getPassword(loginName);
+    }
 	
 }

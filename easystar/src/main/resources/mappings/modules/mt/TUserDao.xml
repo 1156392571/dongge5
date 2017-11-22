@@ -179,4 +179,33 @@
 		<include refid="tUserJoins"/>
 		WHERE a.t_userid = #{loginName}
 	</select>
+	
+	<update id="updUser" parameterType="TUser">
+		update t_user set 
+		t_email = #{tEmail},
+		t_phone = #{tPhone},
+		qq = #{qq},
+		wx = #{wx},
+		t_company = #{tCompany},
+		t_companyurl = #{tCompanyurl},
+		createtime=now()
+		where t_loginname = #{tLoginname}
+	</update>
+	
+	<update id="updSysUser" parameterType="TUser">
+		update sys_user set 
+		email = #{tEmail},
+		phone = #{tPhone},
+		mobile = #{tPhone}
+		where login_name = #{tLoginname}
+	</update>
+	
+	<update id="updsysuserPassword">
+		update sys_user set password=#{password} where login_name=#{tLoginname}
+	</update>
+	
+	<select id="getPassword" resultType="java.lang.String">
+		select password from sys_user where login_name=#{loginName}
+	</select>
+	
 </mapper>

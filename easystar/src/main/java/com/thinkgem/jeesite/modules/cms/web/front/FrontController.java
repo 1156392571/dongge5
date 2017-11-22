@@ -775,11 +775,88 @@ public class FrontController extends BaseController{
 		Principal principal = UserUtils.getPrincipal();
 		String loginName=principal.getLoginName();
 		tUser=tUserService.getUserByLoginName(loginName);
-		System.out.println(tUser);
-		model.addAttribute("tUser", tUser);
+		model.addAttribute("tUser",tUser);
 		model.addAttribute("site", site);
 		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMydatasource";
 	}
 	
+	/**
+	  * @Description: 更新个人资料
+	  * @param tUser
+	  * @param model
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年11月22日下午12:07:11
+	 */
+	@RequestMapping(value="updUser")
+    public String updUser(TUser tUser,Model model) {
+	    //更新两张表1.t_user表和sys_user表
+        tUserService.updUser(tUser);
+        tUserService.updSysUser(tUser);
+        model.addAttribute("tUser",tUser);
+        return "redirect:"+Global.getFrontPath()+"/Mydatasource/?repage";
+    }
+	
+	/**
+	 * 
+	  * @Description: 跳转到修改密码的页面
+	  * @param tUser
+	  * @param model
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年11月22日下午12:11:24
+	 */
+	@RequestMapping(value="resetpassword")
+    public String MyresetPassword(User user,Model model) {
+        Site site = CmsUtils.getSite(Site.defaultSiteId());
+        model.addAttribute("site", site);
+        return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyresetPassword";
+    }
+	
+	/**
+	 * 
+	  * @Description: 通过当前自己登录的用户名，获取密码，然后与输入的密码进行匹配
+	  * @param String orgpassword
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年11月22日下午4:58:42
+	 */
+	@RequestMapping(value="checkpassword")
+	@ResponseBody
+    public String checkpassword(String orgpassword) {
+        //此处直接获取当前用户的原密码
+        Principal principal = UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        String password=tUserService.getPassword(loginName);
+        //校验密码，第一参数为明文，后面的为密文密码
+        Boolean a=SystemService.validatePassword(orgpassword,password);
+        String result="";
+        if(a){
+            result="0";
+        }else{
+            result="1";
+        }
+        return result;
+    }
+	
+	/**
+	  * @Description: 更新密码
+	  * @param password1新密码
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年11月22日下午12:07:45
+	 */
+	@RequestMapping(value="resetpassword1")
+    public String resetpassword(String password1) {
+	    Principal principal = UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        String password=SystemService.entryptPassword(password1);
+        tUserService.updsysuserPassword(password,loginName);
+        return "redirect:"+Global.getFrontPath()+"/Mydatasource/?repage";
+    }
 }
 

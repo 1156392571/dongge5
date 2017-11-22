@@ -3,9 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.mt.entity;
 
-import org.hibernate.validator.constraints.Length;
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
@@ -43,157 +41,175 @@ public class TUser extends DataEntity<TUser> {
 		super(id);
 	}
 
-	@Length(min=1, max=64, message="sys_user表的id长度必须介于 1 和 64 之间")
-	public String getTUserid() {
-		return tUserid;
-	}
+    public String gettUserid()
+    {
+        return tUserid;
+    }
 
-	public void setTUserid(String tUserid) {
-		this.tUserid = tUserid;
-	}
-	
-	@Length(min=1, max=64, message="登录名长度必须介于 1 和 64 之间")
-	public String getTLoginname() {
-		return tLoginname;
-	}
+    public void settUserid(String tUserid)
+    {
+        this.tUserid = tUserid;
+    }
 
-	public void setTLoginname(String tLoginname) {
-		this.tLoginname = tLoginname;
-	}
-	
-	@Length(min=1, max=100, message="姓名长度必须介于 1 和 100 之间")
-	public String getTName() {
-		return tName;
-	}
+    public String gettLoginname()
+    {
+        return tLoginname;
+    }
 
-	public void setTName(String tName) {
-		this.tName = tName;
-	}
-	
-	@Length(min=0, max=200, message="邮箱长度必须介于 0 和 200 之间")
-	public String getTEmail() {
-		return tEmail;
-	}
+    public void settLoginname(String tLoginname)
+    {
+        this.tLoginname = tLoginname;
+    }
 
-	public void setTEmail(String tEmail) {
-		this.tEmail = tEmail;
-	}
-	
-	@Length(min=0, max=200, message="电话长度必须介于 0 和 200 之间")
-	public String getTPhone() {
-		return tPhone;
-	}
+    public String gettName()
+    {
+        return tName;
+    }
 
-	public void setTPhone(String tPhone) {
-		this.tPhone = tPhone;
-	}
-	
-	@Length(min=0, max=200, message="QQ长度必须介于 0 和 200 之间")
-	public String getQq() {
-		return qq;
-	}
+    public void settName(String tName)
+    {
+        this.tName = tName;
+    }
 
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
-	
-	@Length(min=0, max=200, message="WX长度必须介于 0 和 200 之间")
-	public String getWx() {
-		return wx;
-	}
+    public String gettEmail()
+    {
+        return tEmail;
+    }
 
-	public void setWx(String wx) {
-		this.wx = wx;
-	}
-	
-	@Length(min=0, max=255, message="用户头像长度必须介于 0 和 255 之间")
-	public String getTPhotourl() {
-		return tPhotourl;
-	}
+    public void settEmail(String tEmail)
+    {
+        this.tEmail = tEmail;
+    }
 
-	public void setTPhotourl(String tPhotourl) {
-		this.tPhotourl = tPhotourl;
-	}
-	
-	@Length(min=0, max=255, message="用户头像长度必须介于 0 和 255 之间")
-	public String getTPhotoinfo() {
-		return tPhotoinfo;
-	}
+    public String gettPhone()
+    {
+        return tPhone;
+    }
 
-	public void setTPhotoinfo(String tPhotoinfo) {
-		this.tPhotoinfo = tPhotoinfo;
-	}
-	
-	@Length(min=0, max=255, message="公司名称长度必须介于 0 和 255 之间")
-	public String getTCompany() {
-		return tCompany;
-	}
+    public void settPhone(String tPhone)
+    {
+        this.tPhone = tPhone;
+    }
 
-	public void setTCompany(String tCompany) {
-		this.tCompany = tCompany;
-	}
-	
-	@Length(min=0, max=255, message="公司网址长度必须介于 0 和 255 之间")
-	public String getTCompanyurl() {
-		return tCompanyurl;
-	}
+    public String getQq()
+    {
+        return qq;
+    }
 
-	public void setTCompanyurl(String tCompanyurl) {
-		this.tCompanyurl = tCompanyurl;
-	}
-	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getCreatetime() {
-		return createtime;
-	}
+    public void setQq(String qq)
+    {
+        this.qq = qq;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
-	
-	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")
-	public String getReserve1() {
-		return reserve1;
-	}
+    public String getWx()
+    {
+        return wx;
+    }
 
-	public void setReserve1(String reserve1) {
-		this.reserve1 = reserve1;
-	}
-	
-	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")
-	public String getReserve2() {
-		return reserve2;
-	}
+    public void setWx(String wx)
+    {
+        this.wx = wx;
+    }
 
-	public void setReserve2(String reserve2) {
-		this.reserve2 = reserve2;
-	}
-	
-	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")
-	public String getReserve3() {
-		return reserve3;
-	}
+    public String gettPhotourl()
+    {
+        return tPhotourl;
+    }
 
-	public void setReserve3(String reserve3) {
-		this.reserve3 = reserve3;
-	}
-	
-	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")
-	public String getReserve4() {
-		return reserve4;
-	}
+    public void settPhotourl(String tPhotourl)
+    {
+        this.tPhotourl = tPhotourl;
+    }
 
-	public void setReserve4(String reserve4) {
-		this.reserve4 = reserve4;
-	}
-	
-	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")
-	public String getReserve5() {
-		return reserve5;
-	}
+    public String gettPhotoinfo()
+    {
+        return tPhotoinfo;
+    }
 
-	public void setReserve5(String reserve5) {
-		this.reserve5 = reserve5;
-	}
+    public void settPhotoinfo(String tPhotoinfo)
+    {
+        this.tPhotoinfo = tPhotoinfo;
+    }
+
+    public String gettCompany()
+    {
+        return tCompany;
+    }
+
+    public void settCompany(String tCompany)
+    {
+        this.tCompany = tCompany;
+    }
+
+    public String gettCompanyurl()
+    {
+        return tCompanyurl;
+    }
+
+    public void settCompanyurl(String tCompanyurl)
+    {
+        this.tCompanyurl = tCompanyurl;
+    }
+
+    public Date getCreatetime()
+    {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime)
+    {
+        this.createtime = createtime;
+    }
+
+    public String getReserve1()
+    {
+        return reserve1;
+    }
+
+    public void setReserve1(String reserve1)
+    {
+        this.reserve1 = reserve1;
+    }
+
+    public String getReserve2()
+    {
+        return reserve2;
+    }
+
+    public void setReserve2(String reserve2)
+    {
+        this.reserve2 = reserve2;
+    }
+
+    public String getReserve3()
+    {
+        return reserve3;
+    }
+
+    public void setReserve3(String reserve3)
+    {
+        this.reserve3 = reserve3;
+    }
+
+    public String getReserve4()
+    {
+        return reserve4;
+    }
+
+    public void setReserve4(String reserve4)
+    {
+        this.reserve4 = reserve4;
+    }
+
+    public String getReserve5()
+    {
+        return reserve5;
+    }
+
+    public void setReserve5(String reserve5)
+    {
+        this.reserve5 = reserve5;
+    }
+
 	
 }

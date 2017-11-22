@@ -146,7 +146,7 @@ a.apply_btn_1 {
 	float: right;
 	border-radius: 3px;
 	border: none;
-	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
+	background: #e92a0b url() no-repeat
 		180px -438px;
 	color: #fff;
 	text-align: center;
@@ -228,6 +228,9 @@ cursor: pointer;
 		function t0(){
 			$("#iframe").attr("src","${ctx}/Mydatasource");
 		}
+		function t01(){
+			$("#iframe").attr("src","${ctx}/resetpassword");
+		}
 		function t1(){
 			$("#iframe").attr("src","${ctx}/MyproductList");
 		}
@@ -255,6 +258,9 @@ cursor: pointer;
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="101" class="J_Cat a-all">
 						<span class="cp" onclick="t0()">个人资料</span></li>
+					<li data-closeper="" aria-label="查看更多" role="menuitem"
+						aria-haspopup="true" data-groupid="101" class="J_Cat a-all">
+						<span class="cp" onclick="t01()">修改密码</span></li>
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="102" class="J_Cat a-all">
 						<span class="cp" onclick="t1()">我发布的产品</span></li>

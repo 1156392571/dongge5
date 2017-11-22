@@ -233,9 +233,24 @@ input:read-only{
 }
 </style>
 <script type="text/javascript">
-	$(function(){
-		$(".sub_nav_1 a").eq(1).addClass("a1");
-	})
+	function getpassword(){
+		var orgpassword=$("#orgpassword").val();
+		$.ajax({
+			url:'${ctx}/checkpassword',
+			type:'post',
+			data:{orgpassword:orgpassword},
+			success:function(data){
+				if(data=="1"){
+					alert("原密码错误！");
+					$("#√").css("display","none");
+					$("#orgpassword").val("");
+					$("#orgpassword").focus();
+				}else{
+					$("#√").css("display","");
+				}
+			}
+		})
+	}
 </script>
 </head>
 <body>
@@ -243,55 +258,10 @@ input:read-only{
 		<h3>基本信息</h3>
 		<hr style="height: 1px;color: #333;width: 90%">
 		<div>
-			<form:form id="inputForm" modelAttribute="tUser" action="${ctx}/updUser" method="post" class="form-horizontal">
-		<form:hidden path="id"/>
-		<div class="control-group">
-			<label class="control-label">登录名：</label>
-			<div class="controls">
-				<form:input path="tLoginname" htmlEscape="false" maxlength="64" class="input-xlarge required" readonly="true" style="height:30px;"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">邮箱：</label>
-			<div class="controls">
-				<form:input path="tEmail" htmlEscape="false" maxlength="200" class="input-xlarge " style="height:30px;"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">电话：</label>
-			<div class="controls">
-				<form:input path="tPhone" htmlEscape="false" maxlength="200" class="input-xlarge " style="height:30px;"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">QQ：</label>
-			<div class="controls">
-				<form:input path="qq" htmlEscape="false" maxlength="200" class="input-xlarge " style="height:30px;"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">WX：</label>
-			<div class="controls">
-				<form:input path="wx" htmlEscape="false" maxlength="200" class="input-xlarge " style="height:30px;"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">公司名称：</label>
-			<div class="controls">
-				<form:input path="tCompany" htmlEscape="false" maxlength="255" class="input-xlarge " style="height:30px;"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">公司网址：</label>
-			<div class="controls">
-				<form:input path="tCompanyurl" htmlEscape="false" maxlength="255" class="input-xlarge " style="height:30px;"/>
-			</div>
-		</div>
-		<div class="form-actions">
-			<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)" />
-		</div>
-	</form:form>
+			原密码：<input type="text" id="orgpassword" style="height: 30px;" onchange="getpassword()"><span id="√" style="display: none">√</span><br>
+			新密码：<input type="text" id="newpassword" style="height: 30px;"><br>
+			确认密码：<input type="text" id="confirmpassword" style="height: 30px;"><br>
+			<input type="button" value="提交">
 		</div>
 	</div>
 </body>
