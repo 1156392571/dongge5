@@ -38,11 +38,13 @@ import com.thinkgem.jeesite.modules.cms.service.CommentService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.mt.entity.TAcountDtl;
 import com.thinkgem.jeesite.modules.mt.entity.TDbPlatform;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TTaskOrder;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.mt.service.TAcountDtlService;
 import com.thinkgem.jeesite.modules.mt.service.TDbPlatformService;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskOrderService;
@@ -87,7 +89,8 @@ public class FrontController extends BaseController{
 	private TDbPlatformService tDbPlatformService;
 	@Autowired
 	private TUserService tUserService;
-	
+	@Autowired
+    private TAcountDtlService tAcountDtlService;
 	
 	/**
 	 * 网站首页
@@ -809,7 +812,7 @@ public class FrontController extends BaseController{
 	  * @date：2017年11月22日下午12:11:24
 	 */
 	@RequestMapping(value="resetpassword")
-    public String MyresetPassword(User user,Model model) {
+    public String MyresetPassword(Model model) {
         Site site = CmsUtils.getSite(Site.defaultSiteId());
         model.addAttribute("site", site);
         return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyresetPassword";
@@ -858,5 +861,33 @@ public class FrontController extends BaseController{
         tUserService.updsysuserPassword(password,loginName);
         return "redirect:"+Global.getFrontPath()+"/Mydatasource/?repage";
     }
+	
+	/**
+	  * @Description: 跳转到我的账户页面
+	  * @param user
+	  * @param model
+	  * @return
+	  * String 返回类型 页面
+	  * @author：dongge
+	  * @date：2017年11月23日上午9:07:49
+	 */
+	@RequestMapping(value="MyAcount")
+    public String MyAcount(TAcountDtl tAcountDtl,HttpServletRequest request,HttpServletResponse response,@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize,Model model) {
+        Site site = CmsUtils.getSite(Site.defaultSiteId());
+        model.addAttribute("site", site);
+        //获取当前登录用户的账户值
+        Principal principal = UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        TUser tUser=tUserService.getUserByLoginName(loginName);
+        model.addAttribute("tUser",tUser);
+        //获取最新的账户收支明细
+        tAcountDtl.setTadUserid(loginName);
+        Page<TAcountDtl> page = tAcountDtlService.findPage(new Page<TAcountDtl>(request,response,pageSize),tAcountDtl); 
+        model.addAttribute("page",page);
+        return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyAcount";
+    }
+	
+	
 }
 

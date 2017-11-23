@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.mt.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
@@ -27,6 +28,7 @@ public class TUser extends DataEntity<TUser> {
 	private String tCompany;		// 公司名称
 	private String tCompanyurl;		// 公司网址
 	private Date createtime;		// createtime
+	private BigDecimal tAcount;     // 账户余额（10,2）
 	private String reserve1;		// 扩展字段1
 	private String reserve2;		// 扩展字段1
 	private String reserve3;		// 扩展字段1
@@ -159,6 +161,16 @@ public class TUser extends DataEntity<TUser> {
     public void setCreatetime(Date createtime)
     {
         this.createtime = createtime;
+    }
+
+    public BigDecimal gettAcount()
+    {
+        return tAcount;
+    }
+
+    public void settAcount(BigDecimal tAcount)
+    {
+        this.tAcount = tAcount;
     }
 
     public String getReserve1()

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TAcountDtlDao">
+    
+	<sql id="tAcountDtlColumns">
+		a.tad_id AS "tadId",
+		a.tad_userid AS "tadUserid",
+		a.tad_type AS "tadType",
+		a.tad_sourcetype AS "tadSourcetype",
+		a.tad_sourceid AS "tadSourceid",
+		a.tad_money AS "tadMoney",
+		a.createtime AS "createtime",
+		a.reserve1 AS "reserve1",
+		a.reserve2 AS "reserve2",
+		a.reserve3 AS "reserve3",
+		a.reserve4 AS "reserve4",
+		a.reserve5 AS "reserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tAcountDtlJoins">
+	</sql>
+    
+	<select id="get" resultType="TAcountDtl">
+		SELECT 
+			<include refid="tAcountDtlColumns"/>
+		FROM t_acount_dtl a
+		<include refid="tAcountDtlJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TAcountDtl">
+		SELECT 
+			<include refid="tAcountDtlColumns"/>
+		FROM t_acount_dtl a
+		<include refid="tAcountDtlJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="tadUserid !='' and tadUserid !=null">
+				a.tad_userid=#{tadUserid}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TAcountDtl">
+		SELECT 
+			<include refid="tAcountDtlColumns"/>
+		FROM t_acount_dtl a
+		<include refid="tAcountDtlJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_acount_dtl(
+			tad_id,
+			tad_userid,
+			tad_type,
+			tad_sourcetype,
+			tad_sourceid,
+			tad_money,
+			createtime,
+			reserve1,
+			reserve2,
+			reserve3,
+			reserve4,
+			reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{tadId},
+			#{tadUserid},
+			#{tadType},
+			#{tadSourcetype},
+			#{tadSourceid},
+			#{tadMoney},
+			now(),
+			#{reserve1},
+			#{reserve2},
+			#{reserve3},
+			#{reserve4},
+			#{reserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_acount_dtl SET 	
+			tad_id = #{tadId},
+			tad_userid = #{tadUserid},
+			tad_type = #{tadType},
+			tad_sourcetype = #{tadSourcetype},
+			tad_sourceid = #{tadSourceid},
+			tad_money = #{tadMoney},
+			createtime = #{createtime},
+			reserve1 = #{reserve1},
+			reserve2 = #{reserve2},
+			reserve3 = #{reserve3},
+			reserve4 = #{reserve4},
+			reserve5 = #{reserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_acount_dtl SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

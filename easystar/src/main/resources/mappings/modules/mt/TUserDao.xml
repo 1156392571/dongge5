@@ -16,6 +16,7 @@
 		a.t_company AS "tCompany",
 		a.t_companyurl AS "tCompanyurl",
 		a.createtime AS "createtime",
+		a.t_acount AS "tAcount",
 		a.reserve1 AS "reserve1",
 		a.reserve2 AS "reserve2",
 		a.reserve3 AS "reserve3",
