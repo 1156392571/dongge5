@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.mt.dao.TUserDao;
 
 /**
@@ -62,12 +63,6 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     public int updSysUser(TUser tUser)
     {
         return tUserDao.updSysUser(tUser);
-    }
-
-	@Transactional(readOnly = false)
-    public void updsysuserPassword(String password, String loginName)
-    {
-	    tUserDao.updsysuserPassword(password,loginName);   
     }
 
     public String getPassword(String loginName)

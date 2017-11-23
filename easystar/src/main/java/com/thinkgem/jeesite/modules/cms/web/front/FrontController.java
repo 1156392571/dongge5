@@ -854,12 +854,16 @@ public class FrontController extends BaseController{
 	  * @date：2017年11月22日下午12:07:45
 	 */
 	@RequestMapping(value="resetpassword1")
+	@ResponseBody
     public String resetpassword(String password1) {
 	    Principal principal = UserUtils.getPrincipal();
+	    String id=principal.getId();
         String loginName=principal.getLoginName();
-        String password=SystemService.entryptPassword(password1);
-        tUserService.updsysuserPassword(password,loginName);
-        return "redirect:"+Global.getFrontPath()+"/Mydatasource/?repage";
+        User user=new User();
+        user.setPassword(password1);
+        user.setLoginName(loginName);
+        systemService.updatePasswordById(id,loginName,password1);
+        return "1";
     }
 	
 	/**

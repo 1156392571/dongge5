@@ -241,16 +241,42 @@ input:read-only{
 			data:{orgpassword:orgpassword},
 			success:function(data){
 				if(data=="1"){
-					alert("原密码错误！");
+					//alert("原密码错误！");
 					$("#√").css("display","none");
+					$("#×").css("display","");
 					$("#orgpassword").val("");
 					$("#orgpassword").focus();
 				}else{
 					$("#√").css("display","");
+					$("#×").css("display","none");
 				}
 			}
 		})
 	}
+	
+	function sub(){
+		var newpassword=$("#newpassword").val();
+		var confirmpassword=$("#confirmpassword").val();
+		if(newpassword==confirmpassword){
+			$.ajax({
+				url:'${ctx}/resetpassword1',
+				type:'post',
+				data:{password1:newpassword},
+				success:function(data){
+					if(data=="1"){
+						window.location.href="${ctx}/resetpassword";
+					}else{
+						slert("修改密码失败");
+					}
+				}
+			})
+			
+		}else{
+			alert("两次输入的密码不一样");
+		}
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -258,10 +284,13 @@ input:read-only{
 		<h3>基本信息</h3>
 		<hr style="height: 1px;color: #333;width: 90%">
 		<div>
-			原密码：<input type="text" id="orgpassword" style="height: 30px;" onchange="getpassword()"><span id="√" style="display: none">√</span><br>
+			<span style="width: 100px;">原密码：</span><input type="text" id="orgpassword" style="height: 30px;line-height: 30px;" onchange="getpassword()">
+			<img id="√" src="${ctxStatic}/zui/img/duihao.png" style="height:20px;width:20px;;display:none">
+			<img id="×" src="${ctxStatic}/zui/img/cuohao.png" style="height:20px;width:20px;;display:none">
+			<br>
 			新密码：<input type="text" id="newpassword" style="height: 30px;"><br>
 			确认密码：<input type="text" id="confirmpassword" style="height: 30px;"><br>
-			<input type="button" value="提交">
+			<input type="button" onclick="sub()" value="提交">
 		</div>
 	</div>
 </body>

@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.mt.dao;
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 
 /**
  * 用户信息附加表DAO接口
@@ -21,7 +22,7 @@ public interface TUserDao extends CrudDao<TUser> {
 
     int updSysUser(TUser tUser);
 
-    void updsysuserPassword(String password, String loginName);
+    void updsysuserPassword(User user);
 
     String getPassword(String loginName);
 	

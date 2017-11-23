@@ -201,10 +201,6 @@
 		where login_name = #{tLoginname}
 	</update>
 	
-	<update id="updsysuserPassword">
-		update sys_user set password=#{password} where login_name=#{tLoginname}
-	</update>
-	
 	<select id="getPassword" resultType="java.lang.String">
 		select password from sys_user where login_name=#{loginName}
 	</select>
