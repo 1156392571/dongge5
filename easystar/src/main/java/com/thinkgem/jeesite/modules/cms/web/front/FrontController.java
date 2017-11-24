@@ -39,12 +39,14 @@ import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TAcountDtl;
+import com.thinkgem.jeesite.modules.mt.entity.TBannerPhoto;
 import com.thinkgem.jeesite.modules.mt.entity.TDbPlatform;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TTaskOrder;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TAcountDtlService;
+import com.thinkgem.jeesite.modules.mt.service.TBannerPhotoService;
 import com.thinkgem.jeesite.modules.mt.service.TDbPlatformService;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskOrderService;
@@ -91,6 +93,8 @@ public class FrontController extends BaseController{
 	private TUserService tUserService;
 	@Autowired
     private TAcountDtlService tAcountDtlService;
+	@Autowired
+    private TBannerPhotoService tBannerPhotoService;
 	
 	/**
 	 * 网站首页
@@ -393,7 +397,24 @@ public class FrontController extends BaseController{
 			return "modules/sys/userlogin";
 	}
 	
-    
+	
+	@RequestMapping(value = "getheadbennerList")
+	@ResponseBody
+    public List<TBannerPhoto> getheadbennerList(TBannerPhoto tBannerPhoto,Model model,RedirectAttributes redirectAttributes) {
+        //获取所有的banner状态正在使用中的列表
+	    List<TBannerPhoto> list=tBannerPhotoService.getheadbennerList();
+        return list;
+    }
+	
+	@RequestMapping(value = "getsidebennerList")
+    @ResponseBody
+    public List<TBannerPhoto> getsidebennerList(TBannerPhoto tBannerPhoto,Model model,RedirectAttributes redirectAttributes) {
+        //获取所有的banner状态正在使用中的列表
+        List<TBannerPhoto> list=tBannerPhotoService.getsidebennerList();
+        return list;
+    }
+	
+	
     /**
      * 跳转到产品中心页面
      * @param model

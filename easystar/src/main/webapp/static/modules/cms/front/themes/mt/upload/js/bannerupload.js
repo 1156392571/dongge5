@@ -27,7 +27,7 @@ jQuery(function() {
         }
     	
     	//循环页面中每个上传域
-    	$('.container').each(function(index){
+    	$('.upload_container').each(function(index){
     		
             var statusBar=$(this).find('.statusBar');//再次添加按钮容器实例
             
@@ -41,7 +41,7 @@ jQuery(function() {
     		
     		var queueList=$(this).find('.queueList');//拖拽容器实例
     		
-    		var filePicker2=$(this).find('#filePicker2');//继续添加按钮实例
+    		var filePicker2=$(this).find('#filePicker2_'+index);//继续添加按钮实例
     		
     		// 图片容器       	
     		var queue = $('<ul class="filelist"></ul>').appendTo( queueList);
@@ -66,7 +66,7 @@ jQuery(function() {
                 formData: {                
                 	token:index,//可以在这里附加控件编号，从而区分是哪个控件上传的
                 	
-                	ImageType: "2"
+                	ImageType: "1"
                 },
                 
                 dnd: '#dndArea',
@@ -77,7 +77,7 @@ jQuery(function() {
                 chunked: false,//是否分片处理大文件的上传
                 chunkSize: 512 * 1024,
                 
-                server: ctx+'/upload?method=upload',//上传地址
+                server: '../a/upload?method=upload',//上传地址
                 
                 method:'POST',
                 
@@ -106,7 +106,15 @@ jQuery(function() {
             
             //加载的时候
             uploader_1[index].on('ready',function(){
-            	var fileinfo = document.getElementById("sruReserve1").value;
+            	state = 'pedding';
+            	var fileinfo="";
+            	if(index==0){
+            		fileinfo = document.getElementById("bpUrlinfo").value;
+            	}else if(index==1){
+            		fileinfo = document.getElementById("scReserve2").value;
+            	}else if(index==2){
+            		fileinfo = document.getElementById("scReserve3").value;
+            	}
             	if(fileinfo!==""){
 	//            	var fileinfo = "WU_FILE_0,123.jpg,image/jpeg,8433,uploads\\1\\project\\20171013\\1507866273084_123.jpg";
 	            	var files = new Array();
@@ -429,9 +437,16 @@ jQuery(function() {
             	var realurl = response.realPath; //上传图片的路径
             	var fileinfo = response.fileinfo; //上传图片的路径
             	//判断图片地址存放的位置
-            	document.getElementById("siiUrl").value = realurl;
-            	document.getElementById("sruReserve1").value = fileinfo;
-            	alert("上传成功");
+            	if(index==0){
+            		document.getElementById("bpUrl").value = realurl;
+            		document.getElementById("bpUrlinfo").value = fileinfo;
+            	}else if(index==1){
+            		document.getElementById("scPhotourl2").value = realurl;
+            		document.getElementById("scReserve2").value = fileinfo;
+            	}else if(index==2){
+            		document.getElementById("scPhotourl3").value = realurl;
+            		document.getElementById("scReserve3").value = fileinfo;
+            	}
             });
             
             // 所有文件上传成功后调用        

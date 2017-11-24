@@ -25,6 +25,21 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>广告名称：</label>
+				<form:input path="bpName" htmlEscape="false" maxlength="45" class="input-medium"/>
+			</li>
+			<li><label>广告类型：</label>
+				<form:select path="bpType" class="input-xlarge " >
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('bpType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			<li><label>广告状态：</label>
+				<form:select path="bpStatus" class="input-xlarge " >
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('bpStatus')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -33,7 +48,11 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>更新时间</th>
+				<th>广告名称</th>
+				<th>广告类型</th>
+				<th>广告状态</th>
+				<th>广告图片</th>
+				<th>创建时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="mt:tBannerPhoto:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -41,11 +60,23 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="tBannerPhoto">
 			<tr>
-				<td><a href="${ctx}/mt/tBannerPhoto/form?id=${tBannerPhoto.id}">
-					<fmt:formatDate value="${tBannerPhoto.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
 				<td>
-					${tBannerPhoto.remarks}
+					${tBannerPhoto.bpName}
+				</td>
+				<td>
+					${fns:getDictLabel(tBannerPhoto.bpType, 'bpType', '')}
+				</td>
+				<td>
+					${fns:getDictLabel(tBannerPhoto.bpStatus, 'bpStatus', '')}
+				</td>
+				<td>
+					${tBannerPhoto.bpUrl}
+				</td>
+				<td>
+					<fmt:formatDate value="${tBannerPhoto.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
+				<td>
+					${tBannerPhoto.bpRemarks}
 				</td>
 				<shiro:hasPermission name="mt:tBannerPhoto:edit"><td>
     				<a href="${ctx}/mt/tBannerPhoto/form?id=${tBannerPhoto.id}">修改</a>

@@ -141,4 +141,13 @@
 		WHERE id = #{id}
 	</update>
 	
+	<select id="getheadbennerList" resultType="TBannerPhoto">
+		select <include refid="tBannerPhotoColumns"/>
+		 from t_banner_photo a where a.del_flag = '0' and a.bp_status='2' and a.bp_type='1' limit 2
+	</select>
+	
+	<select id="getsidebennerList" resultType="TBannerPhoto">
+		select <include refid="tBannerPhotoColumns"/>
+		 from t_banner_photo a where a.del_flag = '0' and a.bp_status='2' and a.bp_type='2' limit 2
+	</select>
 </mapper>

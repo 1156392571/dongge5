@@ -24,6 +24,10 @@
 			});
 		});
 	</script>
+	<link href="${ctxStatic}/modules/cms/front/themes/mt/upload/css/webuploader.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/modules/cms/front/themes/mt/upload/css/style.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/modules/cms/front/themes/mt/upload/js/webuploader.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/modules/cms/front/themes/mt/upload/js/bannerupload.js" type="text/javascript"></script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
@@ -40,82 +44,59 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
+		
+		<!-- ==================================================================== -->
+		<form:hidden path="bpUrl"/>
+		<form:hidden path="bpUrlinfo"/>
 		<div class="control-group">
-			<label class="control-label">图片地址：</label>
+			<label class="control-label">产品图片：</label>
+				<div class="controls">
+					<div class="width_auto" style="width: 580px;">
+					    <div class="upload_container" >
+					        <!--头部，相册选择和格式选择-->
+					        <div id="uploader" >
+					            <div class="item_container">
+					                <div id="" class="queueList" >
+					                    <div id="dndArea" class="placeholder">
+					                        <div id="filePicker"></div>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="statusBar">
+					                <div class="info"></div>
+					                <div class="btns">
+					                    <div id="filePicker2_0" class="filePicker2 element-invisible"></div><div class="uploadBtn">开始上传</div>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label">产品类型：</label>
 			<div class="controls">
-				<form:input path="bpUrl" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+				<form:select path="bpType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('bpType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
-			<label class="control-label">图片地址info：</label>
+			<label class="control-label">图片状态：</label>
 			<div class="controls">
-				<form:input path="bpUrlinfo" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">图片类型：1.头部2.两侧：</label>
-			<div class="controls">
-				<form:input path="bpType" htmlEscape="false" maxlength="1" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">图片状态：1.未使用2.使用中：</label>
-			<div class="controls">
-				<form:input path="bpStatus" htmlEscape="false" maxlength="1" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">图片创建时间：</label>
-			<div class="controls">
-				<input name="createtime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${tBannerPhoto.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+				<form:select path="bpStatus" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('bpStatus')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">备注信息：</label>
 			<div class="controls">
 				<form:input path="bpRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段1：</label>
-			<div class="controls">
-				<form:input path="bpReserve1" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段2：</label>
-			<div class="controls">
-				<form:input path="bpReserve2" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段3：</label>
-			<div class="controls">
-				<form:input path="bpReserve3" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段4：</label>
-			<div class="controls">
-				<form:input path="bpReserve4" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段5：</label>
-			<div class="controls">
-				<form:input path="bpReserve5" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

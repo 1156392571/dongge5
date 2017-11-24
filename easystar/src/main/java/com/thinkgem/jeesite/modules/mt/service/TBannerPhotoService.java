@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.mt.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,8 @@ import com.thinkgem.jeesite.modules.mt.dao.TBannerPhotoDao;
 @Service
 @Transactional(readOnly = true)
 public class TBannerPhotoService extends CrudService<TBannerPhotoDao, TBannerPhoto> {
-
+    @Autowired TBannerPhotoDao tBannerPhotoDao;
+    
 	public TBannerPhoto get(String id) {
 		return super.get(id);
 	}
@@ -43,5 +45,14 @@ public class TBannerPhotoService extends CrudService<TBannerPhotoDao, TBannerPho
 	public void delete(TBannerPhoto tBannerPhoto) {
 		super.delete(tBannerPhoto);
 	}
+
+    public List<TBannerPhoto> getheadbennerList(){
+        return tBannerPhotoDao.getheadbennerList();
+    }
+
+    public List<TBannerPhoto> getsidebennerList()
+    {
+        return tBannerPhotoDao.getsidebennerList();
+    }
 	
 }

@@ -149,25 +149,64 @@ a.apply_btn_1 {
 	float: right;
 	border-radius: 3px;
 	border: none;
-	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
+	background: #e92a0b url() no-repeat
 		180px -438px;
 	color: #fff;
 	text-align: center;
 	font-size: 14px;
 }
 </style>
+<script type="text/javascript">
+	$(function() {
+		getheadbanner();
+		getsidebanner();
+		$('.sub_nav_1 a').click(function() {
+			$(this).addClass('a1').siblings().removeClass('a1')
+		})
+	})
+	
+	function getheadbanner(){
+		$.ajax({
+			url:'${ctx}/getheadbanner',
+			type:'post',
+			success:function(data){
+				var str="";
+				data.forEach(function(msg){
+					str+="<img alt='' src=${pageContext.request.contextPath}/'"+msg.bpUrl+"' style='width: 100%'>";
+				})
+				$("#headbanner").html(str1);
+			}
+		})
+	}
+	
+	
+	function getsidebanner(){
+		$.ajax({
+			url:'${ctx}/getsidebanner',
+			type:'post',
+			success:function(data){
+				var str1=data[0].msg.bpUrl;
+				var str2=data[1].msg.bpUrl;
+				$("#leftsidebanner").attr("src","${pageContext.request.contextPath}/"+str1);
+				$("#rightsidebanner").attr("src","${pageContext.request.contextPath}/"+str2);
+			}
+		})
+	}
+</script>
+
+
+
 </head>
 <body>
 	<div style="position: fixed;width: 7%;left:0px;top: 20%;text-align: left;">
-<%-- 		<a target=blank href=tencent://message/?uin=1156392571&Site=qq号码说明&Menu=yes><img alt="" src="${ctxStatic}/zui/img/open_im.png"></a><br> --%>
 		<a target=blank href="http://wpa.qq.com/msgrd?v=3&uin=1156392571&site=qq&menu=yes"><img alt="" src="${ctxStatic}/zui/img/open_im.png"></a><br>
 	</div>
 	<div id="ggshow_1" style="position: fixed;width: 7%;left:0px;bottom: 10%;text-align: left;">
-		<img alt="" src="${ctxStatic}/zui/img/gg1.jpg" style="width: 100px;"><br>
+		<img id="leftsidebanner" alt="" onerror="${ctxStatic}/zui/img/gg1.jpg" style="width: 100px;"><br>
 		<a href="javascript:closegg('1')"><img alt="" src="${ctxStatic}/zui/img/ad_close.gif"></a>
 	</div>
 	<div id="ggshow_2" style="position: fixed;width: 7%;right:0px;bottom: 10%;text-align: right;">
-		<img alt="" src="${ctxStatic}/zui/img/gg2.jpg" style="width: 100px;"><br>
+		<img id="rightsidebanner" alt="" onerror="${ctxStatic}/zui/img/gg2.jpg" style="width: 100px;"><br>
 		<a href="javascript:closegg('2')"><img alt="" src="${ctxStatic}/zui/img/ad_close.gif"></a>
 	</div>
 	<script type="text/javascript">
@@ -179,47 +218,6 @@ a.apply_btn_1 {
 			}
 		}
 	</script>
-<!-- 
-	<div class="navbar navbar-fixed-top" style="position:static;margin-bottom:10px;">
-      <div class="navbar-inner">
-        <div class="container" style="width: 85%">
-          <c:choose>
-   			<c:when test="${not empty site.logo}">
-   				<img alt="${site.title}" src="${site.logo}" class="container" onclick="location='${ctx}/index-${site.id}${fns:getUrlSuffix()}'">
-   			</c:when>
-   			<c:otherwise><a class="brand" href="${ctx}/index-${site.id}${fns:getUrlSuffix()}">${site.title}</a></c:otherwise>
-   		  </c:choose>
-          <div class="nav-collapse">
-            <ul id="main_nav" class="nav nav-pills">
-             	<li class="${not empty isIndex && isIndex ? 'active' : ''}"><a href="${ctx}/index-1${fns:getUrlSuffix()}"><span>${site.id eq '1'?'首　 页':'返回主站'}</span></a></li>
-				<c:forEach items="${fnc:getMainNavList(site.id)}" var="category" varStatus="status"><c:if test="${status.index lt 6}">
-                    <c:set var="menuCategoryId" value=",${category.id},"/>
-		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''}"><a href="${category.url}" target="${category.target}"><span>${category.name}</span></a></li>
-		    	</c:if></c:forEach>
-			    <li id="siteSwitch" class="dropdown">
-			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="站点"><i class="icon-retweet"></i></a>
-					<ul class="dropdown-menu">
-					  <c:forEach items="${fnc:getSiteList()}" var="site"><li><a href="#" onclick="location='${ctx}/index-${site.id}${urlSuffix}'">${site.title}</a></li></c:forEach>
-					</ul>
-				</li>
-		    	<li id="themeSwitch" class="dropdown">
-			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
-				    <ul class="dropdown-menu">
-				      <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
-				    </ul>
-			    </li>
-			     <li style="margin-left: 150px;"><a>登录</a></li>
-			     <li><a>注册</a></li>
-            </ul>
-            <form class="navbar-form pull-right" action="${ctx}/search" method="get">
-              	<input type="text" name="q" maxlength="20" style="width:65px;" placeholder="全站搜索..." value="${q}">
-            </form>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-     -->
 	<div class="nav-bar">
 		<div class="nav-item">
 			<ul class="nav-item-1">
@@ -252,15 +250,11 @@ a.apply_btn_1 {
 			<a href="" class="apply_btn_1">合作快速通道</a>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(function(){
-			$('.sub_nav_1 a').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
-		})
-	</script>
 	
 	
 	
-	<div class="container" style="width: 80%;">
+	
+	<div id="headbanner" class="container" style="width: 80%;">
     	<img alt="" src="${ctxStatic}/zui/img/h_gg1.jpg" style="width: 100%">
     	<img alt="" src="${ctxStatic}/zui/img/h_gg2.gif" style="width: 100%">
     </div>

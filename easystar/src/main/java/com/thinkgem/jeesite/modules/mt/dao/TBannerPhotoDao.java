@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.mt.dao;
 
+import java.util.List;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.mt.entity.TBannerPhoto;
@@ -14,5 +16,9 @@ import com.thinkgem.jeesite.modules.mt.entity.TBannerPhoto;
  */
 @MyBatisDao
 public interface TBannerPhotoDao extends CrudDao<TBannerPhoto> {
+
+    List<TBannerPhoto> getheadbennerList();
+
+    List<TBannerPhoto> getsidebennerList();
 	
 }

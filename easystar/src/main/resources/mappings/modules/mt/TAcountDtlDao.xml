@@ -42,7 +42,19 @@
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="tadUserid !='' and tadUserid !=null">
-				a.tad_userid=#{tadUserid}
+				and a.tad_userid=#{tadUserid}
+			</if>
+			<if test='tadReserve1=="1" or tadReserve1=="" or tadReserve1==null'>
+				and a.createtime&gt;DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+			</if>
+			<if test='tadReserve1=="2"'>
+				and a.createtime&gt;DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+			</if>
+			<if test='tadReserve1=="3"'>
+				and a.createtime&gt;DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+			</if>
+			<if test='tadReserve1=="4"'>
+				and 1=1
 			</if>
 		</where>
 		<choose>
