@@ -416,19 +416,18 @@ function leftTimer(stringTime){
 		var days = parseInt(leftTime / 1000 / 60 / 60 / 24 , 10); //计算剩余的天数 
 		var hours = parseInt(leftTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
 		var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
-		var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数 
+		var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数
+		if(days==0&&hours==0&&minutes==0&&seconds==0){
+			alert("时间到！");
+			var id=$("#taskid").val();
+			window.location.href="${ctx}/taskdetail?id="+id;
+		}
 		days = checkTime(days); 
 		hours = checkTime(hours); 
 		minutes = checkTime(minutes); 
 		seconds = checkTime(seconds);
 		if(leftTime>0){
 			document.getElementById("timer").innerHTML = days+"天" + hours+"小时" + minutes+"分"+seconds+"秒";
-		}else if(leftTime<0){
-			
-		}else if(leftTime==0){
-			alert("=0");
-			var id=$("#taskid").val();
-			window.location.href="${ctx}/taskdetail?id="+id;
 		}
 	},1000);
 	 
