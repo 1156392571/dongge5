@@ -240,7 +240,7 @@ input:read-only{
 </head>
 <body>
 	<div>
-		<h3>基本信息</h3>
+		<h3 style="font-size: 18px;margin-left: 50px;">基本信息</h3>
 		<hr style="height: 1px;color: #333;width: 90%">
 		<div>
 			<form:form id="inputForm" modelAttribute="tUser" action="${ctx}/updUser" method="post" class="form-horizontal">

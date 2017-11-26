@@ -418,7 +418,7 @@ function leftTimer(stringTime){
 		var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
 		var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数
 		if(days==0&&hours==0&&minutes==0&&seconds==0){
-			alert("时间到！");
+			alert("订单失效，请重新申请！");
 			var id=$("#taskid").val();
 			window.location.href="${ctx}/taskdetail?id="+id;
 		}

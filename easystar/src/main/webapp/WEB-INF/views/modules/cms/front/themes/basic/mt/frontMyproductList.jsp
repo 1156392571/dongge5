@@ -277,8 +277,8 @@ $(function(){
 										<img src="${ctxStatic}/zui/img/wx.png" title="${productList.proReserve3}">
 									</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${productList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="${ctx}/getproductdetail?id=${productList.id}" style="color: #fff; margin-left: 20px;">查看</a> 
+									<p style="float:left;width: 10%;" align="center">
+										<a class="btn_tj" href="${ctx}/getproductdetail?id=${productList.id}" style="color: #fff;">查看</a> 
 									</p>
 							</li>
 						</c:forEach>

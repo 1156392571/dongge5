@@ -264,24 +264,26 @@ a.apply_btn {
 									<p style="float:left;width: 10%;text-align: center">${taskorderList.toPhone}</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
+									<p style="float:left;width: 10%;text-align: center">
+									${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}
+									</p>
 									<p style="float:left;width: 10%;text-align: center">
 										<c:if test="${not empty taskorderList.toPaytype}">
 											${fns:getDictLabel(taskorderList.toPaytype, 'toPaytype', '')}
 										</c:if>
 										<c:if test="${empty taskorderList.toPaytype}">
-											&nbsp;
+											未付款
 										</c:if>
 										
 									</p>
-									<p style="float:left;width: 15%;text-align: center">
+									<p style="float:left;width: 15%;" align="center">
 										<c:if test="${taskorderList.toCheckstatus==1}">
 										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=2" style="color: #fff;float: left">通过</a> 
-										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=3" style="color: #fff;float: left;margin-left: 10px;">失败</a>
+										<a class="btn_tj" href="${ctx}/checktaskorder?id=${taskorderList.id}&toCheckstatus=3" style="color: #fff;float: left;">失败</a>
 										</c:if>
 										<c:if test="${taskorderList.toCheckstatus==2}">
 											<c:if test="${taskorderList.toPaytype==2}">
-											<a class="btn_tj" href="" style="color: #fff;float: left;margin-left: 10px;width: 80px;">向他付款</a>	
+											<a class="btn_tj" href="" style="color: #fff;width: 80px;">向他付款</a>	
 											</c:if>
 										</c:if>
 									</p>

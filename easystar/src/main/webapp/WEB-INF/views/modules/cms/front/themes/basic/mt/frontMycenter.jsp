@@ -225,6 +225,9 @@ cursor: pointer;
 			$('.sub_nav_1 a').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
 			$('.service-bd li').click(function () { $(this).addClass('a1').siblings().removeClass('a1') })
 		})
+		function t(){
+			$("#iframe").attr("src","${ctx}/MyAcount");
+		}
 		function t0(){
 			$("#iframe").attr("src","${ctx}/Mydatasource");
 		}
@@ -248,13 +251,13 @@ cursor: pointer;
 	
 	
 	<div class="container" style="width: 80%">
-		<div class="content" style="width: 100%;height: 60%;">
+		<div class="content" style="width: 100%;height: 70%;">
 <!-- 			<sitemesh:body/> -->
 			<div class="leftinfo" data-spm-ab="main" data-spm-ab-max-idx="48">
 				<ul class="service-bd" role="menubar">
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="106" class="J_Cat a-all">
-						<span class="cp">账号管理</span></li>
+						<span class="cp" onclick="t()">账号管理</span></li>
 					<li data-closeper="" aria-label="查看更多" role="menuitem"
 						aria-haspopup="true" data-groupid="101" class="J_Cat a-all">
 						<span class="cp" onclick="t0()">个人资料</span></li>

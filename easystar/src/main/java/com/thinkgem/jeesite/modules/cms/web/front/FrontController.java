@@ -898,7 +898,7 @@ public class FrontController extends BaseController{
 	 */
 	@RequestMapping(value="MyAcount")
     public String MyAcount(TAcountDtl tAcountDtl,HttpServletRequest request,HttpServletResponse response,@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
-            @RequestParam(required = false, defaultValue = "10") Integer pageSize,Model model) {
+            @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
         Site site = CmsUtils.getSite(Site.defaultSiteId());
         model.addAttribute("site", site);
         //获取当前登录用户的账户值
@@ -910,6 +910,7 @@ public class FrontController extends BaseController{
         tAcountDtl.setTadUserid(loginName);
         Page<TAcountDtl> page = tAcountDtlService.findPage(new Page<TAcountDtl>(request,response,pageSize),tAcountDtl); 
         model.addAttribute("page",page);
+        model.addAttribute("tAcountDtl",tAcountDtl);
         return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyAcount";
     }
 	

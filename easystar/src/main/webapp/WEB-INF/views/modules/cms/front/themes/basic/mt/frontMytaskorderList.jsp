@@ -265,11 +265,6 @@ a.apply_btn {
 									<p style="float:left;width: 15%;text-align: center"><fmt:formatDate value="${taskorderList.completetime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toCheckstatus, 'toCheckstatus', '')}</p>
 									<p style="float:left;width: 10%;text-align: center">${fns:getDictLabel(taskorderList.toPaytype, 'toPaytype', '')}</p>
-									<!-- 
-									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 20px">查看</a> 
-									</p>
-									 -->
 							</li>
 						</c:forEach>
 					</ul>

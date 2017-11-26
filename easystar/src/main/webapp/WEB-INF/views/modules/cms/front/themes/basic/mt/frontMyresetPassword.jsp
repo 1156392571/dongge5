@@ -216,12 +216,13 @@ a.apply_btn {
 
 .btn_tj{
 	border: 1px #e9491a solid;
-	width: 50px;
+	width: 80px;
 	height: 30px;
 	border-radius:5px;
 	background-color:#e9491a;
 	line-height: 30px;
 	font-size:15px; 
+	margin-left: 155px;
 }
 .control-label{
 	font-size: 14px;
@@ -230,6 +231,15 @@ a.apply_btn {
 
 input:read-only{
 	background-color: #fff;
+}
+
+.tab th{
+	width: 100px;
+	padding-right: 10px;
+	text-align: right;
+	font-weight: 400;
+	font-size: 14px;
+	margin-bottom: 5px;
 }
 </style>
 <script type="text/javascript">
@@ -270,7 +280,6 @@ input:read-only{
 					}
 				}
 			})
-			
 		}else{
 			alert("两次输入的密码不一样");
 		}
@@ -281,8 +290,9 @@ input:read-only{
 </head>
 <body>
 	<div>
-		<h3>基本信息</h3>
-		<hr style="height: 1px;color: #333;width: 90%">
+		<h3 style="font-size: 18px;margin-left: 50px;">修改密码</h3>
+		<hr style="height: 1px;color: #e7e7e7;width: 90%">
+		<!-- 
 		<div>
 			<span style="width: 100px;">原密码：</span><input type="text" id="orgpassword" style="height: 30px;line-height: 30px;" onchange="getpassword()">
 			<img id="√" src="${ctxStatic}/zui/img/duihao.png" style="height:20px;width:20px;;display:none">
@@ -292,6 +302,33 @@ input:read-only{
 			确认密码：<input type="text" id="confirmpassword" style="height: 30px;"><br>
 			<input type="button" onclick="sub()" value="提交">
 		</div>
+		 -->
+		 
+		<div>
+			<table class="tab">
+				<tr>
+					<th><span class="help-inline"><font color="red">*</font> </span>原密码</th>
+					<td><input type="text" id="orgpassword" style="height: 30px;line-height: 30px;" onchange="getpassword()">
+						<img id="√" src="${ctxStatic}/zui/img/duihao.png" style="height:20px;width:20px;;display:none">
+						<img id="×" src="${ctxStatic}/zui/img/cuohao.png" style="height:20px;width:20px;;display:none">
+					</td>
+				</tr>
+				<tr>
+					<th><span class="help-inline"><font color="red">*</font> </span>新密码</th>
+					<td><input type="text" id="newpassword" style="height: 30px;line-height: 30px;" onchange="getpassword()"></td>
+				</tr>
+				<tr>
+					<th><span class="help-inline"><font color="red">*</font> </span>确认密码</th>
+					<td><input type="text" id="confirmpassword" style="height: 30px;line-height: 30px;" onchange="getpassword()"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<button class="btn_tj" onclick="sub()" style="color: #fff;">保存</button>
+					</td>
+				</tr>
+			</table>		
+		</div>
+		
 	</div>
 </body>
 </html>

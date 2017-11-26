@@ -339,8 +339,8 @@ a.apply_btn {
 										<img style="width:22px ;height:22px;" src="${ctxStatic}/zui/img/qq.png" title="${taskList.taskQq}">
 									</p>
 									<p style="float:left;width: 10%;text-align: center"><fmt:formatDate value="${taskList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-									<p style="float:left;width: 10%;text-align: center">
-										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;margin-left: 30px">申请</a> 
+									<p style="float:left;width: 10%;" align="center">
+										<a class="btn_tj" href="${ctx}/taskdetail?id=${taskList.id}" style="color: #fff;">申请</a> 
 									</p>
 							</li>
 						</c:forEach>
