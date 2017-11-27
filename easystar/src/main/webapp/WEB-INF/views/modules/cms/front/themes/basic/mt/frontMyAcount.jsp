@@ -5,10 +5,6 @@
 <html>
 <head>
 	<title>米兔首页</title>
-		<link href="${ctxStatic}/jquery-select2/3.4/select2.min.css" rel="stylesheet" />
-	<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js" type="text/javascript"></script>
-	<script src="${ctxStatic}/common/mustache.min.js" type="text/javascript"></script>
-	<script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
 <style>
 body {
 	font-family: microsoft yahei !important;
@@ -113,7 +109,12 @@ blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5,
 	width: 120px;
 }
 </style>
+<script type="text/javascript">
+	function showacountdtl(){
+		$("#iframe").attr("src","${ctx}/MyAcountDtl");
+	}
 
+</script>
 </head>
 <body>
 	<div style="height: 100px;padding: 20px 0;border-bottom: 1px #e7e7e7 solid">
@@ -192,78 +193,12 @@ blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5,
 		</div>
 	</div>
 
-	<div style="display: ;">
+<!-- 	<div> -->
+		<iframe id="iframe" style="width: 100%;height: 60%;overflow: hidden;border: 0;" >
 		
-		
-		
-	</div>
+		</iframe>
+<!-- 	</div> -->
 
-	<div id="acountdtl" style="display: none">
-		<div>
-			<form:form id="searchForm" modelAttribute="tAcountDtl" action="${ctx}/MyAcount" method="post" class="breadcrumb form-search" style="background-color:#fff">
-				<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
-				<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-				<ul class="ul-form">
-					<li><label>查询周期：</label>
-						<form:select path="reserve1" class="input-xlarge " >
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('cycleTime')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
-					</li>
-					<li><label>金额类型：</label>
-						<form:select path="tadType" class="input-xlarge " >
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('tadType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
-					</li>
-					<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-					<li class="clearfix"></li>
-				</ul>
-			</form:form>
-		</div>
-		<div class="main-body">
-			<div>
-				<div class="channel_partner" id="keyword">
-					<ul style="background-color: #f5f5f5">
-						<li style="height: 30px;width: 100%;padding-bottom: 0px;">
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">金额类型</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">来源方式</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">支付时间</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">金额数目</p>
-							<p style="width: 20%;float: left;text-align: center;font-size: 16px;">操作</p>
-						</li>
-					</ul>
-					<ul class="ul_add">
-					<c:if test="${not empty page.list}">
-						<c:forEach items="${page.list}" var="tAcountList"> 
-							<li style="height: 30px;width: 100%">
-									<p style="float:left;width: 20%;text-align: center">${fns:getDictLabel(tAcountList.tadType, 'tadType', '')}</p>
-									<p style="float:left;width: 20%;text-align: center">${fns:getDictLabel(tAcountList.tadSourcetype, 'tadSourcetype', '')}</p>  
-									<p style="float:left;width: 20%;text-align: center"><fmt:formatDate value="${tAcountList.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-									<p style="float:left;width: 20%;text-align: center">${tAcountList.tadMoney}</p>
-									<p style="float:left;width: 20%;" align="center">
-										<a class="btn_tj" href="${ctx}/getproductdetail?id=${tAcountList.id}" style="color: #fff;">查看详情</a> 
-									</p>
-							</li>
-						</c:forEach>
-					</c:if>
-					<c:if test="${empty page.list}">
-						<li style="height: 30px;width: 100%;text-align: center;">亲，暂无数据哦！！！</li>
-					</c:if>
-					</ul>
-				</div>
-				<div class="pagination" style="text-align: center;display: block;">${page}</div>
-				<script type="text/javascript">
-					function page(n,s){
-						location="${ctx}/MyproductList?pageNo="+n+"&pageSize="+s;
-					}
-					
-					function showacountdtl(){
-						$("#acountdtl").css("display","");						
-					}
-				</script>
-			</div>
-		</div>
-	</div>
+	
 </body>
 </html>

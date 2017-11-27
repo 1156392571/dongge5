@@ -906,14 +906,36 @@ public class FrontController extends BaseController{
         String loginName=principal.getLoginName();
         TUser tUser=tUserService.getUserByLoginName(loginName);
         model.addAttribute("tUser",tUser);
-        //获取最新的账户收支明细
-        tAcountDtl.setTadUserid(loginName);
-        Page<TAcountDtl> page = tAcountDtlService.findPage(new Page<TAcountDtl>(request,response,pageSize),tAcountDtl); 
-        model.addAttribute("page",page);
-        model.addAttribute("tAcountDtl",tAcountDtl);
         return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyAcount";
     }
 	
+	
+	/**
+	  * @Description: 跳转到我的账户详情页面
+	  * @param user
+	  * @param model
+	  * @return
+	  * String 返回类型 页面
+	  * @author：dongge
+	  * @date：2017年11月23日上午9:07:49
+	 */
+	@RequestMapping(value="MyAcountDtl")
+   public String MyAcountDtl(TAcountDtl tAcountDtl,HttpServletRequest request,HttpServletResponse response,@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+           @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
+       Site site = CmsUtils.getSite(Site.defaultSiteId());
+       model.addAttribute("site", site);
+       //获取当前登录用户的账户值
+       Principal principal = UserUtils.getPrincipal();
+       String loginName=principal.getLoginName();
+       TUser tUser=tUserService.getUserByLoginName(loginName);
+       model.addAttribute("tUser",tUser);
+       //获取最新的账户收支明细
+       tAcountDtl.setTadUserid(loginName);
+       Page<TAcountDtl> page = tAcountDtlService.findPage(new Page<TAcountDtl>(request,response,pageSize),tAcountDtl); 
+       model.addAttribute("page",page);
+       model.addAttribute("tAcountDtl",tAcountDtl);
+       return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyAcountDtl";
+   }
 	
 }
 

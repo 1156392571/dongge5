@@ -244,6 +244,7 @@ a.apply_btn_1 {
 		<div class="sub_nav_1">
 			<a href="${ctx}/productList" >找产品</a> 
 			<a href="${ctx}/taskList" >找任务</a>
+			<a href="${ctx}/partTimeJobList" >做兼职</a>
 			<a href="${ctx}/dbplatformList" >找担保</a>
 			<a href="javascript:void(0)" >担保简介</a>
 			<a href="javascript:void(0)" >关于我们</a>

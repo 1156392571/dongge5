@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TParttimejobDao">
+    
+	<sql id="tParttimejobColumns">
+		a.id AS "id",
+		a.ptj_userid AS "ptjUserid",
+		a.ptj_name AS "ptjName",
+		a.ptj_type AS "ptjType",
+		a.ptj_price AS "ptjPrice",
+		a.ptj_number AS "ptjNumber",
+		a.ptj_jstype AS "ptjJstype",
+		a.ptj_yxqx AS "ptjYxqx",
+		a.ptj_workarea AS "ptjWorkarea",
+		a.ptj_address AS "ptjAddress",
+		a.ptj_worktime AS "ptjWorktime",
+		a.ptj_jobask AS "ptjJobask",
+		a.ptj_jobcontent AS "ptjJobcontent",
+		a.ptj_jobinfo AS "ptjJobinfo",
+		a.ptj_companytype AS "ptjCompanytype",
+		a.ptj_companyinfo AS "ptjCompanyinfo",
+		a.ptj_phone AS "ptjPhone",
+		a.ptj_qq AS "ptjQq",
+		a.createtime AS "createtime",
+		a.ptj_remarks AS "ptjRemarks",
+		a.ptj_reserve1 AS "ptjReserve1",
+		a.ptj_reserve2 AS "ptjReserve2",
+		a.ptj_reserve3 AS "ptjReserve3",
+		a.ptj_reserve4 AS "ptjReserve4",
+		a.ptj_reserve5 AS "ptjReserve5",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tParttimejobJoins">
+	</sql>
+    
+	<select id="get" resultType="TParttimejob">
+		SELECT 
+			<include refid="tParttimejobColumns"/>
+		FROM t_parttimejob a
+		<include refid="tParttimejobJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TParttimejob">
+		SELECT 
+			<include refid="tParttimejobColumns"/>
+		FROM t_parttimejob a
+		<include refid="tParttimejobJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TParttimejob">
+		SELECT 
+			<include refid="tParttimejobColumns"/>
+		FROM t_parttimejob a
+		<include refid="tParttimejobJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_parttimejob(
+			id,
+			ptj_userid,
+			ptj_name,
+			ptj_type,
+			ptj_price,
+			ptj_number,
+			ptj_jstype,
+			ptj_yxqx,
+			ptj_workarea,
+			ptj_address,
+			ptj_worktime,
+			ptj_jobask,
+			ptj_jobcontent,
+			ptj_jobinfo,
+			ptj_companytype,
+			ptj_companyinfo,
+			ptj_phone,
+			ptj_qq,
+			createtime,
+			ptj_remarks,
+			ptj_reserve1,
+			ptj_reserve2,
+			ptj_reserve3,
+			ptj_reserve4,
+			ptj_reserve5,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{ptjUserid},
+			#{ptjName},
+			#{ptjType},
+			#{ptjPrice},
+			#{ptjNumber},
+			#{ptjJstype},
+			#{ptjYxqx},
+			#{ptjWorkarea},
+			#{ptjAddress},
+			#{ptjWorktime},
+			#{ptjJobask},
+			#{ptjJobcontent},
+			#{ptjJobinfo},
+			#{ptjCompanytype},
+			#{ptjCompanyinfo},
+			#{ptjPhone},
+			#{ptjQq},
+			now(),
+			#{ptjRemarks},
+			#{ptjReserve1},
+			#{ptjReserve2},
+			#{ptjReserve3},
+			#{ptjReserve4},
+			#{ptjReserve5},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_parttimejob SET 	
+			ptj_userid = #{ptjUserid},
+			ptj_name = #{ptjName},
+			ptj_price = #{ptjPrice},
+			ptj_number = #{ptjNumber},
+			ptj_jstype = #{ptjJstype},
+			ptj_yxqx = #{ptjYxqx},
+			ptj_workarea = #{ptjWorkarea},
+			ptj_address = #{ptjAddress},
+			ptj_worktime = #{ptjWorktime},
+			ptj_jobask = #{ptjJobask},
+			ptj_jobcontent = #{ptjJobcontent},
+			ptj_jobinfo = #{ptjJobinfo},
+			ptj_companyinfo = #{ptjCompanyinfo},
+			ptj_phone = #{ptjPhone},
+			ptj_qq = #{ptjQq},
+			createtime = #{createtime},
+			ptj_remarks = #{ptjRemarks},
+			ptj_reserve1 = #{ptjReserve1},
+			ptj_reserve2 = #{ptjReserve2},
+			ptj_reserve3 = #{ptjReserve3},
+			ptj_reserve4 = #{ptjReserve4},
+			ptj_reserve5 = #{ptjReserve5},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_parttimejob SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

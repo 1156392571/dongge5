@@ -251,7 +251,7 @@ a.apply_btn {
 </style>
 <script type="text/javascript">
 $(function(){
-	$(".sub_nav_1 a").eq(2).addClass("a1");
+	$(".sub_nav_1 a").eq(3).addClass("a1");
 })
 
 //提交申请
