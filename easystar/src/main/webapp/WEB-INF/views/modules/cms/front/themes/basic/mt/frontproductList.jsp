@@ -204,7 +204,7 @@ a.apply_btn {
 	float: right;
 	border-radius: 3px;
 	border: none;
-	background: #e92a0b url(/static/append/common/icon_common.png) no-repeat
+	background: #e92a0b url() no-repeat
 		180px -438px;
 	color: #fff;
 	text-align: center;

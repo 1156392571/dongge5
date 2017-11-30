@@ -41,6 +41,7 @@ import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TAcountDtl;
 import com.thinkgem.jeesite.modules.mt.entity.TBannerPhoto;
 import com.thinkgem.jeesite.modules.mt.entity.TDbPlatform;
+import com.thinkgem.jeesite.modules.mt.entity.TParttimejob;
 import com.thinkgem.jeesite.modules.mt.entity.TProduct;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TTaskOrder;
@@ -48,6 +49,7 @@ import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TAcountDtlService;
 import com.thinkgem.jeesite.modules.mt.service.TBannerPhotoService;
 import com.thinkgem.jeesite.modules.mt.service.TDbPlatformService;
+import com.thinkgem.jeesite.modules.mt.service.TParttimejobService;
 import com.thinkgem.jeesite.modules.mt.service.TProductService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskOrderService;
 import com.thinkgem.jeesite.modules.mt.service.TTaskService;
@@ -95,6 +97,10 @@ public class FrontController extends BaseController{
     private TAcountDtlService tAcountDtlService;
 	@Autowired
     private TBannerPhotoService tBannerPhotoService;
+	@Autowired
+    private TParttimejobService tPartTimeJobService;
+	
+	
 	
 	/**
 	 * 网站首页
@@ -920,7 +926,7 @@ public class FrontController extends BaseController{
 	  * @date：2017年11月23日上午9:07:49
 	 */
 	@RequestMapping(value="MyAcountDtl")
-   public String MyAcountDtl(TAcountDtl tAcountDtl,HttpServletRequest request,HttpServletResponse response,@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+    public String MyAcountDtl(TAcountDtl tAcountDtl,HttpServletRequest request,HttpServletResponse response,@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
            @RequestParam(required = false, defaultValue = "5") Integer pageSize,Model model) {
        Site site = CmsUtils.getSite(Site.defaultSiteId());
        model.addAttribute("site", site);
@@ -935,7 +941,21 @@ public class FrontController extends BaseController{
        model.addAttribute("page",page);
        model.addAttribute("tAcountDtl",tAcountDtl);
        return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyAcountDtl";
-   }
+    }
+	
+	
+	@RequestMapping(value="partTimeJobList")
+	public String partTimeJobList(TParttimejob tPartTimeJob,HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
+            @RequestParam(required = false, defaultValue = "12") Integer pageSize,Model model) {
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+        Page<TParttimejob> page = tPartTimeJobService.findPage(new Page<TParttimejob>(request, response, pageSize),tPartTimeJob); 
+		model.addAttribute("page", page);
+		model.addAttribute("tPartTimeJob", tPartTimeJob);
+		return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpartTimeJobList";
+	}
+	
 	
 }
 
