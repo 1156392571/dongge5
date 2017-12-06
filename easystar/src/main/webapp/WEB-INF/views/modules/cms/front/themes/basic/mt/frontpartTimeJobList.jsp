@@ -52,7 +52,13 @@ ol, ul {
 	float: right;
 }
 
-
+.site-nav-item {
+    float: left;
+    margin-right: 7px;
+    margin-left: 12px;
+    cursor: auto;
+    padding: 0 10px;
+}
 blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5,
 	h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
 	margin: 0;
@@ -77,16 +83,13 @@ table {
 
 .sort_type td.sort_type_l {
 	width: 75px;
-	padding: 5px 0 0 10px;
 	color: #999;
 }
 
 .multi_options .tsm td {
 	border: none;
-	vertical-align: top;
 	line-height: 30px;
 	display: table-cell;
-	padding: 5px 0;
 }
 
 .multi_options td ul.cl {
@@ -99,12 +102,12 @@ table {
 	float: left;
 	white-space: nowrap;
 	margin-right: 12px;
-	padding: 0 3px;
+	padding: 5px 0 5px 0;
 }
 
 .multi_options td.sort_type_l {
 	width: 75px;
-	padding: 5px 0 0 10px;
+	padding: 5px 5px 5px 10px;
 	color: #999;
 }
 
@@ -161,7 +164,7 @@ i {
 .channel_partner {
 	border: 1px solid #e1e1e1;
 	background: #fff;
-	height: 80%;
+/* 	height: 80%; */
 }
 
 .sub_nav {
@@ -255,40 +258,71 @@ a.apply_btn {
 }
 .div_2{
 	margin:20px 20px 0 0;
+	font-size: 20px;
+	color: red;
 }
 #fontsearch{
-	font-size: 12px;
+	font-size: 14px;
 }
 .search{
-	margin: 20px 0 20px 0;
-	border: 2px rgba(255,85,46,.9) solid;
-	height: 50px;
-	width: 80%;
+	position: absolute;
+    width: 584px;
+    height: 42px;
+    border: 2px solid #FF552E;
+    top: 40px;
+    right: 250px;
 }
 
-.searchbox{
-	width: 400px;
-/* 	height: 50px !important; */
-/* 	margin-bottom: 0 !important; */
+#searchkey {
+    line-height: 30px;
+    margin-left: 20px;
+    margin-top: 5px;
 }
 
-.search_btn{
-    display:inline-block;
-	width: 50px;
-	height: 50px;
-	margin-left: -5px;
-	background-color: rgba(255,85,46,.9);
-	border-color: rgba(255,85,46,.9);
+#key input {
+    width: 440px;
+    border: 0 none;
+    font-size: 14px;
+    height: 41px;
+    line-height: 40px;
+    border-radius:0;
+}
+
+#key input:focus{
+	outline:0;
+}
+.searchbtn{
+    position: absolute;
+    display: inline-block;
+    height: 42px;
+    width: 80px;
+    right: 0;
+    top: 0;
+    text-align: center;
+    line-height: 42px;
+    background: rgba(255,85,46,.9);
+    filter: alpha(opacity=90);
+    color: #fff;
+    font-size: 16px;
 }
 </style>
 <script type="text/javascript">
 	$(function(){
 		$(".sub_nav_1 a").eq(2).addClass("a1");
 	})
+	
+	//查看详情
+	function parttimejobDtl(id){
+		window.location.href="${ctx}/parttimejobDtl?id="+id;		
+	}
 </script>
 <script src="${ctxStatic}/reg-login/parttimejob.js"></script>
 </head>
 <body>
+	<input type="hidden" id="ptjWorkarea" value="${tPartTimeJob.ptjWorkarea}">
+	<input type="hidden" id="ptjCompanytype" value="${tPartTimeJob.ptjCompanytype}">
+	<input type="hidden" id="ptjJstype" value="${tPartTimeJob.ptjJstype}">	
+
 	<div class="nav-bar">
 		<div class="nav-item">
 			<ul class="nav-item-1">
@@ -311,16 +345,19 @@ a.apply_btn {
 	<div class="container" style="width: 80%">
 		<!-- 搜索框位置 -->
 		<div class="search"  align="center">
-			<input class="searchbox" type="text" placeholder="请输入文字" >
-			<a class="search_btn" >搜索</a>
+			<div id="serachkey">
+				<span id="key">
+					<input type="text" id="keyword1" class="keyword">
+				</span>
+			</div>
+			<a href="#" class="searchbtn">搜职位</a>
 		</div>
 		
-		<div class="main-body">
+		<div class="main-body" style="margin-top: 80px;">
 			<div>
 				<div class="sub_nav">
-					<a href="" class="a1">兼职信息</a> <a
-						href="">渠道商</a> <a
-						href="${ctx}/postTask" class="apply_btn">免费发布兼职</a>
+					<a href="" class="a1">兼职信息</a> 
+						<a href="${ctx}/postTask" class="apply_btn">免费发布兼职</a>
 				</div>
 				<div class="multi_options">
 					<table id="fontsearch" class="tsm">
@@ -328,53 +365,55 @@ a.apply_btn {
 							<tr>
 								<td class="sort_type_l">工作区域</td>
 								<td>
-									<ul id="cplx" class="cl">
-										<li><a href="javascript:tasktype('0')">全武汉</a></li>
-										<li><a href="javascript:tasktype('1')">武昌</a></li>
-										<li><a href="javascript:tasktype('2')">洪山</a></li>
-										<li><a href="javascript:tasktype('3')">黄陂</a></li>
-										<li><a href="javascript:tasktype('3')">江岸</a></li>
-										<li><a href="javascript:tasktype('3')">东西湖</a></li>
-										<li><a href="javascript:tasktype('3')">江汉</a></li>
-										<li><a href="javascript:tasktype('3')">蔡甸</a></li>
-										<li><a href="javascript:tasktype('3')">沌口开发区</a></li>
-										<li><a href="javascript:tasktype('3')">汉阳</a></li>
-										<li><a href="javascript:tasktype('3')">硚口</a></li>
-										<li><a href="javascript:tasktype('3')">江夏</a></li>
-										<li><a href="javascript:tasktype('3')">青山</a></li>
-										<li><a href="javascript:tasktype('3')">新洲</a></li>
-										<li><a href="javascript:tasktype('3')">汉南</a></li>
-										<li><a href="javascript:tasktype('3')">武汉周边</a></li>
+									<ul id="gzqy" class="cl">
+										<li><a href="javascript:workarea('0')">全武汉</a></li>
+										<li><a href="javascript:workarea('1')">武昌</a></li>
+										<li><a href="javascript:workarea('2')">洪山</a></li>
+										<li><a href="javascript:workarea('3')">黄陂</a></li>
+										<li><a href="javascript:workarea('4')">江岸</a></li>
+										<li><a href="javascript:workarea('5')">东西湖</a></li>
+										<li><a href="javascript:workarea('6')">江汉</a></li>
+										<li><a href="javascript:workarea('7')">蔡甸</a></li>
+										<li><a href="javascript:workarea('8')">沌口开发区</a></li>
+										<li><a href="javascript:workarea('9')">汉阳</a></li>
+										<li><a href="javascript:workarea('10')">硚口</a></li>
+										<li><a href="javascript:workarea('11')">江夏</a></li>
+										<li><a href="javascript:workarea('12')">青山</a></li>
+										<li><a href="javascript:workarea('13')">新洲</a></li>
+										<li><a href="javascript:workarea('14')">汉南</a></li>
+										<li><a href="javascript:workarea('15')">武汉周边</a></li>
 									</ul>
 								</td>
 							</tr>
 							<tr>
 								<td class="sort_type_l">公司类型</td>
 								<td>
-									<ul id="pxgz" class="cl a1">
+									<ul id="gslx" class="cl a1">
 										<li><a
-											href="javascript:pxrule('0')">不限</a></li>
+											href="javascript:companytype('0')">不限</a></li>
 										<li><a
-											href="javascript:pxrule('1')">个人</a></li>
+											href="javascript:companytype('1')">个人</a></li>
 										<li><a
-											href="javascript:pxrule('2')">职介代招</a></li>
+											href="javascript:companytype('2')">职介代招</a></li>
 										<li><a
-											href="javascript:pxrule('3')">公司</a></li>
+											href="javascript:companytype('3')">公司</a></li>
 									</ul>
 								</td>
 							</tr>
 							<tr>
 								<td class="sort_type_l">结算方式</td>
 								<td>
-									<ul id="zlrz" class="cl">
+									<ul id="jsfh" class="cl">
 										<li><a
-											href="javascript:rztype('0')">日结</a></li>
+											href="javascript:jstype('0')">不限</a></li>
 										<li><a
-											href="javascript:rztype('1')">周结</a></li>
+											href="javascript:jstype('1')">日结</a></li>
 										<li><a
-											href="javascript:rztype('2')">月结</a></li>
+											href="javascript:jstype('2')">周结</a></li>
 										<li><a
-											href="javascript:rztype('3')">完工结算</a></li>
+											href="javascript:jstype('3')">月结</a></li>
+										<li><a
+											href="javascript:jstype('4')">完工结算</a></li>
 									</ul>
 								</td>
 							</tr>
@@ -384,18 +423,18 @@ a.apply_btn {
 
 				<div class="channel_partner" id="keyword">
 				<c:forEach items="${page.list}" var="job">
-					<div class="item0" onclick="parttimejobDtl()">
+					<div class="item0" onclick="parttimejobDtl('${job.id}')">
 						<div class="item1">
-							<p class="p1">美团急需派送员</p>
-							<p class="p2">工作区域：洪山</p>
-							<p class="p2">公司名称：武汉物流有限公司</p>
+							<p class="p1">${job.ptjName}</p>
+							<p class="p2">工作区域：${fns:getDictLabel(job.ptjWorkarea, 'workArea', '')}</p>
+							<p class="p2">公司名称：${job.ptjCompanyname}</p>
 						</div>
 						<div class="item2">
 							<div class="div_1">米兔</div>
 							<div class="div_2" align="right">
-								<span>300元/天</span>
+								<span>${job.ptjPrice}</span>
 								<span>|</span>
-								<span>日结</span>
+								<span>${fns:getDictLabel(job.ptjJstype, 'proJstype', '')}</span>
 							</div>
 						</div>
 					</div>
@@ -411,6 +450,5 @@ a.apply_btn {
 			</div>
 		</div>
 		</div>
-	</div>
 </body>
 </html>

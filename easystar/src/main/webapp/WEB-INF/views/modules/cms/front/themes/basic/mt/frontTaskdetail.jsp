@@ -220,78 +220,6 @@ ol, ul {
 
 </head>
 <body>
-<input type="hidden" id="createtime" value="<fmt:formatDate value="${taskorder.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>">
-<input type="hidden" id="taskYxsj" value="${tTask.taskYxsj}">
-<input type="hidden" id="taskid" value="${tTask.id}">
-<!-- =================遮罩部分============================ -->
-<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="border-bottom: 0">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <div class="modal-title" style="text-align: center;font-size: 16px;color: #0064ff">任务提交</div>
-      </div>
-      <!-- 此处是选择哪种身份的 -->
-      <input type="hidden" id="per_par" value="1">
-      <div class="tabbable" id="tabs-444498">
-				<ul class="nav nav-tabs">
-					<li  class="active" onclick="sub('1')">
-						 <a href="javascript:void(0)" data-toggle="tab">个人</a>
-					</li>
-					<li onclick="sub('2')">
-						 <a href="javascript:void(0)" data-toggle="tab">合作商</a>
-					</li>
-				</ul>
-	 </div>
-      <div class="modal-body" id="person" style="text-align: center;">
-        <input class="input-xlarge" placeholder="做单真实姓名" id="toName" /><br><br>
-        <div id="sfzh"><input class="input-xlarge" placeholder="做单身份证号" id="toCardid" /><br><br></div>
-        <input class="input-xlarge" placeholder="做单电话号码" id="toPhone" /><br>
-      </div>
-      
-       <!-- ==================================================================== -->
-		<input type="hidden" id="toPhotourl">
-		<input type="hidden" id="toPhotoinfo">
-		<div class="control-group">
-<!-- 			<label class="control-label" style="width: 35%">产品图片：</label> -->
-				<div class="controls" style="width: 100%;text-align: center;">
-					<div class="width_auto" style="width: 50%;margin-left: 25%">
-					    <div class="upload_container" >
-					        <!--头部，相册选择和格式选择-->
-					        <div id="uploader" >
-					            <div class="item_container">
-					                <div id="" class="queueList" >
-					                    <div id="dndArea" class="placeholder">
-					                        <div id="filePicker"></div>
-					                    </div>
-					                </div>
-					            </div>
-					            <div class="statusBar">
-					                <div class="info"></div>
-					                <div class="btns">
-					                    <div id="filePicker2_0" class="filePicker2 element-invisible"></div><div class="uploadBtn">开始上传</div>
-					                </div>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-				</div>
-		</div>
-      
-      
-      
-      <div class="modal-footer" style="text-align: center;background-color: #fff;border-top: 0">
-        <button type="button" class="btn btn-primary" onclick="hand('${taskorder.id}')">提交</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- ============================================= -->
-
-
-
-
 	<!-- ================================================ -->
 		<div class="tHeader tHjob">
 			<div class="in">
@@ -440,5 +368,77 @@ function checkTime(i){ //将0-9的数字前面加上0，例1变为01
 }
 </script>
 	</div>
+	
+	
+	
+	<input type="hidden" id="createtime" value="<fmt:formatDate value="${taskorder.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>">
+<input type="hidden" id="taskYxsj" value="${tTask.taskYxsj}">
+<input type="hidden" id="taskid" value="${tTask.id}">
+<!-- =================遮罩部分============================ -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-title" style="text-align: center;font-size: 16px;color: #0064ff">任务提交</div>
+      </div>
+      <!-- 此处是选择哪种身份的 -->
+      <input type="hidden" id="per_par" value="1">
+      <div class="tabbable" id="tabs-444498">
+				<ul class="nav nav-tabs">
+					<li  class="active" onclick="sub('1')">
+						 <a href="javascript:void(0)" data-toggle="tab">个人</a>
+					</li>
+					<li onclick="sub('2')">
+						 <a href="javascript:void(0)" data-toggle="tab">合作商</a>
+					</li>
+				</ul>
+	 </div>
+      <div class="modal-body" id="person" style="text-align: center;">
+        <input class="input-xlarge" placeholder="做单真实姓名" id="toName" /><br><br>
+        <div id="sfzh"><input class="input-xlarge" placeholder="做单身份证号" id="toCardid" /><br><br></div>
+        <input class="input-xlarge" placeholder="做单电话号码" id="toPhone" /><br>
+      </div>
+      
+       <!-- ==================================================================== -->
+		<input type="hidden" id="toPhotourl">
+		<input type="hidden" id="toPhotoinfo">
+		<div class="control-group">
+<!-- 			<label class="control-label" style="width: 35%">产品图片：</label> -->
+				<div class="controls" style="width: 100%;text-align: center;">
+					<div class="width_auto" style="width: 50%;margin-left: 25%">
+					    <div class="upload_container" >
+					        <!--头部，相册选择和格式选择-->
+					        <div id="uploader" >
+					            <div class="item_container">
+					                <div id="" class="queueList" >
+					                    <div id="dndArea" class="placeholder">
+					                        <div id="filePicker"></div>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="statusBar">
+					                <div class="info"></div>
+					                <div class="btns">
+					                    <div id="filePicker2_0" class="filePicker2 element-invisible"></div><div class="uploadBtn">开始上传</div>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+		</div>
+      
+      
+      
+      <div class="modal-footer" style="text-align: center;background-color: #fff;border-top: 0">
+        <button type="button" class="btn btn-primary" onclick="hand('${taskorder.id}')">提交</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ============================================= -->
+	
 </body>
 </html>

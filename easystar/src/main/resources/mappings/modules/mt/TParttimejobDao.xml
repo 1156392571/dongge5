@@ -17,6 +17,7 @@
 		a.ptj_jobask AS "ptjJobask",
 		a.ptj_jobcontent AS "ptjJobcontent",
 		a.ptj_jobinfo AS "ptjJobinfo",
+		a.ptj_companyname AS "ptjCompanyname",
 		a.ptj_companytype AS "ptjCompanytype",
 		a.ptj_companyinfo AS "ptjCompanyinfo",
 		a.ptj_phone AS "ptjPhone",
@@ -54,6 +55,21 @@
 		<include refid="tParttimejobJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="ptjUserid !=null and ptjUserid !=''">
+				and a.ptj_userid=#{ptjUserid}
+			</if>
+			<if test="ptjType !=null and ptjType !=''">
+				and a.ptj_type=#{ptjType}
+			</if>
+			<if test="ptjJstype !=null and ptjJstype !=''">
+				and a.ptj_jstype=#{ptjJstype}
+			</if>
+			<if test="ptjWorkarea !=null and ptjWorkarea !=''">
+				and a.ptj_workarea=#{ptjWorkarea}
+			</if>
+			<if test="ptjCompanytype !=null and ptjCompanytype !=''">
+				and a.ptj_companytype=#{ptjCompanytype}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

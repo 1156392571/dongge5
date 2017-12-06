@@ -43,18 +43,12 @@ table {
 	border-collapse: separate;
 }
 
-.sort_type td.sort_type_l {
-	width: 75px;
-	padding: 5px 0 0 10px;
-	color: #999;
-}
 
 .multi_options .tsm td {
 	border: none;
-	vertical-align: top;
+/* 	vertical-align: top; */
 	line-height: 30px;
 	display: table-cell;
-	padding: 5px 0;
 }
 
 .multi_options td ul.cl {
@@ -66,13 +60,13 @@ table {
 .tsm li {
 	float: left;
 	white-space: nowrap;
-	margin-right: 12px;
-	padding: 0 3px;
+	margin-right: 20px;
+	padding: 5px 0 5px 0;
 }
 
 .multi_options td.sort_type_l {
 	width: 75px;
-	padding: 5px 0 0 10px;
+	padding: 5px 5px 5px 10px;
 	color: #999;
 }
 
@@ -300,8 +294,10 @@ $(function(){
 											href="javascript:jstype('1')">日结</a></li>
 										<li><a
 											href="javascript:jstype('2')">周结</a></li>
-											<li><a
+										<li><a
 											href="javascript:jstype('3')">月结</a></li>
+										<li><a
+											href="javascript:jstype('4')">完工结算</a></li>
 									</ul>
 								</td>
 							</tr>

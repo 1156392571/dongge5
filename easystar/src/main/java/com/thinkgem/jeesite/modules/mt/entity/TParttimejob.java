@@ -31,6 +31,7 @@ public class TParttimejob extends DataEntity<TParttimejob> {
 	private String ptjJobask;		// 职位要求
 	private String ptjJobcontent;		// 职位内容
 	private String ptjJobinfo;		// 职位描述
+	private String ptjCompanyname;		// 公司名字
 	private String ptjCompanytype;		// 公司类型
 	private String ptjCompanyinfo;		// 公司介绍
 	private String ptjPhone;		// 联系方式：电话
@@ -141,6 +142,10 @@ public class TParttimejob extends DataEntity<TParttimejob> {
 		this.ptjJobask = ptjJobask;
 	}
 	
+	
+	
+	
+	
 	@Length(min=0, max=500, message="职位内容长度必须介于 0 和 500 之间")
 	public String getPtjJobcontent() {
 		return ptjJobcontent;
@@ -157,6 +162,15 @@ public class TParttimejob extends DataEntity<TParttimejob> {
 
 	public void setPtjJobinfo(String ptjJobinfo) {
 		this.ptjJobinfo = ptjJobinfo;
+	}
+	
+	@Length(min=0, max=255, message="公司介绍长度必须介于 0 和 255 之间")
+	public String getPtjCompanyname() {
+		return ptjCompanyname;
+	}
+
+	public void setPtjCompanyname(String ptjCompanyname) {
+		this.ptjCompanyname = ptjCompanyname;
 	}
 	
 	@Length(min=0, max=1000, message="公司介绍长度必须介于 0 和 1000 之间")

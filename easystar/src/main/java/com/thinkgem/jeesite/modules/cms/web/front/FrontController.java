@@ -943,7 +943,16 @@ public class FrontController extends BaseController{
        return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontMyAcountDtl";
     }
 	
-	
+	/**
+	 * 兼职列表
+	 * @param tPartTimeJob
+	 * @param request
+	 * @param response
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="partTimeJobList")
 	public String partTimeJobList(TParttimejob tPartTimeJob,HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(required = false,defaultValue = "1") Integer pageNo, 
@@ -957,5 +966,19 @@ public class FrontController extends BaseController{
 	}
 	
 	
+	
+	/**
+	 * 跳转到兼职详情界面
+	 * @param tPartTimeJob
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="parttimejobDtl")
+	public String parttimejobDtl(TParttimejob tPartTimeJob,Model model) {
+	       Site site = CmsUtils.getSite(Site.defaultSiteId());
+	       tPartTimeJob=tPartTimeJobService.get(tPartTimeJob);
+	       model.addAttribute("tPartTimeJob",tPartTimeJob);
+	       return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontpartTimeJobDtl";
+	    }
 }
 

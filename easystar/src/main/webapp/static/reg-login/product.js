@@ -38,6 +38,8 @@ $(function(){
 			$("#jstj li").eq(2).addClass("a");
 		}else if(jstype=="3"){
 			$("#jstj li").eq(3).addClass("a");
+		}else if(jstype=="4"){
+			$("#jstj li").eq(4).addClass("a");
 		}else{
 			$("#jstj li").eq(0).addClass("a");
 		}
@@ -114,6 +116,9 @@ $(function(){
 			geturl();
 		}else if(type=="3"){
 			$("#jstype").val("3");
+			geturl();
+		}else if(type=="4"){
+			$("#jstype").val("4");
 			geturl();
 		}
 	}
