@@ -36,9 +36,13 @@
 	<script src="${ctxStatic}/ping++/pingpp.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function fabu(){
+			var amount="0.01";
+			var subject="结算任务";
+			var body="米兔网上结算";
 			$.ajax({
 				url:'${ctx}/pay/apppay',
 				type:'post',
+				data:{amount:amount,subject:subject,body:body},
 				dataType:'json',
 				success:function(data){
 					pingpp.createPayment(data, function(result, error) {

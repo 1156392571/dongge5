@@ -46,13 +46,13 @@ public class PayController extends BaseController {
 	
 	@RequestMapping("/apppay")
 	@ResponseBody
-	public String pay() throws AuthenticationException, InvalidRequestException, APIConnectionException, APIException, ChannelException{
+	public String pay(String amount,String subject,String body) throws AuthenticationException, InvalidRequestException, APIConnectionException, APIException, ChannelException{
 		Date date=new Date();
 		  DateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 		  int r1=(int)(Math.random()*(10));
 		  String time=format.format(date);
 		  String order_no=time+r1;
-		  String amount="1";
+//		  String amount="1";
 		  String paytype="alipay_pc_direct";
 		  BigDecimal b1 = new BigDecimal(Double.parseDouble(amount));
 	      BigDecimal b2 = new BigDecimal(100);
@@ -67,12 +67,12 @@ public class PayController extends BaseController {
 		  chargeParams.put("channel", paytype);
 		  chargeParams.put("currency", "cny");
 		  chargeParams.put("client_ip",  "127.0.0.1");
-		  chargeParams.put("subject",  "报名定金");
-		  chargeParams.put("body", "私教学车报名服务费");
+		  chargeParams.put("subject",subject);//标题：如学车本金
+		  chargeParams.put("body", body);//内容：私教学车服务费
 		  
 		  Map<String, String> extramap = new HashMap<String, String>();
 	        //extra的参数根据文档: https://pingxx.com/document/api#api-c-new
-	        extramap.put("success_url", "http://192.168.1.150:8181/easystar/f/pay/backnotice");
+	        extramap.put("success_url", "http://192.168.1.103:8181/easystar/f/pay/backnotice");
 
 	        // extra 取值请查看相应方法说明
 	        chargeParams.put("extra", extramap);
@@ -103,15 +103,15 @@ public class PayController extends BaseController {
         }
         reader.close();
         // 解析异步通知数据
-//        Event event = Webhooks.eventParse(buffer.toString());
-//        System.out.println(event);
-//        if ("charge.succeeded".equals(event.getType())) {
-//        	//
-//            EventData ed=event.getData();
-//            PingppObject po=ed.getObject();
-//            String s=po.toString();
-//            System.out.println(s);
-//        }
+        Event event = Webhooks.eventParse(buffer.toString());
+        System.out.println(event);
+        if ("charge.succeeded".equals(event.getType())) {
+        	//
+            EventData ed=event.getData();
+            PingppObject po=ed.getObject();
+            String s=po.toString();
+            System.out.println(s);
+        }
         response.setStatus(200);
 	}
 }
