@@ -548,6 +548,14 @@ public class SystemService extends BaseService implements InitializingBean {
 		}
 	}
 
+	/**
+	 * 
+	  * @Description: 保存用户信息
+	  * @param tUser
+	  * void 返回类型
+	  * @author：dongge
+	  * @date：2017年12月8日下午2:53:03
+	 */
 		@Transactional(readOnly = false)
 		public void saveRegister(TUser tUser){
 	// 设置：系统自动生成代码的用户信息
@@ -622,5 +630,6 @@ public class SystemService extends BaseService implements InitializingBean {
 			tUser.settUserid(t_userId);
 			tUserService.save(tUser);
 		}
+
 	
 }

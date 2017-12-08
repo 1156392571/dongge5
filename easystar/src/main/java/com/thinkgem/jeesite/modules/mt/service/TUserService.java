@@ -69,5 +69,10 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     {
         return tUserDao.getPassword(loginName);
     }
+
+    public int getcountbyinviter(String tPhone)
+    {
+        return tUserDao.getcountbyinviter(tPhone);
+    }
 	
 }

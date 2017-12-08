@@ -29,6 +29,7 @@ public class TUser extends DataEntity<TUser> {
 	private String tCompanyurl;		// 公司网址
 	private Date createtime;		// createtime
 	private BigDecimal tAcount;     // 账户余额（10,2）
+	private String tInviter;        // 邀请人标识
 	private String reserve1;		// 扩展字段1
 	private String reserve2;		// 扩展字段1
 	private String reserve3;		// 扩展字段1
@@ -223,5 +224,14 @@ public class TUser extends DataEntity<TUser> {
         this.reserve5 = reserve5;
     }
 
+    public String gettInviter()
+    {
+        return tInviter;
+    }
+
+    public void settInviter(String tInviter)
+    {
+        this.tInviter = tInviter;
+    }
 	
 }

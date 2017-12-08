@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.cms.web.front;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,10 @@ import com.pingplusplus.model.Event;
 import com.pingplusplus.model.EventData;
 import com.pingplusplus.model.PingppObject;
 import com.pingplusplus.model.Webhooks;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
@@ -28,12 +34,21 @@ import com.pingplusplus.exception.AuthenticationException;
 import com.pingplusplus.exception.ChannelException;
 import com.pingplusplus.exception.InvalidRequestException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.cms.entity.Site;
+import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.mt.entity.TTask;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
+import com.thinkgem.jeesite.modules.sys.utils.MatrixToImageWriter;
 
 /**
  * 测试Controller
@@ -43,7 +58,10 @@ import com.thinkgem.jeesite.common.web.BaseController;
 @Controller
 @RequestMapping(value = "${frontPath}/pay")
 public class PayController extends BaseController {
-	
+	@Autowired
+	SystemService systemService;
+    
+    
 	@RequestMapping("/apppay")
 	@ResponseBody
 	public String pay(String amount,String subject,String body) throws AuthenticationException, InvalidRequestException, APIConnectionException, APIException, ChannelException{
@@ -114,4 +132,36 @@ public class PayController extends BaseController {
         }
         response.setStatus(200);
 	}
+	
+	/**
+	 * 
+	  * @Description:扫码之后跳转到这个注册的页面，此时是含有邀请人链接的
+	  * @param tUser
+	  * @param model
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年12月8日下午5:01:56
+	 */
+    @RequestMapping(value = "toreg")
+    public String toreg(TUser tUser,Model model){
+        model.addAttribute("tUser", tUser);
+        return "modules/sys/userReg";
+    }
+	
+	
+	/**
+     * 此处是扫描之后跳转到此页面进行注册的操作
+     * 二维码上面对应的url链接就是这边的。对应的就是他的手机号码
+     * 保存的同时也要给当前用户生成一个二维码
+     */
+    @RequestMapping(value="savereg")
+    public String gettoreg(TUser tUser,Model model) {
+        //将对象进行保存-邀请人字段，已经直接映射到对象里了
+        systemService.saveRegister(tUser);
+        //注册成功之后就跳转到有用户扫码的页面
+        return "redirect:"+Global.getAdminPath()+"/login?repage";
+    } 
+	
+	
 }

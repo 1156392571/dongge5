@@ -29,6 +29,8 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -45,6 +47,8 @@ public class LoginController extends BaseController{
 	
 	@Autowired
 	private SessionDAO sessionDAO;
+	@Autowired
+	private TUserService tUserService;
 	/**
 	 * 管理登录
 	 */
@@ -167,31 +171,26 @@ public class LoginController extends BaseController{
 			return "redirect:" + adminPath + "/login";
 		}
 		
-//		// 登录成功后，获取上次登录的当前站点ID
-//		UserUtils.putCache("siteId", StringUtils.toLong(CookieUtils.getCookie(request, "siteId")));
-
-//		System.out.println("==========================a");
-//		try {
-//			byte[] bytes = com.thinkgem.jeesite.common.utils.FileUtils.readFileToByteArray(
-//					com.thinkgem.jeesite.common.utils.FileUtils.getFile("c:\\sxt.dmp"));
-//			UserUtils.getSession().setAttribute("kkk", bytes);
-//			UserUtils.getSession().setAttribute("kkk2", bytes);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-////		for (int i=0; i<1000000; i++){
-////			//UserUtils.getSession().setAttribute("a", "a");
-////			request.getSession().setAttribute("aaa", "aa");
-////		}
-//		System.out.println("==========================b");
 		User user=UserUtils.getByLoginName(principal.getLoginName());
+		//通过用户名获取t_user表中的信息
+		TUser tUser=tUserService.getUserByLoginName(principal.getLoginName());
 		if("3".equals(user.getUserType())){
-			System.out.println("普通用户登陆");
-			Site site = CmsUtils.getSite(Site.defaultSiteId());
-			model.addAttribute("site", site);
-			model.addAttribute("isIndex", true);
-//			return "modules/cms/front/themes/"+site.getTheme()+"/mt/frontproductList";
-			return "redirect:"+Global.getFrontPath()+"/productList/?repage";
+		    //此处判断当前用户的邀请人是否为空，如果为空，说明不是通过扫码注册的
+		    if(tUser.gettInviter()==null){
+		        System.out.println("普通用户登陆");
+	            Site site = CmsUtils.getSite(Site.defaultSiteId());
+	            model.addAttribute("site", site);
+	            model.addAttribute("isIndex", true);
+	            return "redirect:"+Global.getFrontPath()+"/productList/?repage";
+		    }else{
+		        System.out.println("扫码用户登陆");
+		        //直接进入个人中心，此时可以查询出自己当前已推荐多少人
+		        int count=tUserService.getcountbyinviter(tUser.gettPhone());
+		        model.addAttribute("count", count);
+		        model.addAttribute("tUser", tUser);
+		        return "";
+		    }
+			
 		}else{
 			System.out.println("系统用户登陆");
 			return "modules/sys/sysIndex";

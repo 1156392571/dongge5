@@ -17,6 +17,7 @@
 		a.t_companyurl AS "tCompanyurl",
 		a.createtime AS "createtime",
 		a.t_acount AS "tAcount",
+		a.t_inviter AS "tInviter",
 		a.reserve1 AS "reserve1",
 		a.reserve2 AS "reserve2",
 		a.reserve3 AS "reserve3",
@@ -59,6 +60,9 @@
 			</if>
 			<if test="tUserid !=null and tUserid !=''">
 				and a.t_userid=#{tUserid}
+			</if>
+			<if test="tInviter !=null and tInviter !=''">
+				and a.t_inviter=#{tInviter}
 			</if>
 		</where>
 		<choose>
@@ -104,6 +108,7 @@
 			t_company,
 			t_companyurl,
 			createtime,
+			t_inviter,
 			reserve1,
 			reserve2,
 			reserve3,
@@ -129,6 +134,7 @@
 			#{tCompany},
 			#{tCompanyurl},
 			now(),
+			#{tInviter},
 			#{reserve1},
 			#{reserve2},
 			#{reserve3},
@@ -157,6 +163,7 @@
 			t_company = #{tCompany},
 			t_companyurl = #{tCompanyurl},
 			createtime = now(),
+			t_inviter = #{tInviter},
 			reserve1 = #{reserve1},
 			reserve2 = #{reserve2},
 			reserve3 = #{reserve3},
@@ -173,6 +180,8 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
+	
+	<!-- 通过登录名获取当前用户在t_user表中的数据 -->
 	<select id="getUserByLoginName" resultType="TUser">
 		SELECT 
 			<include refid="tUserColumns"/>
@@ -181,6 +190,7 @@
 		WHERE a.t_userid = #{loginName}
 	</select>
 	
+	<!-- 通过登录用户名修改t_user表中的数据 -->
 	<update id="updUser" parameterType="TUser">
 		update t_user set 
 		t_email = #{tEmail},
@@ -193,6 +203,7 @@
 		where t_loginname = #{tLoginname}
 	</update>
 	
+	<!-- 更新sys_user中的数据通过登录名 -->
 	<update id="updSysUser" parameterType="TUser">
 		update sys_user set 
 		email = #{tEmail},
@@ -201,8 +212,14 @@
 		where login_name = #{tLoginname}
 	</update>
 	
+	<!-- 通过登录用户名获取密码 -->
 	<select id="getPassword" resultType="java.lang.String">
 		select password from sys_user where login_name=#{loginName}
+	</select>
+	
+	<!-- 通过当前登录的手机号标识获取自己已邀请多少人 -->
+	<select id="getcountbyinviter" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) as count from t_user where t_inviter=#{tPhone}
 	</select>
 	
 </mapper>

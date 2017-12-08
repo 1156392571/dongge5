@@ -25,5 +25,7 @@ public interface TUserDao extends CrudDao<TUser> {
     void updsysuserPassword(User user);
 
     String getPassword(String loginName);
+
+    int getcountbyinviter(String tPhone);
 	
 }
