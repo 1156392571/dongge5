@@ -222,4 +222,18 @@
 		select count(1) as count from t_user where t_inviter=#{tPhone}
 	</select>
 	
+	<!-- 这个是保存二维码地址的操作--> 
+	<insert id="addpicturecode" parameterType="java.util.Map">
+		insert into t_erweimacode(
+		id,
+		te_codeurl,
+		te_codeinfo
+		)values(
+		#{id},
+		#{pathName},
+		#{phone}
+		)
+	</insert>
+	
+	
 </mapper>

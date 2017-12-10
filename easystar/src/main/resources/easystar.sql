@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2017-12-06 22:11:38
+Date: 2017-12-10 20:48:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1768,12 +1768,14 @@ INSERT INTO `sys_log` VALUES ('1090860f67ef4088ad34e6124c1e2b64', '1', '系统�
 INSERT INTO `sys_log` VALUES ('11478bbbc76b42519772a5659e60a966', '1', '我的面板-个人信息-个人信息', '1', '2017-11-02 17:00:05', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36', '/easystar/a/sys/user/info', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('11ba52307c8242469aa04120515815ba', '1', '系统设置-系统设置-字典管理-查看', '1', '2017-11-27 21:04:16', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/form', 'GET', 'type=ptjType&description=兼职类型：1.技工2.艺术老师3.导游4.创意策划5.会计6.翻译7.律师/法务&sort=40', '');
 INSERT INTO `sys_log` VALUES ('11d3ee4adbf540169ff239b635e70e03', '1', '系统设置-系统设置-字典管理', '1', '2017-11-27 21:10:22', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/', 'GET', 'type=workArea&repage=', '');
+INSERT INTO `sys_log` VALUES ('11f90ab6c8324c6b95226d4ca8f83912', '1', '系统登录', '467b152caec44f15b13557b358e47fc6', '2017-12-07 20:36:45', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a', 'GET', 'login=', '');
 INSERT INTO `sys_log` VALUES ('12083ea8a4964ae6833d08871d5610b1', '1', '我的面板-用户管理-用户列表', '1', '2017-11-02 16:59:00', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36', '/easystar/a/mt/tUser', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('135be63369794e4ca4ffbbbebbc3a0fa', '1', '系统设置-系统设置-字典管理-修改', '1', '2017-12-02 16:22:10', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/save', 'POST', 'id=000b514522fb4469b5af1200d624ca16&sort=30&description=结算方式：1.日结，2.周结，3.月结，4.完工结算&value=3&label=月结&remarks=&type=proJstype', '');
 INSERT INTO `sys_log` VALUES ('13b95f39e52448259f32dbceb2111196', '1', '我的面板-用户管理-用户列表', '1', '2017-11-02 16:58:07', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36', '/easystar/a/mt/tUser', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('13d5376fe8954d2e97a4d5e1d3920370', '1', '我的面板-个人信息-个人信息', '1', '2017-11-09 21:28:42', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/user/info', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('14cc23d6c2774941a77e02a3f1062f6d', '1', '系统登录', '467b152caec44f15b13557b358e47fc6', '2017-11-27 21:13:13', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a', 'GET', 'login=', '');
 INSERT INTO `sys_log` VALUES ('153579bc52664264b187080060771880', '1', '我的面板-个人信息-个人信息', '1', '2017-11-01 20:59:01', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/user/info', 'GET', '', '');
+INSERT INTO `sys_log` VALUES ('1594a37a4b55465aa8e556d4be1f8bfe', '1', '系统登录', '467b152caec44f15b13557b358e47fc6', '2017-12-07 19:20:40', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a', 'GET', 'login=', '');
 INSERT INTO `sys_log` VALUES ('15a53437104e4546a9c2aef272922d70', '1', '我的面板-个人信息-个人信息', '1', '2017-11-01 20:57:26', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/user/info', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('16443f4ae12749c5a6be714f4efcabb9', '1', '系统设置-系统设置-字典管理-查看', '1', '2017-11-09 21:43:53', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/form', 'GET', 'sort=10', '');
 INSERT INTO `sys_log` VALUES ('164a784a960d4c99830d90f091a71b5e', '1', '系统设置-系统设置-字典管理', '1', '2017-11-27 21:10:34', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/', 'GET', 'type=workArea&repage=', '');
@@ -1940,6 +1942,7 @@ INSERT INTO `sys_log` VALUES ('49c9afb55cf54b8d9734285693ea9cbb', '1', '系统�
 INSERT INTO `sys_log` VALUES ('4abf20cc1fc5493c9d981edeb8d63cb3', '1', '我的面板-个人信息-个人信息', '1', '2017-11-02 16:58:55', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36', '/easystar/a/sys/user/info', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('4ad6e73c27ef4e40893003c17db3ed25', '1', '系统设置-系统设置-字典管理-查看', '1', '2017-12-02 16:22:22', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/form', 'GET', 'id=ff9d06bdc4334c628f8a73085fced1ac', '');
 INSERT INTO `sys_log` VALUES ('4aed90502a6c4b8089543706ff9791ec', '1', '内容管理-内容管理', '1', '2017-11-01 20:56:56', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/cms/none', 'GET', '', '');
+INSERT INTO `sys_log` VALUES ('4b429b57eb744a39b12999f4f9a5138c', '1', '系统登录', '467b152caec44f15b13557b358e47fc6', '2017-12-07 20:47:31', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a', 'GET', 'login=', '');
 INSERT INTO `sys_log` VALUES ('4b7c6e0dbe804fb9b4250c94230b11e5', '1', '我的面板-个人信息-个人信息', '1', '2017-11-02 12:59:54', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36', '/easystar/a/sys/user/info', 'GET', '', '');
 INSERT INTO `sys_log` VALUES ('4c71e7a9e5e841f5b946015e3be3f946', '1', '系统设置-系统设置-字典管理-修改', '1', '2017-12-02 16:21:56', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a/sys/dict/save', 'POST', 'id=8cea3c7782204d92901c793a6e516346&sort=40&description=结算方式：1.日结，2.周结，3.月结，4.完工结算&value=4&label=完工结算&remarks=&type=proJstype', '');
 INSERT INTO `sys_log` VALUES ('4c805c2928ed4765958042495e73637f', '1', '系统登录', '467b152caec44f15b13557b358e47fc6', '2017-11-30 19:07:16', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36', '/easystar/a', 'GET', 'login=', '');
@@ -3083,12 +3086,14 @@ INSERT INTO `sys_user` VALUES ('13', '22', '23', 'gx_admin', '02a3f0772fcca9f415
 INSERT INTO `sys_user` VALUES ('2', '1', '2', 'sd_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0002', '管理员', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_user` VALUES ('3', '1', '3', 'sd_zhb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0003', '综合部', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_user` VALUES ('4', '1', '4', 'sd_scb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0004', '市场部', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('467b152caec44f15b13557b358e47fc6', '1', '1', 'dongge', 'e3b6b0151dd23d6af9c532aa80888283ccce879d2b703af55154eb5a', 'gonghao', 'dongge', '1284622263@qq.com', '15527124409', '15527124409', '3', null, '0:0:0:0:0:0:0:1', '2017-12-03 15:39:06', '1', 'myself', '2017-11-03 21:28:43', 'myself', '2017-11-03 21:28:43', '普通用户', '0');
+INSERT INTO `sys_user` VALUES ('467b152caec44f15b13557b358e47fc6', '1', '1', 'dongge', 'e3b6b0151dd23d6af9c532aa80888283ccce879d2b703af55154eb5a', 'gonghao', 'dongge', '1284622263@qq.com', '15527124409', '15527124409', '3', null, '0:0:0:0:0:0:0:1', '2017-12-07 20:47:30', '1', 'myself', '2017-11-03 21:28:43', 'myself', '2017-11-03 21:28:43', '普通用户', '0');
 INSERT INTO `sys_user` VALUES ('5', '1', '5', 'sd_jsb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0005', '技术部', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_user` VALUES ('6', '1', '6', 'sd_yfb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0006', '研发部', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_user` VALUES ('7', '7', '8', 'jn_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0007', '济南领导', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_user` VALUES ('8', '7', '9', 'jn_zhb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0008', '济南综合部', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_user` VALUES ('9', '7', '10', 'jn_scb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0009', '济南市场部', null, null, null, null, null, null, null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
+INSERT INTO `sys_user` VALUES ('b8ac991cbd5b40259dbf6fb5445acb13', '2', '2', 'dongge4', '3f9abc5204d9f2380d7cbe2d922d1cfd4577a46c0c73745ebbcf68c0', 'gonghao', 'dg', '', '15527124405', '15527124405', '3', null, null, null, '1', 'myself', '2017-12-10 11:52:22', 'myself', '2017-12-10 11:52:22', null, '0');
+INSERT INTO `sys_user` VALUES ('f4ac78d8ae54418290968d4356277079', '2', '2', 'dongge2', '82eaa59ea45428d5f36093c2eb831bb75322d88a1440a04fda035c9a', 'gonghao', 'dg', '', '15527124407', '15527124407', '3', null, null, null, '1', 'myself', '2017-12-10 11:51:22', 'myself', '2017-12-10 11:51:22', null, '0');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
@@ -3103,6 +3108,7 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
+INSERT INTO `sys_user_role` VALUES ('0e418ad0f2b74aa0b29127fdd5195633', '6');
 INSERT INTO `sys_user_role` VALUES ('1', '1');
 INSERT INTO `sys_user_role` VALUES ('1', '2');
 INSERT INTO `sys_user_role` VALUES ('10', '2');
@@ -3111,15 +3117,26 @@ INSERT INTO `sys_user_role` VALUES ('12', '4');
 INSERT INTO `sys_user_role` VALUES ('13', '5');
 INSERT INTO `sys_user_role` VALUES ('14', '6');
 INSERT INTO `sys_user_role` VALUES ('2', '1');
+INSERT INTO `sys_user_role` VALUES ('27662596fa514842acff2284b65b0403', '6');
+INSERT INTO `sys_user_role` VALUES ('2baa9e16245a4c459091772e8456a5ca', '6');
 INSERT INTO `sys_user_role` VALUES ('3', '2');
+INSERT INTO `sys_user_role` VALUES ('386e4c1d289d4570b572d7c3bd983156', '6');
 INSERT INTO `sys_user_role` VALUES ('4', '3');
 INSERT INTO `sys_user_role` VALUES ('467b152caec44f15b13557b358e47fc6', '6');
 INSERT INTO `sys_user_role` VALUES ('5', '4');
 INSERT INTO `sys_user_role` VALUES ('6', '5');
+INSERT INTO `sys_user_role` VALUES ('69540d14bd01435bb5ebbf3d9140f4d7', '6');
 INSERT INTO `sys_user_role` VALUES ('7', '2');
 INSERT INTO `sys_user_role` VALUES ('7', '7');
 INSERT INTO `sys_user_role` VALUES ('8', '2');
+INSERT INTO `sys_user_role` VALUES ('8a8eaf379e3e43319ece1e80c843f41f', '6');
 INSERT INTO `sys_user_role` VALUES ('9', '1');
+INSERT INTO `sys_user_role` VALUES ('9923c80794d84454900531e9037d65cc', '6');
+INSERT INTO `sys_user_role` VALUES ('b8ac991cbd5b40259dbf6fb5445acb13', '6');
+INSERT INTO `sys_user_role` VALUES ('e0de92163bf9409ea2105add99ea8658', '6');
+INSERT INTO `sys_user_role` VALUES ('e6f830650e8a44889f6632281862d7e2', '6');
+INSERT INTO `sys_user_role` VALUES ('ec8920a497c7411194e2435c2e8a0459', '6');
+INSERT INTO `sys_user_role` VALUES ('f4ac78d8ae54418290968d4356277079', '6');
 
 -- ----------------------------
 -- Table structure for `test_data`
@@ -3317,6 +3334,23 @@ CREATE TABLE `t_db_platform` (
 -- Records of t_db_platform
 -- ----------------------------
 INSERT INTO `t_db_platform` VALUES ('1', 'dongge', '15527124409', 'admin', '15527124456', '1', '1', '2', '2', '2017-11-13 13:22:44', '2017-11-13 13:22:47', null, null, null, null, null, null, '1', '2017-11-13 13:23:03', '1', '2017-11-13 13:23:05', null, '0');
+
+-- ----------------------------
+-- Table structure for `t_erweimacode`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_erweimacode`;
+CREATE TABLE `t_erweimacode` (
+  `id` varchar(64) NOT NULL COMMENT '编号',
+  `te_codeurl` varchar(255) NOT NULL COMMENT '二维码图片地址',
+  `te_codeinfo` varchar(64) NOT NULL COMMENT '图片标注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='二维码图片表';
+
+-- ----------------------------
+-- Records of t_erweimacode
+-- ----------------------------
+INSERT INTO `t_erweimacode` VALUES ('845dec9252c64d2998978ec8a36a0f4a', 'D:\\easystarGit\\easystar\\src\\main\\webapp\\erweimacode\\15527124405.png', '15527124405');
+INSERT INTO `t_erweimacode` VALUES ('d7f489865eb943ce88bcd1f1ddcb6839', 'D:\\easystarGit\\easystar\\src\\main\\webapp\\erweimacode\\15527124407.png', '15527124407');
 
 -- ----------------------------
 -- Table structure for `t_job_apply`
@@ -3522,7 +3556,8 @@ CREATE TABLE `t_user` (
   `t_companyurl` varchar(255) DEFAULT NULL COMMENT '公司网址',
   `createtime` datetime DEFAULT NULL,
   `t_acount` decimal(10,2) DEFAULT '0.00' COMMENT '账户，保留两位小数',
-  `reserve1` varchar(255) DEFAULT NULL COMMENT '扩展字段1',
+  `t_inviter` varchar(64) DEFAULT NULL COMMENT '邀请人标识：这里用的是手机号码作为标识',
+  `reserve1` varchar(255) DEFAULT NULL COMMENT '密码明文',
   `reserve2` varchar(255) DEFAULT NULL COMMENT '扩展字段1',
   `reserve3` varchar(255) DEFAULT NULL COMMENT '扩展字段1',
   `reserve4` varchar(255) DEFAULT NULL COMMENT '扩展字段1',
@@ -3539,7 +3574,9 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('bbd9d2771997445eaceff809816ed5b5', 'dongge', 'dongge', 'dongge', '1284622263@qq.com', '15527124409', '1284622263', '15527124409', null, null, '武汉昂纳科技有限公司', 'www.168mitu.com', '2017-11-26 18:49:21', '23.00', '123456', null, null, null, null, 'myself', '2017-11-03 21:28:43', 'myself', '2017-11-03 21:28:43', null, '0');
+INSERT INTO `t_user` VALUES ('19334c9d0d9c4fb582e4a1c0d71d302b', 'dongge2', 'dongge2', 'dg', '', '15527124407', '', '', null, null, '', '', '2017-12-10 11:51:22', '0.00', '', '123456', null, null, null, null, 'myself', '2017-12-10 11:51:22', 'myself', '2017-12-10 11:51:22', null, '0');
+INSERT INTO `t_user` VALUES ('5a146e5f062641d08dde63bd86dd340f', 'dongge4', 'dongge4', 'dg', '', '15527124405', '', '', null, null, '', '', '2017-12-10 11:52:22', '0.00', '', '123456', null, null, null, null, 'myself', '2017-12-10 11:52:22', 'myself', '2017-12-10 11:52:22', null, '0');
+INSERT INTO `t_user` VALUES ('bbd9d2771997445eaceff809816ed5b5', 'dongge', 'dongge', 'dongge', '1284622263@qq.com', '15527124409', '1284622263', '15527124409', null, null, '武汉昂纳科技有限公司', 'www.168mitu.com', '2017-11-26 18:49:21', '23.00', null, '123456', null, null, null, null, 'myself', '2017-11-03 21:28:43', 'myself', '2017-11-03 21:28:43', null, '0');
 
 -- ----------------------------
 -- Procedure structure for `outtime`

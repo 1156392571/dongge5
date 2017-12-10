@@ -39,7 +39,7 @@ public class QRCodeEvents{
      * @return 生成的二维码图片路径
      * @throws Exception
      */
-    private static String generateQRCode(String text, int width, int height, String format) throws Exception {
+    public static String generateQRCode(HttpServletRequest request,String pathname,String text, int width, int height, String format) throws Exception {
         Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);
@@ -47,9 +47,10 @@ public class QRCodeEvents{
          * 此处是生成二维码的相对路径
          */
       //拼接地址HttpServletRequest request,
-//        String filePathGen = "/uploads";
-//        String pathName = request.getSession().getServletContext().getRealPath(filePathGen);
-        String pathName = "F:/new.png";
+        String filePathGen = "/erweimacode/"+pathname+".png";
+        String pathName = request.getSession().getServletContext().getRealPath(filePathGen);
+        
+        //        String pathName = "F:/"+pathname+".png";
         File outputFile = new File(pathName);
         MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile);
         return pathName;
@@ -119,19 +120,19 @@ public class QRCodeEvents{
     public static void main(String[] args) {
 
 //        String text = generateNumCode(12);  //随机生成的12位验证码
-        String text ="https://www.168mitu.com";
+        String text ="https://192.168.1.103:8181/easystar/f/pay/toreg";
         System.out.println("随机生成的12位验证码为： " + text);
         int width = 100;    //二维码图片的宽
         int height = 100;   //二维码图片的高
         String format = "png";  //二维码图片的格式
-
+        String pathname="15527124409";
         try {
             //生成二维码图片，并返回图片路径
-            String pathName = generateQRCode(text, width, height, format);
-            System.out.println("生成二维码的图片路径： " + pathName);
+//            String pathName = generateQRCode(pathname,text, width, height, format);
+//            System.out.println("生成二维码的图片路径： " + pathName);
 
-            String content = parseQRCode(pathName);
-            System.out.println("解析出二维码的图片的内容为： " + content);
+//            String content = parseQRCode(pathName);
+//            System.out.println("解析出二维码的图片的内容为： " + content);
         } catch (Exception e) {
             e.printStackTrace();
         }

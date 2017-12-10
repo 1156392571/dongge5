@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.mt.dao;
 
+import java.util.Map;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
@@ -27,5 +29,7 @@ public interface TUserDao extends CrudDao<TUser> {
     String getPassword(String loginName);
 
     int getcountbyinviter(String tPhone);
+
+	void addpicturecode(Map map);
 	
 }

@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.mt.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,5 +75,11 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     {
         return tUserDao.getcountbyinviter(tPhone);
     }
+
+    @Transactional(readOnly = false)
+	public void addpicturecode(Map map) {
+		// TODO Auto-generated method stub
+		tUserDao.addpicturecode(map);
+	}
 	
 }
