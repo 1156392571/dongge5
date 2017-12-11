@@ -18,8 +18,8 @@ import com.alibaba.fastjson.JSON;
 public class MobileMessageCheck {
 
     private static final String SERVER_URL="https://api.netease.im/sms/verifycode.action";//校验验证码的请求路径URL
-    private static final String APP_KEY="90ba9b0252354af19745b9ddeeaa7311";//账号
-    private static final String APP_SECRET="cfe37139a44e";//密钥
+    private static final String APP_KEY="abdc13bb68bf1aceafb8d5008e07a085";//账号
+    private static final String APP_SECRET="f65e548a4015";//密钥
     private static final String NONCE="123456";//随机数
 
     public static String checkMsg(String phone,String sum) throws IOException {
@@ -57,7 +57,7 @@ public class MobileMessageCheck {
     
     public static void main(String[] args) {
     	try {
-			String result=checkMsg("15527124409","8257");
+			String result=checkMsg("15527124409","2964");
 			System.out.println(result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

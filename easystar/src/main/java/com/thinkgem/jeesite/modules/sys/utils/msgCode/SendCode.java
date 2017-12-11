@@ -13,7 +13,7 @@ public class SendCode   //注意自己的类名对应好！
 {
     public static void main(String[] args) throws Exception
     {
-        System.out.println(sendMsg());
+        System.out.println(sendMsg("15527124409"));
 
 
     }
@@ -24,10 +24,10 @@ public class SendCode   //注意自己的类名对应好！
      * 
      * @return 所代表远程资源的响应结果
      */
-    public static String sendMsg()
+    public static String sendMsg(String phone)
     {
-        String appKey = "90ba9b0252354af19745b9ddeeaa7311";
-        String appSecret = "cfe37139a44e";
+        String appKey = "abdc13bb68bf1aceafb8d5008e07a085";
+        String appSecret = "f65e548a4015";
         String nonce = "123456"; // 随机数（最大长度128个字符）
         String curTime = String.valueOf((new Date()).getTime() / 1000L); // 当前UTC时间戳
         System.out.println("curTime: " + curTime);
@@ -45,7 +45,7 @@ public class SendCode   //注意自己的类名对应好！
             String url = "https://api.netease.im/sms/sendcode.action"; //网址可以不修改
             String encStr1 = URLEncoder.encode("mitu", "utf-8");
             String encStr2 = URLEncoder.encode("name", "utf-8"); // url编码；防止不识别中文
-            String params = "templateid=3127375&mobile=15527124409" 
+            String params = "templateid=3137291&mobile="+phone 
                             + "&params=" + "[\"" + encStr1 + "\",\""+ encStr2 + "\"]";
             System.out.println("params：" + params);
 
