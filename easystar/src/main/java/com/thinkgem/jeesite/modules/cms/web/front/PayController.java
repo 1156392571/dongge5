@@ -149,8 +149,9 @@ public class PayController extends BaseController {
 	 */
     @RequestMapping(value = "toreg")
     public String toreg(TUser tUser,Model model){
+    	tUser.settInviter("15527124409");
         model.addAttribute("tUser", tUser);
-        return "modules/sys/Mydetail";
+        return "modules/sys/reg";
     }
 	
 	
