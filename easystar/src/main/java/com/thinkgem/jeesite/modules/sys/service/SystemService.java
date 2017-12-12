@@ -572,7 +572,8 @@ public class SystemService extends BaseService implements InitializingBean {
 			String password = tUser.getReserve1();
 			userNew.setPassword(this.entryptPassword(password));
 			// 姓名
-			String t_name = tUser.gettName();
+//			String t_name = tUser.gettName();
+			String t_name =tUser.gettLoginname();
 			userNew.setName(t_name);
 			// 工号
 			String no = "gonghao";

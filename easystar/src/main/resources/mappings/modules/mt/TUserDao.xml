@@ -235,5 +235,8 @@
 		)
 	</insert>
 	
+	<select id="getUserByPhone" resultType="User">
+		select login_name as loginName,password from sys_user where phone=#{tPhone}
+	</select>
 	
 </mapper>

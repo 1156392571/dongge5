@@ -81,5 +81,10 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		// TODO Auto-generated method stub
 		tUserDao.addpicturecode(map);
 	}
+
+    public User getUserByPhone(String tPhone)
+    {
+        return tUserDao.getUserByPhone(tPhone);
+    }
 	
 }

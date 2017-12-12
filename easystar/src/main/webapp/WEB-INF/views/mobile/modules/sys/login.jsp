@@ -41,6 +41,72 @@
     });
     */
 </script>
+
+<script type="text/javascript">
+//获取验证码
+function doGetSmsCode(){
+	var phone=$("#mobile").val();
+	var data={};
+	data.phone=phone;
+	$.ajax({
+		url:'${ctx}/pay/getSmscode',
+		type:'post',
+		contentType : 'application/json;charset=utf-8',
+		data : JSON.stringify(data),
+		dateType : "json",
+		success:function(data){
+			if(data.result.code=="200"){
+				alert("发送成功");    				
+			}else{
+				alert("发送失败");
+			}
+		}
+	})
+}
+
+//校验验证码
+function checksmscode(){
+	var phone=$("#mobile").val();
+	var code=$("#code").val();
+	data.phone=phone;
+	data.code=code;
+	$.ajax({
+		url:'${ctx}/pay/checksmscode',
+		type:'post',
+		contentType : 'application/json;charset=utf-8',
+		data : JSON.stringify(data),
+		dateType : "json",
+		success:function(data){
+			alert(data);
+		}
+	})
+} 
+	
+//短信登录的提交
+function submit1(){
+	var phone=$("#mobile").val();
+	
+}
+
+//账户密码登录提交
+function submit2(){
+	var loginName=$("#loginName").val();
+	var password=$("#password").val();
+	alert(loginName+password);
+// 	window.location.href="${pageContext.request.contextPath}/a/login?username="+loginName+"&password="+password;
+	$.ajax({
+		url:'${pageContext.request.contextPath}/a/login',
+		type:'post',
+		data:{username:loginName,password:password},
+		success:function(data){
+			alert(data);
+		}
+		
+	})
+}
+
+</script>
+
 </head>
 
 <body style="background-color:#fff">
@@ -55,39 +121,46 @@
             <li class="login-tab js-tab">账号密码登录</li>
         </ul>
         <div class="js-tabconts">
+            <!-- 这里是手机验证码快捷登录方式 -->
+            <form action="${ctx}/pay/smscodelogin" method="post" >
             <div class="js-tabcont selected">
                 <div class="login-input-group" id="login-form-mobile">
                     <div class="login-input-item">
                         <i class="icon-mobile"></i>
-                        <input class="login-input" type="tel" name="mobile" placeholder="手机号" />
+                        <input class="login-input" type="tel" id="mobile" name="tPhone" placeholder="手机号" />
                         <i class="clear"></i>
                     </div>
                     <div class="login-input-item">
                         <i class="icon-lock"></i>
-                        <input class="login-input login-input-dyn" type="tel" name="dyn-pwd" placeholder="验证码" maxlength="6" />
+                        <input class="login-input login-input-dyn" type="tel" name="dyn-pwd" id="code" placeholder="验证码" maxlength="6" onchange="checksmscode()"/>
                         <i class="clear clear-dyn"></i>
-                        <button class="dyn-pwd-btn">获取验证码</button>
+                        <button class="dyn-pwd-btn" onclick="doGetSmsCode()">获取验证码</button>
                     </div>
                     <div id="popup-captcha"></div>
                 </div>
-                <button class="login-btn" disabled="disabled" id="login-btn-mobile" status="0">登录</button>
+                <input type="submit" class="login-btn" id="login-btn-username" value="登录">
             </div>
+            </form>
+            
+            <!-- 这里是普通的账户密码登录 -->
+            <form action="${pageContext.request.contextPath}/a/login" method="post" >
             <div class="js-tabcont">
                 <div class="login-input-group" id="login-form-username">
                     <div class="login-input-item">
                         <i class="icon-user"></i>
-                        <input class="login-input" type="text" name="user" placeholder="手机号或用户名" />
+                        <input class="login-input" type="text" id="loginName" name="username" placeholder="用户名" />
                         <i class="clear"></i>
                     </div>
                     <div class="login-input-item">
                         <i class="icon-lock"></i>
-                        <input class="login-input" type="password" name="pwd" placeholder="密码" />
+                        <input class="login-input" type="password" id="password" name="password" placeholder="密码" />
                         <i class="clear"></i>
                     </div>
                 </div>
-                <button class="login-btn" disabled="disabled" id="login-btn-username" status="0">登录</button>
+                <input type="submit" class="login-btn" id="login-btn-username" value="登录">
                 <p class="login-tips">忘记密码如何登录？</p>
             </div>
+            </form>
         </div>
     </section>
     

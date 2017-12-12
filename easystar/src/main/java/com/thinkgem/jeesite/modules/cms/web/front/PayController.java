@@ -23,6 +23,7 @@ import com.pingplusplus.model.Event;
 import com.pingplusplus.model.EventData;
 import com.pingplusplus.model.PingppObject;
 import com.pingplusplus.model.Webhooks;
+import com.alibaba.fastjson.JSONObject;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -37,6 +38,7 @@ import com.pingplusplus.exception.InvalidRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,9 +51,12 @@ import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.MatrixToImageWriter;
 import com.thinkgem.jeesite.modules.sys.utils.QRCodeEvents;
+import com.thinkgem.jeesite.modules.sys.utils.msgCode.MobileMessageCheck;
+import com.thinkgem.jeesite.modules.sys.utils.msgCode.SendCode;
 
 /**
  * 测试Controller
@@ -183,14 +188,83 @@ public class PayController extends BaseController {
         return "redirect:"+Global.getAdminPath()+"/login?repage";
     } 
 	
-	
-    //此处是生成二维码的地方
-    public void createcode(String pathname,String text, int width, int height, String format) throws Exception{
-//        String pathName = QRCodeEvents.generateQRCode(pathname,text, width, height, format);
-        
-    	
+    /**
+      * @Description: 登录
+      * @param tUser
+      * @param model
+      * @return
+      * String 返回类型
+      * @author：dongge
+      * @date：2017年12月12日上午10:18:45
+     */
+    @RequestMapping(value = "tologin")
+    public String login(TUser tUser,Model model){
+        return "modules/sys/login";
+    }
+    
+    /**
+      * @Description: 发送验证码
+      * @param postData
+      * @param req
+      * @param res
+      * @return
+      * Map<String,Object> 返回类型
+      * @author：dongge
+      * @date：2017年12月12日下午12:59:33
+     */
+    @RequestMapping(value = "getSmscode")
+    @ResponseBody
+    public Map<String,Object> getSmscode(@RequestBody String postData, 
+            HttpServletRequest req, HttpServletResponse res){
+        Map<String,Object> resultmap=new HashMap<String, Object>();
+        JSONObject json = JSONObject.parseObject(postData);
+        //项目的id  如果为空，则转递空字符串即可！
+        String phone = json.getString("phone"); 
+        String result=SendCode.sendMsg(phone);
+        System.out.println(result);
+        resultmap.put("result", result);
+        return resultmap;
+    }
+    
+    /**
+      * @Description: 验证验证码
+      * @param postData
+      * @param req
+      * @param res
+      * @return
+      * @throws IOException
+      * Map<String,Object> 返回类型
+      * @author：dongge
+      * @date：2017年12月12日下午1:00:08
+     */
+    @RequestMapping(value = "checksmscode")
+    @ResponseBody
+    public Map<String,Object> checksmscode(@RequestBody String postData, 
+            HttpServletRequest req, HttpServletResponse res) throws IOException{
+        Map<String,Object> resultmap=new HashMap<String, Object>();
+        JSONObject json = JSONObject.parseObject(postData);
+        //项目的id  如果为空，则转递空字符串即可！
+        String phone = json.getString("phone"); 
+        String code = json.getString("code"); 
+        String result=MobileMessageCheck.checkMsg(phone, code);
+        System.out.println(result);
+        resultmap.put("result", result);
+        return resultmap;
     }
     
     
     
+    @RequestMapping(value = "smscodelogin")
+    public String smscodelogin(TUser tUser,Model model){
+        System.out.println(tUser.gettPhone()+"====");
+        User user=tUserService.getUserByPhone(tUser.gettPhone());
+        System.out.println(user.getLoginName());
+        return "redirect:" + adminPath + "/login?username="+user.getLoginName()+"&password="+user.getPassword();
+    }
 }
+
+
+
+
+
+      

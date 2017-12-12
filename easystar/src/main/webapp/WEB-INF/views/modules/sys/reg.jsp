@@ -7,7 +7,6 @@
 <title>注册米兔</title>
     <meta name="format-detection" content="telephone=no"/>
     <link href="${ctxStatic}/reg-login/css/mstyle.css" rel="stylesheet" type="text/css" />
-    <script src="${ctxStatic}/reg-login/js/jquery-1.8.2.min.js" ></script>
     <meta name="viewport"
           content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0,  maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no"/>
@@ -16,33 +15,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <script type="text/javascript">
-    function doGetSmsCode(){
+    function doGetSmsCode1(){
     	var phone=$("#mobile").val();
+    	alert(phone);
     	var data={};
     	data.phone=phone;
     	$.ajax({
     		url:'${ctx}/pay/getSmscode',
-    		type:'post',
-    		contentType : 'application/json;charset=utf-8',
-    		data : JSON.stringify(data),
-    		dateType : "json",
-    		success:function(data){
-    			if(data.result.code=="200"){
-					alert("发送成功");    				
-    			}else{
-    				alert("发送失败");
-    			}
-    		}
-    	})
-    }
-    
-    function checksmscode(){
-    	var phone=$("#mobile").val();
-    	var code=$("#code").val();
-    	data.phone=phone;
-    	data.code=code;
-    	$.ajax({
-    		url:'${ctx}/pay/checksmscode',
     		type:'post',
     		contentType : 'application/json;charset=utf-8',
     		data : JSON.stringify(data),
@@ -82,9 +61,9 @@
         </div>
         <div class="form-text-login form-text-yzm" id="code_1">
             <label>验证码：</label>
-            <input type="text" id="code" name="code" class="form-text" placeholder="" value="" onchange="checksmscode()">
+            <input type="text" id="code" name="code" class="form-text" placeholder="" value="">
             <div class="l wi2">
-                <input type="button" value="获取验证码" onclick="doGetSmsCode()"/>
+                <input type="button" value="获取验证码" onclick="doGetSmsCode1()"/>
                 <em id="isHideStyle" style="display:"></em>
                 <em></em>
             </div>

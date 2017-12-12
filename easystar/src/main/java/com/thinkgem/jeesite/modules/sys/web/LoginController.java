@@ -26,6 +26,7 @@ import com.thinkgem.jeesite.common.utils.CacheUtils;
 import com.thinkgem.jeesite.common.utils.CookieUtils;
 import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.common.utils.UserAgentUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
@@ -54,6 +55,7 @@ public class LoginController extends BaseController{
 	 */
 	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+	    System.out.println("========get");
 		Principal principal = UserUtils.getPrincipal();
 
 //		// 默认页签模式
@@ -81,8 +83,8 @@ public class LoginController extends BaseController{
 //		view += "jar:file:/D:/GitHub/jeesite/src/main/webapp/WEB-INF/lib/jeesite.jar!";
 //		view += "/"+getClass().getName().replaceAll("\\.", "/").replace(getClass().getSimpleName(), "")+"view/sysLogin";
 //		view += ".jsp";
-		return "modules/sys/sysLogin";
-//		return "modules/sys/userlogin";
+//		return "modules/sys/sysLogin";
+		return "modules/sys/userlogin";
 	}
 
 	/**
@@ -90,7 +92,8 @@ public class LoginController extends BaseController{
 	 */
 	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.POST)
 	public String loginFail(HttpServletRequest request, HttpServletResponse response, Model model) {
-		Principal principal = UserUtils.getPrincipal();
+	    System.out.println("========post");
+	    Principal principal = UserUtils.getPrincipal();
 		
 		// 如果已经登录，则跳转到管理首页
 		if(principal != null){
@@ -131,8 +134,14 @@ public class LoginController extends BaseController{
 	        return renderString(response, model);
 		}
 		
-//		return "modules/sys/userlogin";
-		return "modules/sys/sysLogin";
+		//如果是手机浏览器登录
+		if(UserAgentUtils.isMobileOrTablet(request)){
+		    System.out.println("手机页面登录错误返回页面");
+            return "modules/sys/login";
+        }
+		
+		return "modules/sys/userlogin";
+//		return "modules/sys/sysLogin";
 	}
 
 	/**
@@ -166,22 +175,35 @@ public class LoginController extends BaseController{
 				return renderString(response, principal);
 			}
 			if (request.getParameter("index") != null){
-				return "modules/sys/sysIndex";
+//				return "modules/sys/sysIndex";
+			    return "modules/sys/login";
 			}
 			return "redirect:" + adminPath + "/login";
 		}
+		
+		//如果是手机登录成功
+		if(UserAgentUtils.isMobileOrTablet(request)){
+		    System.out.println("==手机登录并返回页面");
+		    return "modules/sys/reg";
+		}
+		
+		
+		
 		
 		User user=UserUtils.getByLoginName(principal.getLoginName());
 		//通过用户名获取t_user表中的信息
 		TUser tUser=tUserService.getUserByLoginName(principal.getLoginName());
 		if("3".equals(user.getUserType())){
-		    //此处判断当前用户的邀请人是否为空，如果为空，说明不是通过扫码注册的
+		    System.out.println("普通用户登陆");
+            Site site = CmsUtils.getSite(Site.defaultSiteId());
+            model.addAttribute("site", site);
+            model.addAttribute("isIndex", true);
+            return "redirect:"+Global.getFrontPath()+"/productList/?repage";
+            
+            
+		    /*此处判断当前用户的邀请人是否为空，如果为空，说明不是通过扫码注册的
 		    if(tUser.gettInviter()==null){
-		        System.out.println("普通用户登陆");
-	            Site site = CmsUtils.getSite(Site.defaultSiteId());
-	            model.addAttribute("site", site);
-	            model.addAttribute("isIndex", true);
-	            return "redirect:"+Global.getFrontPath()+"/productList/?repage";
+		        
 		    }else{
 		        System.out.println("扫码用户登陆");
 		        //直接进入个人中心，此时可以查询出自己当前已推荐多少人
@@ -190,7 +212,7 @@ public class LoginController extends BaseController{
 		        model.addAttribute("tUser", tUser);
 		        return "";
 		    }
-			
+			*/
 		}else{
 			System.out.println("系统用户登陆");
 			return "modules/sys/sysIndex";
