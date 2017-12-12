@@ -53,6 +53,29 @@
     	})
     }
     
+    function check(){
+    	var userName=$("#userName").val();
+    	var password=$("#pwd").val();
+    	var mobile=$("#mobile").val();
+    	var code=$("#code").val();
+    	if(userName==""){
+    		$("#userName").focus();
+    		return false;
+    	}
+    	if(password==""){
+    		$("#pwd").focus();
+    		return false;
+    	}
+    	if(mobile==""){
+    		$("#mobile").focus();
+    		return false;
+    	}
+    	if(code==""){
+    		$("#code").focus();
+    		return false;
+    	}
+    	
+    }
     </script>
 </head>
 <body>
@@ -62,7 +85,7 @@
     <i class="btn3"><a href="${ctx}/pay/tologin">登录</a></i>
 </nav>
 <section class="form-group" id="inputObj">
-    <form id="touchForm" action="${ctx}/pay/savereg" method="post">
+    <form id="touchForm" action="${ctx}/pay/savereg" method="post" onsubmit="return check()">
     	<input type="hidden" name="tInviter" value="${tUser.tInviter}">
         <p class="flastHint" id="infoHint"></p>
         <div class="form-text-login" id="userName_1">

@@ -261,7 +261,7 @@ public class PayController extends BaseController {
         User user=tUserService.getUserByPhone(tUser.gettPhone());
         System.out.println(user.getLoginName());
         //发送 POST 请求
-        String sr=HttpRequest.sendPost("http://192.168.1.150:8181/a/login", "username=15527124409&password=123456");
+        String sr=HttpRequest.sendPost("http://192.168.1.103:8181/easystar/a/login", "username=15527124409&password=123456");
         System.out.println("==___-----"+sr);
         return "";
     }
