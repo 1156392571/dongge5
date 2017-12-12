@@ -55,6 +55,7 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.MatrixToImageWriter;
 import com.thinkgem.jeesite.modules.sys.utils.QRCodeEvents;
+import com.thinkgem.jeesite.modules.sys.utils.http.HttpRequest;
 import com.thinkgem.jeesite.modules.sys.utils.msgCode.MobileMessageCheck;
 import com.thinkgem.jeesite.modules.sys.utils.msgCode.SendCode;
 
@@ -259,7 +260,10 @@ public class PayController extends BaseController {
         System.out.println(tUser.gettPhone()+"====");
         User user=tUserService.getUserByPhone(tUser.gettPhone());
         System.out.println(user.getLoginName());
-        return "redirect:" + adminPath + "/login?username="+user.getLoginName()+"&password="+user.getPassword();
+        //发送 POST 请求
+        String sr=HttpRequest.sendPost("http://192.168.1.150:8181/a/login", "username=15527124409&password=123456");
+        System.out.println("==___-----"+sr);
+        return "";
     }
 }
 
