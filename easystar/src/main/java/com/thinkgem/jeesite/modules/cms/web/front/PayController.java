@@ -157,7 +157,7 @@ public class PayController extends BaseController {
     public String toreg(TUser tUser,Model model){
     	tUser.settInviter("15527124409");
         model.addAttribute("tUser", tUser);
-        return "modules/sys/reg";
+        return "modules/sys/slider";
     }
 	
 	
@@ -265,10 +265,11 @@ public class PayController extends BaseController {
         System.out.println("==___-----"+sr);
         return "";
     }
+    
+    
+    //此处是查看自己的账户的情况的！
+    
+    
+    
 }
-
-
-
-
-
-      
+   
