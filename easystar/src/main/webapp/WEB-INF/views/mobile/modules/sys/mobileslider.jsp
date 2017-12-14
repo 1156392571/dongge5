@@ -27,6 +27,11 @@
             </div>
             <div class="page page3">
             	<div class="box">
+                    <img src="${ctxStatic}/reg-login/images/slider/fxb4.jpg" />
+                </div>
+            </div>
+            <div class="page page4">
+            	<div class="box">
                     <a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}"><img src="${ctxStatic}/reg-login/images/slider/fxb3.jpg" /></a>
                 </div>
             </div>
@@ -62,7 +67,7 @@
 			break;
 		}
 	}
-	*/
+	
 	
 	function colorRand(){
 		return parseInt(Math.random()*255);
@@ -73,6 +78,7 @@
 		div.style.backgroundColor='rgb('+colorRand()+','+colorRand()+','+colorRand()+')';
 		return div;
 	}
+	*/
     </script>
 </body>
 </html>

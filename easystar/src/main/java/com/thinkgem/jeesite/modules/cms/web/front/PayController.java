@@ -251,13 +251,19 @@ public class PayController extends BaseController {
     
     
     @RequestMapping(value = "smscodelogin")
-    public void smscodelogin(TUser tUser,Model model){
+    @ResponseBody
+    public Map<String,String> smscodelogin(TUser tUser,Model model){
         System.out.println(tUser.gettPhone()+"====");
-        User user=tUserService.getUserByPhone(tUser.gettPhone());
-        System.out.println(user.getLoginName());
-        //发送 POST 请求
-        String sr=HttpRequest.sendPost("http://192.168.1.150:8181/easystar/a/login", "username=15527124409&password=123456");
-        System.out.println("==___-----"+sr);
+        tUser=tUserService.getTUserByPhone(tUser.gettPhone());
+        Map<String,String> map=new HashMap<String,String>();
+        if(tUser!=null){
+        	map.put("username", tUser.gettLoginname());
+            map.put("password", tUser.getReserve1());
+            map.put("msg", "1");
+        }else{
+        	map.put("msg", "0");
+        }
+        return map;
     }
     
     /**

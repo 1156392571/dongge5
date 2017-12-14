@@ -46,6 +46,11 @@
 //获取验证码
 function doGetSmsCode(){
     	var phone=$("#mobile").val();
+    	if(phone==""){
+    		alert("手机号不能为空");
+    		$("#mobile").focus();
+    		return false;
+    	}
     	$.ajax({
     		url:'${ctx}/pay/getSmscode',
     		type:'post',
@@ -79,7 +84,58 @@ function checksmscode(){
     	})
     	return result;
     }
-	
+
+//短信登陆提交
+function checksms(){
+	var phone=$("#mobile").val();
+	var code=$("#code").val();
+	if(phone==""){
+		alert("手机号不能为空");
+		$("#mobile").focus();
+		return false;
+	}
+	if(code==""){
+		alert("验证码不能为空");
+		$("#code").focus();
+		return false;
+	}
+	if(!checksmscode()){
+		alert("验证码输入错误");
+		$("#code").val("");
+		$("#code").focus();
+		return false;
+	}
+	$.ajax({
+		url:'${ctx}/pay/smscodelogin',
+		type:'post',
+		data:{tPhone:phone},
+		success:function(data){
+			if(data.msg=="1"){
+				$("#loginName").val(data.username);
+				$("#password").val(data.password);
+				$("#formsubmit").submit();
+			}else{
+				alert("此手机号还未注册过！");
+			}
+		}
+	})
+}
+
+
+function checkuserpass(){
+	var username=$("#loginName").val();
+	var password=$("#password").val();
+	if(username==""){
+		alert("用户名不能为空");
+		$("#loginName").focus();
+		return false;
+	}
+	if(password==""){
+		alert("用户名不能为空");
+		$("#password").focus();
+		return false;
+	}
+}
 </script>
 
 </head>
@@ -97,7 +153,6 @@ function checksmscode(){
         </ul>
         <div class="js-tabconts">
             <!-- 这里是手机验证码快捷登录方式 -->
-            <form action="${ctx}/pay/smscodelogin" method="post" onsubmit="return check()">
             <div class="js-tabcont selected">
                 <div class="login-input-group" id="login-form-mobile">
                     <div class="login-input-item">
@@ -113,12 +168,11 @@ function checksmscode(){
                     </div>
                     <div id="popup-captcha"></div>
                 </div>
-                <input type="submit" class="login-btn" id="login-btn-username" value="登录">
+                <input type="submit" class="login-btn" id="login-btn-username" onclick="checksms()" value="登录">
             </div>
-            </form>
             
             <!-- 这里是普通的账户密码登录 -->
-            <form action="${pageContext.request.contextPath}/a/login" method="post" >
+            <form id="formsubmit" action="${pageContext.request.contextPath}/a/login" method="post" onsubmit="return checkuserpass();">
             <div class="js-tabcont">
                 <div class="login-input-group" id="login-form-username">
                     <div class="login-input-item">

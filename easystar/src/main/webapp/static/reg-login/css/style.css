@@ -269,16 +269,11 @@ button:active {
 .wrapper{
 	width:100%;
 	display:block;
-	min-width:320px;
-}
-.main{
-	margin:0 auto;
+	min-width:100%;
 }
 #wrap{
-    position:relative;
     min-height:100%;
-    _height:100%;
-    overflow:hidden;
+    height:100%;
 }
 #pages{
     position:absolute;
@@ -295,30 +290,12 @@ button:active {
     width:100%;
     height:100%;
 }
-.page1{
-    background:red;
-}
-.page2{
-    background:yellow;
-}
-.page3{
-    background:green;
-}
-.page4{
-    background:black;
-}
-.page5{
-    background:grey;
-}
-h1{
-    text-align:center;
-    font-size:30px;
-}
+
 .box{
     text-align:center;
-/*     margin:50px 0; */
 }
 .box img{
-    max-width:100%;
+    width:100%;
+    height:100%;
 }
 

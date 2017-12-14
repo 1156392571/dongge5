@@ -82,11 +82,6 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		tUserDao.addpicturecode(map);
 	}
 
-    public User getUserByPhone(String tPhone)
-    {
-        return tUserDao.getUserByPhone(tPhone);
-    }
-
     public int checkusername(String username)
     {
         return tUserDao.checkusername(username);
@@ -96,5 +91,10 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     {
         return tUserDao.checkphone(phone);
     }
+
+	public TUser getTUserByPhone(String tPhone) {
+		// TODO Auto-generated method stub
+		return tUserDao.getTUserByPhone(tPhone);
+	}
 	
 }
