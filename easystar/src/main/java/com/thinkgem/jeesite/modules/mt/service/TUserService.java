@@ -86,5 +86,15 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     {
         return tUserDao.getUserByPhone(tPhone);
     }
+
+    public int checkusername(String username)
+    {
+        return tUserDao.checkusername(username);
+    }
+
+    public int checkphone(String phone)
+    {
+        return tUserDao.checkphone(phone);
+    }
 	
 }

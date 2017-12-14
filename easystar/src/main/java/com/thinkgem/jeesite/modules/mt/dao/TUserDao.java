@@ -33,5 +33,9 @@ public interface TUserDao extends CrudDao<TUser> {
 	void addpicturecode(Map map);
 
     User getUserByPhone(String tPhone);
+
+    int checkusername(String username);
+
+    int checkphone(String phone);
 	
 }

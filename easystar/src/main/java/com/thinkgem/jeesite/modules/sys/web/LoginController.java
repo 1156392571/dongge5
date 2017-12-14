@@ -84,6 +84,11 @@ public class LoginController extends BaseController{
 //		view += "/"+getClass().getName().replaceAll("\\.", "/").replace(getClass().getSimpleName(), "")+"view/sysLogin";
 //		view += ".jsp";
 //		return "modules/sys/sysLogin";
+		//如果是手机浏览器登录
+        if(UserAgentUtils.isMobileOrTablet(request)){
+            System.out.println("手机退出页面返回登录页面");
+            return "modules/sys/login";
+        }
 		return "modules/sys/userlogin";
 	}
 
@@ -184,7 +189,7 @@ public class LoginController extends BaseController{
 		//如果是手机登录成功
 		if(UserAgentUtils.isMobileOrTablet(request)){
 		    System.out.println("==手机登录并返回页面");
-		    return "modules/sys/reg";
+		    return "modules/sys/slider";
 		}
 		
 		

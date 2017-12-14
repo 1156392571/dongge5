@@ -45,66 +45,41 @@
 <script type="text/javascript">
 //获取验证码
 function doGetSmsCode(){
-	var phone=$("#mobile").val();
-	var data={};
-	data.phone=phone;
-	$.ajax({
-		url:'${ctx}/pay/getSmscode',
-		type:'post',
-		contentType : 'application/json;charset=utf-8',
-		data : JSON.stringify(data),
-		dateType : "json",
-		success:function(data){
-			if(data.result.code=="200"){
-				alert("发送成功");    				
-			}else{
-				alert("发送失败");
-			}
-		}
-	})
-}
+    	var phone=$("#mobile").val();
+    	$.ajax({
+    		url:'${ctx}/pay/getSmscode',
+    		type:'post',
+    		data : {phone:phone},
+    		success:function(data){
+    			var aa=JSON.parse(data);
+    			if(aa.code=="200"){
+					alert("验证码已发送");    				
+    			}else{
+    				alert("验证码发送失败");
+    			}
+    		}
+    	})
+    }
 
 //校验验证码
 function checksmscode(){
-	var phone=$("#mobile").val();
-	var code=$("#code").val();
-	data.phone=phone;
-	data.code=code;
-	$.ajax({
-		url:'${ctx}/pay/checksmscode',
-		type:'post',
-		contentType : 'application/json;charset=utf-8',
-		data : JSON.stringify(data),
-		dateType : "json",
-		success:function(data){
-			alert(data);
-		}
-	})
-} 
+    	var phone=$("#mobile").val();
+    	var code=$("#code").val();
+    	var result=false;
+    	$.ajax({
+    		url:'${ctx}/pay/checksmscode',
+    		type:'post',
+    		async:false,
+    		data:{phone:phone,code:code},
+    		success:function(data){
+    			if(data=="success"){
+    				result=true;
+    			}
+    		}
+    	})
+    	return result;
+    }
 	
-//短信登录的提交
-function submit1(){
-	var phone=$("#mobile").val();
-	
-}
-
-//账户密码登录提交
-function submit2(){
-	var loginName=$("#loginName").val();
-	var password=$("#password").val();
-	alert(loginName+password);
-// 	window.location.href="${pageContext.request.contextPath}/a/login?username="+loginName+"&password="+password;
-	$.ajax({
-		url:'${pageContext.request.contextPath}/a/login',
-		type:'post',
-		data:{username:loginName,password:password},
-		success:function(data){
-			alert(data);
-		}
-		
-	})
-}
-
 </script>
 
 </head>
@@ -122,7 +97,7 @@ function submit2(){
         </ul>
         <div class="js-tabconts">
             <!-- 这里是手机验证码快捷登录方式 -->
-            <form action="${ctx}/pay/smscodelogin" method="post" >
+            <form action="${ctx}/pay/smscodelogin" method="post" onsubmit="return check()">
             <div class="js-tabcont selected">
                 <div class="login-input-group" id="login-form-mobile">
                     <div class="login-input-item">

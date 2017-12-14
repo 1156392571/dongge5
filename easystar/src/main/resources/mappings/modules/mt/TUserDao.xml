@@ -235,8 +235,18 @@
 		)
 	</insert>
 	
+	<!-- 通过手机号获取用户名密码 -->
 	<select id="getUserByPhone" resultType="User">
 		select login_name as loginName,password from sys_user where phone=#{tPhone}
 	</select>
 	
+	<!-- 检查用户名是否已经存在了 -->
+	<select id="checkusername" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) as count from t_user where t_loginName=#{username}
+	</select>
+	
+	<!-- 检查手机号是否已经存在了 -->
+	<select id="checkphone" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) as count from t_user where t_phone=#{phone}
+	</select>
 </mapper>

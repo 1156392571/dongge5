@@ -143,6 +143,13 @@ public class PayController extends BaseController {
         response.setStatus(200);
 	}
 	
+	@RequestMapping(value = "tophoto")
+	public String tophoto(TUser tUser,Model model){
+        tUser.settInviter("15527124409");
+        model.addAttribute("tUser", tUser);
+        return "modules/sys/mobileslider";
+    }
+	
 	/**
 	 * 
 	  * @Description:扫码之后跳转到这个注册的页面，此时是含有邀请人链接的
@@ -157,7 +164,7 @@ public class PayController extends BaseController {
     public String toreg(TUser tUser,Model model){
     	tUser.settInviter("15527124409");
         model.addAttribute("tUser", tUser);
-        return "modules/sys/slider";
+        return "modules/sys/reg";
     }
 	
 	
@@ -186,7 +193,7 @@ public class PayController extends BaseController {
         map.put("phone",pathname);
         map.put("pathName",pathName);
         tUserService.addpicturecode(map);
-        return "redirect:"+Global.getAdminPath()+"/login?repage";
+        return "redirect:"+Global.getAdminPath()+"/pay/tologin?repage";
     } 
 	
     /**
@@ -215,16 +222,11 @@ public class PayController extends BaseController {
      */
     @RequestMapping(value = "getSmscode")
     @ResponseBody
-    public Map<String,Object> getSmscode(@RequestBody String postData, 
-            HttpServletRequest req, HttpServletResponse res){
-        Map<String,Object> resultmap=new HashMap<String, Object>();
-        JSONObject json = JSONObject.parseObject(postData);
+    public String getSmscode(String phone){
         //项目的id  如果为空，则转递空字符串即可！
-        String phone = json.getString("phone"); 
         String result=SendCode.sendMsg(phone);
         System.out.println(result);
-        resultmap.put("result", result);
-        return resultmap;
+        return result;
     }
     
     /**
@@ -240,36 +242,54 @@ public class PayController extends BaseController {
      */
     @RequestMapping(value = "checksmscode")
     @ResponseBody
-    public Map<String,Object> checksmscode(@RequestBody String postData, 
-            HttpServletRequest req, HttpServletResponse res) throws IOException{
-        Map<String,Object> resultmap=new HashMap<String, Object>();
-        JSONObject json = JSONObject.parseObject(postData);
+    public String checksmscode(String phone,String code) throws IOException{
         //项目的id  如果为空，则转递空字符串即可！
-        String phone = json.getString("phone"); 
-        String code = json.getString("code"); 
         String result=MobileMessageCheck.checkMsg(phone, code);
-        System.out.println(result);
-        resultmap.put("result", result);
-        return resultmap;
+        return result;
     }
     
     
     
     @RequestMapping(value = "smscodelogin")
-    public String smscodelogin(TUser tUser,Model model){
+    public void smscodelogin(TUser tUser,Model model){
         System.out.println(tUser.gettPhone()+"====");
         User user=tUserService.getUserByPhone(tUser.gettPhone());
         System.out.println(user.getLoginName());
         //发送 POST 请求
-        String sr=HttpRequest.sendPost("http://192.168.1.103:8181/easystar/a/login", "username=15527124409&password=123456");
+        String sr=HttpRequest.sendPost("http://192.168.1.150:8181/easystar/a/login", "username=15527124409&password=123456");
         System.out.println("==___-----"+sr);
-        return "";
+    }
+    
+    /**
+     * 
+      * @Description: 查看用户名是否已经被注册过了
+      * @param username
+      * @return
+      * String 返回类型
+      * @author：dongge
+      * @date：2017年12月14日下午4:16:03
+     */
+    @RequestMapping(value = "checkusername")
+    @ResponseBody
+    public String checkusername(String userName){
+        int count=tUserService.checkusername(userName);
+        String result="1";
+        if(count>0){
+            result="2"; 
+        }
+        return result;
     }
     
     
-    //此处是查看自己的账户的情况的！
-    
-    
-    
+    @RequestMapping(value = "checkphone")
+    @ResponseBody
+    public String checkphone(String phone){
+        int count=tUserService.checkphone(phone);
+        String result="1";
+        if(count>0){
+            result="2"; 
+        }
+        return result;
+    }
 }
    
