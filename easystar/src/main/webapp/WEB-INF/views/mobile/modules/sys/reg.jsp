@@ -19,6 +19,11 @@
 <script type="text/javascript">
     function doGetSmsCode(){
     	var phone=$("#mobile").val();
+    	if(phone==""){
+    		alert("手机号不能为空");
+    		$("#mobile").focus();
+    		return false;
+    	}
     	$.ajax({
     		url:'${ctx}/pay/getSmscode',
     		type:'post',

@@ -143,8 +143,8 @@ function checkuserpass(){
 <body style="background-color:#fff">
 <div class="login-container">
     <header class="login-header-new">
-        <a href="javascript:void(0)http://m.xinli001.com"><i class="icon-arrow-left"></i></a>
-        <a href="javascript:void(0)http://m.xinli001.com"><div class="logo"></div></a>
+<!--         <a href="javascript:void(0)http://m.xinli001.com"><i class="icon-arrow-left"></i></a> -->
+        <a href="javascript:void(0)http://m.xinli001.com"><div class="logo" style="width: 180px;height: 50px;padding-top: 70px;"></div></a>
     </header>
     <section class="login-section">
         <ul class="login-tabs js-tabs">
@@ -234,20 +234,5 @@ function checkuserpass(){
 </div>
 
 
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-74218902-7', 'auto');
-ga('send', 'pageview');
-</script><script type="text/javascript"> 
-     /*创建于2016-06-14*/ 
-     var cpro_id = "u2671677";
-</script>
 <script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script></body>
 </html>

@@ -145,7 +145,6 @@ public class PayController extends BaseController {
 	
 	@RequestMapping(value = "tophoto")
 	public String tophoto(TUser tUser,Model model){
-        tUser.settInviter("15527124409");
         model.addAttribute("tUser", tUser);
         return "modules/sys/mobileslider";
     }
@@ -162,7 +161,6 @@ public class PayController extends BaseController {
 	 */
     @RequestMapping(value = "toreg")
     public String toreg(TUser tUser,Model model){
-    	tUser.settInviter("15527124409");
         model.addAttribute("tUser", tUser);
         return "modules/sys/reg";
     }
@@ -178,16 +176,17 @@ public class PayController extends BaseController {
     public String gettoreg(HttpServletRequest request,TUser tUser,Model model) throws Exception {
         //将对象进行保存-邀请人字段，已经直接映射到对象里了
         systemService.saveRegister(tUser);
+        //通过注册的手机号，查询出当前所对应的t_user表中的id
+        tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
         //注册成功之后就同步生成二维码图片
-        String text ="https://192.168.1.103:8181/easystar/f/pay/toreg?tInviter="+tUser.gettPhone();
+        String text ="http://192.168.1.150:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
         int width = 100;    //二维码图片的宽
         int height = 100;   //二维码图片的高
         String format = "png";  //二维码图片的格式
         String pathname=tUser.gettPhone();
         String pathName=QRCodeEvents.generateQRCode(request,pathname, text, width, height, format);
         //将图片的地址直接存在数据库中
-        System.out.println(pathName+"==========");
-        Map map=new HashMap();
+        Map<String,String> map=new HashMap<String,String>();
         String id=IdGen.uuid();
         map.put("id", id);
         map.put("phone",pathname);

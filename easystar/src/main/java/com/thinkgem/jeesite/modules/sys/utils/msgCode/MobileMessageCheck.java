@@ -57,7 +57,7 @@ public class MobileMessageCheck {
     
     public static void main(String[] args) {
     	try {
-			String result=checkMsg("15527124409","2964");
+			String result=checkMsg("15527124408","8626");
 			System.out.println(result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
