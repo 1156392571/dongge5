@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TErweimaTaskDao">
+    
+	<sql id="tErweimaTaskColumns">
+		a.id AS "id",
+		b.t_phone AS "tetUserid",
+		a.tet_tasktype AS "tetTasktype",
+		a.tet_taskprice AS "tetTaskprice",
+		a.tet_taskstatus AS "tetTaskstatus",
+		a.createtime AS "createtime",
+		a.tet_reserve1 AS "tetReserve1",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tErweimaTaskJoins">
+	left join t_user b on a.tet_userid=b.id
+	</sql>
+    
+	<select id="get" resultType="TErweimaTask">
+		SELECT 
+			<include refid="tErweimaTaskColumns"/>
+		FROM t_erweima_task a
+		<include refid="tErweimaTaskJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TErweimaTask">
+		SELECT 
+			<include refid="tErweimaTaskColumns"/>
+		FROM t_erweima_task a
+		<include refid="tErweimaTaskJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="tetUserid != null and tetUserid != ''">
+				AND a.tet_userid = #{tetUserid}
+			</if>
+			<if test="tetTasktype != null and tetTasktype != ''">
+				AND a.tet_tasktype = #{tetTasktype}
+			</if>
+			<if test="tetTaskprice != null and tetTaskprice != ''">
+				AND a.tet_taskprice = #{tetTaskprice}
+			</if>
+			<if test="tetTaskstatus != null and tetTaskstatus != ''">
+				AND a.tet_taskstatus = #{tetTaskstatus}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				AND a.createtime = #{createtime}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TErweimaTask">
+		SELECT 
+			<include refid="tErweimaTaskColumns"/>
+		FROM t_erweima_task a
+		<include refid="tErweimaTaskJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_erweima_task(
+			id,
+			tet_userid,
+			tet_tasktype,
+			tet_taskprice,
+			tet_taskstatus,
+			createtime,
+			tet_reserve1,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{tetUserid},
+			#{tetTasktype},
+			#{tetTaskprice},
+			#{tetTaskstatus},
+			now(),
+			#{tetReserve1},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_erweima_task SET 	
+			tet_userid = #{tetUserid},
+			tet_tasktype = #{tetTasktype},
+			tet_taskprice = #{tetTaskprice},
+			tet_taskstatus = #{tetTaskstatus},
+			createtime = #{createtime},
+			tet_reserve1 = #{tetReserve1},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_erweima_task SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

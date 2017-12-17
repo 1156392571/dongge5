@@ -186,18 +186,23 @@ public class LoginController extends BaseController{
 			return "redirect:" + adminPath + "/login";
 		}
 		
-		//如果是手机登录成功
-		if(UserAgentUtils.isMobileOrTablet(request)){
-		    System.out.println("==手机登录并返回页面");
-		    return "modules/sys/slider";
-		}
-		
-		
-		
 		
 		User user=UserUtils.getByLoginName(principal.getLoginName());
 		//通过用户名获取t_user表中的信息
 		TUser tUser=tUserService.getUserByLoginName(principal.getLoginName());
+		//如果是手机登录成功
+		if(UserAgentUtils.isMobileOrTablet(request)){
+		    System.out.println("==手机登录并返回页面");
+		    //获取当前的账户二维码图片
+		    String id=tUser.getId();
+		    String url=tUserService.getphotourl(id);
+		    model.addAttribute("url", url);
+		    model.addAttribute("tUser", tUser);
+		    return "modules/sys/mycenter";
+		}
+		
+		
+
 		if("3".equals(user.getUserType())){
 		    System.out.println("普通用户登陆");
             Site site = CmsUtils.getSite(Site.defaultSiteId());

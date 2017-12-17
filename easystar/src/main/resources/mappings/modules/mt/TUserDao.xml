@@ -249,4 +249,90 @@
 	<select id="checkphone" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(1) as count from t_user where t_phone=#{phone}
 	</select>
+	
+	<!-- 通过当前用户id查询出他下面推广的A类的人总数 -->
+	<select id="getcountExtendA" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(a.id) from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_erweima_task c on a.id=c.tet_userid
+		where b.id=#{id} 
+<!-- 		and c.tet_taskstatus='2'and c.tet_tasktype='1' -->
+	</select>
+	
+	<!-- 通过当前用户id查询出他下面推广的B类的人总数 -->
+	<select id="getcountExtendB" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(a.id) from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_user c on b.t_inviter=c.id
+		left join t_erweima_task d on a.id=d.tet_userid
+		where c.id=#{id} 
+<!-- 		 and d.tet_taskstatus='2' and d.tet_tasktype='1' -->
+	</select>
+	
+	<!-- 通过当前用户id查询出他下面推广的C类的人总数 -->
+	<select id="getcountExtendC" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(a.id) from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_user c on b.t_inviter=c.id
+		left join t_user d on c.t_inviter=d.id 
+		left join t_erweima_task e on a.id=e.tet_userid
+		where d.id=#{id} 
+<!-- 		and e.tet_taskstatus='2' and e.tet_tasktype='1' -->
+	</select>
+	
+	<!-- 通过id找到自己当前存储的二维码图片路径 -->
+	<select id="getphotourl" parameterType="java.lang.String" resultType="java.lang.String">
+		select te_codeurl as 'url' from t_erweimacode where te_codeinfo=#{id}
+	</select>
+	
+	<!-- 通过当前用户id查询出他下面推广的A类的人总数 -->
+	<select id="getListExtendA" parameterType="java.lang.String" resultType="tUser">
+		select a.t_phone as 'tPhone','审核成功' as 'reserve2','10' as 'tAcount' from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_erweima_task c on a.id=c.tet_userid
+		where b.id=#{id} 
+<!-- 		and c.tet_taskstatus='2'and c.tet_tasktype='1' -->
+	</select>
+	
+	<!-- 通过当前用户id查询出他下面推广的B类的人总数 -->
+	<select id="getListExtendB" parameterType="java.lang.String" resultType="tUser">
+		select a.t_phone as 'tPhone','审核成功' as 'reserve2','10' as 'tAcount' from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_user c on b.t_inviter=c.id
+		left join t_erweima_task d on a.id=d.tet_userid
+		where c.id=#{id}  
+<!-- 		and d.tet_taskstatus='2' and d.tet_tasktype='1' -->
+	</select>
+	
+	<!-- 通过当前用户id查询出他下面推广的C类的人总数 -->
+	<select id="getListExtendC" parameterType="java.lang.String" resultType="tUser">
+		select a.t_phone as 'tPhone','审核成功' as 'reserve2','10' as 'tAcount' from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_user c on b.t_inviter=c.id
+		left join t_user d on c.t_inviter=d.id 
+		left join t_erweima_task e on a.id=e.tet_userid
+		where d.id=#{id} 
+<!-- 		and e.tet_taskstatus='2' and e.tet_tasktype='1' -->
+	</select>
+	
+	<!-- 这里是推广之后的奖励 -->
+	<update id="updAcount" parameterType="TErweimaTask">
+		update t_user set t_acount=t_acount+#{tetTaskprice} where id=#{tetUserid}
+	</update>
+	<!-- 上一级奖励 -->
+	<update id="updAcountA">
+		update t_user a set a.t_acount=a.t_acount+10 where a.id=
+		(select c.id from (select b.t_inviter as 'id' from t_user b where b.id=#{id})c)
+	</update>
+	<!-- 上两级奖励 -->
+	<update id="updAcountB">
+		update t_user set t_acount=t_acount+5 where id=(select c.id from (select a.t_inviter as 'id' from t_user a,t_user b 
+		where a.id=b.t_inviter and b.id=#{id})c)
+	</update>
+	<!-- 上三级奖励 -->
+	<update id="updAcountC">
+		update t_user set t_acount=t_acount+5 where id=
+		(select d.id from(select a.t_inviter as 'id' from t_user a,t_user b,t_user c where c.t_inviter=b.id and b.t_inviter=a.id and c.id=#{id})d)
+	</update>
+	
 </mapper>

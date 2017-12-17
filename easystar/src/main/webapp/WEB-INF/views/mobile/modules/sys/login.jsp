@@ -122,7 +122,7 @@ function checksms(){
 }
 
 
-function checkuserpass(){
+function userlogin(){
 	var username=$("#loginName").val();
 	var password=$("#password").val();
 	if(username==""){
@@ -134,6 +134,9 @@ function checkuserpass(){
 		alert("用户名不能为空");
 		$("#password").focus();
 		return false;
+	}
+	if(username!=""&&password!=""){
+		$("#formsubmit").submit();
 	}
 }
 </script>
@@ -168,11 +171,11 @@ function checkuserpass(){
                     </div>
                     <div id="popup-captcha"></div>
                 </div>
-                <input type="submit" class="login-btn" id="login-btn-username" onclick="checksms()" value="登录">
+                <input type="button" class="login-btn" id="login-btn-username" onclick="checksms()" value="登录">
             </div>
             
             <!-- 这里是普通的账户密码登录 -->
-            <form id="formsubmit" action="${pageContext.request.contextPath}/a/login" method="post" onsubmit="return checkuserpass();">
+            <form id="formsubmit" action="${pageContext.request.contextPath}/a/login" method="post">
             <div class="js-tabcont">
                 <div class="login-input-group" id="login-form-username">
                     <div class="login-input-item">
@@ -186,7 +189,7 @@ function checkuserpass(){
                         <i class="clear"></i>
                     </div>
                 </div>
-                <input type="submit" class="login-btn" id="login-btn-username" value="登录">
+                <input type="button" class="login-btn" id="login-btn-username" value="登录" onclick="userlogin()">
                 <p class="login-tips">忘记密码如何登录？</p>
             </div>
             </form>
@@ -227,7 +230,7 @@ function checkuserpass(){
         <div class="forget-pwd-content">
             <h1 class="forget-pwd-title">忘记密码</h1>
             <p class="txt"><strong>手机号</strong>用户可使用「手机号+验证码」登录；</p>
-            <p class="txt"><strong>邮箱账号</strong>用户可在电脑上登录米兔网站找回密码。</p>
+            <p class="txt"><strong>普通账号</strong>用户可在电脑上登录米兔网站找回密码。</p>
             <div class="ok">我知道了</div>
         </div>
     </section>

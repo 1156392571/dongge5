@@ -3,10 +3,13 @@
  */
 package com.thinkgem.jeesite.modules.mt.dao;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
+import com.thinkgem.jeesite.modules.mt.entity.TErweimaTask;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 
@@ -37,5 +40,27 @@ public interface TUserDao extends CrudDao<TUser> {
     int checkphone(String phone);
 
 	TUser getTUserByPhone(String tPhone);
+
+	int getcountExtendA(String id);
+
+	int getcountExtendB(String id);
+
+	int getcountExtendC(String id);
+
+	String getphotourl(String id);
+
+	List<TUser> getListExtendA(String id);
+
+	List<TUser> getListExtendB(String id);
+
+	List<TUser> getListExtendC(String id);
+
+	void updAcount(TErweimaTask tErweimaTask);
+
+	void updAcountA(String id);
+
+	void updAcountB(String id);
+
+	void updAcountC(String id);
 	
 }

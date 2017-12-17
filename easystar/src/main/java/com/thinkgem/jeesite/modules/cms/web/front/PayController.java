@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +54,11 @@ import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.MatrixToImageWriter;
 import com.thinkgem.jeesite.modules.sys.utils.QRCodeEvents;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import com.thinkgem.jeesite.modules.sys.utils.http.HttpRequest;
 import com.thinkgem.jeesite.modules.sys.utils.msgCode.MobileMessageCheck;
 import com.thinkgem.jeesite.modules.sys.utils.msgCode.SendCode;
@@ -179,11 +183,12 @@ public class PayController extends BaseController {
         //通过注册的手机号，查询出当前所对应的t_user表中的id
         tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
         //注册成功之后就同步生成二维码图片
-        String text ="http://192.168.1.150:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
+//        String text ="http://192.168.1.103:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
+        String text ="http://120.78.211.240/easystar/f/pay/tophoto?tInviter="+tUser.getId();
         int width = 100;    //二维码图片的宽
         int height = 100;   //二维码图片的高
         String format = "png";  //二维码图片的格式
-        String pathname=tUser.gettPhone();
+        String pathname=tUser.getId();
         String pathName=QRCodeEvents.generateQRCode(request,pathname, text, width, height, format);
         //将图片的地址直接存在数据库中
         Map<String,String> map=new HashMap<String,String>();
@@ -192,7 +197,12 @@ public class PayController extends BaseController {
         map.put("phone",pathname);
         map.put("pathName",pathName);
         tUserService.addpicturecode(map);
-        return "redirect:"+Global.getAdminPath()+"/pay/tologin?repage";
+        String url=tUserService.getphotourl(pathname);
+	    model.addAttribute("url", url);
+//	    String result=HttpRequest.sendPost("http://192.168.1.103:8181/easystar/a/login", "username="+tUser.gettLoginname()+"&password="+tUser.getReserve1());
+//	    System.out.println(result);
+//	    return "modules/sys/mycenter";
+        return "redirect:"+Global.getFrontPath()+"/pay/tologin?repage";
     } 
 	
     /**
@@ -208,6 +218,57 @@ public class PayController extends BaseController {
     public String login(TUser tUser,Model model){
         return "modules/sys/login";
     }
+    
+    
+    /**
+     * 跳转到我的推广页面
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "toextend")
+    public String toextend(TUser tUser,Model model){
+    	//获取当前用户的id
+    	Principal principal = UserUtils.getPrincipal();
+    	tUser=tUserService.getUserByLoginName(principal.getLoginName());
+    	String id=tUser.getId();
+    	//通过当前用户id获取推广A类下的总人数
+    	int extendA=tUserService.getcountExtendA(id);
+    	int extendB=tUserService.getcountExtendB(id);
+    	int extendC=tUserService.getcountExtendC(id);
+    	int extendAll=extendA+extendB+extendC;
+    	model.addAttribute("extendA", extendA);
+    	model.addAttribute("extendB", extendB);
+    	model.addAttribute("extendC", extendC);
+    	model.addAttribute("extendAll", extendAll);
+        return "modules/sys/myextend";
+    }
+    
+    /**
+     * 跳转到我的推广人数详细页面
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "toextenddetail")
+    public String toextenddetail(String type,Model model){
+    	//获取当前用户的id
+    	Principal principal = UserUtils.getPrincipal();
+    	TUser tUser=tUserService.getUserByLoginName(principal.getLoginName());
+    	String id=tUser.getId();
+    	//通过传递过来的类型，判断是A,B，C类
+    	List<TUser> extendList=new ArrayList<TUser>();
+    	if("A".equals(type)){
+    		extendList=tUserService.getListExtendA(id);
+    	}else if("B".equals(type)){
+    		extendList=tUserService.getListExtendB(id);
+    	}else if("C".equals(type)){
+    		extendList=tUserService.getListExtendC(id);
+    	}
+    	model.addAttribute("extendList", extendList);
+        return "modules/sys/myextenddetail";
+    }
+    
     
     /**
       * @Description: 发送验证码

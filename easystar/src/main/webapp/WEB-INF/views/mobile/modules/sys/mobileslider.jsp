@@ -42,16 +42,17 @@
     var reg=location.search.match(/ts=([^&]*)/),
 		ts=reg&&reg[1]||'flip3d',
 		a=new pageSwitch('pages',{
-        duration:1000,
+        duration:500,
         start:0,
         direction:0,
         loop:false,
         ease:'ease',
-        transition:ts,
+        transition:'slide',
 		freeze:false,
 		mouse:true,
         mousewheel:true,
-        arrowkey:true
+        arrowkey:true,
+        autoplay:true
     });
 	
 	/*

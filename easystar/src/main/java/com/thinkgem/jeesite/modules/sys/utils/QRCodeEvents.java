@@ -53,7 +53,7 @@ public class QRCodeEvents{
         //        String pathName = "F:/"+pathname+".png";
         File outputFile = new File(pathName);
         MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile);
-        return pathName;
+        return filePathGen;
     }
     
     /**

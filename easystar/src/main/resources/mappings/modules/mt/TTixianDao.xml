@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TTixianDao">
+    
+	<sql id="tTixianColumns">
+		a.id AS "id",
+		b.t_phone AS "ttUserid",
+		a.tt_getcashcount AS "ttGetcashcount",
+		a.tt_getcashstatus AS "ttGetcashstatus",
+		a.tt_alipay AS "ttAlipay",
+		a.createtime AS "createtime",
+		a.tt_reserve1 AS "ttReserve1",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tTixianJoins">
+	left join t_user b on a.tt_userid=b.id 
+	</sql>
+    
+	<select id="get" resultType="TTixian">
+		SELECT 
+			<include refid="tTixianColumns"/>
+		FROM t_tixian a
+		<include refid="tTixianJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TTixian">
+		SELECT 
+			<include refid="tTixianColumns"/>
+		FROM t_tixian a
+		<include refid="tTixianJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="ttUserid != null and ttUserid != ''">
+				AND b.t_phone = #{ttUserid}
+			</if>
+			<if test="ttGetcashstatus != null and ttGetcashstatus != ''">
+				AND a.tt_getcashstatus = #{ttGetcashstatus}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TTixian">
+		SELECT 
+			<include refid="tTixianColumns"/>
+		FROM t_tixian a
+		<include refid="tTixianJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_tixian(
+			id,
+			tt_userid,
+			tt_getcashcount,
+			tt_getcashstatus,
+			tt_alipay,
+			createtime,
+			tt_reserve1,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{ttUserid},
+			#{ttGetcashcount},
+			#{ttGetcashstatus},
+			#{ttAlipay},
+			now(),
+			#{ttReserve1},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_tixian SET 	
+			tt_userid = #{ttUserid},
+			tt_getcashcount = #{ttGetcashcount},
+			tt_getcashstatus = #{ttGetcashstatus},
+			createtime = #{createtime},
+			tt_reserve1 = #{ttReserve1},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_tixian SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 更新提现状态 -->
+	<update id="updatestatus" parameterType="TTixian">
+		update t_tixian set tt_getcashstatus='2' where id=#{id}
+	</update>
+	
+</mapper>
