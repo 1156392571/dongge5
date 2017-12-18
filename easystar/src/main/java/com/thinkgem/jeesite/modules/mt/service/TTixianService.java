@@ -51,5 +51,11 @@ public class TTixianService extends CrudService<TTixianDao, TTixian> {
 	public void updatestatus(TTixian tTixian) {
 		tTixianDao.updatestatus(tTixian);
 	}
+
+	@Transactional(readOnly = false)
+    public void updatAacountByid(TTixian tTixian)
+    {
+	    tTixianDao.updatAacountByid(tTixian);
+    }
 	
 }

@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.mt.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.hibernate.validator.constraints.Length;
@@ -18,7 +19,7 @@ public class TTixian extends DataEntity<TTixian> {
 	
 	private static final long serialVersionUID = 1L;
 	private String ttUserid;		// 对应的用户id
-	private String ttGetcashcount;		// 提现金额
+	private BigDecimal ttGetcashcount;		// 提现金额
 	private String ttGetcashstatus;		// 提现状态：1.待打款2.已打款
 	private String ttAlipay;		// 支付宝账号
 	private Date createtime;		// 创建时间
@@ -41,15 +42,17 @@ public class TTixian extends DataEntity<TTixian> {
 		this.ttUserid = ttUserid;
 	}
 	
-	public String getTtGetcashcount() {
-		return ttGetcashcount;
-	}
+	public BigDecimal getTtGetcashcount()
+    {
+        return ttGetcashcount;
+    }
 
-	public void setTtGetcashcount(String ttGetcashcount) {
-		this.ttGetcashcount = ttGetcashcount;
-	}
-	
-	public String getTtGetcashstatus() {
+    public void setTtGetcashcount(BigDecimal ttGetcashcount)
+    {
+        this.ttGetcashcount = ttGetcashcount;
+    }
+
+    public String getTtGetcashstatus() {
 		return ttGetcashstatus;
 	}
 

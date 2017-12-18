@@ -3,6 +3,10 @@
  */
 package com.thinkgem.jeesite.modules.mt.web;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,10 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.alibaba.fastjson.JSONObject;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
@@ -97,14 +104,37 @@ public class TTixianController extends BaseController {
 	}
 	
 	
-	@RequiresPermissions("mt:tTixian:edit")
 	@RequestMapping(value = "tixiansubmit")
-	public String tixiansubmit(TTixian tTixian, RedirectAttributes redirectAttributes) {
+	@ResponseBody
+	public Map<String,Object> tixiansubmit(@RequestBody String postData, 
+            HttpServletRequest req, HttpServletResponse res) {
+	    Map<String,Object> resultmap=new HashMap<String, Object>();
+        JSONObject json = JSONObject.parseObject(postData);
+        BigDecimal ttGetcashcount = new BigDecimal(json.getString("ttGetcashcount"));
+        String ttAlipay = json.getString("ttAlipay");
+        TTixian tTixian=new TTixian();
+        tTixian.setTtGetcashcount(ttGetcashcount);
+        tTixian.setTtAlipay(ttAlipay);
+        tTixian.setTtGetcashstatus("1");
 		Principal principal=UserUtils.getPrincipal();
 		TUser tUser=tUserService.getUserByLoginName(principal.getLoginName());
 		tTixian.setTtUserid(tUser.getId());
+		String code="";
+		String msg="";
 		tTixianService.save(tTixian);
-		addMessage(redirectAttributes, "保存提现记录表成功");
-		return "redirect:"+Global.getAdminPath()+"/mt/tTixian/?repage";
+        //保存的同时进行更新操作
+        tTixianService.updatAacountByid(tTixian);
+		try{
+	        code="1";
+	        msg="提现申请已提交，到账时间为一个工作日内";
+        }
+        catch (Exception e){
+            e.getMessage();
+            code="0";
+            msg="提现申请失败！！";
+        }
+		resultmap.put("code", code);
+		resultmap.put("msg", msg);
+		return resultmap;
 	}
 }

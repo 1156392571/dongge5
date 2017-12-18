@@ -104,11 +104,12 @@
 				<li class="renyuanitem" onclick="todetail('A')">
 					<div>
 						<div class="renyuanleft">
-							<p>收营员1</p>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/A.png"></span>
+							<span>收营员A</span></p>
 						</div>
 						<div class="renyuanright">
-							<p>直接 6 人</p>
-							<p>间接 6 人</p>
+<!-- 							<p>直接 6 人</p> -->
+<!-- 							<p>间接 6 人</p> -->
 						</div>
 					</div>
 				</li>

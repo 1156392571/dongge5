@@ -16,5 +16,7 @@ import com.thinkgem.jeesite.modules.mt.entity.TTixian;
 public interface TTixianDao extends CrudDao<TTixian> {
 
 	void updatestatus(TTixian tTixian);
+
+    void updatAacountByid(TTixian tTixian);
 	
 }

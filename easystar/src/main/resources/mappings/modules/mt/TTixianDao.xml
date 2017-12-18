@@ -128,4 +128,9 @@
 		update t_tixian set tt_getcashstatus='2' where id=#{id}
 	</update>
 	
+	<!-- 更新账户余额 -->
+	<update id="updatAacountByid" parameterType="TTixian">
+		update t_user set t_acount=t_acount-#{ttGetcashcount}  where id=#{ttUserid}
+	</update>
+	
 </mapper>
