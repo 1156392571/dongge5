@@ -116,10 +116,11 @@
 .tixian {
 	width: 50px;
 	height: 30px;
+	background-color:#2984d1;
 	line-height: 30px;
-	border: 1px red solid;
-	border-radius: 5px;
+	border-radius: 4px;
 	display: block;
+	color: #fff;
 }
 
 .mui-popup.mui-popup-in {
