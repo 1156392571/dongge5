@@ -219,6 +219,23 @@ public class PayController extends BaseController {
         return "modules/sys/login";
     }
     
+    /**
+     * 
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "tomycenter")
+    public String tomycenter(TUser tUser,Model model){
+    	Principal principal = UserUtils.getPrincipal();
+    	tUser=tUserService.getUserByLoginName(principal.getLoginName());
+    	String id=tUser.getId();
+	    String url=tUserService.getphotourl(id);
+	    model.addAttribute("url", url);
+	    model.addAttribute("tUser", tUser);
+	    return "modules/sys/mycenter";
+    }
+    
     
     /**
      * 跳转到我的推广页面

@@ -13,9 +13,9 @@
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
 <title>我的推广</title>
-<link rel="stylesheet"
-	href="${ctxStatic}/reg-login/css/mstyle.css">
-
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
+<link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/style.css">
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
 <style>
 .tuiguang {
 	font-size: 16px;
@@ -116,31 +116,42 @@
 				<li class="renyuanitem" onclick="todetail('B')">
 					<div>
 						<div class="renyuanleft">
-							<p>收营员2</p>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/A.png"></span>
+							<span>收营员B</span></p>
 						</div>
 						<div class="renyuanright">
-							<p>直接 6 人</p>
-							<p>间接 6 人</p>
+<!-- 							<p>直接 6 人</p> -->
+<!-- 							<p>间接 6 人</p> -->
 						</div>
 					</div>
 				</li>
 				<li class="renyuanitem" onclick="todetail('C')">
 					<div>
 						<div class="renyuanleft">
-							<p>收营员3</p>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/A.png"></span>
+							<span>收营员C</span></p>
 						</div>
 						<div class="renyuanright">
-							<p>直接 6 人</p>
-							<p>间接 6 人</p>
+<!-- 							<p>直接 6 人</p> -->
+<!-- 							<p>间接 6 人</p> -->
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</section>
+	<!-- 
 	<div class="btn5" style="margin-top: 12px">
 		<input type="button" id="submitBtn" value="返&nbsp;&nbsp;回" onclick="history.go(-1)">
 	</div>
+ 	-->
+ 	
+	<footer class="disBox">
+		<a href="#"><i class="f-icon01"></i>首页</a>
+		<a href="#"><i class="f-icon02"></i>任务</a>
+		<a href="${ctx}/pay/toextend"  class="cur"><i class="f-icon03"></i>推广</a>
+		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
+	</footer>
 
 </body>
 </html>

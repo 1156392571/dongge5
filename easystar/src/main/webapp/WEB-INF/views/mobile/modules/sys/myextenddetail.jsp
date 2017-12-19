@@ -13,9 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
 <title>我的推广</title>
-<link rel="stylesheet"
-	href="${ctxStatic}/reg-login/css/mstyle.css">
-
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
 <style>
     	.tuiguang{
 		    font-size: 16px;
@@ -70,9 +68,82 @@
 			width: 50%;
 			height: auto;
 		}
+		
+		.m-background{
+	display: flex;
+	flex-direction: column;
+}
+.m-background .m-box{
+	position: absolute;
+	top: 179px;
+	width: 100%;
+	height: calc(100% - 180px);
+	background-repeat:no-repeat;
+	background-image: url('${ctxStatic}/reg-login/images/img/backgrounds/bj2.jpg');
+	display: flex;
+	justify-content: center;
+}
+.m-background .m-box .list{
+	width: 100%;
+	height: 90%;
+	overflow: auto;
+}
+.m-background .m-box .list .item{
+	display: flex;
+	justify-content: space-between;
+	padding: 2%;
+	font-size: 12px;
+}
+.m-background .m-box .head{
+	display: flex;
+	justify-content: space-between;
+	padding: 2%;
+	font-size: 12px;
+}
+.m-background .m-box .head div{
+	width: 32%;
+	text-align: center;
+}
+.m-background .m-box .list .item div{
+	width: 32%;
+	text-align: center;
+}
+/*.m-background .m-box .left{
+	text-align: left;
+}
+.m-background .m-box .center{
+	text-align: center;
+}
+.m-background .m-box .right{
+	text-align: right;
+}*/
+.m-background .m-box .box{
+	width: 79%;
+	height: 75%;
+	margin-top: 1%;
+	background-color: #FCE466;
+	border: 1px solid #F8BC33;
+	border-radius: 5px;
+
+}
+.m-background .img{
+ 	background-image: url('${ctxStatic}/reg-login/images/img/backgrounds/bj1.jpg');
+ 	background-size: 100% 100%;  
+ 	height: 180px;
+ 	width: 100%;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+img{
+	margin: 0;
+	padding: 0;
+}
     </style>
 </head>
 <body>
+<!-- 
 	<nav class="nav3 p">
 		<strong>我的账号</strong>
 	</nav>
@@ -118,6 +189,67 @@
 	
 	<div class="btn5" style="margin-top: 20px">
 		<input type="button" id="submitBtn" value="返&nbsp;&nbsp;回" onclick="history.go(-1)">
+	</div>
+	-->
+	<div class="m-background">
+		<!-- <img class="img" src="../img/bj1.jpg"> -->
+		<div class="img"></div>
+		<div class="m-box">
+			<div class="box">
+				<div class="head">
+					<div class="left">好友</div>
+					<div class="center">审核状态</div>
+					<div class="right">奖励金</div>
+				</div>
+				<div class="list">
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+					<div class="item">
+						<div class="left">155****4418</div>
+						<div class="center">审核成功</div>
+						<div class="right">￥10</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

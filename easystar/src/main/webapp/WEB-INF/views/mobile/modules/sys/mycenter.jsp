@@ -14,6 +14,8 @@
 <title>我的中心</title>
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
 <link href="${ctxStatic}/reg-login/css/iconfont1.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/style.css">
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
 <style>
 .tuiguang {
 	font-size: 16px;
@@ -116,7 +118,7 @@
 .tixian {
 	width: 50px;
 	height: 30px;
-	background-color:#2984d1;
+	background-color: #2984d1;
 	line-height: 30px;
 	border-radius: 4px;
 	display: block;
@@ -226,12 +228,24 @@
 .form-text-login {
 	padding: 0 4px 0 6px !important;
 }
+
+.home {
+	font-size: 20px
+}
+
+.icon-gouwuche-copy {
+	font-size: 18px;
+}
+
+.icon-yonghu {
+	font-size: 22px
+}
 </style>
 </head>
 <body>
 	<input type="hidden" id="acountmoney" value="${tUser.tAcount}">
 	<nav class="nav3 p">
-		<strong>我的账号</strong>
+		<strong>我的账号</strong><i class="btn3"><a href="${pageContext.request.contextPath}/a/logout">退出</a></i>
 	</nav>
 	<section class="form-group" id="inputObj">
 		<div class="touxiang">
@@ -251,12 +265,12 @@
 			<div class="mui-popup-title" style="text-align: center;">提现金额</div>
 			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
 				<div class="form-text-login">
-					<input type="text" id="txzhifubao" name="txzhifubao" class="form-text" placeholder="提现支付宝账号" value="" >
+					<input type="text" id="txzhifubao" name="txzhifubao" class="form-text" placeholder="提现支付宝账号" value="" style="padding: 0px;">
 				</div>
 			</div>
 			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
 				<div class="form-text-login">
-					<input type="text" id="txjine" name="txjine" class="form-text" placeholder="请输入提现金额" value="" >
+					<input type="text" id="txjine" name="txjine" class="form-text" placeholder="请输入提现金额" value="" style="padding: 0px;">
 				</div>
 			</div>
 			<div class="mui-popup-text" style="text-align: left;"><laberl style="font-size: 12px;text-align: left;color: #bbb;">*当前可提现金额为${tUser.tAcount}元</laberl></div>
@@ -269,10 +283,10 @@
 		</div>
 	</div>
 	
-	
 	<section class="form-group" id="inputObj">
 		<div>
 			<ul class="xuanxiang">
+				<!-- 
 				<a href="${ctx}/pay/toextend"><li class="renyuanitem left">
 					<div>
 						<div class="renyuanleft">
@@ -280,6 +294,7 @@
 						</div>
 					</div>
 				</li></a>
+				 -->
 				<a><li class="renyuanitem erweima left">
 					<div>
 						<div class="renyuanleft">
@@ -296,9 +311,19 @@
 			</ul>
 		</div>
 	</section>
+	<!-- 
 	<div class="btn5" style="margin-top: 12px">
 		<input type="button" id="submitBtn" value="退&nbsp;&nbsp;出" onclick="logout()">
 	</div>
+	 -->
+	
+	<footer class="disBox">
+		<a href="#"><i class="f-icon01"></i>首页</a>
+		<a href="#"><i class="f-icon02"></i>任务</a>
+		<a href="${ctx}/pay/toextend"><i class="f-icon03"></i>推广</a>
+		<a href="${ctx}/pay/tomycenter" class="cur"><i class="f-icon04"></i>我的</a>
+	</footer>
+	
 </body>
 <script src="${ctxStatic}/reg-login/js/jquery.js"></script>
 <script>
@@ -384,4 +409,5 @@
 		window.location.href="${pageContext.request.contextPath}/a/logout";		
 	}
 </script>
+
 </html>
