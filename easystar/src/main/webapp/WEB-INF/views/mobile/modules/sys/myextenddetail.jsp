@@ -14,6 +14,8 @@
 <meta name="format-detection" content="telephone=no">
 <title>我的推广</title>
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
+<link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/style.css">
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
 <style>
     	.tuiguang{
 		    font-size: 16px;
@@ -43,7 +45,7 @@
     	.renyuanleft span{
     		display: inline-block;
 		    line-height: 34px;
-    		font-size: 10px;
+    		font-size: 14px;
     	}
     	.leftlabel{
 		    float: left;
@@ -143,9 +145,8 @@ img{
     </style>
 </head>
 <body>
-<!-- 
 	<nav class="nav3 p">
-		<strong>我的账号</strong>
+		<strong>我的推广</strong>
 	</nav>
 	<section class="form-group" id="inputObj">
 		<div class="tuiguang">
@@ -187,69 +188,11 @@ img{
 		</div>
 	</section>
 	
-	<div class="btn5" style="margin-top: 20px">
-		<input type="button" id="submitBtn" value="返&nbsp;&nbsp;回" onclick="history.go(-1)">
-	</div>
-	-->
-	<div class="m-background">
-		<!-- <img class="img" src="../img/bj1.jpg"> -->
-		<div class="img"></div>
-		<div class="m-box">
-			<div class="box">
-				<div class="head">
-					<div class="left">好友</div>
-					<div class="center">审核状态</div>
-					<div class="right">奖励金</div>
-				</div>
-				<div class="list">
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-					<div class="item">
-						<div class="left">155****4418</div>
-						<div class="center">审核成功</div>
-						<div class="right">￥10</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<footer class="disBox">
+<!-- 		<a href="#"><i class="f-icon01"></i>首页</a> -->
+		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
+		<a href="${ctx}/pay/toextend" class="cur"><i class="f-icon03"></i>推广</a>
+		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
+	</footer>
 </body>
 </html>

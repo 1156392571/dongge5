@@ -433,5 +433,16 @@ public class PayController extends BaseController {
         }
         return result;
     }
+    
+    /**
+     * 
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "tomytask")
+    public String tomytask(TUser tUser,Model model){
+        return "modules/sys/mytask";
+    }
 }
    

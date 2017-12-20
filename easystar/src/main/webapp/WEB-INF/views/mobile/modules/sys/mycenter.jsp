@@ -319,8 +319,8 @@
 	 -->
 	
 	<footer class="disBox">
-		<a href="#"><i class="f-icon01"></i>首页</a>
-		<a href="#"><i class="f-icon02"></i>任务</a>
+<!-- 		<a href="#"><i class="f-icon01"></i>首页</a> -->
+		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
 		<a href="${ctx}/pay/toextend"><i class="f-icon03"></i>推广</a>
 		<a href="${ctx}/pay/tomycenter" class="cur"><i class="f-icon04"></i>我的</a>
 	</footer>

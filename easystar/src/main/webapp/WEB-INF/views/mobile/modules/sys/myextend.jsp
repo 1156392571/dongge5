@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
 <link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/style.css">
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
+<link href="${ctxStatic}/reg-login/css/iconfont1.css" rel="stylesheet" type="text/css" />
+
 <style>
 .tuiguang {
 	font-size: 16px;
@@ -39,12 +41,13 @@
 }
 
 .renyuanleft {
-	width: 60%;
+	width: 95%;
 	float: left;
 }
 
 .renyuanleft p {
 	line-height: 38px;
+	float: left;
 }
 
 .renyuanright {
@@ -76,6 +79,14 @@
 	width: 50%;
 	height: auto;
 }
+.left:after {
+	font-family: "iconfont" !important;
+	color: #333;
+	content: "\e507";
+	line-height: 38px;
+	float: right;
+	padding-right: 8px;
+}
 </style>
 <script type="text/javascript">
 	function todetail(type){
@@ -103,37 +114,29 @@
 			<ul>
 				<li class="renyuanitem" onclick="todetail('A')">
 					<div>
-						<div class="renyuanleft">
+						<div class="renyuanleft left">
 							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA1.png"></span>
 							<span>收营员A</span></p>
 						</div>
-						<div class="renyuanright">
+<!-- 						<div class="renyuanright"> -->
 <!-- 							<p>直接 6 人</p> -->
 <!-- 							<p>间接 6 人</p> -->
-						</div>
+<!-- 						</div> -->
 					</div>
 				</li>
 				<li class="renyuanitem" onclick="todetail('B')">
 					<div>
-						<div class="renyuanleft">
+						<div class="renyuanleft left">
 							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA2.png"></span>
 							<span>收营员B</span></p>
-						</div>
-						<div class="renyuanright">
-<!-- 							<p>直接 6 人</p> -->
-<!-- 							<p>间接 6 人</p> -->
 						</div>
 					</div>
 				</li>
 				<li class="renyuanitem" onclick="todetail('C')">
 					<div>
-						<div class="renyuanleft">
+						<div class="renyuanleft left">
 							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA3.png"></span>
 							<span>收营员C</span></p>
-						</div>
-						<div class="renyuanright">
-<!-- 							<p>直接 6 人</p> -->
-<!-- 							<p>间接 6 人</p> -->
 						</div>
 					</div>
 				</li>
@@ -147,8 +150,8 @@
  	-->
  	
 	<footer class="disBox">
-		<a href="#"><i class="f-icon01"></i>首页</a>
-		<a href="#"><i class="f-icon02"></i>任务</a>
+<!-- 		<a href="#"><i class="f-icon01"></i>首页</a> -->
+		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
 		<a href="${ctx}/pay/toextend"  class="cur"><i class="f-icon03"></i>推广</a>
 		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
 	</footer>
