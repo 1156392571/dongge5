@@ -108,12 +108,10 @@
     		$("#mobile").focus();
     		return false;
     	}
-    	/*
     	if(!checksmscode()){
     		alert("验证码错误");
     		return false;
     	}
-    	*/
     }
     </script>
 </head>

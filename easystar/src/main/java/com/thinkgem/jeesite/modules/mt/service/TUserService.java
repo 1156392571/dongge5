@@ -146,4 +146,16 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 	public void updAcountC(String id) {
 		tUserDao.updAcountC(id);
 	}
+
+	@Transactional(readOnly = false)
+    public void updAllsignBytimer()
+    {
+	    tUserDao.updAllsignBytimer();
+    }
+
+	@Transactional(readOnly = false)
+    public void register(String loginName)
+    {
+	    tUserDao.register(loginName);
+    }
 }

@@ -88,7 +88,7 @@
 <nav class="nav3 p">
 		<strong>我的推广</strong>
 	</nav>
-	<section class="form-group" id="inputObj">
+	<section class="form-group" id="inputObj" style="background-image: url('${ctxStatic}/reg-login/images/img/backgrounds/tuiguangback.png');">
 		<div class="tuiguang">
 			<p>累计推广(人)</p>
 			<p class="tuiguangnum">${extendAll}</p>
@@ -104,7 +104,7 @@
 				<li class="renyuanitem" onclick="todetail('A')">
 					<div>
 						<div class="renyuanleft">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/A.png"></span>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA1.png"></span>
 							<span>收营员A</span></p>
 						</div>
 						<div class="renyuanright">
@@ -116,7 +116,7 @@
 				<li class="renyuanitem" onclick="todetail('B')">
 					<div>
 						<div class="renyuanleft">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/A.png"></span>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA2.png"></span>
 							<span>收营员B</span></p>
 						</div>
 						<div class="renyuanright">
@@ -128,7 +128,7 @@
 				<li class="renyuanitem" onclick="todetail('C')">
 					<div>
 						<div class="renyuanleft">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/A.png"></span>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA3.png"></span>
 							<span>收营员C</span></p>
 						</div>
 						<div class="renyuanright">

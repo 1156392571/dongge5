@@ -334,5 +334,12 @@
 		update t_user set t_acount=t_acount+5 where id=
 		(select d.id from(select a.t_inviter as 'id' from t_user a,t_user b,t_user c where c.t_inviter=b.id and b.t_inviter=a.id and c.id=#{id})d)
 	</update>
-	
+	<!-- 每天凌晨更新签到信息 -->
+	<update id="updAllsignBytimer">
+		update t_user set reserve2='1'
+	</update>
+	<!-- 通过登录名设置状态为已签到 -->
+	<update id="register">
+		update t_user set reserve2='2' where t_loginname=#{loginName}
+	</update>
 </mapper>

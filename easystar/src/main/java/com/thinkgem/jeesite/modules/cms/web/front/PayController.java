@@ -147,6 +147,15 @@ public class PayController extends BaseController {
         response.setStatus(200);
 	}
 	
+	/**
+	  * @Description: 扫描二维码图片之后进行图片轮播
+	  * @param tUser  邀请人的id信息
+	  * @param model
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年12月20日下午1:06:48
+	 */
 	@RequestMapping(value = "tophoto")
 	public String tophoto(TUser tUser,Model model){
         model.addAttribute("tUser", tUser);
@@ -156,7 +165,7 @@ public class PayController extends BaseController {
 	/**
 	 * 
 	  * @Description:扫码之后跳转到这个注册的页面，此时是含有邀请人链接的
-	  * @param tUser
+	  * @param tUser 邀请人的id信息
 	  * @param model
 	  * @return
 	  * String 返回类型
@@ -326,7 +335,16 @@ public class PayController extends BaseController {
     }
     
     
-    
+    /**
+     * 通过手机号获取当前的账户密码信息
+      * @Description: 短信验证码登录的接口
+      * @param tUser
+      * @param model
+      * @return
+      * Map<String,String> 返回类型
+      * @author：dongge
+      * @date：2017年12月20日下午1:05:42
+     */
     @RequestMapping(value = "smscodelogin")
     @ResponseBody
     public Map<String,String> smscodelogin(TUser tUser,Model model){
@@ -363,7 +381,15 @@ public class PayController extends BaseController {
         return result;
     }
     
-    
+    /**
+     * 
+      * @Description: 查看数据库中是否已经含有相同的手机号码了
+      * @param phone
+      * @return
+      * String 返回类型
+      * @author：dongge
+      * @date：2017年12月20日下午1:03:36
+     */
     @RequestMapping(value = "checkphone")
     @ResponseBody
     public String checkphone(String phone){
@@ -371,6 +397,39 @@ public class PayController extends BaseController {
         String result="1";
         if(count>0){
             result="2"; 
+        }
+        return result;
+    }
+    
+    /**
+     * 
+      * @Description: 签到信息
+      * @param tUser
+      * @return
+      * String 返回类型
+      * @author：dongge
+      * @date：2017年12月20日下午1:09:34
+     */
+    @RequestMapping(value = "register")
+    @ResponseBody
+    public String register(TUser tUser){
+        String result="0";
+        //获取当前用户信息
+        Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取登录状态
+        tUser=tUserService.getUserByLoginName(loginName);
+        if("1".equals(tUser.getReserve2())){
+            //说明还未签到
+            try{
+                tUserService.register(loginName);
+                result="1";
+            }
+            catch (Exception e){
+                e.getMessage();
+            }
+        }else{
+            result="2";
         }
         return result;
     }

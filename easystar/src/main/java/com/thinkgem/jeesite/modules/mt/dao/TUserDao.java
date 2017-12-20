@@ -62,5 +62,9 @@ public interface TUserDao extends CrudDao<TUser> {
 	void updAcountB(String id);
 
 	void updAcountC(String id);
+
+    void updAllsignBytimer();
+
+    void register(String loginName);
 	
 }
