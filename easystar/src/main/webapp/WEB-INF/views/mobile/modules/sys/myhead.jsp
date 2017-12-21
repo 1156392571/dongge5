@@ -217,28 +217,28 @@ a {
 			<div class="concer">
 				<p>精彩应用</p>
 				<div class="col-3 t1">
-					<img src="${ctxStatic}/reg-login/images/img/图标6.png" width=50%;height=50%>
+					<img src="${ctxStatic}/reg-login/images/img/zhanghu.png" width=50%;height=50%>
 					<p>账户</p>
 				</div>
 				<div class="col-3 t2">
-					<img src="${ctxStatic}/reg-login/images/img/图标5.png" width=50%;height=50%>
+					<img src="${ctxStatic}/reg-login/images/img/xiaoxi.png" width=50%;height=50%>
 					<p>消息</p>
 				</div>
 				<div class="col-3 t3">
-					<img src="${ctxStatic}/reg-login/images/img/图标4.png" width=50%;height=50%>
+					<img src="${ctxStatic}/reg-login/images/img/huodong.png" width=50%;height=50%>
 					<p>活动</p>
 				</div>
 
 				<div class="col-3 t4">
-					<img src="${ctxStatic}/reg-login/images/img/图标4 1.png" width=50%;height=50%>
+					<img src="${ctxStatic}/reg-login/images/img/qiandao.png" width=50%;height=50%>
 					<p>签到</p>
 				</div>
 				<div class="col-3 t5">
-					<img src="${ctxStatic}/reg-login/images/img/图标4 3.png" width=50%;height=50%>
+					<img src="${ctxStatic}/reg-login/images/img/licaijin.png" width=50%;height=50%>
 					<p>理财金</p>
 				</div>
 				<div class="col-3 t6">
-					<img src="${ctxStatic}/reg-login/images/img/图标4 4.png" width=50%;height=50%>
+					<img src="${ctxStatic}/reg-login/images/img/renwu.png" width=50%;height=50%>
 					<p>任务</p>
 				</div>
 			</div>
