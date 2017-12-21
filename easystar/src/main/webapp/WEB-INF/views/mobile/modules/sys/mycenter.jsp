@@ -105,7 +105,7 @@
 
 .btn5 {
 	margin: 12px auto 0 !important;
-	width: 80%;
+	width: 40%;
 	height: auto;
 }
 
@@ -245,9 +245,11 @@
 </head>
 <body>
 	<input type="hidden" id="acountmoney" value="${tUser.tAcount}">
+	<!-- 
 	<nav class="nav3 p">
 		<strong>我的账号</strong><i class="btn3"><a href="${pageContext.request.contextPath}/a/logout">退出</a></i>
 	</nav>
+	 -->
 	<section class="form-group" id="inputObj">
 		<div class="touxiang">
 			<div><img src="${ctxStatic}/reg-login/images/unknow.png"></div>
@@ -312,14 +314,12 @@
 			</ul>
 		</div>
 	</section>
-	<!-- 
 	<div class="btn5" style="margin-top: 12px">
 		<input type="button" id="submitBtn" value="退&nbsp;&nbsp;出" onclick="logout()">
 	</div>
-	 -->
 	
 	<footer class="disBox">
-<!-- 		<a href="#"><i class="f-icon01"></i>首页</a> -->
+		<a href="${ctx}/pay/tomyhead"><i class="f-icon01"></i>首页</a>
 		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
 		<a href="${ctx}/pay/toextend"><i class="f-icon03"></i>推广</a>
 		<a href="${ctx}/pay/tomycenter" class="cur"><i class="f-icon04"></i>我的</a>

@@ -96,10 +96,12 @@
 </script>
 </head>
 <body>
-<nav class="nav3 p">
+	<!-- 
+	<nav class="nav3 p">
 		<strong>我的推广</strong>
 	</nav>
-	<section class="form-group" id="inputObj" style="background-image: url('${ctxStatic}/reg-login/images/img/backgrounds/tuiguangback.png');">
+	 -->
+	<section class="form-group" id="inputObj" style="background-image: url('${ctxStatic}/reg-login/images/img/backgrounds/tuiguangback.png');background-size: auto auto">
 		<div class="tuiguang">
 			<p>累计推广(人)</p>
 			<p class="tuiguangnum">${extendAll}</p>
@@ -115,8 +117,8 @@
 				<li class="renyuanitem" onclick="todetail('A')">
 					<div>
 						<div class="renyuanleft left">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA1.png"></span>
-							<span>收营员A</span></p>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/backgrounds/dog.png"></span>
+							<span>推广员A</span></p>
 						</div>
 <!-- 						<div class="renyuanright"> -->
 <!-- 							<p>直接 6 人</p> -->
@@ -127,16 +129,16 @@
 				<li class="renyuanitem" onclick="todetail('B')">
 					<div>
 						<div class="renyuanleft left">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA2.png"></span>
-							<span>收营员B</span></p>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/backgrounds/monkey.png"></span>
+							<span>推广员B</span></p>
 						</div>
 					</div>
 				</li>
 				<li class="renyuanitem" onclick="todetail('C')">
 					<div>
 						<div class="renyuanleft left">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/tgA3.png"></span>
-							<span>收营员C</span></p>
+							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/backgrounds/mouse.png"></span>
+							<span>推广员C</span></p>
 						</div>
 					</div>
 				</li>
@@ -150,7 +152,7 @@
  	-->
  	
 	<footer class="disBox">
-<!-- 		<a href="#"><i class="f-icon01"></i>首页</a> -->
+		<a href="${ctx}/pay/tomyhead"><i class="f-icon01"></i>首页</a>
 		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
 		<a href="${ctx}/pay/toextend"  class="cur"><i class="f-icon03"></i>推广</a>
 		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>

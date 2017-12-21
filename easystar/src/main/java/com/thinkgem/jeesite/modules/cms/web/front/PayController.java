@@ -50,8 +50,10 @@ import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
+import com.thinkgem.jeesite.modules.mt.service.TMobileTaskService;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -75,6 +77,8 @@ public class PayController extends BaseController {
 	SystemService systemService;
     @Autowired
     TUserService tUserService;
+    @Autowired
+    TMobileTaskService tMobileTaskService;
     
 	@RequestMapping("/apppay")
 	@ResponseBody
@@ -435,14 +439,42 @@ public class PayController extends BaseController {
     }
     
     /**
-     * 
+     * 跳转到任务列表页面
      * @param tUser
      * @param model
      * @return
      */
     @RequestMapping(value = "tomytask")
     public String tomytask(TUser tUser,Model model){
+        //获取当前的所有任务列表，并排序
+        TMobileTask tMobileTask=new TMobileTask();
+        List<TMobileTask> list=tMobileTaskService.findList(tMobileTask);
+        model.addAttribute("list", list);
         return "modules/sys/mytask";
     }
+    
+    /**
+      * @Description: 跳转到我任务详情页面
+      * @param tMobileTask
+      * @param model
+      * @return
+      * String 返回类型
+      * @author：dongge
+      * @date：2017年12月21日下午4:07:39
+     */
+    @RequestMapping(value = "totaskdetails")
+    public String totaskdetails(TMobileTask tMobileTask,Model model){
+        //获取当前的所有任务列表，并排序
+        tMobileTask=tMobileTaskService.get(tMobileTask);
+        model.addAttribute("tMobileTask", tMobileTask);
+        return "modules/sys/mytaskdetails";
+    }
+    
+    @RequestMapping(value = "tomyhead")
+    public String tomyhead(TUser tUser,Model model){
+        model.addAttribute("tUser", tUser);
+        return "modules/sys/myhead";
+    }
+    
 }
    

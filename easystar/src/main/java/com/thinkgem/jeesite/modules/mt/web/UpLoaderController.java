@@ -65,8 +65,8 @@ public class UpLoaderController
             ImageClass =  "taskorder";
         }else if(("3").equals(ImageType)){
         	ImageClass="match";
-        }else{
-        	
+        }else if(("4").equals(ImageType)){
+            ImageClass="mobiletask";
         }
         
         //拼接地址

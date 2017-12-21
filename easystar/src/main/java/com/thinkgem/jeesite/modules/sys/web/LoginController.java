@@ -89,7 +89,8 @@ public class LoginController extends BaseController{
             System.out.println("手机退出页面返回登录页面");
             return "modules/sys/login";
         }
-		return "modules/sys/userlogin";
+//		return "modules/sys/userlogin";
+		return "modules/sys/sysLogin";
 	}
 
 	/**
@@ -145,8 +146,8 @@ public class LoginController extends BaseController{
             return "modules/sys/login";
         }
 		
-		return "modules/sys/userlogin";
-//		return "modules/sys/sysLogin";
+//		return "modules/sys/userlogin";
+		return "modules/sys/sysLogin";
 	}
 
 	/**

@@ -146,13 +146,15 @@ img{
 </head>
 <body>
 	<nav class="nav3 p">
-		<strong>我的推广</strong>
+		<strong>我的推广</strong><i class="btn3" style="float: left;"><a href="javascript:history.back(-1)">返回</a></i>
 	</nav>
+	<!-- 
 	<section class="form-group" id="inputObj">
 		<div class="tuiguang">
 			<p>我的邀请记录</p>
 		</div>
 	</section>
+	 -->
 	<section class="form-group" id="inputObj">
 		<div>
 			<ul class="xuanxiang">
@@ -187,12 +189,5 @@ img{
 			</ul>
 		</div>
 	</section>
-	
-	<footer class="disBox">
-<!-- 		<a href="#"><i class="f-icon01"></i>首页</a> -->
-		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
-		<a href="${ctx}/pay/toextend" class="cur"><i class="f-icon03"></i>推广</a>
-		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
-	</footer>
 </body>
 </html>

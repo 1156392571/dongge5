@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TMobileTaskDao">
+    
+	<sql id="tMobileTaskColumns">
+		a.id AS "id",
+		a.tmt_userid AS "tmtUserid",
+		a.tmt_name AS "tmtName",
+		a.tmt_price AS "tmtPrice",
+		a.tmt_ask AS "tmtAsk",
+		a.tmt_rebatea AS "tmtRebatea",
+		a.tmt_rebateb AS "tmtRebateb",
+		a.tmt_rebatec AS "tmtRebatec",
+		a.tmt_photourl AS "tmtPhotourl",
+		a.tmt_photoinfo AS "tmtPhotoinfo",
+		a.tmt_startdate AS "tmtStartdate",
+		a.tmt_enddate AS "tmtEnddate",
+		a.tmt_viewtime AS "tmtViewtime",
+		a.createtime AS "createtime",
+		a.tmt_remarks AS "tmtRemarks",
+		a.tmt_reserve1 AS "tmtReserve1",
+		a.tmt_reserve2 AS "tmtReserve2",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tMobileTaskJoins">
+	</sql>
+    
+	<select id="get" resultType="TMobileTask">
+		SELECT 
+			<include refid="tMobileTaskColumns"/>
+		FROM t_mobile_task a
+		<include refid="tMobileTaskJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TMobileTask">
+		SELECT 
+			<include refid="tMobileTaskColumns"/>
+		FROM t_mobile_task a
+		<include refid="tMobileTaskJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="tmtUserid != null and tmtUserid != ''">
+				AND a.tmt_userid = #{tmtUserid}
+			</if>
+			<if test="tmtName != null and tmtName != ''">
+				AND a.tmt_name = #{tmtName}
+			</if>
+			<if test="tmtPrice != null and tmtPrice != ''">
+				AND a.tmt_price = #{tmtPrice}
+			</if>
+			<if test="tmtAsk != null and tmtAsk != ''">
+				AND a.tmt_ask = #{tmtAsk}
+			</if>
+			<if test="tmtRebatea != null and tmtRebatea != ''">
+				AND a.tmt_rebatea = #{tmtRebatea}
+			</if>
+			<if test="tmtRebateb != null and tmtRebateb != ''">
+				AND a.tmt_rebateb = #{tmtRebateb}
+			</if>
+			<if test="tmtRebatec != null and tmtRebatec != ''">
+				AND a.tmt_rebatec = #{tmtRebatec}
+			</if>
+			<if test="tmtPhotourl != null and tmtPhotourl != ''">
+				AND a.tmt_photourl = #{tmtPhotourl}
+			</if>
+			<if test="tmtPhotoinfo != null and tmtPhotoinfo != ''">
+				AND a.tmt_photoinfo = #{tmtPhotoinfo}
+			</if>
+			<if test="tmtStartdate != null and tmtStartdate != ''">
+				AND a.tmt_startdate = #{tmtStartdate}
+			</if>
+			<if test="tmtEnddate != null and tmtEnddate != ''">
+				AND a.tmt_enddate = #{tmtEnddate}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TMobileTask">
+		SELECT 
+			<include refid="tMobileTaskColumns"/>
+		FROM t_mobile_task a
+		<include refid="tMobileTaskJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_mobile_task(
+			id,
+			tmt_userid,
+			tmt_name,
+			tmt_price,
+			tmt_ask,
+			tmt_rebatea,
+			tmt_rebateb,
+			tmt_rebatec,
+			tmt_photourl,
+			tmt_photoinfo,
+			tmt_startdate,
+			tmt_enddate,
+			tmt_viewtime,
+			createtime,
+			tmt_remarks,
+			tmt_reserve1,
+			tmt_reserve2,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{tmtUserid},
+			#{tmtName},
+			#{tmtPrice},
+			#{tmtAsk},
+			#{tmtRebatea},
+			#{tmtRebateb},
+			#{tmtRebatec},
+			#{tmtPhotourl},
+			#{tmtPhotoinfo},
+			#{tmtStartdate},
+			#{tmtEnddate},
+			#{tmtViewtime},
+			#{createtime},
+			#{tmtRemarks},
+			#{tmtReserve1},
+			#{tmtReserve2},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_mobile_task SET 	
+			tmt_userid = #{tmtUserid},
+			tmt_name = #{tmtName},
+			tmt_price = #{tmtPrice},
+			tmt_ask = #{tmtAsk},
+			tmt_rebatea = #{tmtRebatea},
+			tmt_rebateb = #{tmtRebateb},
+			tmt_rebatec = #{tmtRebatec},
+			tmt_photourl = #{tmtPhotourl},
+			tmt_photoinfo = #{tmtPhotoinfo},
+			tmt_startdate = #{tmtStartdate},
+			tmt_enddate = #{tmtEnddate},
+			tmt_viewtime = #{tmtViewtime},
+			createtime = #{createtime},
+			tmt_remarks = #{tmtRemarks},
+			tmt_reserve1 = #{tmtReserve1},
+			tmt_reserve2 = #{tmtReserve2},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_mobile_task SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

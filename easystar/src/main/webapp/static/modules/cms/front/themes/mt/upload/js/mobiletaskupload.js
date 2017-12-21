@@ -66,7 +66,7 @@ jQuery(function() {
                 formData: {                
                 	token:index,//可以在这里附加控件编号，从而区分是哪个控件上传的
                 	
-                	ImageType: "1"
+                	ImageType: "4"
                 },
                 
                 dnd: '#dndArea',
@@ -109,7 +109,7 @@ jQuery(function() {
             	state = 'pedding';
             	var fileinfo="";
             	if(index==0){
-            		fileinfo = document.getElementById("proUrlInfo").value;
+            		fileinfo = document.getElementById("tmtPhotoinfo").value;
             	}else if(index==1){
             		fileinfo = document.getElementById("scReserve2").value;
             	}else if(index==2){
@@ -438,8 +438,8 @@ jQuery(function() {
             	var fileinfo = response.fileinfo; //上传图片的路径
             	//判断图片地址存放的位置
             	if(index==0){
-            		document.getElementById("proUrl").value = realurl;
-            		document.getElementById("proUrlInfo").value = fileinfo;
+            		document.getElementById("tmtPhotourl").value = realurl;
+            		document.getElementById("tmtPhotoinfo").value = fileinfo;
             	}else if(index==1){
             		document.getElementById("scPhotourl2").value = realurl;
             		document.getElementById("scReserve2").value = fileinfo;
