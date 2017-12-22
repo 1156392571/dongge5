@@ -197,15 +197,15 @@ a {
 				<span></span>
 				<span></span>
 				<span></span>
-				<span></span>
+<!-- 				<span></span> -->
 			</div>
 			<div class="main_image">
 				<ul>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd03.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd02.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd01.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd04.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd05.jpg" /></a></li>
+					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle1.png" /></a></li>
+					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle2.png" /></a></li>
+					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle3.png" /></a></li>
+					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle4.png" /></a></li>
+<%-- 					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd05.jpg" /></a></li> --%>
 				</ul>
 				<a href="javascript:;" id="btn_prev"></a>
 				<a href="javascript:;" id="btn_next"></a>
