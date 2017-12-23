@@ -32,7 +32,7 @@ public class TUser extends DataEntity<TUser> {
 	private String tInviter;        // 邀请人标识
 	private String reserve1;		// 扩展字段1
 	private String reserve2;		// 扩展字段1
-	private String reserve3;		// 扩展字段1
+	private int reserve3;		// 扩展字段1
 	private String reserve4;		// 扩展字段1
 	private String reserve5;		// 扩展字段1
 	
@@ -194,17 +194,15 @@ public class TUser extends DataEntity<TUser> {
         this.reserve2 = reserve2;
     }
 
-    public String getReserve3()
-    {
-        return reserve3;
-    }
+    public int getReserve3() {
+		return reserve3;
+	}
 
-    public void setReserve3(String reserve3)
-    {
-        this.reserve3 = reserve3;
-    }
+	public void setReserve3(int reserve3) {
+		this.reserve3 = reserve3;
+	}
 
-    public String getReserve4()
+	public String getReserve4()
     {
         return reserve4;
     }

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.mt.entity.TErweimaTask;
+import com.thinkgem.jeesite.modules.mt.entity.TMobiletaskApply;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.mt.dao.TUserDao;
@@ -158,4 +159,24 @@ public class TUserService extends CrudService<TUserDao, TUser> {
     {
 	    tUserDao.register(loginName);
     }
+
+	@Transactional(readOnly = false)
+	public void updateSelfAcount(Map<String,String> map) {
+		tUserDao.updateSelfAcount(map);
+	}
+
+	@Transactional(readOnly = false)
+	public void updateAcountA(Map<String,String> map) {
+		tUserDao.updateAcountA(map);
+	}
+	
+	@Transactional(readOnly = false)
+	public void updateAcountB(Map<String,String> map) {
+		tUserDao.updateAcountB(map);
+	}
+	
+	@Transactional(readOnly = false)
+	public void updateAcountC(Map<String,String> map) {
+		tUserDao.updateAcountC(map);
+	}
 }

@@ -340,6 +340,29 @@
 	</update>
 	<!-- 通过登录名设置状态为已签到 -->
 	<update id="register">
-		update t_user set reserve2='2' where t_loginname=#{loginName}
+		update t_user set reserve2='2',reserve3=reserve3+1 where t_loginname=#{loginName}
+	</update>
+	
+	<!-- 通过申请的id，审核通过之后进行把对应的钱加到做任务的当前用户 -->
+	<update id="updateSelfAcount" parameterType="java.util.Map">
+		update t_user d set d.t_acount=d.t_acount+#{price} where d.id=#{userid}
+	</update>
+	
+	<!-- 通过申请的id，审核通过之后进行把对应的钱加到A级用户 -->
+	<update id="updateAcountA" parameterType="java.util.Map">
+		update t_user a set a.t_acount=a.t_acount+#{priceA} where a.id=
+		(select c.id from (select b.t_inviter as 'id' from t_user b where b.id=#{userid})c)
+	</update>
+	
+	<!-- 通过申请的id，审核通过之后进行把对应的钱加到A级用户 -->
+	<update id="updateAcountB" parameterType="java.util.Map">
+		update t_user set t_acount=t_acount+#{priceB} where id=(select c.id from (select a.t_inviter as 'id' from t_user a,t_user b 
+		where a.id=b.t_inviter and b.id=#{userid})c)
+	</update>
+	
+	<!-- 通过申请的id，审核通过之后进行把对应的钱加到A级用户 -->
+	<update id="updateAcountC" parameterType="java.util.Map">
+		update t_user set t_acount=t_acount+#{priceC} where id=
+		(select d.id from(select a.t_inviter as 'id' from t_user a,t_user b,t_user c where c.t_inviter=b.id and b.t_inviter=a.id and c.id=#{userid})d)
 	</update>
 </mapper>

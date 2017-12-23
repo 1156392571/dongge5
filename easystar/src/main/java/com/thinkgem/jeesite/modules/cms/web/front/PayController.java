@@ -472,8 +472,28 @@ public class PayController extends BaseController {
     
     @RequestMapping(value = "tomyhead")
     public String tomyhead(TUser tUser,Model model){
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取登录状态
+        tUser=tUserService.getUserByLoginName(loginName);
         model.addAttribute("tUser", tUser);
         return "modules/sys/myhead";
+    }
+    
+    @RequestMapping(value = "tomyfanxian")
+    public String tomyfanxian(TUser tUser,Model model){
+        model.addAttribute("tUser", tUser);
+        return "modules/sys/myfanxian";
+    }
+    
+    @RequestMapping(value = "tolianxime")
+    public String tolianxime(){
+        return "modules/sys/mylianxime";
+    }
+    
+    @RequestMapping(value = "toguanyume")
+    public String toguanyume(){
+        return "modules/sys/myguanyume";
     }
     
 }

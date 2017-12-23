@@ -145,9 +145,9 @@ function userlogin(){
 
 <body style="background-color:#fff">
 <div class="login-container">
-    <header class="login-header-new">
+    <header class="login-header-new" style="height: 200px;">
 <!--         <a href="javascript:void(0)http://m.xinli001.com"><i class="icon-arrow-left"></i></a> -->
-        <a href="javascript:void(0)http://m.xinli001.com"><div class="logo" style="width: 180px;height: 50px;padding-top: 70px;"></div></a>
+        <a href="javascript:void(0)http://m.xinli001.com"><div class="logo" style="width: 180px;height: 100px;padding-top: 70px;"></div></a>
     </header>
     <section class="login-section">
         <ul class="login-tabs js-tabs">

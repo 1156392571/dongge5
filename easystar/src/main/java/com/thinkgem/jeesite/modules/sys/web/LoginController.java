@@ -193,13 +193,8 @@ public class LoginController extends BaseController{
 		TUser tUser=tUserService.getUserByLoginName(principal.getLoginName());
 		//如果是手机登录成功
 		if(UserAgentUtils.isMobileOrTablet(request)){
-		    System.out.println("==手机登录并返回页面");
-		    //获取当前的账户二维码图片
-		    String id=tUser.getId();
-		    String url=tUserService.getphotourl(id);
-		    model.addAttribute("url", url);
 		    model.addAttribute("tUser", tUser);
-		    return "modules/sys/mycenter";
+		    return "modules/sys/myhead";
 		}
 		
 		

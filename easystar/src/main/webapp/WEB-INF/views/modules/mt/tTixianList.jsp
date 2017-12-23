@@ -28,7 +28,7 @@
 				<form:input path="ttUserid" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>提现状态：</label>
-				<form:select path="ttGetcashstatus" class="input-xlarge " >
+				<form:select path="ttGetcashstatus" class="input-xlarge " style="width:180px;">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('cashtype')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>

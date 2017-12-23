@@ -10,6 +10,7 @@ import java.util.Map;
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.mt.entity.TErweimaTask;
+import com.thinkgem.jeesite.modules.mt.entity.TMobiletaskApply;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 
@@ -66,5 +67,13 @@ public interface TUserDao extends CrudDao<TUser> {
     void updAllsignBytimer();
 
     void register(String loginName);
+
+	void updateSelfAcount(Map<String,String> map);
+
+	void updateAcountA(Map<String,String> map);
+
+	void updateAcountB(Map<String,String> map);
+
+	void updateAcountC(Map<String,String> map);
 	
 }

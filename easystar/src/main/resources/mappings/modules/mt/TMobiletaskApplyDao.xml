@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mt.dao.TMobiletaskApplyDao">
+    
+	<sql id="tMobiletaskApplyColumns">
+		a.id AS "id",
+		a.tma_userid AS "tmaUserid",
+		a.tma_taskid AS "tmaTaskid",
+		a.tma_name AS "tmaName",
+		a.tma_cardid AS "tmaCardid",
+		a.tma_phone AS "tmaPhone",
+		a.tma_status AS "tmaStatus",
+		a.createtime AS "createtime",
+		a.tet_reserve1 AS "tetReserve1",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tMobiletaskApplyColumns1">
+		a.id AS "id",
+		c.t_phone AS "tmaUserid",
+		b.tmt_name AS "tmaTaskid",
+		a.tma_name AS "tmaName",
+		a.tma_cardid AS "tmaCardid",
+		a.tma_phone AS "tmaPhone",
+		a.tma_status AS "tmaStatus",
+		a.createtime AS "createtime",
+		a.tet_reserve1 AS "tetReserve1",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tMobiletaskApplyJoins">
+	</sql>
+	
+	<sql id="tMobiletaskApplyJoins1">
+	left join t_mobile_task b on a.tma_taskid=b.id
+	left join t_user c on a.tma_userid=c.id 
+	</sql>
+    
+	<select id="get" resultType="TMobiletaskApply">
+		SELECT 
+			<include refid="tMobiletaskApplyColumns"/>
+		FROM t_mobiletask_apply a
+		<include refid="tMobiletaskApplyJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TMobiletaskApply">
+		SELECT 
+			<include refid="tMobiletaskApplyColumns1"/>
+		FROM t_mobiletask_apply a
+		<include refid="tMobiletaskApplyJoins1"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="tmaUserid != null and tmaUserid != ''">
+				AND a.tma_userid = #{tmaUserid}
+			</if>
+			<if test="tmaTaskid != null and tmaTaskid != ''">
+				AND a.tma_taskid = #{tmaTaskid}
+			</if>
+			<if test="tmaName != null and tmaName != ''">
+				AND a.tma_name = #{tmaName}
+			</if>
+			<if test="tmaCardid != null and tmaCardid != ''">
+				AND a.tma_cardid = #{tmaCardid}
+			</if>
+			<if test="tmaPhone != null and tmaPhone != ''">
+				AND a.tma_phone = #{tmaPhone}
+			</if>
+			<if test="tmaStatus != null and tmaStatus != ''">
+				AND a.tma_status = #{tmaStatus}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				AND a.createtime = #{createtime}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TMobiletaskApply">
+		SELECT 
+			<include refid="tMobiletaskApplyColumns"/>
+		FROM t_mobiletask_apply a
+		<include refid="tMobiletaskApplyJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_mobiletask_apply(
+			id,
+			tma_userid,
+			tma_taskid,
+			tma_name,
+			tma_cardid,
+			tma_phone,
+			tma_status,
+			createtime,
+			tet_reserve1,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{tmaUserid},
+			#{tmaTaskid},
+			#{tmaName},
+			#{tmaCardid},
+			#{tmaPhone},
+			#{tmaStatus},
+			#{createtime},
+			#{tetReserve1},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_mobiletask_apply SET 	
+			tma_userid = #{tmaUserid},
+			tma_taskid = #{tmaTaskid},
+			tma_name = #{tmaName},
+			tma_cardid = #{tmaCardid},
+			tma_phone = #{tmaPhone},
+			tma_status = #{tmaStatus},
+			createtime = #{createtime},
+			tet_reserve1 = #{tetReserve1},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_mobiletask_apply SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 更新任务审核之后的状态 -->
+	<update id="updatetofailed" parameterType="TMobiletaskApply">
+		update t_mobiletask_apply set tma_status=${tmaStatus} where id=#{id}
+	</update>
+	
+	<select id="getMapByid" resultType="java.util.Map">
+		select a.id,a.tma_userid as 'userid',b.tmt_price as 'price',
+		b.tmt_rebateA as 'priceA',b.tmt_rebateB as 'priceB',b.tmt_rebateC as 'priceC' from t_mobiletask_apply a,
+		t_mobile_task b where a.tma_taskid=b.id and a.id=#{id}
+	</select>
+</mapper>
