@@ -367,13 +367,13 @@ a {
 </div>
 <div class = "md2">
         <p style = "font-size:14px">总资产</p>
-        <p style = "font-size:30px" id="allmoney">${tUser.tAcount+tUser.reserve3*0.5+100}</p>
+        <p style = "font-size:30px" id="allmoney">${tUser.tAcount+tUser.reserve3*0.5+100+day*0.5}</p>
         <p style = "font-size:14px">今日最新收益 10.00</p>
 </div>
 <div class = "md3">
     <div><img src="${ctxStatic}/reg-login/images/mycenter/1.png" alt="" /><span style= "font-size: 15px;
     line-height: 25px;">理财</span>
-    <p class ="pm">￥100.00</p></div>
+    <p class ="pm">￥${day*0.5+100.00}</p></div>
     <div><img src="${ctxStatic}/reg-login/images/mycenter/2.png" alt="" /><span style= "font-size: 15px;
     line-height: 25px">签到</span><p class ="pm">￥${tUser.reserve3*0.5}</p></div>
     <div><img src="${ctxStatic}/reg-login/images/mycenter/3.png" alt="" /><span style= "font-size: 15px;
@@ -481,7 +481,7 @@ a {
 				window.location.href="${ctx}/pay/tomycenter";
 			})
 			$(".t2").click(function(){
-				alert("功能正在建设中，敬请期待");
+				window.location.href="${ctx}/pay/tomyxiaoxi";
 			})
 			$(".t3").click(function(){
 				window.location.href="${ctx}/pay/tomyfanxian";

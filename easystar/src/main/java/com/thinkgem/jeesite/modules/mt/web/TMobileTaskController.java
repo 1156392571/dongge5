@@ -20,7 +20,11 @@ import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TMobileTaskService;
+import com.thinkgem.jeesite.modules.mt.service.TUserService;
+import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 手机任务表Controller
@@ -33,6 +37,8 @@ public class TMobileTaskController extends BaseController {
 
 	@Autowired
 	private TMobileTaskService tMobileTaskService;
+	@Autowired
+	private TUserService tUserService;
 	
 	@ModelAttribute
 	public TMobileTask get(@RequestParam(required=false) String id) {
@@ -68,6 +74,9 @@ public class TMobileTaskController extends BaseController {
 		if (!beanValidator(model, tMobileTask)){
 			return form(tMobileTask, model);
 		}
+		Principal principal=UserUtils.getPrincipal();
+        String id=principal.getId();
+        tMobileTask.setTmtUserid(id);
 		tMobileTaskService.save(tMobileTask);
 		addMessage(redirectAttributes, "保存手机任务表成功");
 		return "redirect:"+Global.getAdminPath()+"/mt/tMobileTask/?repage";

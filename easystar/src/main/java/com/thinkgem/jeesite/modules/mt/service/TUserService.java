@@ -179,4 +179,28 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 	public void updateAcountC(Map<String,String> map) {
 		tUserDao.updateAcountC(map);
 	}
+
+	@Transactional(readOnly = false)
+	public void addtomobileacountdtl(Map<String, Object> map) {
+		tUserDao.addtomobileacountdtl(map);
+	}
+
+	public Map<Object, Object> getAllmessageByApplyid(String id) {
+		return tUserDao.getAllmessageByApplyid(id);
+	}
+
+	public List<Map<Object,Object>> getmessageList(String loginName) {
+		return tUserDao.getmessageList(loginName);
+	}
+
+	public int getLCdaysByLoginName(String loginName) {
+		// TODO Auto-generated method stub
+		return tUserDao.getLCdaysByLoginName(loginName);
+	}
+
+	@Transactional(readOnly = false)
+	public void setnameandpid(TUser tUser) {
+		tUserDao.setnameandpid(tUser);
+	}
+
 }

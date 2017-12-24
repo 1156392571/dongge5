@@ -150,7 +150,7 @@
 			#{tmtStartdate},
 			#{tmtEnddate},
 			#{tmtViewtime},
-			#{createtime},
+			now(),
 			#{tmtRemarks},
 			#{tmtReserve1},
 			#{tmtReserve2},

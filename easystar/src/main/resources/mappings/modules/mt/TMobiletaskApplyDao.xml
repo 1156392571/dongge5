@@ -139,7 +139,7 @@
 			#{tmaCardid},
 			#{tmaPhone},
 			#{tmaStatus},
-			#{createtime},
+			now(),
 			#{tetReserve1},
 			#{createBy.id},
 			#{createDate},

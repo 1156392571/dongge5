@@ -61,7 +61,7 @@
 	<!-- 计划任务配置，用 @Service @Lazy(false)标注类，用@Scheduled(cron = "0 0 2 * * ?")标注方法 -->
     <task:executor id="executor" pool-size="10"/> <task:scheduler id="scheduler" pool-size="10"/>
     <task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>
-    <!-- 这个是开启任务定时器的一种方法,每天凌晨12点触发-->
+    <!-- 0 0 0 * * ?这个是开启任务定时器的一种方法,每天凌晨12点触发  */5 * * * * ?-->
     <task:scheduled-tasks>
         <task:scheduled ref="taskCool" method="testJob" cron="0 0 0 * * ?"/>
     </task:scheduled-tasks>

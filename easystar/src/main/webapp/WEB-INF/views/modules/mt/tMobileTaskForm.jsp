@@ -54,7 +54,7 @@
 		<div class="control-group">
 			<label class="control-label">任务要求：</label>
 			<div class="controls">
-				<form:input path="tmtAsk" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
+				<form:textarea path="tmtAsk" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 		<form:hidden path="tmtPhotourl" />
 		<form:hidden path="tmtPhotoinfo" />
 		<div class="control-group">
-			<label class="control-label">产品图片：</label>
+			<label class="control-label">二维码图片：</label>
 				<div class="controls">
 					<div class="width_auto" style="width: 580px;">
 					    <div class="upload_container" >
@@ -137,7 +137,7 @@
 		<div class="control-group">
 			<label class="control-label">备注信息：</label>
 			<div class="controls">
-				<form:input path="tmtRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:textarea path="tmtRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

@@ -252,32 +252,32 @@
 	
 	<!-- 通过当前用户id查询出他下面推广的A类的人总数 -->
 	<select id="getcountExtendA" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(a.id) from t_user a 
+		select count(distinct a.id)as 'count' from t_user a 
 		left join t_user b on a.t_inviter=b.id 
-		left join t_erweima_task c on a.id=c.tet_userid
+<!-- 		left join t_mobiletask_apply c on a.id=c.tma_userid -->
 		where b.id=#{id} 
-<!-- 		and c.tet_taskstatus='2'and c.tet_tasktype='1' -->
+<!-- 		and c.tma_status='2' -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的B类的人总数 -->
 	<select id="getcountExtendB" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(a.id) from t_user a 
+		select count(distinct a.id) from t_user a 
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
-		left join t_erweima_task d on a.id=d.tet_userid
+<!-- 		left join t_mobiletask_apply d on a.id=d.tma_userid -->
 		where c.id=#{id} 
-<!-- 		 and d.tet_taskstatus='2' and d.tet_tasktype='1' -->
+<!-- 		and d.tma_status='2' -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的C类的人总数 -->
 	<select id="getcountExtendC" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(a.id) from t_user a 
+		select count(distinct a.id) from t_user a 
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
 		left join t_user d on c.t_inviter=d.id 
-		left join t_erweima_task e on a.id=e.tet_userid
-		where d.id=#{id} 
-<!-- 		and e.tet_taskstatus='2' and e.tet_tasktype='1' -->
+<!-- 		left join t_mobiletask_apply e on a.id=e.tma_userid -->
+		where d.id=#{id}
+<!-- 		and e.tma_status='2' -->
 	</select>
 	
 	<!-- 通过id找到自己当前存储的二维码图片路径 -->
@@ -287,32 +287,32 @@
 	
 	<!-- 通过当前用户id查询出他下面推广的A类的人总数 -->
 	<select id="getListExtendA" parameterType="java.lang.String" resultType="tUser">
-		select a.t_phone as 'tPhone','审核成功' as 'reserve2','10' as 'tAcount' from t_user a 
+		select a.t_phone,a.createtime from t_user a 
 		left join t_user b on a.t_inviter=b.id 
-		left join t_erweima_task c on a.id=c.tet_userid
+<!-- 		left join t_mobiletask_apply c on a.id=c.tma_userid -->
 		where b.id=#{id} 
-<!-- 		and c.tet_taskstatus='2'and c.tet_tasktype='1' -->
+<!-- 		and c.tma_status='2' GROUP BY a.id -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的B类的人总数 -->
 	<select id="getListExtendB" parameterType="java.lang.String" resultType="tUser">
-		select a.t_phone as 'tPhone','审核成功' as 'reserve2','10' as 'tAcount' from t_user a 
+		select a.t_phone,a.createtime from t_user a 
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
-		left join t_erweima_task d on a.id=d.tet_userid
-		where c.id=#{id}  
-<!-- 		and d.tet_taskstatus='2' and d.tet_tasktype='1' -->
+<!-- 		left join t_mobiletask_apply d on a.id=d.tma_userid -->
+		where c.id=#{id}
+<!-- 		and d.tma_status='2'GROUP BY a.id -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的C类的人总数 -->
 	<select id="getListExtendC" parameterType="java.lang.String" resultType="tUser">
-		select a.t_phone as 'tPhone','审核成功' as 'reserve2','10' as 'tAcount' from t_user a 
+		select a.t_phone,a.createtime from t_user a 
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
 		left join t_user d on c.t_inviter=d.id 
-		left join t_erweima_task e on a.id=e.tet_userid
-		where d.id=#{id} 
-<!-- 		and e.tet_taskstatus='2' and e.tet_tasktype='1' -->
+<!-- 		left join t_mobiletask_apply e on a.id=e.tma_userid -->
+		where d.id=#{id}
+<!-- 		and e.tma_status='2'GROUP BY a.id -->
 	</select>
 	
 	<!-- 这里是推广之后的奖励 -->
@@ -338,6 +338,7 @@
 	<update id="updAllsignBytimer">
 		update t_user set reserve2='1'
 	</update>
+	
 	<!-- 通过登录名设置状态为已签到 -->
 	<update id="register">
 		update t_user set reserve2='2',reserve3=reserve3+1 where t_loginname=#{loginName}
@@ -364,5 +365,48 @@
 	<update id="updateAcountC" parameterType="java.util.Map">
 		update t_user set t_acount=t_acount+#{priceC} where id=
 		(select d.id from(select a.t_inviter as 'id' from t_user a,t_user b,t_user c where c.t_inviter=b.id and b.t_inviter=a.id and c.id=#{userid})d)
+	</update>
+	
+	<insert id="addtomobileacountdtl" parameterType="java.util.Map">
+		insert into t_mobile_acountdtl(
+		id,
+		tma_userid,
+		tma_dtlname,
+		tma_jine,
+		createtime)values(
+		#{id},
+		#{tma_userid},
+		#{tma_dtlname},
+		#{tma_jine},
+		now()
+		)
+	</insert>
+	
+	<!-- 通过申请的id获取所有的ABC级用户的id -->
+	<select id="getAllmessageByApplyid" resultType="java.util.Map">
+		select a.id,a.t_phone,IFNULL(b.id,'') as 'Auserid',IFNULL(c.id,'') as 'Buserid',IFNULL(d.id,'') as 'Cuserid',
+		f.tmt_name,f.tmt_price,f.tmt_rebateA,f.tmt_rebateB,f.tmt_rebateC
+		from t_user a
+		left join t_user b on a.t_inviter=b.id
+		left join t_user c on b.t_inviter=c.id
+		left join t_user d on c.t_inviter=d.id
+		left join t_mobiletask_apply e on e.tma_userid=a.id
+		left join t_mobile_task f on e.tma_taskid=f.id
+		where e.id=#{id}
+	</select>
+	<!-- 获取此登录账号的30条消息记录 -->
+	<select id="getmessageList" resultType="java.util.Map">
+		select * from t_mobile_acountdtl a,t_user b 
+		where a.tma_userid=b.id and b.t_loginName=#{loginName} limit 30
+	</select>
+	
+	<!-- 获取理财金的天数 -->
+	<select id="getLCdaysByLoginName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select (TO_DAYS(now())-TO_DAYS(a.createtime))as 'day' from t_user a where a.t_loginName=#{loginName}
+	</select>
+	
+	<!-- 如果数据库中没有姓名和身份证号，就向数据库中插入对应的信息 -->
+	<update id="setnameandpid" parameterType="TUser">
+		update t_user set t_name=#{tName},reserve4=#{reserve4} where id=#{id} 
 	</update>
 </mapper>

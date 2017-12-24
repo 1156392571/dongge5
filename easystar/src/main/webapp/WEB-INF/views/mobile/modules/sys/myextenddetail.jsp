@@ -145,9 +145,6 @@ img{
     </style>
 </head>
 <body>
-	<nav class="nav3 p">
-		<strong>我的推广</strong><i class="btn3" style="float: left;"><a href="javascript:history.back(-1)">返回</a></i>
-	</nav>
 	<!-- 
 	<section class="form-group" id="inputObj">
 		<div class="tuiguang">
@@ -161,8 +158,7 @@ img{
 				<li class="renyuanitem">
 					<div class="renyuanleft infoheard">
 						<span class="leftlabel">好友</span>
-						<span class="centerlabel">审核状态</span>
-						<span class="rightlabel">奖励金</span>
+						<span class="rightlabel">创建时间</span>
 					</div>
 				</li>
 				<c:if test="${not empty extendList}">
@@ -172,8 +168,9 @@ img{
 						<span class="leftlabel">
 						${fn:substring(list.tPhone, 0, 3)}****${fn:substring(list.tPhone, 7, 11)}
 						</span>
-						<span class="centerlabel">${list.reserve2}</span>
-						<span class="rightlabel">￥${list.tAcount}</span>
+						<span class="centerlabel">
+						<fmt:formatDate value="${list.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+						</span>
 					</div>
 				</li>
 				</c:forEach>

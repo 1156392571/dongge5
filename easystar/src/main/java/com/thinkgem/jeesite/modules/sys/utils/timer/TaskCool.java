@@ -11,6 +11,7 @@ public class TaskCool{
     TUserService tUserService;
     public void testJob(){
         System.out.println("执行了操作语句，到了凌晨12点就开始更新所有的签到");
+        //更新签到信息
         tUserService.updAllsignBytimer();
     }
     

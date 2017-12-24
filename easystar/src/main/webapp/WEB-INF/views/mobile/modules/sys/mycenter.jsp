@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
 </head>
 <body style="background-color: #f1f3f8;">
-	<div class="m-my">
+	<div class="m-my" style="position: relative;">
 		<div class="info">
 			<div class="left"></div>
 			<div class="right" style="font-size: 16px;">
@@ -32,7 +32,7 @@
 					<span>推荐人</span>
 				</div>
 				<div class="right">
-					<span>${tUser.tInviter}</span>
+					<span>${phonenumber}</span>
 					<i class="icon_you1"></i>
 				</div>
 			</a>

@@ -51,9 +51,11 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
+import com.thinkgem.jeesite.modules.mt.entity.TMobiletaskApply;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TMobileTaskService;
+import com.thinkgem.jeesite.modules.mt.service.TMobiletaskApplyService;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -79,6 +81,8 @@ public class PayController extends BaseController {
     TUserService tUserService;
     @Autowired
     TMobileTaskService tMobileTaskService;
+    @Autowired
+    TMobiletaskApplyService tMobiletaskApplyService;
     
 	@RequestMapping("/apppay")
 	@ResponseBody
@@ -192,7 +196,10 @@ public class PayController extends BaseController {
     @RequestMapping(value="savereg")
     public String gettoreg(HttpServletRequest request,TUser tUser,Model model) throws Exception {
         //将对象进行保存-邀请人字段，已经直接映射到对象里了
-        systemService.saveRegister(tUser);
+    	//设置签到字段默认为1，签到天数为0
+    	tUser.setReserve2("1");
+    	tUser.setReserve3(0);
+    	systemService.saveRegister(tUser);
         //通过注册的手机号，查询出当前所对应的t_user表中的id
         tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
         //注册成功之后就同步生成二维码图片
@@ -212,9 +219,14 @@ public class PayController extends BaseController {
         tUserService.addpicturecode(map);
         String url=tUserService.getphotourl(pathname);
 	    model.addAttribute("url", url);
-//	    String result=HttpRequest.sendPost("http://192.168.1.103:8181/easystar/a/login", "username="+tUser.gettLoginname()+"&password="+tUser.getReserve1());
-//	    System.out.println(result);
-//	    return "modules/sys/mycenter";
+	    //注册成功之后将获得理财金的消息推送到消息列表中
+	    Map<String,Object> usermap=new HashMap<String,Object>();
+        String dtlId=IdGen.uuid();
+        usermap.put("id", dtlId);
+        usermap.put("tma_userid", tUser.getId());
+        usermap.put("tma_dtlname", "注册送理财金");
+        usermap.put("tma_jine",100);
+        tUserService.addtomobileacountdtl(usermap);
         return "redirect:"+Global.getFrontPath()+"/pay/tologin?repage";
     } 
 	
@@ -246,6 +258,13 @@ public class PayController extends BaseController {
 	    String url=tUserService.getphotourl(id);
 	    model.addAttribute("url", url);
 	    model.addAttribute("tUser", tUser);
+	    //查出推荐人信息
+	    TUser tUser1=tUserService.get(tUser.gettInviter());
+	    String phone="";
+	    if(tUser1!=null){
+	    	phone=tUser1.gettPhone();
+	    }
+	    model.addAttribute("phonenumber",phone);
 	    return "modules/sys/mycenter";
     }
     
@@ -426,7 +445,16 @@ public class PayController extends BaseController {
         if("1".equals(tUser.getReserve2())){
             //说明还未签到
             try{
+            	//新增签到信息
                 tUserService.register(loginName);
+                //签到的同时想明细表中添加明细
+                Map<String,Object> map=new HashMap<String,Object>();
+                String id=IdGen.uuid();
+                map.put("id", id);
+                map.put("tma_userid", tUser.getId());
+                map.put("tma_dtlname", "签到");
+                map.put("tma_jine",0.5);
+                tUserService.addtomobileacountdtl(map);
                 result="1";
             }
             catch (Exception e){
@@ -466,6 +494,11 @@ public class PayController extends BaseController {
     public String totaskdetails(TMobileTask tMobileTask,Model model){
         //获取当前的所有任务列表，并排序
         tMobileTask=tMobileTaskService.get(tMobileTask);
+        Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取登录状态
+        TUser tUser=tUserService.getUserByLoginName(loginName);
+        model.addAttribute("tUser", tUser);
         model.addAttribute("tMobileTask", tMobileTask);
         return "modules/sys/mytaskdetails";
     }
@@ -476,6 +509,9 @@ public class PayController extends BaseController {
         String loginName=principal.getLoginName();
         //通过当前用户名获取登录状态
         tUser=tUserService.getUserByLoginName(loginName);
+        //获取理财金的天数
+        int day=tUserService.getLCdaysByLoginName(loginName);
+        model.addAttribute("day", day);
         model.addAttribute("tUser", tUser);
         return "modules/sys/myhead";
     }
@@ -496,5 +532,34 @@ public class PayController extends BaseController {
         return "modules/sys/myguanyume";
     }
     
+    @RequestMapping(value = "tomyxiaoxi")
+    public String tomyxiaoxi(Model model){
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取关于自己的消息记录
+        List<Map<Object,Object>> list=tUserService.getmessageList(loginName);
+        model.addAttribute("xiaoxilist",list);
+        return "modules/sys/myxiaoxi";
+    } 
+    
+    
+    @RequestMapping(value = "tohandApply")
+    @ResponseBody
+    public String tohandApply(TMobiletaskApply tMobiletaskApply){
+    	String result="0";
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        TUser tUser=tUserService.getUserByLoginName(loginName);
+        tMobiletaskApply.setTmaUserid(tUser.getId());
+        tMobiletaskApplyService.save(tMobiletaskApply);
+        if("1".equals(tMobiletaskApply.getTetReserve1())){
+        	//说明当前账号还未存储真实姓名信息
+        	tUser.settName(tMobiletaskApply.getTmaName());
+        	tUser.setReserve4(tMobiletaskApply.getTmaCardid());
+        	tUserService.setnameandpid(tUser);
+        }
+        result="1";
+    	return result;
+    }
 }
    

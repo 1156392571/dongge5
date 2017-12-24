@@ -18,7 +18,6 @@
 .tHeader {
 	width: 100%;
 	margin: 10px auto;
-	margin-bottom: 30px;
 	background-color: #fff;
 /* 	border: 1px solid #eee; */
 	box-shadow: 0 2px 3px #eee;
@@ -27,7 +26,7 @@
 .tHeader .in {
 	position: relative;
 	margin: 0 auto;
-	padding: 15px;
+	padding: 10px;
 }
 
 .tHeader h1 {
@@ -100,13 +99,12 @@
 }
 
 .tixian {
-	width: 100px;
-	height: 40px;
+	height: 55px;
 	background-color: #2984d1;
-	line-height: 40px;
-	border-radius: 4px;
+	line-height: 55px;
 	display: block;
 	color: #fff;
+	
 }
 .mui-popup.mui-popup-in {
 	display: block;
@@ -223,27 +221,72 @@
 .icon-yonghu {
 	font-size: 22px
 }
+
+
+
+.pricenum{
+	font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #ff552e;
+}
+.pricedan{
+    font-size: 12px;
+    line-height: 20px;
+    color: #ff552e;
+}
+.iconfont{
+	font-size: 24px;
+}
+.cname {
+    height:auto;
+    margin-bottom:0;
+   }
+.chuanjiandate{
+    color: #999;
+    font-size: 12px;
+    margin-left: 5px;
+}
+.datecreate{
+	font-size: 13px;
+	font-weight: 700;
+}
+.but-footbar {
+    height: 55px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    overflow: hidden;
+}
+.main-body{
+	padding-bottom: 55px;
+}
+{
+	height: 55px;
+    line-height: 55px;
+}
+pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;}
 </style>
 </head>
 <body>
-	<nav class="nav3 p">
-		<strong>我的账号</strong><i class="btn3" style="float: left;"><a href="javascript:history.back(-1)">返回</a></i>
-	</nav>
+<input type="hidden" id="id" value="${tMobileTask.id}">
+<input type="hidden" id="truename" value="${tUser.tName}">
 	<div class="tHeader tHjob">
 			<div class="in">
 				<div class="cn">
 					<div>
 						<span class="lname"><h1>${tMobileTask.tmtName}</h1>
-							<span class="lheadright">任务价格：￥${tMobileTask.tmtPrice}</span></span>
+							</span>
 					</div>
 					<p class="cname">
-						<a href="javascript:void(0)"><em
-							class="icon_b i_link"></em></a>
+						<span class="pricenum">￥${tMobileTask.tmtPrice}</span>
+						<span class="pricedan">元</span>
 					</p>
 					<p class="cname">
-						<i class="icon iconfont icon-chuangjianshijian"></i>
-						开始时间:<fmt:formatDate value="${tMobileTask.tmtStartdate}" pattern="yyyy-MM-dd"/><br>
-						结束时间:<fmt:formatDate value="${tMobileTask.tmtEnddate}" pattern="yyyy-MM-dd"/>
+						<span class="chuanjiandate">创建时间：<fmt:formatDate value="${tMobileTask.createtime}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
 					</p>
 				</div>
 				<div class="clear"></div>
@@ -253,17 +296,33 @@
 	<div class="main-body">
 		<div class="channel_main">
 			<div class="module_title">
+				<h3>任务时间</h3>
+			</div>
+			<div class="channel_contact">
+				<div>
+					<p><span class="datecreate">开始日期：<fmt:formatDate value="${tMobileTask.tmtStartdate}" pattern="yyyy-MM-dd"/></span></p>
+					<p><span class="datecreate">结束日期：<fmt:formatDate value="${tMobileTask.tmtEnddate}" pattern="yyyy-MM-dd"/></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="channel_main">
+			<div class="module_title">
 				<h3>任务要求</h3>
 			</div>
 			<div class="channel_contact">
 				<div class="innertext">
-					<pre class="textsize">${tMobileTask.tmtAsk}</pre>
+					<pre class="textsize">
+					${tMobileTask.tmtAsk}
+					</pre>
 				</div>
+			</div>
+			<div align="center">
+				<img src="${pageContext.request.contextPath}/${tMobileTask.tmtPhotourl}">
 			</div>
 		</div>
 	</div>
 	
-	<div>
+	<div class="but-footbar">
 		<p align="center"><a href="javascript:void(0)" class="tixian">任务交单</a></p>
 	</div>
 
@@ -273,15 +332,19 @@
 			<div class="mui-popup-title" style="text-align: center;">任务交单</div>
 			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
 				<div class="form-text-login">
-					<input type="text" id="txzhifubao" name="txzhifubao" class="form-text" placeholder="真实姓名" value="" style="padding: 0px;">
+					<input type="text" id="tmaName" name="txzhifubao" class="form-text" placeholder="真实姓名" value="${tUser.tName}" style="padding: 0px;">
 				</div>
 			</div>
 			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
 				<div class="form-text-login">
-					<input type="text" id="txjine" name="txjine" class="form-text" placeholder="手机号码" value="" style="padding: 0px;">
+					<input type="text" id="tmaCardid" name="pid" class="form-text" placeholder="身份证号" value="${tUser.reserve4}" style="padding: 0px;">
 				</div>
 			</div>
-			
+			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
+				<div class="form-text-login">
+					<input type="text" id="tmaPhone" name="txjine" class="form-text" placeholder="手机号码" value="${tUser.tPhone}" style="padding: 0px;">
+				</div>
+			</div>
 		</div>
 		<div class="mui-popup-buttons poperbutton">
 			<span class="mui-popup-button txcommit">确定</span>
@@ -321,6 +384,67 @@ function tixiancancel(){
 	$(".cover-bg").hide();
 	$(".paymethod").hide();
 }
+
+function txcommit(){
+	var id=$("#id").val();
+	var tmaName=$("#tmaName").val();
+	var tmaCardid=$("#tmaCardid").val();
+	var tmaPhone=$("#tmaPhone").val();
+	var phonereg=/^(1[358][0-9]{9})$/;
+	var pidreg=/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+	if(tmaName==""){
+		alert("真实姓名不能为空");
+		$("#tmaName").val("");
+		$("#tmaName").focus();
+		return ;
+	}
+	if(tmaCardid==""){
+		alert("身份证号不能为空");
+		$("#tmaCardid").val("");
+		$("#tmaCardid").focus();
+		return ;
+	}
+	if(pidreg.test(tmaCardid)==false){
+		alert("身份证号格式不正确");
+		$("#tmaCardid").val("");
+		$("#tmaCardid").focus();
+		return ;
+	}
+	if(tmaPhone==""){
+		alert("手机号码不能为空");
+		$("#tmaPhone").val("");
+		$("#tmaPhone").focus();
+		return ;
+	}
+	if(phonereg.test(tmaPhone)==false){
+		alert("手机号码格式不正确");
+		$("#tmaPhone").val("");
+		$("#tmaPhone").focus();
+		return ;
+	}
+	var truename=$("#truename").val();
+	var tetReserve1="";
+	if(truename==""||truename==null){
+		tetReserve1="1";
+	}else{
+		tetReserve1="2";
+	}
+	
+	$.ajax({
+		url:'${ctx}/pay/tohandApply',
+		type:'post',
+		data:{tmaTaskid:id,tmaName:tmaName,tmaCardid:tmaCardid,tmaPhone:tmaPhone,tetReserve1:tetReserve1},
+		success:function(data){
+			if(data=="1"){
+				alert("交单成功，请勿重复提交");
+				tixiancancel();
+			}else{
+				alert("交单失败");
+			}
+		}
+	})
+}
+
 
 </script>
 </body>

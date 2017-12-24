@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.mt.web;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +22,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TMobiletaskApply;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TMobiletaskApplyService;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
+import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 手机做任务Controller
@@ -94,6 +100,52 @@ public class TMobiletaskApplyController extends BaseController {
 			Map<String,String> map=tMobiletaskApplyService.getMapByid(tMobiletaskApply.getId());
 			//1.更新自己的当前账户
 			tUserService.updateSelfAcount(map);
+			//同时添加一条数据到自己这个账户下
+			//首先就是通过当前的id获取自己的A,B,C三级的用户id
+			Map<Object,Object> mapdtl=tUserService.getAllmessageByApplyid(tMobiletaskApply.getId());
+			String userid=(String) mapdtl.get("id");//做任务的用户id
+			String Auserid=(String) mapdtl.get("Auserid");//返佣的A级用户id
+			String Buserid=(String) mapdtl.get("Buserid");//返佣的B级用户id
+			String Cuserid=(String) mapdtl.get("Cuserid");//返佣的C级用户id
+			String phone=(String) mapdtl.get("t_phone");//做任务的用户手机号
+			String taskname=(String) mapdtl.get("tmt_name");//做任务的任务名称tmt_name
+			BigDecimal price=(BigDecimal) mapdtl.get("tmt_price");//做任务的用户id
+			BigDecimal tmt_rebateA= (BigDecimal)mapdtl.get("tmt_rebateA");
+			BigDecimal tmt_rebateB=(BigDecimal)mapdtl.get("tmt_rebateB");
+			BigDecimal tmt_rebateC=(BigDecimal)mapdtl.get("tmt_rebateC");
+            String id=IdGen.uuid();
+            String idA=IdGen.uuid();
+            String idB=IdGen.uuid();
+            String idC=IdGen.uuid();
+            Map<String,Object> mapU=new HashMap<String,Object>();
+            Map<String,Object> mapA=new HashMap<String,Object>();
+            Map<String,Object> mapB=new HashMap<String,Object>();
+            Map<String,Object> mapC=new HashMap<String,Object>();
+            //当前用户
+            mapU.put("id", id);
+            mapU.put("tma_userid", userid);
+            mapU.put("tma_dtlname",taskname);
+            mapU.put("tma_jine",price);
+            tUserService.addtomobileacountdtl(mapU);
+            //A级用户
+            mapA.put("id", idA);
+            mapA.put("tma_userid", Auserid);
+            mapA.put("tma_dtlname",phone+"为你赚赏金");
+            mapA.put("tma_jine",tmt_rebateA);
+            tUserService.addtomobileacountdtl(mapA);
+            //B级用户
+            mapB.put("id", idB);
+            mapB.put("tma_userid", Buserid);
+            mapB.put("tma_dtlname",phone+"为你赚赏金");
+            mapB.put("tma_jine",tmt_rebateB);
+            tUserService.addtomobileacountdtl(mapB);
+            //C级用户
+            mapC.put("id", idC);
+            mapC.put("tma_userid", Cuserid);
+            mapC.put("tma_dtlname",phone+"为你赚赏金");
+            mapC.put("tma_jine",tmt_rebateC);
+            tUserService.addtomobileacountdtl(mapC);
+			
 			//2.更新A对应的钱
 			tUserService.updateAcountA(map);
 			//2.更新B对应的钱

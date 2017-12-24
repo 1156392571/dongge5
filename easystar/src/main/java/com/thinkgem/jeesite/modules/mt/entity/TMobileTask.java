@@ -149,8 +149,6 @@ public class TMobileTask extends DataEntity<TMobileTask> {
 		this.tmtViewtime = tmtViewtime;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@NotNull(message="创建时间不能为空")
 	public Date getCreatetime() {
 		return createtime;
 	}

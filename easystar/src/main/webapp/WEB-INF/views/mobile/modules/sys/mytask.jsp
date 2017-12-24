@@ -55,7 +55,9 @@
 				<div class="top">
 					<div class="left">
 						<div class="title">${mobiletask.tmtName}</div>
-						<div class="text">${mobiletask.tmtAsk}</div>
+						<div class="text">
+						${fns:abbr(mobiletask.tmtAsk,30)}
+						</div>
 					</div>
 					<div class="right">
 						<img src="${ctxStatic}/reg-login/images/img/icon_you.png">

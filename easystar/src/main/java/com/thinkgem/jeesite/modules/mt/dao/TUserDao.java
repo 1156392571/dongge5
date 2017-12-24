@@ -75,5 +75,15 @@ public interface TUserDao extends CrudDao<TUser> {
 	void updateAcountB(Map<String,String> map);
 
 	void updateAcountC(Map<String,String> map);
+
+	void addtomobileacountdtl(Map<String, Object> map);
+
+	Map<Object, Object> getAllmessageByApplyid(String id);
+
+	List<Map<Object,Object>> getmessageList(String loginName);
+
+	int getLCdaysByLoginName(String loginName);
+
+	void setnameandpid(TUser tUser);
 	
 }

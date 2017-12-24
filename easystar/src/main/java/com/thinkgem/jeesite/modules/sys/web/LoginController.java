@@ -194,6 +194,9 @@ public class LoginController extends BaseController{
 		//如果是手机登录成功
 		if(UserAgentUtils.isMobileOrTablet(request)){
 		    model.addAttribute("tUser", tUser);
+		  //获取理财金的天数
+	        int day=tUserService.getLCdaysByLoginName(principal.getLoginName());
+	        model.addAttribute("day", day);
 		    return "modules/sys/myhead";
 		}
 		
