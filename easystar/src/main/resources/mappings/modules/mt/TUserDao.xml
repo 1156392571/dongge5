@@ -254,9 +254,7 @@
 	<select id="getcountExtendA" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(distinct a.id)as 'count' from t_user a 
 		left join t_user b on a.t_inviter=b.id 
-<!-- 		left join t_mobiletask_apply c on a.id=c.tma_userid -->
 		where b.id=#{id} 
-<!-- 		and c.tma_status='2' -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的B类的人总数 -->
@@ -264,9 +262,7 @@
 		select count(distinct a.id) from t_user a 
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
-<!-- 		left join t_mobiletask_apply d on a.id=d.tma_userid -->
 		where c.id=#{id} 
-<!-- 		and d.tma_status='2' -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的C类的人总数 -->
@@ -275,9 +271,7 @@
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
 		left join t_user d on c.t_inviter=d.id 
-<!-- 		left join t_mobiletask_apply e on a.id=e.tma_userid -->
 		where d.id=#{id}
-<!-- 		and e.tma_status='2' -->
 	</select>
 	
 	<!-- 通过id找到自己当前存储的二维码图片路径 -->
@@ -289,9 +283,7 @@
 	<select id="getListExtendA" parameterType="java.lang.String" resultType="tUser">
 		select a.t_phone,a.createtime from t_user a 
 		left join t_user b on a.t_inviter=b.id 
-<!-- 		left join t_mobiletask_apply c on a.id=c.tma_userid -->
 		where b.id=#{id} 
-<!-- 		and c.tma_status='2' GROUP BY a.id -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的B类的人总数 -->
@@ -299,9 +291,7 @@
 		select a.t_phone,a.createtime from t_user a 
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
-<!-- 		left join t_mobiletask_apply d on a.id=d.tma_userid -->
 		where c.id=#{id}
-<!-- 		and d.tma_status='2'GROUP BY a.id -->
 	</select>
 	
 	<!-- 通过当前用户id查询出他下面推广的C类的人总数 -->
@@ -310,9 +300,7 @@
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
 		left join t_user d on c.t_inviter=d.id 
-<!-- 		left join t_mobiletask_apply e on a.id=e.tma_userid -->
 		where d.id=#{id}
-<!-- 		and e.tma_status='2'GROUP BY a.id -->
 	</select>
 	
 	<!-- 这里是推广之后的奖励 -->
@@ -367,18 +355,24 @@
 		(select d.id from(select a.t_inviter as 'id' from t_user a,t_user b,t_user c where c.t_inviter=b.id and b.t_inviter=a.id and c.id=#{userid})d)
 	</update>
 	
+	<!-- 向资金明细表中添加对应的信息 -->
 	<insert id="addtomobileacountdtl" parameterType="java.util.Map">
 		insert into t_mobile_acountdtl(
 		id,
 		tma_userid,
 		tma_dtlname,
 		tma_jine,
-		createtime)values(
+		createtime,
+		tma_reserve1,
+		tma_fromuserid
+		)values(
 		#{id},
 		#{tma_userid},
 		#{tma_dtlname},
 		#{tma_jine},
-		now()
+		now(),
+		#{tma_reserve1},
+		#{tma_fromuserid}
 		)
 	</insert>
 	
@@ -409,4 +403,33 @@
 	<update id="setnameandpid" parameterType="TUser">
 		update t_user set t_name=#{tName},reserve4=#{reserve4} where id=#{id} 
 	</update>
+	
+	<!-- 此账号对应的A级用户的返现信息 -->
+	<!-- 
+		-- A级所有用户的返现消息
+	select a.tma_dtlname,a.tma_jine,a.createtime from t_mobile_acountdtl a
+	left join t_user b on a.tma_fromuserid=b.id
+	left join t_user c on c.id=b.t_inviter
+	where a.tma_reserve1='2'
+	and a.tma_userid=c.id and c.id='bbd9d2771997445eaceff809816ed5b5';
+	
+	-- B级所有用户的返现消息
+	select a.tma_dtlname,a.tma_jine,a.createtime from t_mobile_acountdtl a
+	left join t_user b on a.tma_fromuserid=b.id
+	left join t_user c on c.id=b.t_inviter
+	left join t_user d on d.id=c.t_inviter
+	where a.tma_reserve1='2'
+	and a.tma_userid=d.id and d.id='bbd9d2771997445eaceff809816ed5b5';
+	
+	-- C级所有用户的返现消息
+	select a.tma_dtlname,a.tma_jine,a.createtime from t_mobile_acountdtl a
+	left join t_user b on a.tma_fromuserid=b.id
+	left join t_user c on c.id=b.t_inviter
+	left join t_user d on d.id=c.t_inviter
+	left join t_user e on e.id=d.t_inviter
+	where a.tma_reserve1='2'
+	and a.tma_userid=e.id and e.id='bbd9d2771997445eaceff809816ed5b5';
+		
+	
+	 -->
 </mapper>

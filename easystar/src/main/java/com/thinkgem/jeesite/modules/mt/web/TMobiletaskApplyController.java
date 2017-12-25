@@ -126,24 +126,31 @@ public class TMobiletaskApplyController extends BaseController {
             mapU.put("tma_userid", userid);
             mapU.put("tma_dtlname",taskname);
             mapU.put("tma_jine",price);
+            mapU.put("tma_reserve1","1");
             tUserService.addtomobileacountdtl(mapU);
             //A级用户
             mapA.put("id", idA);
             mapA.put("tma_userid", Auserid);
-            mapA.put("tma_dtlname",phone+"为你赚赏金");
+            mapA.put("tma_dtlname",phone+"用户为你赚赏金");
             mapA.put("tma_jine",tmt_rebateA);
+            mapA.put("tma_reserve1","2");
+            mapA.put("tma_fromuserid",userid);
             tUserService.addtomobileacountdtl(mapA);
             //B级用户
             mapB.put("id", idB);
             mapB.put("tma_userid", Buserid);
-            mapB.put("tma_dtlname",phone+"为你赚赏金");
+            mapB.put("tma_dtlname",phone+"用户为你赚赏金");
             mapB.put("tma_jine",tmt_rebateB);
+            mapB.put("tma_reserve1","2");
+            mapB.put("tma_fromuserid",userid);
             tUserService.addtomobileacountdtl(mapB);
             //C级用户
             mapC.put("id", idC);
             mapC.put("tma_userid", Cuserid);
-            mapC.put("tma_dtlname",phone+"为你赚赏金");
+            mapC.put("tma_dtlname",phone+"用户为你赚赏金");
             mapC.put("tma_jine",tmt_rebateC);
+            mapC.put("tma_reserve1","2");
+            mapC.put("tma_fromuserid",userid);
             tUserService.addtomobileacountdtl(mapC);
 			
 			//2.更新A对应的钱
