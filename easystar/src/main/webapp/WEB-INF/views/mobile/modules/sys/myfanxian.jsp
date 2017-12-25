@@ -11,150 +11,62 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
+<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/extendnews.css">
+<script src="${ctxStatic}/reg-login/js/avalon.js" type="text/javascript"></script>
 <title>我的返现</title>
+<script type="text/javascript">
+		let vm = avalon.define({
+	            $id: 'test',
+	            show: true,
+
+	        })
+</script>
 <style type="text/css">
-    html,body{
-        height:100%;width:100%;font-family:"微软雅黑";background-color:#eee;
-    }
-    body{margin:0px;padding:0px;}
-        #dviews{width:100%;height:100%;margin:0px auto;}
-        #tabto{width:100%;height:10%;margin:0px;font-size:0px;}
-        .totab{display:inline-block;width:33%;height:100%;text-align:center;background-color:white;color:black;font-size:15px;border-right:1px solid #ccc;}
-        #to1{background-color:rgb(0, 140, 255);color:white;}
-        #divto{width:100%;height:100%;margin:0px;margin-top:10px;}
-        .todiv{width:100%;height:100%;margin:0px;position:absolute;background-color:white;background-color:#eee;}
-        #tdv1{z-index:1;}
-        ul{
-            padding:0px;margin-top:10px;height:100%;width:100%;
-        }
-    li{list-style:none;margin-bottom: 1px;
-    text-align:center;height:8%;
-    background-color:white;
-        font-size: 14px;line-height:50px;}
-    li >span{
-        color:black;
-        display:inline-block;
-        width:28%;
-    }
-    li >span:nth-child(1){
-        text-align:left;
-    }
-    li >span:nth-child(3){
-        text-align:right;
-    }
-    .p1{margin-bottom:0px;}
-    .totab span{
-        font-size:12px;
-    }
-    .navs{
-        height:8%;width:100%;margin-bottom:10px;background-color:white;
-    }
-    .navs >span{
-        display: inline-block;width: 40%;height: 100%;line-height: 50px;padding-left: 26px;color: red;
-    }
-    .sptright{
-        text-align: right;
-    }
-    .monry{
-        color:red;
-    }
-    .title{
-        background-color:#f9f9f9
-    }
-    </style>
+.money{
+width: 40px;height: 40px;
+}
+</style>
 </head>
 <body>
-<div id = "dviews">
-<div id ="tabto">
-    <div class="totab" id="to1"><p class = "p1">已获得赏金</p><span>10.9元</span></div>
-    <div class="totab" id="to2"><p class = "p1">赏金在路上</p><span>10份</span></div>
-    <div class="totab" id="to3"><p class = "p1">审核失败</p><span>0个</span></div>
-    </div>
-
-    <div id ="divto">
-    <div class="todiv" id="tdv1">
-    <div class = "navs">
-        <span class = "sptleft">10份赏金</span><span class = "sptright">共1.60元</span>
-    </div>
-    <ul>
-        <li class = "title"><span>手机号</span><span>任务</span><span>收益</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-    </ul>
-    </div>
-    <div class="todiv" id="tdv2">
-<div class = "navs">
-        <span class = "sptleft">10条消费记录</span><span class = "sptright">共10.60元</span>
-    </div>
-    <ul>
-        <li class = "title"><span>手机号</span><span>任务</span><span>金额</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">10.67元</span></li>
-    </ul>
-    </div>
-    <div class="todiv" id="tdv3">
-  <div class = "navs">
-        <span class = "sptleft">10份赏金</span><span class = "sptright">共1.60元</span>
-    </div>
-    <ul>
-        <li class = "title"><span>手机号</span><span>任务</span><span>收益</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-        <li><span>****0050</span><span>移动支付</span><span class = "monry">1.67元</span></li>
-    </ul>
-    </div>
-    </div>
-    </div>
-
+	<div class="m-news" ms-controller="test">
+		<div class="nav">
+			<div :class="['item',@show?'color':'']" ms-on-tap="@show = true">赏金消息</div>
+			<div :class="['item',!@show?'color':'']" ms-on-tap="@show = false">赏金在路上</div>
+		</div>
+		<div class="list" :visible="@show">
+			<c:forEach items="${listA}" var="lista">
+			<div class="item">
+				<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money3.png">
+				<div class="info" style="width: 76%;">
+					<div class="top">
+						<div class="text">赏金返现</div>
+						<div class="time"><fmt:formatDate value="${lista.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+					</div>
+					<div class="bottom">
+						恭喜您：${lista.tma_dtlname}为你贡献了${lista.tma_jine}的利益，请继续努力。
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+			
+			=================================
+			<c:forEach items="${listB}" var="listb">
+			<div class="item">
+				<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money3.png">
+				<div class="info" style="width: 76%;">
+					<div class="top">
+						<div class="text">赏金返现</div>
+						<div class="time"><fmt:formatDate value="${listb.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+					</div>
+					<div class="bottom">
+						恭喜您：${listb.t_phone}做了${listb.tmt_name}的任务，即将为你贡献了${listb.moneyway}的利益，请继续努力。
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+			
+		</div>
+	</div>
 </body>
-<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
-<script type="text/javascript">
-
-var oBar = document.getElementsByClassName("totab");
-
-            for(var i = 0; i<oBar.length;i++){
-                oBar[i].onclick = function() {
-                $(".totab").css({"background-color":"white","color":"black"});
-                this.style.backgroundColor = "rgb(0, 140, 255)";
-                this.style.color = "white";
-                Move(this);
-             }
-            }
-
-  function Move(obj) {
-           var oId = obj.id;
-           var oWich = parseInt(oId.slice(-1))-1;
-           var oPanl = document.getElementsByClassName("todiv");
-           for(var i = 0; i<oPanl.length;i++){
-           oPanl[i].style.zIndex = 0;
-
-       }
-           oPanl[oWich].style.zIndex = 1;
-
-        }
-
-</script>
 </html>

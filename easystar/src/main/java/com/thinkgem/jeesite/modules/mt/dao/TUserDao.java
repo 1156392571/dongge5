@@ -85,5 +85,11 @@ public interface TUserDao extends CrudDao<TUser> {
 	int getLCdaysByLoginName(String loginName);
 
 	void setnameandpid(TUser tUser);
+
+	List<Map<Object,Object>> getAfanxianAll(String id);
+
+	List<Map<Object,Object>> getBfanxianAll(String id);
+
+	List<Map<Object,Object>> getCfanxianAll(String id);
 	
 }

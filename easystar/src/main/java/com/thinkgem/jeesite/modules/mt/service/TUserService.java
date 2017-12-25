@@ -203,4 +203,16 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		tUserDao.setnameandpid(tUser);
 	}
 
+	public List<Map<Object,Object>> getAfanxianAll(String id) {
+		return tUserDao.getAfanxianAll(id);
+	}
+
+	public List<Map<Object,Object>> getBfanxianAll(String id) {
+		return tUserDao.getBfanxianAll(id);
+	}
+
+	public List<Map<Object,Object>> getCfanxianAll(String id) {
+		return tUserDao.getCfanxianAll(id);
+	}
+
 }

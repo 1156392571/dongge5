@@ -13,150 +13,134 @@
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
 <title>我的推广</title>
-<link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
+<link rel="stylesheet" href="${ctxStatic}/reg-login/css/extendnews.css">
 <link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/style.css">
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
-<link href="${ctxStatic}/reg-login/css/iconfont1.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.bootcss.com/c3/0.4.18/c3.min.css" rel="stylesheet">
+<script src="http://c3js.org/js/d3-3.5.6.min-77adef17.js" type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/c3/0.4.18/c3.min.js"></script>
 
-<style>
-.tuiguang {
-	font-size: 16px;
-	text-align: center;
-	padding: 10px;
-}
-
-.tuiguangnum {
-	font-size: 36px;
-}
-
-.shiyong {
-	padding: 10px 0;
-	text-align: center;
-}
-
-.shiyong p span {
-	font-size: 16px;
-	width: 33%;
-	display: inline-block;
-}
-
-.renyuanleft {
-	width: 95%;
-	float: left;
-}
-
-.renyuanleft p {
-	line-height: 38px;
-	float: left;
-}
-
-.renyuanright {
-	width: 40%;
-	float: right;
-}
-
-.renyuanright p {
-	text-align: center;
-	font-size: 14px;
-	color: #ff6633;
-}
-
-.renyuanitem {
-	height: 38px;
-	padding: 8px 0;
-	border-bottom: 1px solid #ddd;
-}
-
-
-.touxiang img {
-	width: 140px;
-	margin: 0 auto;
-	display: block;
-}
-
-.btn5 {
-	margin: 12px auto 0 !important;
-	width: 50%;
-	height: auto;
-}
-.left:after {
-	font-family: "iconfont" !important;
-	color: #333;
-	content: "\e507";
-	line-height: 38px;
-	float: right;
-	padding-right: 8px;
-}
-</style>
-<script type="text/javascript">
-	function todetail(type){
-		window.location.href="${ctx}/pay/toextenddetail?type="+type;
-	}
-
-</script>
-</head>
-<body>
-	<!-- 
-	<nav class="nav3 p">
-		<strong>我的推广</strong>
-	</nav>
-	 -->
-	<section class="form-group" id="inputObj" style="background-image: url('${ctxStatic}/reg-login/images/img/backgrounds/tuiguangback.png');background-size: auto auto">
-		<div class="tuiguang">
-			<p>累计推广(人)</p>
-			<p class="tuiguangnum">${extendAll}</p>
+<body style="background-color: #f1f3f8">
+	<input type="hidden" id="aa" value="${extendAll}">
+	<div class="m-chart">
+		<div class="head">
+			<div class="tishi">您的推广员越多，收益就越高。</div>
+			<img src="${ctxStatic}/reg-login/images/mycenter/zhizhen.png">
+			<div class="chart" id="chart"></div>
+			<div id="sum" class="sum">0</div>
+			<div class="absolute one">0</div>
+			<div class="absolute two">25</div>
+			<div class="absolute three">50</div>
+			<div class="absolute four">75</div>
+			<div class="absolute five">100</div>
+			<div class="time">截止到12月25日24:00</div>
+			<div class="add" style="font-size: 15px;">今日累计新增 0 个用户</div>
 		</div>
-		<div class="shiyong">
-			<p><span>直接</span><span>间接</span><span>实名</span></p>
-			<p><span>${extendA}</span><span>${extendB}</span><span>${extendC}</span></p>
+		<div class="listbox">
+			<div class="tou">
+				<span>客户明细</span>
+			</div>
+			<div class="item" onclick="todetail('A')">
+				<img src="${ctxStatic}/reg-login/images/mycenter/boy1.png">
+				<div class="info">
+					<div class="left" style="font-size: 15px;">
+						推广员A
+					</div>
+					<div class="right">
+						<i class="icon_you1"></i>
+					</div>
+				</div>
+			</div>
+			<div class="item" onclick="todetail('B')">
+				<img src="${ctxStatic}/reg-login/images/mycenter/boy2.png">
+				<div class="info">
+					<div class="left" style="font-size: 15px;">
+						推广员B
+					</div>
+					<div class="right">
+						<i class="icon_you1"></i>
+					</div>
+				</div>
+			</div>
+			<div class="item" onclick="todetail('C')">
+				<img src="${ctxStatic}/reg-login/images/mycenter/boy3.png">
+				<div class="info">
+					<div class="left" style="font-size: 15px;">
+						推广员C
+					</div>
+					<div class="right">
+						<i class="icon_you1"></i>
+					</div>
+				</div>
+			</div>
 		</div>
-	</section>
-	<section class="form-group" id="inputObj">
-		<div>
-			<ul>
-				<li class="renyuanitem" onclick="todetail('A')">
-					<div>
-						<div class="renyuanleft left">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/backgrounds/dog.png"></span>
-							<span>推广员A</span></p>
-						</div>
-<!-- 						<div class="renyuanright"> -->
-<!-- 							<p>直接 6 人</p> -->
-<!-- 							<p>间接 6 人</p> -->
-<!-- 						</div> -->
-					</div>
-				</li>
-				<li class="renyuanitem" onclick="todetail('B')">
-					<div>
-						<div class="renyuanleft left">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/backgrounds/monkey.png"></span>
-							<span>推广员B</span></p>
-						</div>
-					</div>
-				</li>
-				<li class="renyuanitem" onclick="todetail('C')">
-					<div>
-						<div class="renyuanleft left">
-							<p><span><img style="width: 40px;height: 40px;" src="${ctxStatic}/reg-login/images/img/backgrounds/mouse.png"></span>
-							<span>推广员C</span></p>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</section>
-	<!-- 
-	<div class="btn5" style="margin-top: 12px">
-		<input type="button" id="submitBtn" value="返&nbsp;&nbsp;回" onclick="history.go(-1)">
 	</div>
- 	-->
- 	
+	
+	
 	<footer class="disBox">
 		<a href="${ctx}/pay/tomyhead"><i class="f-icon01"></i>首页</a>
 		<a href="${ctx}/pay/tomytask"><i class="f-icon02"></i>任务</a>
 		<a href="${ctx}/pay/toextend"  class="cur"><i class="f-icon03"></i>推广</a>
 		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
 	</footer>
+	<script type="text/javascript">
+		var x = 0;
+		var max = 100;
+		var sum = $("#aa").val();
+		var chart = c3.generate({
+			bindto : '#chart',
+			data : {
+				columns : [ [ 'data', 0 ] ],
+				type : 'gauge',
+			},
+			gauge : {
+				label : {
+					format : function(value, ratio) {
+						return value;
+					},
+					show : false
+				// to turn off the min/max labels.
+				},
+				min : 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+				max : max, // 100 is default
+				// units: ' 人',
+				width : 18, // for adjusting arc thickness
+				expand : false
+			},
+			color : {
+				pattern : [ '#FF0000', '#F97600', '#F6C600', '#60B044' ], // the three color levels for the percentage values.
+				threshold : {
+					//            unit: 'value', // percentage is default
+					//            max: 200, // 100 is default
+					values : [ 30, 60, 90, 100 ]
+				}
+			},
+			size : {
+				height : 163
+			}
+		});
+
+		setTimeout(function() {
+			chart.load({
+				columns : [ [ 'data', sum ] ]
+			});
+		}, 500);
+
+		var int = setInterval(function() {
+			if (x < sum) {
+				x++;
+				var vum = document.getElementById('sum').innerHTML = x;
+			} else {
+				clearInterval(int);
+			}
+
+		}, 20);
+		
+		function todetail(type){
+			window.location.href="${ctx}/pay/toextenddetail?type="+type;
+		}
+	</script>
+
 
 </body>
 </html>

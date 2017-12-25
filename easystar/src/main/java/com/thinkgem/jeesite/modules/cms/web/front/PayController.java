@@ -518,7 +518,21 @@ public class PayController extends BaseController {
     
     @RequestMapping(value = "tomyfanxian")
     public String tomyfanxian(TUser tUser,Model model){
+    	//查询自己当前的ABC级已赚赏金
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取登录状态
+        tUser=tUserService.getUserByLoginName(loginName);
+    	//获取已赚取的赏金
+        List<Map<Object,Object>> listA=tUserService.getAfanxianAll(tUser.getId());
+    	//赏金在路上
+        List<Map<Object,Object>> listB=tUserService.getBfanxianAll(tUser.getId());
+    	//赏金溜走的
+        List<Map<Object,Object>> listC=tUserService.getCfanxianAll(tUser.getId());    	
         model.addAttribute("tUser", tUser);
+        model.addAttribute("listA", listA);
+        model.addAttribute("listB", listB);
+        model.addAttribute("listC", listC);
         return "modules/sys/myfanxian";
     }
     

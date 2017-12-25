@@ -1,0 +1,660 @@
+.m-news{
+
+}
+.m-news .list{
+
+}
+.m-news .list .item{
+	display: flex;
+	align-items: center;
+}
+.m-news .list .item img{
+
+	margin: 0 10px;
+}
+.m-news .list .item .info{
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+	padding-right: 10px;
+}
+.m-news .list .item .info .top{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.m-news .list .item .info .top .text{
+	font-size: 14px;
+	font-weight: bold;
+}
+.m-news .list .item .info .top .time{
+
+	color: #3d3d3d;
+	font-size: 12px;
+}
+.m-news .list .item .info .bottom{
+	margin-top: 5px;
+	color: #3d3d3d;
+	font-size: 12px;
+}
+.m-news .nav{
+	padding: 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-bottom: 1px solid #ddd;
+}
+.m-news .nav .item{
+	flex-grow: 1;
+	text-align: center;
+}
+.m-news .nav .color{
+	color: #4abfef;
+}
+
+/*-------------------------------------------------------*/
+.m-chart{
+
+}
+.m-chart .listbox{
+	background-color: white;
+}
+.m-chart .icon_you1{
+	display: block;
+	width: 32px;
+	height: 32px;
+	background-image: url('../images/mycenter/icon_you1.png');
+}
+.m-chart .listbox .tou{
+	font-size:15px;
+	padding: 15px 0;
+	padding-left: 20px;
+	border-bottom: 1px solid #ddd;
+}
+.m-chart .listbox .tou span{
+	display: flex;
+	align-items: center;
+	border-left: 8px solid #fc8200;
+	padding-left: 5px;
+}
+.m-chart .listbox .item{
+	display: flex;
+	align-items: center;
+	
+}
+.m-chart .listbox .item img{
+	width: 40px;
+	height: 40px;
+	margin-left: 20px;
+	margin-right: 10px;
+}
+.m-chart .listbox .item .info{
+	padding: 10px 0;
+	padding-right: 12px;
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #ddd;
+}
+.m-chart .listbox .item:last-child .info{
+	border:0;
+}
+.m-chart .head{
+	background-color: #2a2d37;
+	position: relative;
+	width: 100%;
+	height: 225px;
+	overflow: hidden;
+}
+.m-chart .head .absolute{
+	position: absolute;
+	z-index: 999;
+	color: #a6a6a6;
+	font-size: 14px;
+	width: 36px;
+	left: 50%;
+}
+.m-chart .head .tishi{
+	position: absolute;
+	z-index: 1000;
+	color: #a6a6a6;
+	font-size: 14px;
+	left: 50%;
+	width: 200px;
+	text-align: center;
+	margin-left: -93px;
+	top: 16px;
+}
+.m-chart .head .sum{
+	left: 50%;
+	position: absolute;
+	z-index: 999;
+	color: white;
+	font-size: 30px;
+	top: 95px;
+	width: 60px;
+	text-align: center;
+	margin-left: -30px;
+}
+.m-chart .head .one{
+	top: 146px;
+	margin-left: -93px;
+
+}
+.m-chart .head .two{
+	top: 88px;
+	margin-left: -68px;
+}
+.m-chart .head .three{
+	top: 63px;
+	text-align: center;
+	margin-left: -18px;
+}
+.m-chart .head .four{
+	top: 88px;
+	margin-left: 32px;
+	text-align: right;
+}
+.m-chart .head .five{
+	top: 146px;
+	margin-left: 57px;
+	text-align: right;
+}
+.m-chart .head .time{
+	left: 50%;
+	top: 145px;
+	position: absolute;
+	z-index: 999;
+	color: #a6a6a6;
+	font-size: 12px;
+	width: 120px;
+	margin-left: -60px;
+	text-align: center;
+}
+.m-chart .head .add{
+	left: 50%;
+	top: 180px;
+	position: absolute;
+	z-index: 999;
+	color: white;
+	width: 166px;
+	text-align: center;
+	margin-left: -83px;
+}
+.m-chart .head .chart{
+	width: 240px;
+	margin: 0 auto;
+}
+.m-chart .head img{
+	width: 300px;
+	left: 50%;
+	margin-left: -150px;
+	position: absolute;
+	z-index: 999;
+}
+
+/*----------------------------------------*/
+.m-about{
+
+}
+.m-about .ditu{
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.m-about .ditu .left{
+	width: 49%;
+}
+.m-about .ditu .left img{
+	
+	width: 100%;
+	height: 100%;
+}
+.m-about .ditu .right{
+	width: 49%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.m-about .ditu .right .one{
+	width: 100%;
+	margin-bottom: 5px;
+}
+.m-about .ditu .right .two{
+	width: 100%;
+}
+.m-about .banner{
+	width: 100%;
+}
+.m-about .banner img{
+	width: 100%;
+}
+.m-about .chanpin{
+	padding: 10px 20px;
+	font-size: 14px;
+	color: #333;
+	line-height: 22px;
+}
+.m-about .chanpin .suojin{
+	text-indent:2em;  
+}
+.m-about .mitu{
+	padding: 10px 20px;
+	font-size: 14px;
+	color: #333;
+}
+.m-about .logo{
+	margin: 20px 0;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.m-about .logo .left{
+	height: 60px;
+}
+/*------------------------------------*/
+.m-service{
+	color: #333;
+}
+.m-service input{
+	/*display: none;*/
+}
+.m-service .list{
+	background-color: white;
+	margin-top: 10px;
+}
+.m-service .list .item{
+	padding: 20px 10px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+}
+.m-service .list .item:first-child{
+	border-bottom: 1px solid #ddd;
+
+}
+.m-service .list .item .left{
+	margin-right: 10px;
+}
+.m-service .list .item .right{
+	
+}
+.m-service .list .item .right .title{
+	font-size: 14px;
+	text-align: left;
+}
+.m-service .list .item .right .text{
+	margin-top: 5px;
+	font-size: 12px;
+	color: #545454;
+}
+
+.m-service .prompt{
+	padding: 30px 20px;
+	font-size: 12px;
+	color: #545454;
+}
+.m-service .lianxi{
+	background-color: white;
+	padding: 30px 20px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 14px;
+}
+.m-service .lianxi .item{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.m-service .lianxi .item span{
+	
+}
+.m-service .lianxi .item .info{
+	width: 60px;
+	height: 60px;
+	background-color: #f1f3f8;
+	border-radius: 50%;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/*----------------------------------------------*/
+.m-my .list{
+	background-color: white;
+	padding-left: 20px;
+	font-size: 14px;
+}
+.m-my .list .item{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+	padding-right: 10px;
+	color: #333;
+}
+.m-my .list .item:last-child{
+	border-bottom: 0;
+}
+.m-my .list .item .left{
+	display: flex;
+	align-items: center;
+}
+.m-my .list .item .left img{
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+}
+.m-my .list .item .right{
+	display: flex;
+	align-items: center;
+}
+.m-my .icon_you1{
+	display: block;
+	width: 32px;
+	height: 32px;
+	background-image: url('../images/mycenter/icon_you1.png');
+}
+.m-my .info{
+	width: 100%;
+	height: 200px;
+	background-repeat:no-repeat;
+	background-image: url('../img/beijing_top.png');
+	display: flex;
+	align-items: center;
+	background-size: 100% 100%; 
+}
+.m-my .info .left{
+	width: 70px;
+	height: 70px;
+	background-color: white;
+	border-radius: 50%;
+	margin:0 30px;
+}
+.m-my .info .right{
+	color: #333;
+}
+/*--------------------------------------*/
+.m-details .pop {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(31,31,31,.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.m-details .pop .box{
+	height: 40%;
+	width: 80%;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.m-details .pop .box{
+	display: flex;
+	flex-direction:column;
+	justify-content: space-between;
+}
+.m-details .pop .box .top{
+	padding: 10px 5%;
+}
+.m-details .pop .box .top .item{
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.m-details .pop .box .top .item label{
+	width: 100px;
+	font-size: 14px;
+}
+.m-details .pop .box .top .item .input{
+	flex-grow: 1;
+	height: 30px;
+	padding-left: 10px;
+	border:1px solid #ddd;
+	display: flex;
+	align-items: center;
+}
+.m-details .pop .box .top .item .input input{
+	border:0;
+	width: 100%;
+	font-size: 12px;
+}
+.m-details .pop .box .top .item input[type=file]{
+	display: none
+}
+.m-details .pop .box .top .item .btn{
+	width: auto;
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px 10px;
+	border:1px solid #333;
+}
+.m-details .pop .box .bottom{
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid #ddd;
+	
+}
+.m-details .pop .box .bottom .left{
+	width: 50%;
+	text-align: center;
+	border-right: 1px solid #ddd;
+	padding: 10px 20px;
+}
+.m-details .pop .box .bottom .right{
+	width: 50%;
+	text-align: center;
+	padding: 10px 20px;
+}
+.m-details .bannar {
+	position: relative;
+}
+.m-details .bannar img{
+	width: 100%;
+}
+.m-details .bannar a{
+	position: absolute;
+	bottom: 20px;
+	width: 50%;
+	left: 25%;
+	text-align: center;
+}
+.m-details .button{
+	display: flex;
+	justify-content: center;
+}
+.m-details .kong{
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px 10px;
+	border:1px solid #333;
+}
+.m-details .list{
+	padding: 20px 5%;
+}
+.m-details .list .item{
+	display: flex;
+	justify-content: center;
+	/*justify-content: space-between;*/
+	margin-bottom: 20px;
+}
+.m-details .list .item label{
+	color: #333;
+	width: 125px;
+	display: flex;
+	align-items: center;
+}
+.m-details .list .item label img{
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+.m-details .list .item .input{
+	width: 14%;
+	padding-right: 1%;
+	border-bottom:1px solid ;
+	display: flex;
+	align-items: center;
+
+}
+.m-details .list .item .input input{
+	border:0;
+	width: 80%;
+}
+.m-details .jieshao{
+	padding: 10px 5%;
+	border-bottom: 10px solid #ddd;
+}
+.m-details .jieshao label{
+	font-size: 20px;
+	color: #333;
+}
+.m-details .jieshao .text{
+	margin-top: 10px;
+	min-height: 100px;
+	padding: 5px;
+	outline:none;
+}
+/*---------------------------------------------*/
+.m-list{
+	padding: 20px 5%;
+}
+.m-list .item{
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+	border-radius: 8px;
+	margin-bottom: 10px;
+	
+}
+.m-list .item .top{
+	padding: 5px 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #dddddd;
+}
+.m-list .item .top .left .title{
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+.m-list .item .top .left .text{
+  margin-top: 10px;
+  font-size: 12px;
+  color: #bbbbbb;
+}
+.m-list .item .bottom{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding:5px 10px;
+	font-size: 12px;
+	color: gray;
+}
+.m-list .item .bottom .sum{
+	display: flex;
+	align-items: center;
+}
+.m-list .item .bottom .sum span{
+	margin-left: 5px;
+}
+/*---------------------------------------------*/
+.m-background{
+	display: flex;
+	flex-direction: column;
+	    
+}
+.m-background .m-box{
+	position: absolute;
+	top: 179px;
+	width: 100%;
+	height: calc(100% - 180px);
+	background-repeat:no-repeat;
+	background-image: url('../img/bj2.jpg');
+	display: flex;
+	justify-content: center;
+	background-size: 100% 100%; 
+}
+.m-background .m-box .list{
+	width: 100%;
+	height: 88%;
+	overflow: auto;
+}
+.m-background .m-box .list .item{
+	display: flex;
+	justify-content: space-between;
+	padding: 2%;
+	font-size: 12px;
+}
+.m-background .m-box .head{
+	display: flex;
+	justify-content: space-between;
+	padding: 2%;
+	font-size: 12px;
+}
+.m-background .m-box .head div{
+	width: 32%;
+	text-align: center;
+}
+.m-background .m-box .list .item div{
+	width: 32%;
+	text-align: center;
+}
+/*.m-background .m-box .left{
+	text-align: left;
+}
+.m-background .m-box .center{
+	text-align: center;
+}
+.m-background .m-box .right{
+	text-align: right;
+}*/
+.m-background .m-box .box{
+	width: 79%;
+	height: 75%;
+	margin-top: 1%;
+	background-color: #FCE466;
+	border: 1px solid #F8BC33;
+	border-radius: 5px;
+	overflow: hidden;
+
+}
+.m-background .img{
+ 	background-image: url('../img/bj1.jpg');
+ 	background-size: 100% 100%;  
+ 	height: 180px;
+ 	width: 100%;
+}
+.hr{
+	height: 10px;
+	width: 100%;
+	background-color: #f1f3f8;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+img{
+	margin: 0;
+	padding: 0;
+}
+a{
+	display: block;
+	text-decoration: none;
+	color: #333;
+}
+input{
+	outline:none;
+}
+button{
+	background-color: white;
+	border:0;
+	outline: none;
+	padding: 0;
+	margin: 0;
+}

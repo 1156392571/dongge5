@@ -433,7 +433,7 @@ function txcommit(){
 	$.ajax({
 		url:'${ctx}/pay/tohandApply',
 		type:'post',
-		data:{tmaTaskid:id,tmaName:tmaName,tmaCardid:tmaCardid,tmaPhone:tmaPhone,tetReserve1:tetReserve1},
+		data:{tmaTaskid:id,tmaName:tmaName,tmaCardid:tmaCardid,tmaPhone:tmaPhone,tetReserve1:tetReserve1,tmaStatus:'1'},
 		success:function(data){
 			if(data=="1"){
 				alert("交单成功，请勿重复提交");
