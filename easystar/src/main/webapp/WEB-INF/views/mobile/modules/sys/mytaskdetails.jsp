@@ -365,8 +365,22 @@ $(function(){
 		}
 	});
 	$(".tixian").click(function(){
-		$(".cover-bg").show();
-		$(".paymethod").show();
+		//首先判断当前账户是否已经申请过了
+		var id=$("#id").val();
+		$.ajax({
+			url:'${ctx}/mt/tMobiletaskApply/checkifexist',
+			type:'post',
+			data:{tmaTaskid:id},
+			success:function(data){
+				if(data>0){
+					//说明已经申请过了
+					alert("已经申请过该任务");
+				}else{
+					$(".cover-bg").show();
+					$(".paymethod").show();
+				}
+			}
+		})
 	});
 	$(".cover-bg").click(function(){
 		tixiancancel();

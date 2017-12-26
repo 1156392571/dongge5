@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.mt.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.thinkgem.jeesite.common.persistence.CrudDao;
@@ -20,5 +21,8 @@ public interface TMobiletaskApplyDao extends CrudDao<TMobiletaskApply> {
 	void updatetofailed(TMobiletaskApply tMobiletaskApply);
 
 	Map<String, String> getMapByid(String id);
+
+    List<TMobiletaskApply> findListByTaskApplyExport(
+            TMobiletaskApply tmobiletaskapply);
 	
 }

@@ -56,5 +56,11 @@ public class TMobiletaskApplyService extends CrudService<TMobiletaskApplyDao, TM
 	public Map<String, String> getMapByid(String id) {
 		return tMobiletaskApplyDao.getMapByid(id);
 	}
+
+    public List<TMobiletaskApply> findListByTaskApplyExport(
+            TMobiletaskApply tmobiletaskapply)
+    {
+        return tMobiletaskApplyDao.findListByTaskApplyExport(tmobiletaskapply);
+    }
 	
 }

@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.mt.web;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +17,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.modules.mt.entity.TMobiletaskApply;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TMobiletaskApplyService;
@@ -165,5 +170,40 @@ public class TMobiletaskApplyController extends BaseController {
 		addMessage(redirectAttributes, "保存手机做任务成功");
 		return "redirect:"+Global.getAdminPath()+"/mt/tMobiletaskApply/?repage";
 	}
+	
+	@RequestMapping(value = "checkifexist", method=RequestMethod.POST)
+	@ResponseBody
+    public Integer checkifexist(TMobiletaskApply tmobiletaskapply) {
+	    Principal principal=UserUtils.getPrincipal();
+	    String loginName=principal.getLoginName();
+	    
+	    int count=tMobiletaskApplyService.checkifexist();
+	    return count;
+	}
+	
+	/**
+	  * @Description: 导出excel
+	  * @param saledailyreport
+	  * @param request
+	  * @param response
+	  * @param redirectAttributes
+	  * @return
+	  * String 返回类型
+	  * @author：dongge
+	  * @date：2017年12月26日上午9:34:06
+	 */
+	@RequestMapping(value = "export", method=RequestMethod.POST)
+    public String exportFile(TMobiletaskApply tmobiletaskapply, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        try {
+            String fileName = "任务申请报表数据"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+            List<TMobiletaskApply> list=tMobiletaskApplyService.findListByTaskApplyExport(tmobiletaskapply);
+            new ExportExcel("任务申请报表数据", TMobiletaskApply.class).setDataList(list).write(response, fileName).dispose();
+            return null;
+        } catch (Exception e) {
+            addMessage(redirectAttributes, "导出任务申请报表失败！失败信息："+e.getMessage());
+        }
+        return "redirect:"+Global.getAdminPath()+"/mt/tMobiletaskApply/?repage";
+    }
+	
 	
 }

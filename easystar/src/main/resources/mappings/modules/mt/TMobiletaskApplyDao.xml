@@ -177,9 +177,45 @@
 		update t_mobiletask_apply set tma_status=${tmaStatus} where id=#{id}
 	</update>
 	
+	<!-- 获取当前用户下的所有的ABC的反应情况 -->
 	<select id="getMapByid" resultType="java.util.Map">
 		select a.id,a.tma_userid as 'userid',b.tmt_price as 'price',
 		b.tmt_rebateA as 'priceA',b.tmt_rebateB as 'priceB',b.tmt_rebateC as 'priceC' from t_mobiletask_apply a,
 		t_mobile_task b where a.tma_taskid=b.id and a.id=#{id}
 	</select>
+	
+	<select id="findListByTaskApplyExport" resultType="TMobiletaskApply">
+		SELECT 
+			<include refid="tMobiletaskApplyColumns1"/>
+		FROM t_mobiletask_apply a
+		<include refid="tMobiletaskApplyJoins1"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="tmaUserid != null and tmaUserid != ''">
+				AND a.tma_userid = #{tmaUserid}
+			</if>
+			<if test="tmaTaskid != null and tmaTaskid != ''">
+				AND a.tma_taskid = #{tmaTaskid}
+			</if>
+			<if test="tmaName != null and tmaName != ''">
+				AND a.tma_name = #{tmaName}
+			</if>
+			<if test="tmaCardid != null and tmaCardid != ''">
+				AND a.tma_cardid = #{tmaCardid}
+			</if>
+			<if test="tmaPhone != null and tmaPhone != ''">
+				AND a.tma_phone = #{tmaPhone}
+			</if>
+			<if test="tmaStatus != null and tmaStatus != ''">
+				AND a.tma_status = #{tmaStatus}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				AND a.createtime = #{createtime}
+			</if>
+		</where>
+	</select>
+	
 </mapper>
