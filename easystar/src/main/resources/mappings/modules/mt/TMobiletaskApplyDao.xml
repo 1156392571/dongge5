@@ -218,4 +218,7 @@
 		</where>
 	</select>
 	
+	<select id="checkifexist" parameterType="TMobiletaskApply" resultType="java.lang.Integer">
+		select count(1) from t_mobiletask_apply where tma_taskid=#{tmaTaskid} and tma_userid=#{tmaUserid}
+	</select>
 </mapper>

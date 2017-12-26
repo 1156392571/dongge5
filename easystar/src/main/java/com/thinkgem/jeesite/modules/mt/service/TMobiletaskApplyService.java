@@ -62,5 +62,9 @@ public class TMobiletaskApplyService extends CrudService<TMobiletaskApplyDao, TM
     {
         return tMobiletaskApplyDao.findListByTaskApplyExport(tmobiletaskapply);
     }
+
+	public int checkifexist(TMobiletaskApply tmobiletaskapply) {
+		return tMobiletaskApplyDao.checkifexist(tmobiletaskapply);
+	}
 	
 }

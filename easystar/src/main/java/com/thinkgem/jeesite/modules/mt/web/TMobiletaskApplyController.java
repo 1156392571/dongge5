@@ -171,13 +171,15 @@ public class TMobiletaskApplyController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/mt/tMobiletaskApply/?repage";
 	}
 	
+	//判断此用户是否已经做过当前任务了
 	@RequestMapping(value = "checkifexist", method=RequestMethod.POST)
 	@ResponseBody
     public Integer checkifexist(TMobiletaskApply tmobiletaskapply) {
 	    Principal principal=UserUtils.getPrincipal();
 	    String loginName=principal.getLoginName();
-	    
-	    int count=tMobiletaskApplyService.checkifexist();
+	    TUser tUser=tUserService.getUserByLoginName(loginName);
+	    tmobiletaskapply.setTmaUserid(tUser.getId());
+	    int count=tMobiletaskApplyService.checkifexist(tmobiletaskapply);
 	    return count;
 	}
 	

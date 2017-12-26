@@ -46,6 +46,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thinkgem.jeesite.common.config.Global;
+import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.cms.entity.Site;
@@ -290,6 +291,9 @@ public class PayController extends BaseController {
     	model.addAttribute("extendB", extendB);
     	model.addAttribute("extendC", extendC);
     	model.addAttribute("extendAll", extendAll);
+    	//获取当前时间
+    	String nowtime=DateUtils.getDate();
+    	model.addAttribute("nowtime", nowtime);
         return "modules/sys/myextend";
     }
     
@@ -511,6 +515,9 @@ public class PayController extends BaseController {
         tUser=tUserService.getUserByLoginName(loginName);
         //获取理财金的天数
         int day=tUserService.getLCdaysByLoginName(loginName);
+        //获取今日收益
+        String count=tUserService.gettodayMoney(tUser.getId());
+        model.addAttribute("count", count);
         model.addAttribute("day", day);
         model.addAttribute("tUser", tUser);
         return "modules/sys/myhead";

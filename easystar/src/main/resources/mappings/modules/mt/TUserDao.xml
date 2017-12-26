@@ -479,4 +479,9 @@
 		where a.tma_status='3'
 		and f.id=#{id}
 	</select>
+	
+	<!-- 获取今日收益 -->
+	<select id="gettodayMoney" resultType="java.lang.String">
+		select (sum(tma_jine)+0.5) as count from t_mobile_acountdtl where TO_DAYS(now())=TO_DAYS(createtime) and tma_userid=#{id}
+	</select>
 </mapper>

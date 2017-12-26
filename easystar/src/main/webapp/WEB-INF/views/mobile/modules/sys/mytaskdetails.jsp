@@ -368,7 +368,7 @@ $(function(){
 		//首先判断当前账户是否已经申请过了
 		var id=$("#id").val();
 		$.ajax({
-			url:'${ctx}/mt/tMobiletaskApply/checkifexist',
+			url:'${pageContext.request.contextPath}/a/mt/tMobiletaskApply/checkifexist',
 			type:'post',
 			data:{tmaTaskid:id},
 			success:function(data){

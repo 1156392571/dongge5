@@ -44,7 +44,7 @@
 		<div class="list">
 			<button class="item" data-clipboard-action="copy" id="copy_btn">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/gzh.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/wechat.png" style="width: 32px;height: 32px;">
 				</div>
 				<div class="right">
 					<div class="title">微信公众号</div>
@@ -53,7 +53,7 @@
 			</button>
 			<a href="tel:15972006146" class="item">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/dianhua.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/tel.png" style="width: 32px;height: 32px;">
 				</div>
 				<div class="right">
 					<div class="title">招商合作</div>

@@ -24,5 +24,7 @@ public interface TMobiletaskApplyDao extends CrudDao<TMobiletaskApply> {
 
     List<TMobiletaskApply> findListByTaskApplyExport(
             TMobiletaskApply tmobiletaskapply);
+
+	int checkifexist(TMobiletaskApply tmobiletaskapply);
 	
 }

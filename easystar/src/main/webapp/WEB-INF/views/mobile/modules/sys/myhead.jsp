@@ -360,7 +360,8 @@ a {
 </head>
 <body>
 <input type="hidden" id="eyevalue" value="1">
-<input type="hidden" id="totalcount" value="${tUser.tAcount+tUser.reserve3*0.5+100}">
+<input type="hidden" id="totalcount" value="${tUser.tAcount+tUser.reserve3*0.5+100+day*0.5}">
+<input type="hidden" id="tixiancount" value="${tUser.tAcount+tUser.reserve3*0.5}">
 <div class = "content">
 <div class = "md1">
     <img class= "eye" src="${ctxStatic}/reg-login/images/mycenter/eye.png" alt="wutu" onclick="showeye()"/>
@@ -368,12 +369,12 @@ a {
 <div class = "md2">
         <p style = "font-size:14px">总资产</p>
         <p style = "font-size:30px" id="allmoney">${tUser.tAcount+tUser.reserve3*0.5+100+day*0.5}</p>
-        <p style = "font-size:14px">今日最新收益 10.00</p>
+        <p style = "font-size:14px">今日最新收益 ${count}</p>
 </div>
 <div class = "md3">
     <div><img src="${ctxStatic}/reg-login/images/mycenter/1.png" alt="" /><span style= "font-size: 15px;
     line-height: 25px;">理财</span>
-    <p class ="pm">￥${day*0.5+100.00}</p></div>
+    <p class ="pm">￥100.00</p></div>
     <div><img src="${ctxStatic}/reg-login/images/mycenter/2.png" alt="" /><span style= "font-size: 15px;
     line-height: 25px">签到</span><p class ="pm">￥${tUser.reserve3*0.5}</p></div>
     <div><img src="${ctxStatic}/reg-login/images/mycenter/3.png" alt="" /><span style= "font-size: 15px;
@@ -419,7 +420,7 @@ a {
 			<div class="concer">
 				<div class="col-3 t1">
 					<img src="${ctxStatic}/reg-login/images/img/zhanghu.png" width=40%;height=40%>
-					<p>账户</p>
+					<p>提现</p>
 				</div>
 				<div class="col-3 t2">
 					<img src="${ctxStatic}/reg-login/images/img/xiaoxi.png" width=40%;height=40%>
@@ -427,7 +428,7 @@ a {
 				</div>
 				<div class="col-3 t3">
 					<img src="${ctxStatic}/reg-login/images/img/huodong.png" width=40%;height=40%>
-					<p>返现</p>
+					<p>赏金</p>
 				</div>
 
 				<div class="col-3 t4">
@@ -507,8 +508,13 @@ a {
 				window.location.href="${ctx}/pay/tomytask";
 			})
 			$(".tixian").click(function(){
-				$(".cover-bg").show();
-				$(".paymethod").show();
+				var tixiancount=$("#tixiancount").val();
+				if(tixiancount<100){
+					alert("可提现金额小于100，暂不可提现，请继续努力");
+				}else{
+					$(".cover-bg").show();
+					$(".paymethod").show();
+				}
 			})
 			$(".cover-bg").click(function(){
 				tixiancancel();
@@ -563,6 +569,7 @@ a {
 		$.ajax({
 			url:'${pageContext.request.contextPath}/a/mt/tTixian/tixiansubmit',
 			type:'post',
+			async:false,
 			contentType : 'application/json;charset=utf-8',
 			data : JSON.stringify(data),
 			dateType : "json",

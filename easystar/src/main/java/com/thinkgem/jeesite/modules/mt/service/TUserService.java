@@ -215,4 +215,8 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		return tUserDao.getCfanxianAll(id);
 	}
 
+	public String gettodayMoney(String id) {
+		return tUserDao.gettodayMoney(id);
+	}
+
 }

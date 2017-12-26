@@ -33,7 +33,7 @@
 			<div class="absolute three">50</div>
 			<div class="absolute four">75</div>
 			<div class="absolute five">100</div>
-			<div class="time">截止到12月25日24:00</div>
+			<div class="time">截止到${nowtime}</div>
 			<div class="add" style="font-size: 15px;">今日累计新增 0 个用户</div>
 		</div>
 		<div class="listbox">
@@ -41,7 +41,7 @@
 				<span>客户明细</span>
 			</div>
 			<div class="item" onclick="todetail('A')">
-				<img src="${ctxStatic}/reg-login/images/mycenter/boy1.png">
+				<img src="${ctxStatic}/reg-login/images/mycenter/gold01.png">
 				<div class="info">
 					<div class="left" style="font-size: 15px;">
 						推广员A
@@ -52,7 +52,7 @@
 				</div>
 			</div>
 			<div class="item" onclick="todetail('B')">
-				<img src="${ctxStatic}/reg-login/images/mycenter/boy2.png">
+				<img src="${ctxStatic}/reg-login/images/mycenter/gold02.png">
 				<div class="info">
 					<div class="left" style="font-size: 15px;">
 						推广员B
@@ -63,7 +63,7 @@
 				</div>
 			</div>
 			<div class="item" onclick="todetail('C')">
-				<img src="${ctxStatic}/reg-login/images/mycenter/boy3.png">
+				<img src="${ctxStatic}/reg-login/images/mycenter/gold03.png">
 				<div class="info">
 					<div class="left" style="font-size: 15px;">
 						推广员C

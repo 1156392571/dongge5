@@ -17,18 +17,20 @@
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
 </head>
 <body style="background-color: #f1f3f8;">
-	<div class="m-my" style="position: relative;">
+	<div class="m-my" style="padding-bottom: 2.95rem;">
 		<div class="info">
-			<div class="left"></div>
-			<div class="right" style="font-size: 16px;">
-				<p>级别：普通用户</p><br>
-				<p>账号：${tUser.tPhone}</p>
+			<div class="left" style="background-color: #8594e6">
+				<img src="${ctxStatic}/reg-login/images/mycenter/touxiang.png" style="width:100%;height:100%;border-radius:50%;">
+			</div>
+			<div class="right">
+				<p>用户名：${tUser.tLoginname}</p>
+				<p>账&nbsp;&nbsp;&nbsp;号：${tUser.tPhone}</p>
 			</div>
 		</div>
 		<div class="list">
 			<a class="item">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/one.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/one1.png">
 					<span>推荐人</span>
 				</div>
 				<div class="right">
@@ -38,19 +40,25 @@
 			</a>
 			<a class="item">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/two.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/tuiguangicon.png">
+					<span>推广码</span>
+				</div>
+				<div class="right">
+					<i class="icon_you1"></i>
+				</div>
+			</a>
+			<a class="item">
+				<div class="left">
+					<img src="${ctxStatic}/reg-login/images/mycenter/two1.png">
 					<span>我的资料</span>
 				</div>
 				<div class="right">
 					<i class="icon_you1"></i>
 				</div>
 			</a>
-		</div>
-		<div class="hr"></div>
-		<div class="list">
 			<a href="${ctx}/pay/tolianxime" class="item">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/four.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/four2.png">
 					<span>联系我们</span>
 				</div>
 				<div class="right">
@@ -59,7 +67,7 @@
 			</a>
 			<a href="${ctx}/pay/toguanyume" class="item">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/five.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/five2.png">
 					<span>关于我们</span>
 				</div>
 				<div class="right">
@@ -68,7 +76,7 @@
 			</a>
 			<a class="item" href="${pageContext.request.contextPath}/a/logout">
 				<div class="left">
-					<img src="${ctxStatic}/reg-login/images/mycenter/six.png">
+					<img src="${ctxStatic}/reg-login/images/mycenter/six1.png">
 					<span>退出</span>
 				</div>
 				<div class="right">
