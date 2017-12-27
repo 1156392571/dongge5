@@ -25,7 +25,7 @@
 	<div class="m-chart">
 		<div class="head">
 			<div class="tishi">您的推广员越多，收益就越高。</div>
-			<img src="${ctxStatic}/reg-login/images/mycenter/zhizhen.png">
+			<img src="${ctxStatic}/reg-login/images/mycenter/zhizhen1.png">
 			<div class="chart" id="chart"></div>
 			<div id="sum" class="sum">0</div>
 			<div class="absolute one">0</div>
@@ -84,61 +84,62 @@
 		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
 	</footer>
 	<script type="text/javascript">
-		var x = 0;
-		var max = 100;
-		var sum = $("#aa").val();
-		var chart = c3.generate({
-			bindto : '#chart',
-			data : {
-				columns : [ [ 'data', 0 ] ],
-				type : 'gauge',
-			},
-			gauge : {
-				label : {
-					format : function(value, ratio) {
-						return value;
-					},
-					show : false
-				// to turn off the min/max labels.
-				},
-				min : 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-				max : max, // 100 is default
-				// units: ' 人',
-				width : 18, // for adjusting arc thickness
-				expand : false
-			},
-			color : {
-				pattern : [ '#FF0000', '#F97600', '#F6C600', '#60B044' ], // the three color levels for the percentage values.
-				threshold : {
-					//            unit: 'value', // percentage is default
-					//            max: 200, // 100 is default
-					values : [ 30, 60, 90, 100 ]
-				}
-			},
-			size : {
-				height : 163
-			}
-		});
+var x = 0;		
+var max = 100;
+var sum = $("#aa").val();
+var chart = c3.generate({
+	bindto: '#chart',
+    data: {
+        columns: [
+            ['data', 0]
+        ],
+        type: 'gauge',
+    },
+    gauge: {
+        label: {
+            format: function(value, ratio) {
+                return value;
+            },
+            show: false // to turn off the min/max labels.
+        },
+    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+    max: max, // 100 is default
+    // units: ' 人',
+    width: 20, // for adjusting arc thickness
+    expand: false
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+            values: [30, 60, 90, 100]
+        }
+    },
+    size: {
+        height: 163
+    }
+});
 
-		setTimeout(function() {
-			chart.load({
-				columns : [ [ 'data', sum ] ]
-			});
-		}, 500);
+setTimeout(function () {
+    chart.load({
+        columns: [['data', sum]]
+    });
+}, 500);
 
-		var int = setInterval(function() {
-			if (x < sum) {
-				x++;
-				var vum = document.getElementById('sum').innerHTML = x;
-			} else {
-				clearInterval(int);
-			}
+var int = setInterval(function () {
+	if(x<sum){
+		x++;
+    	var vum = document.getElementById('sum').innerHTML= x;
+	} else{
+		clearInterval(int);
+	}
+	
+}, 20);
 
-		}, 20);
-		
-		function todetail(type){
-			window.location.href="${ctx}/pay/toextenddetail?type="+type;
-		}
+function todetail(type){
+	window.location.href="${ctx}/pay/toextenddetail?type="+type;
+}
 	</script>
 
 

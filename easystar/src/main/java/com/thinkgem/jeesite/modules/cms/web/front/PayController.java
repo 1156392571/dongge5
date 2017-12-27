@@ -54,9 +54,11 @@ import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
 import com.thinkgem.jeesite.modules.mt.entity.TMobiletaskApply;
 import com.thinkgem.jeesite.modules.mt.entity.TTask;
+import com.thinkgem.jeesite.modules.mt.entity.TTixian;
 import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.service.TMobileTaskService;
 import com.thinkgem.jeesite.modules.mt.service.TMobiletaskApplyService;
+import com.thinkgem.jeesite.modules.mt.service.TTixianService;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -84,6 +86,9 @@ public class PayController extends BaseController {
     TMobileTaskService tMobileTaskService;
     @Autowired
     TMobiletaskApplyService tMobiletaskApplyService;
+    @Autowired
+    TTixianService tTixianService;
+    
     
 	@RequestMapping("/apppay")
 	@ResponseBody
@@ -582,5 +587,82 @@ public class PayController extends BaseController {
         result="1";
     	return result;
     }
+    
+    /**
+     * 跳转到我的资料
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "tomyziliao")
+    public String tomyziliao(TUser tUser,Model model){
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        tUser=tUserService.getUserByLoginName(loginName);
+        model.addAttribute("tUser",tUser);
+    	return "modules/sys/myziliao";
+    }
+    
+    /**
+     * 跳转到我的二维码列表
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "tomyerweima")
+    public String tomyerweima(TUser tUser,Model model){
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        tUser=tUserService.getUserByLoginName(loginName);
+        model.addAttribute("tUser",tUser);
+    	return "modules/sys/myerweima";
+    }
+    
+    @RequestMapping(value = "tomyerweimaList")
+    public String tomyerweima(String type,Model model){
+    	return "modules/sys/myerweimaList"+type;
+    }
+    
+    /**
+     * 跳转到我的提现页面
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "tomytixian")
+    public String tomytixian(TUser tUser,Model model){
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取登录状态
+        tUser=tUserService.getUserByLoginName(loginName);
+        model.addAttribute("tUser", tUser);
+    	return "modules/sys/mytixian";
+    }
+    
+    /**
+     * 
+     * @param tUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "tomytixianList")
+    public String tomytixianList(TUser tUser,Model model){
+    	Principal principal=UserUtils.getPrincipal();
+        String loginName=principal.getLoginName();
+        //通过当前用户名获取登录状态
+        tUser=tUserService.getUserByLoginName(loginName);
+        List<Map<Object,Object>> list=tUserService.gettixianList(tUser);
+        model.addAttribute("list", list);
+        model.addAttribute("tUser", tUser);
+    	return "modules/sys/mytixianList";
+    }
+    
+    @RequestMapping(value = "tomytixiandtl")
+    public String tomytixiandtl(TTixian tTixian,Model model){
+    	tTixian=tTixianService.get(tTixian);
+    	model.addAttribute("tTixian", tTixian);
+    	return "modules/sys/mytixiandtl";
+    }
+    
 }
    

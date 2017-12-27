@@ -219,4 +219,8 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		return tUserDao.gettodayMoney(id);
 	}
 
+	public List<Map<Object, Object>> gettixianList(TUser tUser) {
+		return tUserDao.gettixianList(tUser);
+	}
+
 }

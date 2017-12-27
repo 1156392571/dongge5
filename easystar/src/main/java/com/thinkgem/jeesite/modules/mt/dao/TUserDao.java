@@ -93,5 +93,7 @@ public interface TUserDao extends CrudDao<TUser> {
 	List<Map<Object,Object>> getCfanxianAll(String id);
 
 	String gettodayMoney(String id);
+
+	List<Map<Object, Object>> gettixianList(TUser tUser);
 	
 }

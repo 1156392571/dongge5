@@ -38,7 +38,7 @@
 					<i class="icon_you1"></i>
 				</div>
 			</a>
-			<a class="item">
+			<a href="${ctx}/pay/tomyerweima" class="item">
 				<div class="left">
 					<img src="${ctxStatic}/reg-login/images/mycenter/tuiguangicon.png">
 					<span>推广码</span>
@@ -47,7 +47,7 @@
 					<i class="icon_you1"></i>
 				</div>
 			</a>
-			<a class="item">
+			<a href="${ctx}/pay/tomyziliao" class="item">
 				<div class="left">
 					<img src="${ctxStatic}/reg-login/images/mycenter/two1.png">
 					<span>我的资料</span>

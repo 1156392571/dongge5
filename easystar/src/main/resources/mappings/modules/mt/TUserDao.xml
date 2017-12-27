@@ -484,4 +484,9 @@
 	<select id="gettodayMoney" resultType="java.lang.String">
 		select (sum(tma_jine)+0.5) as count from t_mobile_acountdtl where TO_DAYS(now())=TO_DAYS(createtime) and tma_userid=#{id}
 	</select>
+	
+	<!-- 获取30条的最新提现消息记录 -->
+	<select id="gettixianList" parameterType="TUser" resultType="java.util.Map">
+		select * from t_tixian where tt_userid=#{id} order by createtime desc limit 30
+	</select>
 </mapper>

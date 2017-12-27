@@ -479,7 +479,7 @@ a {
 	<script type="text/javascript">
 		$(function(){
 			$(".t1").click(function(){
-				window.location.href="${ctx}/pay/tomycenter";
+				window.location.href="${ctx}/pay/tomytixianList";
 			})
 			$(".t2").click(function(){
 				window.location.href="${ctx}/pay/tomyxiaoxi";
@@ -512,8 +512,11 @@ a {
 				if(tixiancount<100){
 					alert("可提现金额小于100，暂不可提现，请继续努力");
 				}else{
+					/*
 					$(".cover-bg").show();
 					$(".paymethod").show();
+					*/
+					window.location.href="${ctx}/pay/tomytixian";
 				}
 			})
 			$(".cover-bg").click(function(){
