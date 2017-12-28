@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/modules/cms/front/include/taglib.jsp"%>
 <%@ include file="/WEB-INF/views/modules/cms/front/include/head.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -17,28 +17,45 @@
         <div id="pages">
             <div class="page page1">
             	<div class="box">
+                    <a class="tiao" href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
+                        跳过
+                    </a>
                     <img src="${ctxStatic}/reg-login/images/slider/fxb1.jpg" />
+                    <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb1.jpg" /> -->
                 </div>
             </div>
             <div class="page page2">
             	<div class="box">
+                    <a class="tiao" href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
+                        跳过
+                    </a>
                     <img src="${ctxStatic}/reg-login/images/slider/fxb2.jpg" />
+                    <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb2.jpg" /> -->
                 </div>
             </div>
             <div class="page page3">
             	<div class="box">
+                    <a class="tiao" href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
+                        跳过
+                    </a>
                     <img src="${ctxStatic}/reg-login/images/slider/fxb4.jpg" />
+                    <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb4.jpg" /> -->
                 </div>
             </div>
             <div class="page page4">
             	<div class="box">
-                    <a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}"><img src="${ctxStatic}/reg-login/images/slider/fxb3.jpg" /></a>
+                    <a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
+                        <img src="${ctxStatic}/reg-login/images/slider/fxb3.jpg" />
+                        <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb3.jpg" /> -->
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-	<script type="text/javascript" src="${ctxStatic}/reg-login/js/pageSwitch.js"></script>
+	<!-- <script type="text/javascript" src="${ctxStatic}/reg-login/js/pageSwitch.js"></script> -->
+    <script type="text/javascript" src="${ctxStatic}/reg-login/js/pageSwitch.js"></script>
     <script>
+
     var reg=location.search.match(/ts=([^&]*)/),
 		ts=reg&&reg[1]||'flip3d',
 		a=new pageSwitch('pages',{
@@ -54,32 +71,30 @@
         arrowkey:true,
         autoplay:true
     });
+ //    document.getElementById('tssel').onchange=function(){
+	// 	location.href='?ts='+this.value;
+	// }
 	
-	/*
-    document.getElementById('tssel').onchange=function(){
-		location.href='?ts='+this.value;
-	}
-	
-	var options=document.getElementById('tssel').options,
-		i=0,op;
-	while(op=options[i++]){
-		if(op.value===ts){
-			op.selected=true;
-			break;
-		}
-	}
+	// var options=document.getElementById('tssel').options,
+	// 	i=0,op;
+	// while(op=options[i++]){
+	// 	if(op.value===ts){
+	// 		op.selected=true;
+	// 		break;
+	// 	}
+	// }
 	
 	
-	function colorRand(){
-		return parseInt(Math.random()*255);
-	}
+	// function colorRand(){
+	// 	return parseInt(Math.random()*255);
+	// }
 	
-	function createPage(){
-		var div=document.createElement('div');
-		div.style.backgroundColor='rgb('+colorRand()+','+colorRand()+','+colorRand()+')';
-		return div;
-	}
-	*/
+	// function createPage(){
+	// 	var div=document.createElement('div');
+	// 	div.style.backgroundColor='rgb('+colorRand()+','+colorRand()+','+colorRand()+')';
+	// 	return div;
+	// }
+	
     </script>
 </body>
 </html>

@@ -136,7 +136,7 @@ public class TMobiletaskApplyController extends BaseController {
             //A级用户
             mapA.put("id", idA);
             mapA.put("tma_userid", Auserid);
-            mapA.put("tma_dtlname",phone+"用户为你赚赏金");
+            mapA.put("tma_dtlname",phone+"做"+taskname+"任务");
             mapA.put("tma_jine",tmt_rebateA);
             mapA.put("tma_reserve1","2");
             mapA.put("tma_fromuserid",userid);
@@ -144,7 +144,7 @@ public class TMobiletaskApplyController extends BaseController {
             //B级用户
             mapB.put("id", idB);
             mapB.put("tma_userid", Buserid);
-            mapB.put("tma_dtlname",phone+"用户为你赚赏金");
+            mapB.put("tma_dtlname",phone+"做"+taskname+"任务");
             mapB.put("tma_jine",tmt_rebateB);
             mapB.put("tma_reserve1","2");
             mapB.put("tma_fromuserid",userid);
@@ -152,7 +152,7 @@ public class TMobiletaskApplyController extends BaseController {
             //C级用户
             mapC.put("id", idC);
             mapC.put("tma_userid", Cuserid);
-            mapC.put("tma_dtlname",phone+"用户为你赚赏金");
+            mapC.put("tma_dtlname",phone+"做"+taskname+"任务");
             mapC.put("tma_jine",tmt_rebateC);
             mapC.put("tma_reserve1","2");
             mapC.put("tma_fromuserid",userid);

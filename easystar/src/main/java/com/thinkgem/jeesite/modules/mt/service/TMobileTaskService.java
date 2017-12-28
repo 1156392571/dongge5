@@ -4,7 +4,9 @@
 package com.thinkgem.jeesite.modules.mt.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +23,8 @@ import com.thinkgem.jeesite.modules.mt.dao.TMobileTaskDao;
 @Service
 @Transactional(readOnly = true)
 public class TMobileTaskService extends CrudService<TMobileTaskDao, TMobileTask> {
-
+	@Autowired
+	TMobileTaskDao tMobileTaskDao;
 	public TMobileTask get(String id) {
 		return super.get(id);
 	}
@@ -42,6 +45,11 @@ public class TMobileTaskService extends CrudService<TMobileTaskDao, TMobileTask>
 	@Transactional(readOnly = false)
 	public void delete(TMobileTask tMobileTask) {
 		super.delete(tMobileTask);
+	}
+
+	public List<Map<Object, Object>> findTaskList() {
+		// TODO Auto-generated method stub
+		return tMobileTaskDao.findTaskList();
 	}
 	
 }

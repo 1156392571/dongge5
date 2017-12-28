@@ -406,7 +406,7 @@
 	
 	<!-- 此账号对应的A级用户的返现信息 -->
 	<select id="getAfanxianAll" resultType="java.util.Map">
-		select a.tma_dtlname,a.tma_jine,a.createtime from t_mobile_acountdtl a
+		select * from(select a.tma_dtlname,a.tma_jine,a.createtime from t_mobile_acountdtl a
 		left join t_user b on a.tma_fromuserid=b.id
 		left join t_user c on c.id=b.t_inviter
 		where a.tma_reserve1='2'
@@ -426,10 +426,11 @@
 		left join t_user e on e.id=d.t_inviter
 		where a.tma_reserve1='2'
 		and a.tma_userid=e.id and e.id=#{id}
+		) m order by m.createtime desc
 	</select>
 	
 	<select id="getBfanxianAll" resultType="java.util.Map">
-		select b.t_phone,d.tmt_rebateA as 'moneyway',d.tmt_name,a.createtime from t_mobiletask_apply a
+		select * from(select b.t_phone,d.tmt_rebateA as 'moneyway',d.tmt_name,a.createtime from t_mobiletask_apply a
 		left join t_user b on a.tma_userid=b.id
 		left join t_user c on c.id=b.t_inviter
 		left join t_mobile_task d on a.tma_taskid=d.id
@@ -452,17 +453,18 @@
 		left join t_mobile_task d on a.tma_taskid=d.id
 		where a.tma_status='1'
 		and f.id=#{id}
+		) m order by m.createtime desc
 	</select>
 	
 	<select id="getCfanxianAll" resultType="java.util.Map">
-		select b.t_phone,d.tmt_rebateA,d.tmt_name,a.createtime from t_mobiletask_apply a
+		select * from(select b.t_phone,d.tmt_rebateA as 'moneyway',d.tmt_name,a.createtime from t_mobiletask_apply a
 		left join t_user b on a.tma_userid=b.id
 		left join t_user c on c.id=b.t_inviter
 		left join t_mobile_task d on a.tma_taskid=d.id
 		where a.tma_status='3'
 		and c.id=#{id}
 		UNION
-		select b.t_phone,d.tmt_rebateB,d.tmt_name,a.createtime from t_mobiletask_apply a
+		select b.t_phone,d.tmt_rebateB as 'moneyway',d.tmt_name,a.createtime from t_mobiletask_apply a
 		left join t_user b on a.tma_userid=b.id
 		left join t_user c on c.id=b.t_inviter
 		left join t_user e on e.id=c.t_inviter
@@ -470,7 +472,7 @@
 		where a.tma_status='3'
 		and e.id=#{id}
 		UNION
-		select b.t_phone,d.tmt_rebateC,d.tmt_name,a.createtime from t_mobiletask_apply a
+		select b.t_phone,d.tmt_rebateC as 'moneyway',d.tmt_name,a.createtime from t_mobiletask_apply a
 		left join t_user b on a.tma_userid=b.id
 		left join t_user c on c.id=b.t_inviter
 		left join t_user e on e.id=c.t_inviter
@@ -478,6 +480,7 @@
 		left join t_mobile_task d on a.tma_taskid=d.id
 		where a.tma_status='3'
 		and f.id=#{id}
+		) m order by m.createtime desc
 	</select>
 	
 	<!-- 获取今日收益 -->

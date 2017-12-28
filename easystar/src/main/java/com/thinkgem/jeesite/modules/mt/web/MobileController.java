@@ -565,4 +565,13 @@ public class MobileController extends BaseController {
        model.addAttribute("tTixian", tTixian);
        return "modules/sys/mytixiandtl";
    }
+   
+   
+   @RequestMapping(value = "gettaskList")
+   @ResponseBody
+   public List<Map<Object,Object>> gettaskList(){
+	   List<Map<Object,Object>> list=tMobileTaskService.findTaskList();
+       return list;
+   }
+   
 }

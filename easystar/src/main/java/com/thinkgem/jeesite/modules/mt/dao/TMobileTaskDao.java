@@ -3,6 +3,9 @@
  */
 package com.thinkgem.jeesite.modules.mt.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
@@ -14,5 +17,7 @@ import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
  */
 @MyBatisDao
 public interface TMobileTaskDao extends CrudDao<TMobileTask> {
+
+	List<Map<Object, Object>> findTaskList();
 	
 }

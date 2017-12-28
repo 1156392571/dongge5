@@ -193,4 +193,8 @@
 		WHERE id = #{id}
 	</update>
 	
+	<select id="findTaskList" resultType="java.util.Map">
+		select tmt_name as 'title',SUBSTR(tmt_ask,1,20) as 'text',tmt_viewtime as 'time',
+'116' as 'see',tmt_price as 'money','background_twelve' as 'back'  from t_mobile_task  limit 30
+	</select>
 </mapper>

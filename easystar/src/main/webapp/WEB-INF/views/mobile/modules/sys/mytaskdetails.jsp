@@ -294,7 +294,7 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 		</div>
 
 	<div class="main-body">
-		<div class="channel_main">
+		<div class="channel_main" style="margin: 0">
 			<div class="module_title">
 				<h3>任务时间</h3>
 			</div>
@@ -305,7 +305,25 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 				</div>
 			</div>
 		</div>
-		<div class="channel_main">
+		<div class="channel_main" style="margin: 0">
+			<div class="module_title">
+				<h3>任务赏金</h3>
+			</div>
+			<div class="channel_contact">
+				<div>
+					<c:if test="${tMobileTask.tmtRebatec!=0}">
+						<p><span class="datecreate">推广员A：${tMobileTask.tmtRebatec}元</span></p>
+					</c:if>
+					<c:if test="${tMobileTask.tmtRebateb!=0}">
+						<p><span class="datecreate">推广员B：${tMobileTask.tmtRebateb}元</span></p>
+					</c:if>
+					<c:if test="${tMobileTask.tmtRebatea!=0}">
+						<p><span class="datecreate">推广员C：${tMobileTask.tmtRebatea}元</span></p>
+					</c:if>
+				</div>
+			</div>
+		</div>
+		<div class="channel_main" style="margin: 0">
 			<div class="module_title">
 				<h3>任务要求</h3>
 			</div>

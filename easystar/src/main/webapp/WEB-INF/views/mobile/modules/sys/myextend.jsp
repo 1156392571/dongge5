@@ -25,7 +25,7 @@
 	<div class="m-chart">
 		<div class="head">
 			<div class="tishi">您的推广员越多，收益就越高。</div>
-			<img src="${ctxStatic}/reg-login/images/mycenter/zhizhen1.png">
+			<img src="${ctxStatic}/reg-login/images/mycenter/zhizhen2.png">
 			<div class="chart" id="chart"></div>
 			<div id="sum" class="sum">0</div>
 			<div class="absolute one">0</div>

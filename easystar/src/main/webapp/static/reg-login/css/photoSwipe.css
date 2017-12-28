@@ -1,0 +1,158 @@
+*{
+    outline: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#photo_box .qian{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+
+}
+#photo_box .rmb{
+    font-size: 20px;
+    color: #fc3f36;
+
+}
+#photo_box .see{
+    font-size: 12px;
+    color: #5d5d5d;
+
+}
+#photo_box .time{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #034882;
+}
+#photo_box .page{
+    position: absolute;
+    bottom: 10px;
+    font-size: 14px;
+}
+#photo_box .time span{
+    margin: 0 10px;
+}
+
+#photo_box .title{
+    margin-bottom: 20px;
+    font-size: 20px;
+
+}
+#photo_box .text{
+    font-size: 14px;
+    width: 80%;
+    color: #545454;
+    margin-bottom: 20px;
+
+}
+#photo_box .item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#photo_box .background_one{
+    background-image: url(../images/mycenter/bj1.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_two{
+    background-image: url(../images/mycenter/bj2.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_three{
+    background-image: url(../images/mycenter/bj3.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_four{
+    background-image: url(../images/mycenter/bj4.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_five{
+    background-image: url(../images/mycenter/bj5.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_six{
+    background-image: url(../images/mycenter/bj6.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_seven{
+    background-image: url(../images/mycenter/bj7.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_eight{
+    background-image: url(../images/mycenter/bj8.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_nine{
+    background-image: url(../images/mycenter/bj9.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_ten{
+    background-image: url(../images/mycenter/bj10.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_eleven{
+    background-image: url(../images/mycenter/bj11.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_twelve{
+    background-image: url(../images/mycenter/bj12.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_thirteen{
+    background-image: url(../images/mycenter/bj13.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_fourteen{
+    background-image: url(../images/mycenter/bj14.png);
+    background-size: 100% 100%; 
+}
+#photo_box .background_fifteen{
+    background-image: url(../images/mycenter/bj15.png);
+    background-size: 100% 100%; 
+}
+
+#photo_box{
+    position: fixed;
+    top: 43px;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+
+}
+#photo_box>div{
+    padding: 30px 20px 0;
+    position: relative;
+    height: 100%;
+
+}
+#photo_box>div>div{
+    position: relative;
+    height: 100%;
+
+}
+#photo_box>div>div>a{
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 80%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #CCC;
+    z-index: 1;
+}
+#photo_box>div>div>a:first-child{
+    top: 10px;
+    left: 11%;
+    width: 78%;
+
+}
+#photo_box>div>div>a:last-child{
+    top: -10px;
+    left: 5%;
+    width: 90%;
+}

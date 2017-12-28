@@ -11,46 +11,91 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
-<title>任务中心</title>
-<link rel="stylesheet" href="${ctxStatic}/reg-login/css/mstyle.css">
-<link rel="stylesheet" href="${ctxStatic}/reg-login/css/primary.css">
-<link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/style.css">
-<link rel="stylesheet" href="${ctxStatic}/reg-login/footcss/tasklist.css">
-<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
-<script type="text/javascript" src="${ctxStatic}/reg-login/js/banner.js"></script>
+	<title></title>
+	 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="${ctxStatic}/reg-login/css/mytask.css">
+	<link rel="stylesheet" href="${ctxStatic}/reg-login/css/photoSwipe.css">
+	<script src="${ctxStatic}/reg-login/js/avalon.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
+	<script type='text/javascript'>
+		document.ontouchstart=function(){
+			return false;
+		}
+	</script>
+<script type="text/javascript">
+	avalon.define({
+		$id : 'test',
+		show : true,
+
+	})
+
+	var vm = avalon.define({
+		$id : 'item',
+		show : false,
+		add : 0,
+		item:(function(){
+            var arr=[];
+            $.ajax({
+                 type : "post",
+                 async : false, //同步执行
+                 url : "${ctx}/pay/gettaskList",
+                 data : {},
+                 dataType : "json", //返回数据形式为json
+                 success :function(result) {
+                   if (result) {
+                        for(var i=0;i<result.length;i++){
+                        arr.push(result[i]);
+                     }    
+                   }
+                                        
+                },
+                    error : function(errorMsg) {
+                        alert("不好意思，图表请求数据失败啦!");
+                         myChart.hideLoading();
+                       }
+               })
+                 return arr;
+              })() ,
+
+	})
+</script>
+<style type="text/css">
+.ms-controller {
+	visibility: hidden
+}
+</style>
 </head>
 <body>
-	<div class="IndB" style="padding-bottom:2.25rem;">
-		<!-- 
-		<nav class="nav3 p">
-		<strong>任务列表</strong>
-		</nav>
-		
-		<div class="main_visual">
-			<div class="flicking_con">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div class="main_image">
-				<ul>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd03.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd02.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd01.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd04.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd05.jpg" /></a></li>
-				</ul>
-				<a href="javascript:;" id="btn_prev"></a>
-				<a href="javascript:;" id="btn_next"></a>
+	<div class="m-list ms-controller" ms-controller="test">
+		<div class="nav">
+			<div :class="['items',@show?'color':'']" ms-on-tap="@show = true">图文</div>
+			<div :class="['items',!@show?'color':'']" ms-on-tap="@show = false">列表</div>
+		</div>
+		<div class="box2" :visible="@show" >
+			<div id="photo_box" ms-important='item'>
+				<div>
+					<div>
+						<a href="${ctx}/pay/totaskdetails" :class="['item-'+(@item.length - index),el.back,'item']"  :for="(index,el) in @item">
+							<div class="title">{{el.title}}</div>
+							<div class="text">{{el.text}}</div>
+							<div class="qian">
+								<span class="rmb">￥{{el.money}}</span>
+								<span class="see">已有{{el.see}}人领取该任务</span>
+							</div>
+							<div class="time">
+								<span>---</span>任务倒计时{{el.time}}天<span>---</span>
+							</div>
+							<div class="page">
+								{{el.page}}/{{@item.length}}
+							</div>
+							<!-- :attr="{class:'item-'+ (@item.length - index)}" -->
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
-		 -->
-		<!-- =============任务列表================ -->
-<!-- 		<h1 style="text-align: center;">任务列表</h1> -->
-		<div class="m-list">
-		<c:forEach items="${list}" var="mobiletask">
+		<div class="box1" :visible="!@show">
+			<c:forEach items="${list}" var="mobiletask">
 			<a href="${ctx}/pay/totaskdetails?id=${mobiletask.id}" class="item">
 				<div class="top">
 					<div class="left">
@@ -71,19 +116,11 @@
 					</div>
 				</div>
 			</a>
-			
-			
 		</c:forEach>
+		</div>
 		
 	</div>
-	</div>
-
-
-	<footer class="disBox">
-		<a href="${ctx}/pay/tomyhead"><i class="f-icon01"></i>首页</a>
-		<a href="${ctx}/pay/tomytask" class="cur"><i class="f-icon02"></i>任务</a>
-		<a href="${ctx}/pay/toextend"><i class="f-icon03"></i>推广</a>
-		<a href="${ctx}/pay/tomycenter"><i class="f-icon04"></i>我的</a>
-	</footer>
+	<script type="text/javascript" src="${ctxStatic}/reg-login/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/reg-login/js/photoSwipe.js"></script>
 </body>
 </html>
