@@ -44,6 +44,7 @@
                  success :function(result) {
                    if (result) {
                         for(var i=0;i<result.length;i++){
+                        	alert(result[i].id);
                         arr.push(result[i]);
                      }    
                    }
@@ -75,7 +76,7 @@
 			<div id="photo_box" ms-important='item'>
 				<div>
 					<div>
-						<a href="${ctx}/pay/totaskdetails" :class="['item-'+(@item.length - index),el.back,'item']"  :for="(index,el) in @item">
+						<a :attr="{href:'${ctx}/pay/tologin'}" :class="['item-'+(@item.length - index),el.back,'item']"  :for="(index,el) in @item">
 							<div class="title">{{el.title}}</div>
 							<div class="text">{{el.text}}</div>
 							<div class="qian">

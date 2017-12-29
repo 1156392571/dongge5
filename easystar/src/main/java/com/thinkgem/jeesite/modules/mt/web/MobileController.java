@@ -153,7 +153,7 @@ public class MobileController extends BaseController {
    }
    
    /**
-    * 
+    * 跳转到我的个人中心
     * @param tUser
     * @param model
     * @return
@@ -414,6 +414,16 @@ public class MobileController extends BaseController {
        return "modules/sys/mytaskdetails";
    }
    
+   /**
+    * 跳转到我的首页
+     * @Description: TODO
+     * @param tUser
+     * @param model
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午4:46:53
+    */
    @RequestMapping(value = "tomyhead")
    public String tomyhead(TUser tUser,Model model){
        Principal principal=UserUtils.getPrincipal();
@@ -430,6 +440,16 @@ public class MobileController extends BaseController {
        return "modules/sys/myhead";
    }
    
+   /**
+    * 
+     * @Description: 跳转到我的返现页面
+     * @param tUser
+     * @param model
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午4:47:18
+    */
    @RequestMapping(value = "tomyfanxian")
    public String tomyfanxian(TUser tUser,Model model){
        //查询自己当前的ABC级已赚赏金
@@ -450,16 +470,40 @@ public class MobileController extends BaseController {
        return "modules/sys/myfanxian";
    }
    
+   /**
+     * @Description:跳转到联系我们页面
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午4:47:36
+    */
    @RequestMapping(value = "tolianxime")
    public String tolianxime(){
        return "modules/sys/mylianxime";
    }
    
+   /**
+    * 
+     * @Description: 跳转到关于我们
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午4:48:47
+    */
    @RequestMapping(value = "toguanyume")
    public String toguanyume(){
        return "modules/sys/myguanyume";
    }
    
+   /**
+    * 
+     * @Description: TODO
+     * @param model
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午4:50:30
+    */
    @RequestMapping(value = "tomyxiaoxi")
    public String tomyxiaoxi(Model model){
        Principal principal=UserUtils.getPrincipal();
@@ -470,7 +514,15 @@ public class MobileController extends BaseController {
        return "modules/sys/myxiaoxi";
    } 
    
-   
+   /**
+    * 
+     * @Description: TODO
+     * @param tMobiletaskApply
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午4:54:42
+    */
    @RequestMapping(value = "tohandApply")
    @ResponseBody
    public String tohandApply(TMobiletaskApply tMobiletaskApply){
@@ -520,6 +572,16 @@ public class MobileController extends BaseController {
        return "modules/sys/myerweima";
    }
    
+   /**
+    * 
+     * @Description: 我的二维码列表
+     * @param type
+     * @param model
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午5:01:45
+    */
    @RequestMapping(value = "tomyerweimaList")
    public String tomyerweima(String type,Model model){
        return "modules/sys/myerweimaList"+type;
@@ -542,7 +604,7 @@ public class MobileController extends BaseController {
    }
    
    /**
-    * 
+    * 获取自己的提现记录
     * @param tUser
     * @param model
     * @return
@@ -559,6 +621,16 @@ public class MobileController extends BaseController {
        return "modules/sys/mytixianList";
    }
    
+   /**
+    * 
+     * @Description: 我的提现记录
+     * @param tTixian
+     * @param model
+     * @return
+     * String 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午5:18:34
+    */
    @RequestMapping(value = "tomytixiandtl")
    public String tomytixiandtl(TTixian tTixian,Model model){
        tTixian=tTixianService.get(tTixian);
@@ -566,7 +638,14 @@ public class MobileController extends BaseController {
        return "modules/sys/mytixiandtl";
    }
    
-   
+   /**
+    * 
+     * @Description: 获取任务列表，左滑右滑的
+     * @return
+     * List<Map<Object,Object>> 返回类型
+     * @author：dongge
+     * @date：2017年12月29日下午5:18:10
+    */
    @RequestMapping(value = "gettaskList")
    @ResponseBody
    public List<Map<Object,Object>> gettaskList(){
