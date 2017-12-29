@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/modules/cms/front/include/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>注册米兔</title>
 <meta name="format-detection" content="telephone=no" />
-<link href="${ctxStatic}/reg-login/css/mstyle.css" rel="stylesheet"
+<link href="${ctxStatic}/reg-login/css/reg.css" rel="stylesheet"
 	type="text/css" />
 <script src="${ctxStatic}/reg-login/js/jquery-1.8.2.min.js"></script>
 <meta name="viewport"
@@ -92,7 +92,7 @@
     }
   
   
-    function check(){
+    function zhuce(){
     	var userName=$("#userName").val();
     	var password=$("#pwd").val();
     	var mobile=$("#mobile").val();
@@ -112,66 +112,86 @@
     		alert("验证码错误");
     		return false;
     	}
+    	$("#touchForm").submit();
     }
     </script>
 </head>
 <body>
-	<nav class="nav3 p">
-		<strong>注册</strong> <i class="btn3"><a href="${ctx}/pay/tologin">登录</a></i>
-	</nav>
-	<section class="form-group" id="inputObj">
-		<form id="touchForm" action="${ctx}/pay/savereg" method="post"
-			onsubmit="return check()">
-			<input type="hidden" name="tInviter" value="${tUser.tInviter}">
-			<p class="flastHint" id="infoHint"></p>
-			<div class="form-text-login" id="userName_1">
-				<label>用户名：</label> <input type="text" id="userName" onchange="checkusername()"
-					name="tLoginname" class="form-text" placeholder="4-20个字符，汉字、字母、数字"
-					value="" > <a
-					href="javascript:void(0);" class="form-text-clear" id="txtPhoneA"><i
-					class="icon icon-clear" id="delA"></i></a>
-			</div>
-			<div class="form-text-login" id="pwd_1">
-				<label>密&nbsp;&nbsp;码：</label> <input type="password" id="pwd"
-					name="reserve1" class="form-text" placeholder="6-25个字符，数字、字母、符号"
-					value=""> <a href="javascript:void(0);"
-					class="form-text-clear"><i class="r passbg" id="togglePassword"></i></a>
-			</div>
-			<div class="form-text-login" id="mobile_1">
-				<label>手机号：</label> <input type="text" id="mobile" name="tPhone"
-					class="form-text" placeholder="11位大陆手机号" value="" onchange="checkphone()"> <a
-					href="javascript:void(0);" class="form-text-clear" id="txtPhoneB"><i
-					class="icon icon-clear" id="delB"></i></a>
-			</div>
-			<div class="form-text-login form-text-yzm" id="code_1">
-				<label>验证码：</label> <input type="text" id="code" name="code"
-					class="form-text" placeholder="" value="">
-				<div class="l wi2">
-					<input type="button" value="获取验证码" onclick="doGetSmsCode()" /> <em
-						id="isHideStyle" style="display:"></em> <em></em>
-				</div>
-			</div>
-			<input type="hidden" name="referUrl"
-				value="http%3A%2F%2Fm.xgo.com.cn%2F%3Ffrom%3Duc">
-			<div class="btn5" style="margin-top: 12px">
-				<input type="submit" id="submitBtn" value="注&nbsp;&nbsp;册">
-			</div>
-		</form>
-	</section>
-	<div class="userTip">
-		<div class="warmPrompt">
-			<strong>温馨提示：</strong>
-			<p>1、请确认您接收的短信是否被手机安全软件拦截 （如：360安全卫士、腾讯手机管家等）；</p>
-			<p>
-				2、若长时间仍未激活，请联系客服<em><a href="tel:400-080-0688">400-080-0688</a></em>
-			</p>
+<form id="touchForm" action="${ctx}/pay/savereg" method="post">
+	<input type="hidden" name="tInviter" value="${tUser.tInviter}">
+	<div class="m-zhuce">
+		<div class="inputbox" style="margin-top: 10px;">
+			<label for="yonghu">用户名:</label>
+			<input id="userName" onchange="checkusername()" name="tLoginname" type="text" placeholder="4-20个字符，汉字，字母，数字">
 		</div>
+		<div class="inputbox">
+			<label for="mima">密&nbsp;&nbsp;码:</label>
+			<input id="pwd" name="reserve1" type="password" placeholder="4-20个字符，汉字，字母，数字">
+			<img src="${ctxStatic}/reg-login/images/mycenter/yanjing.png">
+		</div>
+		<div class="inputbox">
+			<label for="phone">手机号:</label>
+			<input id="mobile" name="tPhone" onchange="checkphone()" type="text" placeholder="11位大陆手机号">
+		</div>
+		<div class="inputbox">
+			<label for="yanzheng">验证码:</label>
+			<input id="code" name="code" type="text">
+			<button class="yanzheng" id="btnSendCode">获取验证码</button>
+		</div>
+		<button type="submit" class="bt_zc" onclick="zhuce()">注册</button>
+		<div class="m-nav" style="margin-top: 10px;">
+			<div class="text"></div>
+			<a class="right">已有账号，立即登录</a>
+		</div>
+		<div class="tishi">
+			<div class="title">
+				<strong>温馨提示:</strong>
+			</div>
+			<div class="text">1.请确认您接收的短信是否被手机安全软件拦截 (如：360安全卫士、腾讯手机管家等)。</div>
+			<div class="text">2.若长时间仍未激活，请联系客服<a href="tel:027-52344488">027-52344488</a>。</div>
+		</div>
+		<div class="banquan" style="font-size: 9px">Copyright © 米兔平台All Rights Reserved(2017-2020)版权所有。</div>
 	</div>
-	<center>
-		<div style="font-size: 10px">
-			Copyright&copy;<a href="" target="_blank"> 米兔平台</a> All Rights
-			Reserved (2017-2020) 版权所有
-		</div>
-	</center>
+</form>
+	<script type="text/javascript">
+	 var click = true; 		
+	 var content = document.querySelector(".yanzheng");  
+		 content.addEventListener("touchstart", function(){  
+		 	if(click){
+		 		click = false;
+		 		doGetSmsCode();
+		 		sendMessage();
+		 	}
+		 }); 
+
+		var InterValObj; //timer变量，控制时间 
+		var count = 60; //间隔函数，1秒执行 
+		var curCount;//当前剩余秒数 
+		  
+		function sendMessage() { 
+			console.log(0);
+		 　curCount = count; 
+		　　//设置button效果，开始计时 
+		   $("#btnSendCode").html(curCount); 
+		   $("#btnSendCode").addClass("yanzheng_on");
+		   InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次 
+		　　  
+		  
+		} 
+		  
+		//timer处理函数 
+		function SetRemainTime() { 
+		      if (curCount == 0) {         
+		        window.clearInterval(InterValObj);//停止计时器 
+		        $("#btnSendCode").removeClass("yanzheng_on");
+		        $("#btnSendCode").html("重新发送"); 
+		        click = true;
+		      } 
+		      else { 
+		        curCount--; 
+		        $("#btnSendCode").html(curCount); 
+		      } 
+		    } 
+	</script>
 </body>
 </html>

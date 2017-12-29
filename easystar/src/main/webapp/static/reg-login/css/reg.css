@@ -1,0 +1,110 @@
+.m-zhuce{
+ 	width: 90%;
+ 	margin: 0 auto;
+}
+.m-zhuce .banquan{
+	color: #333;
+	font-size: 10px;
+	margin-top: 20px;
+	text-align:center;
+}
+.m-zhuce .tishi .text a{
+	color: #5a9fd9;
+}
+
+.m-zhuce .tishi .title{
+	margin-top: 30px;
+	color: #333;
+}
+.m-zhuce .tishi .text{
+	font-size: 12px;
+	line-height: 22px;
+	color: #848484;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 5px;
+}
+.m-zhuce .bt_zc{
+	background-color: #5a9fd9;
+	border-radius: 5px;
+	border: 1px solid #317dbf;
+	color: white;
+	height: 40px;
+	width: 100%;
+	margin-top: 10px;
+}
+.m-zhuce .inputbox{
+	width: 100%;
+ 	display: flex;
+ 	align-items: center;
+ 	border: 1px solid #ddd;
+ 	height: 40px;
+ 	margin-bottom: 10px;
+ 	border-radius: 5px;
+}
+.m-zhuce .inputbox .yanzheng{
+	height: 36px;
+	background-color: #5a9fd9;
+	border-radius: 5px;
+	border: 1px solid #317dbf;
+	color: white;
+	line-height: 36px;
+	margin-right: 1px;
+	font-size: 12px;
+	width: 80px;
+}.m-zhuce .inputbox .yanzheng_on{
+	background-color: #bbb;
+	border: 1px solid #adadad;
+}
+.m-zhuce .inputbox img{
+	margin-right: 10px;
+	width: 20px;
+}
+.m-zhuce .inputbox label{
+ 	font-size: 14px;
+ 	color: #333;
+ 	width: 60px;
+ 	text-align: center;
+}
+.m-zhuce .inputbox input{
+ 	border: 0;
+ 	flex-grow: 1;
+ 	font-size: 12px;
+ 	width: 50%;
+}
+.m-zhuce .m-nav{
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: space-between;
+ 	width: 100%;
+ 	border-bottom: 1px solid #ddd;
+ 	margin-top: 24px;
+    margin-bottom: 21px;
+    padding-bottom: 10px;
+}
+.m-zhuce .m-nav .text{
+    color: #333;
+}
+.m-zhuce .m-nav .right{
+ 	color: #5a9fd9;
+    font-size: 14px;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+html{
+	margin: 0;
+	padding: 0;
+}
+img{
+	margin: 0;
+	padding: 0;
+}
+a{
+	display: block;
+	text-decoration: none;
+}
+input,button{
+	outline:none;
+}

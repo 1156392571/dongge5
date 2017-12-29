@@ -25,6 +25,7 @@ var photoSwipe={
     run:true,
     /*是否加载完成*/
     load:false,
+    
     /*初始化*/
     // init:function () {
     //     document.querySelector("#photo_box>div>div").innerHTML=this.imgHtml();
@@ -42,10 +43,10 @@ var photoSwipe={
     // },
     /*移动动画*/
     animateMove:function (el,val) {
-        if(!this.run){
-            return;
-        }
-        this.run=false;
+        // if(!this.run){
+        //     return;
+        // }
+        // this.run=false;
         /*CSS3动画方式*/
         el.css({"transform":"translate3d("+doc_width*val+"px,"+photoSwipe.top_val*2.2+"px,0px)","transition-duration":"0.3s"});
         var moveTime=setTimeout(function () {
@@ -96,13 +97,15 @@ $("#photo_box").on("touchstart",function(e) {
     if(!photoSwipe.load || !photoSwipe.run){
         return;
     }
-
+    vm.items = false;
     var ev = e || window.event;
     photoSwipe._x_start=ev.touches[0].pageX;
     photoSwipe._y_start=ev.touches[0].pageY;
-    var act_el=$(".item-"+(photoSwipe.index-1).toString(10));
+
+    // var act_el=$(".item-"+(photoSwipe.index-1).toString(10));
 });
 $("#photo_box").on("touchmove",function(e) {
+    vm.items = true;
     if(!photoSwipe.load || !photoSwipe.run){
         return;
     }
@@ -116,20 +119,25 @@ $("#photo_box").on("touchmove",function(e) {
     act_el.css({"transform":"translate3d("+photoSwipe.left_val+"px,"+photoSwipe.top_val+"px,0px)","transition-duration":"0s"});
 });
 $("#photo_box").on("touchend",function(e) {
-    if(!photoSwipe.load || !photoSwipe.run){
+    if(vm.items){
+        if(!photoSwipe.load || !photoSwipe.run){
         return;
+        }
+        var ev = e || window.event;
+        photoSwipe._x_end=ev.changedTouches[0].pageX;
+        photoSwipe._y_end=ev.changedTouches[0].pageY;
+        var act_el=$(".item-"+(photoSwipe.index-1).toString(10));
+        if(photoSwipe.left_val>0 && photoSwipe.left_val>doc_width/2-doc_width/4.5){
+            photoSwipe.animateMove(act_el,1);
+        }else if(photoSwipe.left_val<0 && photoSwipe.left_val<-doc_width/2+doc_width/4.5){
+            photoSwipe.animateMove(act_el,-1);
+        }else {
+            photoSwipe.animateReset(act_el);
+        }
+    } else{
+         
     }
-    var ev = e || window.event;
-    photoSwipe._x_end=ev.changedTouches[0].pageX;
-    photoSwipe._y_end=ev.changedTouches[0].pageY;
-    var act_el=$(".item-"+(photoSwipe.index-1).toString(10));
-    if(photoSwipe.left_val>0 && photoSwipe.left_val>doc_width/2-doc_width/4.5){
-        photoSwipe.animateMove(act_el,1);
-    }else if(photoSwipe.left_val<0 && photoSwipe.left_val<-doc_width/2+doc_width/4.5){
-        photoSwipe.animateMove(act_el,-1);
-    }else {
-        photoSwipe.animateReset(act_el);
-    }
+    
 });
 
 $(function () {

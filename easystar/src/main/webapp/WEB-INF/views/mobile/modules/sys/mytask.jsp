@@ -18,11 +18,12 @@
 	<script src="${ctxStatic}/reg-login/js/avalon.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
 	<script type='text/javascript'>
-		document.ontouchstart=function(){
-			return false;
-		}
 	</script>
 <script type="text/javascript">
+	document.ontouchstart=function(){
+		return false;
+	}
+	
 	avalon.define({
 		$id : 'test',
 		show : true,
@@ -44,8 +45,8 @@
                  success :function(result) {
                    if (result) {
                         for(var i=0;i<result.length;i++){
-                        	alert(result[i].id);
-                        arr.push(result[i]);
+                        	result[i].back="background_"+i;
+                        	arr.push(result[i]);
                      }    
                    }
                                         
@@ -57,7 +58,9 @@
                })
                  return arr;
               })() ,
-
+              fn:function (el) {
+                  window.location.href="${ctx}/pay/totaskdetails?id="+el;
+              },
 	})
 </script>
 <style type="text/css">
@@ -76,7 +79,7 @@
 			<div id="photo_box" ms-important='item'>
 				<div>
 					<div>
-						<a :attr="{href:'${ctx}/pay/tologin'}" :class="['item-'+(@item.length - index),el.back,'item']"  :for="(index,el) in @item">
+						<div :class="['item-'+(@item.length - index),el.back,'item']"  :for="(index,el) in @item" ms-on-tap="@fn(el.id)">
 							<div class="title">{{el.title}}</div>
 							<div class="text">{{el.text}}</div>
 							<div class="qian">
@@ -86,11 +89,10 @@
 							<div class="time">
 								<span>---</span>任务倒计时{{el.time}}天<span>---</span>
 							</div>
-							<div class="page">
+							<div class="page" style="width: 100%">
 								{{el.page}}/{{@item.length}}
 							</div>
-							<!-- :attr="{class:'item-'+ (@item.length - index)}" -->
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>

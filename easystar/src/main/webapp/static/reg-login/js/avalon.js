@@ -8240,7 +8240,7 @@ built in 2017-11-17:10:32 version 2.2.9 by 司徒正美
     var tapRecognizer = {
         events: ['tap'],
         touchBoundary: 10,
-        tapDelay: 90,
+        tapDelay: 250,
         needClick: function needClick(target) {
             //判定是否使用原生的点击事件, 否则使用sendClick方法手动触发一个人工的点击事件
             switch (target.nodeName.toLowerCase()) {

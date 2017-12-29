@@ -201,6 +201,12 @@ public class MobileController extends BaseController {
        //获取当前时间
        String nowtime=DateUtils.getDate();
        model.addAttribute("nowtime", nowtime);
+       //获取今天推广的人数
+       int todayextendA=tUserService.gettodaycountExtendA(id);
+       int todayextendB=tUserService.gettodaycountExtendB(id);
+       int todayextendC=tUserService.gettodaycountExtendC(id);
+       int todayextendAll=todayextendA+todayextendB+todayextendC;
+       model.addAttribute("todayextendAll", todayextendAll);
        return "modules/sys/myextend";
    }
    
@@ -653,4 +659,16 @@ public class MobileController extends BaseController {
        return list;
    }
    
+   
+   
+   @RequestMapping(value = "toerweimadtl")
+   public String toerweimadtl(TUser tUser,Model model){
+	   model.addAttribute("id", tUser.getReserve5());
+	   Principal principal = UserUtils.getPrincipal();
+       tUser=tUserService.getUserByLoginName(principal.getLoginName());
+       String id=tUser.getId();
+       String url=tUserService.getphotourl(id);
+       model.addAttribute("url", url);
+       return "modules/sys/myerweimadtl";
+   }
 }

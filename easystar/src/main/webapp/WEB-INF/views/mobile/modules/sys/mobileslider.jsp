@@ -10,91 +10,108 @@
 <meta name="format-detection" content="email=no" />
 <meta name="format-detection" content="address=no" />
 <meta name="format-detection" content="telephone=no" />
-<link href="${ctxStatic}/reg-login/css/style.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
+<script type="text/javascript" src="${ctxStatic}/reg-login/js/time_js.js"></script>
+<link href="${ctxStatic}/reg-login/css/time_css.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.swiper-container {
+			position: absolute;
+		    width: 100%;
+		    height: 100%;
+		}
+		.swiper-slide img{
+			width: 100%;
+			height: 100%;
+		}  
+	</style>
 </head>
 <body>
-    <div id="wrap" class="wrapper">
-        <div id="pages">
-            <div class="page page1">
-            	<div class="box">
-                    <a class="tiao" href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
-                        跳过
-                    </a>
-                    <img src="${ctxStatic}/reg-login/images/slider/fxb1.jpg" />
-                    <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb1.jpg" /> -->
-                </div>
-            </div>
-            <div class="page page2">
-            	<div class="box">
-                    <a class="tiao" href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
-                        跳过
-                    </a>
-                    <img src="${ctxStatic}/reg-login/images/slider/fxb2.jpg" />
-                    <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb2.jpg" /> -->
-                </div>
-            </div>
-            <div class="page page3">
-            	<div class="box">
-                    <a class="tiao" href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
-                        跳过
-                    </a>
-                    <img src="${ctxStatic}/reg-login/images/slider/fxb4.jpg" />
-                    <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb4.jpg" /> -->
-                </div>
-            </div>
-            <div class="page page4">
-            	<div class="box">
-                    <a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}">
-                        <img src="${ctxStatic}/reg-login/images/slider/fxb3.jpg" />
-                        <!-- <img src="${ctxStatic}/reg-login/images/slider/fxb3.jpg" /> -->
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-	<!-- <script type="text/javascript" src="${ctxStatic}/reg-login/js/pageSwitch.js"></script> -->
-    <script type="text/javascript" src="${ctxStatic}/reg-login/js/pageSwitch.js"></script>
-    <script>
+    <div>
+		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide">
 
-    var reg=location.search.match(/ts=([^&]*)/),
-		ts=reg&&reg[1]||'flip3d',
-		a=new pageSwitch('pages',{
-        duration:500,
-        start:0,
-        direction:0,
-        loop:false,
-        ease:'ease',
-        transition:'slide',
-		freeze:false,
-		mouse:true,
-        mousewheel:true,
-        arrowkey:true,
-        autoplay:true
-    });
- //    document.getElementById('tssel').onchange=function(){
-	// 	location.href='?ts='+this.value;
-	// }
-	
-	// var options=document.getElementById('tssel').options,
-	// 	i=0,op;
-	// while(op=options[i++]){
-	// 	if(op.value===ts){
-	// 		op.selected=true;
-	// 		break;
-	// 	}
-	// }
-	
-	
-	// function colorRand(){
-	// 	return parseInt(Math.random()*255);
-	// }
-	
-	// function createPage(){
-	// 	var div=document.createElement('div');
-	// 	div.style.backgroundColor='rgb('+colorRand()+','+colorRand()+','+colorRand()+')';
-	// 	return div;
-	// }
-	
-    </script>
+		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
+						<div class="hold">
+							<div class="pie pie1"></div>
+						</div>
+						<div class="hold">
+							<div class="pie pie2"></div>
+						</div>
+						<div class="bg"> </div>
+						<div class="time"></div>
+					</a>
+					
+
+		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb1.png">
+		        </div>
+		        <div class="swiper-slide">
+		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
+						<div class="hold">
+							<div class="pie pie1"></div>
+						</div>
+						<div class="hold">
+							<div class="pie pie2"></div>
+						</div>
+						<div class="bg"> </div>
+						<div class="time"></div>
+					</a>
+		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb2.png">
+		        </div>
+		        <div class="swiper-slide">
+		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
+						<div class="hold">
+							<div class="pie pie1"></div>
+						</div>
+						<div class="hold">
+							<div class="pie pie2"></div>
+						</div>
+						<div class="bg"> </div>
+						<div class="time"></div>
+					</a>
+		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb3.png">
+		        </div>
+		        <div class="swiper-slide">
+		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
+						<div class="hold">
+							<div class="pie pie1"></div>
+						</div>
+						<div class="hold">
+							<div class="pie pie2"></div>
+						</div>
+						<div class="bg"> </div>
+						<div class="time"></div>
+					</a>
+		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb4.png">
+		        </div>
+		    </div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	countDown();
+</script>
+<!--效果html结束-->
+<script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
+<script>       
+  var mySwiper = new Swiper ('.swiper-container', {
+    direction: 'horizontal',
+    // effect : 'fade',
+    // speed:1000,
+    width: window.innerWidth,
+    height : window.innerHeight,
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    autoplay: {
+    delay: 2000,
+    stopOnLastSlide: true,
+    disableOnInteraction: false,
+    },
+  })        
+  </script>
 </body>
 </html>

@@ -492,4 +492,22 @@
 	<select id="gettixianList" parameterType="TUser" resultType="java.util.Map">
 		select * from t_tixian where tt_userid=#{id} order by createtime desc limit 30
 	</select>
+	
+	<select id="gettodaycountExtendA" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(distinct a.id)as 'count' from t_user a 
+		left join t_user b on a.t_inviter=b.id where b.id=#{id} and TO_DAYS(now())=TO_DAYS(a.createtime)
+	</select>
+	
+	<select id="gettodaycountExtendB" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(distinct a.id)as 'count' from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_user c on b.t_inviter=c.id where c.id=#{id} and TO_DAYS(now())=TO_DAYS(a.createtime)
+	</select>
+	
+	<select id="gettodaycountExtendC" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(distinct a.id)as 'count' from t_user a 
+		left join t_user b on a.t_inviter=b.id 
+		left join t_user c on b.t_inviter=c.id
+		left join t_user d on c.t_inviter=d.id where d.id=#{id} and TO_DAYS(now())=TO_DAYS(a.createtime)
+	</select>
 </mapper>

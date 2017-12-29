@@ -16,40 +16,40 @@
 </head>
 <body style="background-color: #f3f4f4">
 		<div class="m-fenxiang">
-			<a href="tupian.html" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima1.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=1" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg1.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima2.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=2" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg2.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima3.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=3" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg3.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima4.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=4" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg4.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima5.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=5" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg5.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima6.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=6" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg6.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima7.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=7" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg7.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima8.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=8" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg8.png">
 				<span>名字</span>
 			</a>
-			<a href="" class="image">
-				<img src="${ctxStatic}/reg-login/images/mycenter/erweima9.png">
+			<a href="${ctx}/pay/toerweimadtl?reserve5=9" class="image">
+				<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg9.png">
 				<span>名字</span>
 			</a>
 		</div>

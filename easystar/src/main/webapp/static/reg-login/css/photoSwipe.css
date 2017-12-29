@@ -29,6 +29,7 @@
 }
 #photo_box .page{
     position: absolute;
+    text-align:center;
     bottom: 10px;
     font-size: 14px;
 }
@@ -54,63 +55,63 @@
     justify-content: center;
     align-items: center;
 }
-#photo_box .background_one{
+#photo_box .background_0{
     background-image: url(../images/mycenter/bj1.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_two{
+#photo_box .background_1{
     background-image: url(../images/mycenter/bj2.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_three{
+#photo_box .background_2{
     background-image: url(../images/mycenter/bj3.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_four{
+#photo_box .background_3{
     background-image: url(../images/mycenter/bj4.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_five{
+#photo_box .background_4{
     background-image: url(../images/mycenter/bj5.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_six{
+#photo_box .background_5{
     background-image: url(../images/mycenter/bj6.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_seven{
+#photo_box .background_6{
     background-image: url(../images/mycenter/bj7.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_eight{
+#photo_box .background_7{
     background-image: url(../images/mycenter/bj8.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_nine{
+#photo_box .background_8{
     background-image: url(../images/mycenter/bj9.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_ten{
+#photo_box .background_9{
     background-image: url(../images/mycenter/bj10.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_eleven{
+#photo_box .background_10{
     background-image: url(../images/mycenter/bj11.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_twelve{
+#photo_box .background_11{
     background-image: url(../images/mycenter/bj12.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_thirteen{
+#photo_box .background_12{
     background-image: url(../images/mycenter/bj13.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_fourteen{
+#photo_box .background_13{
     background-image: url(../images/mycenter/bj14.png);
     background-size: 100% 100%; 
 }
-#photo_box .background_fifteen{
+#photo_box .background_14{
     background-image: url(../images/mycenter/bj15.png);
     background-size: 100% 100%; 
 }
@@ -134,7 +135,7 @@
     height: 100%;
 
 }
-#photo_box>div>div>a{
+#photo_box>div>div>div{
     position: absolute;
     top: 0;
     left: 8%;
@@ -145,13 +146,13 @@
     box-shadow: 0 0 5px #CCC;
     z-index: 1;
 }
-#photo_box>div>div>a:first-child{
+#photo_box>div>div>div:first-child{
     top: 10px;
     left: 11%;
     width: 78%;
 
 }
-#photo_box>div>div>a:last-child{
+#photo_box>div>div>div:last-child{
     top: -10px;
     left: 5%;
     width: 90%;

@@ -34,7 +34,7 @@
 			<div class="absolute four">75</div>
 			<div class="absolute five">100</div>
 			<div class="time">截止到${nowtime}</div>
-			<div class="add" style="font-size: 15px;">今日累计新增 0 个用户</div>
+			<div class="add" style="font-size: 15px;">今日累计新增 ${todayextendAll} 个用户</div>
 		</div>
 		<div class="listbox">
 			<div class="tou">

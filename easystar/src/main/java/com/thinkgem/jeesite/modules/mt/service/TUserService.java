@@ -223,4 +223,16 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		return tUserDao.gettixianList(tUser);
 	}
 
+	public int gettodaycountExtendA(String id) {
+		return tUserDao.gettodaycountExtendA(id);
+	}
+	
+	public int gettodaycountExtendB(String id) {
+		return tUserDao.gettodaycountExtendB(id);
+	}
+	
+	public int gettodaycountExtendC(String id) {
+		return tUserDao.gettodaycountExtendC(id);
+	}
+
 }
