@@ -17,17 +17,24 @@
 	<link rel="stylesheet" href="${ctxStatic}/reg-login/css/photoSwipe.css">
 	<script src="${ctxStatic}/reg-login/js/avalon.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
+	<script src="${ctxStatic}/reg-login/js/jquery-3.1.1.min.js"></script>
 	<script type='text/javascript'>
 	</script>
 <script type="text/javascript">
-	document.ontouchstart=function(){
-		return false;
-	}
 	
 	avalon.define({
 		$id : 'test',
 		show : true,
-
+		fn1:function (el) {
+			document.ontouchstart=function(){
+				return true;
+			}
+        },
+        fn2:function (el) {
+			document.ontouchstart=function(){
+				return false;
+			}
+        },
 	})
 
 	var vm = avalon.define({
@@ -59,9 +66,28 @@
                  return arr;
               })() ,
               fn:function (el) {
-                  window.location.href="${ctx}/pay/totaskdetails?id="+el;
+            	  //执行操作+1
+            	  window.location.href="${ctx}/pay/totaskdetails?id="+el;
+            	  $.ajax({
+            		 url:'${ctx}/pay/toaddoneview',
+            		 type:'post',
+            		 data:{id:el},
+            		 success:function(data){
+            			 if(data=="1"){
+            				 
+            			 }
+            		 }
+            		  
+            	  })
+                  
               },
+              
 	})
+	
+	document.ontouchstart=function(){
+		return false;
+	}
+
 </script>
 <style type="text/css">
 .ms-controller {
@@ -69,11 +95,11 @@
 }
 </style>
 </head>
-<body>
+<body id="body">
 	<div class="m-list ms-controller" ms-controller="test">
 		<div class="nav">
-			<div :class="['items',@show?'color':'']" ms-on-tap="@show = true">图文</div>
-			<div :class="['items',!@show?'color':'']" ms-on-tap="@show = false">列表</div>
+			<div :class="['items',@show?'color':'']" ms-on-tap="@show = true" ms-on-tap-1="@fn2()">图文</div>
+			<div :class="['items',!@show?'color':'']" ms-on-tap="@show = false" ms-on-tap-1="@fn1()">列表</div>
 		</div>
 		<div class="box2" :visible="@show" >
 			<div id="photo_box" ms-important='item'>
@@ -97,18 +123,26 @@
 				</div>
 			</div>
 		</div>
-		<div class="box1" :visible="!@show">
+		<div  class="box1" :visible="!@show" >
 			<c:forEach items="${list}" var="mobiletask">
-			<a href="${ctx}/pay/totaskdetails?id=${mobiletask.id}" class="item">
+		<!-- href="${ctx}/pay/totaskdetails?id=${mobiletask.id}" -->
+			<a  ms-on-tap="@fn('${mobiletask.id}')" class="item" ms-important='item'>
 				<div class="top">
-					<div class="left">
-						<div class="title">${mobiletask.tmtName}</div>
-						<div class="text">
-						${fns:abbr(mobiletask.tmtAsk,30)}
+					<div class="left" style="width: 85%;height: 100%;">
+						<div class="title" style="height: 30px;">
+							<div style="float: left">
+								${mobiletask.tmtName}
+							</div>
+							<div style="float: right;color: red">
+								￥${mobiletask.tmtPrice}
+							</div>
+						</div>
+						<div class="text" style="height: 30%;margin-top: 5px;">
+						${fns:abbr(mobiletask.tmtAsk,40)}
 						</div>
 					</div>
 					<div class="right">
-						<img src="${ctxStatic}/reg-login/images/img/icon_you.png">
+						<img src ="${ctxStatic}/reg-login/images/img/icon_you.png">
 					</div>
 				</div>
 				<div class="bottom">
@@ -121,8 +155,8 @@
 			</a>
 		</c:forEach>
 		</div>
-		
 	</div>
+		
 	<script type="text/javascript" src="${ctxStatic}/reg-login/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="${ctxStatic}/reg-login/js/photoSwipe.js"></script>
 </body>

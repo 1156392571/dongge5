@@ -235,4 +235,13 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		return tUserDao.gettodaycountExtendC(id);
 	}
 
+	@Transactional(readOnly = false)
+	public void updatepassword(User user) {
+		tUserDao.updatepassword(user);
+	}
+
+	public List<Map<Object, Object>> gettaskApplyList(String loginName) {
+		return tUserDao.gettaskApplyList(loginName);
+	}
+
 }

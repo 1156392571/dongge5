@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
+import com.thinkgem.jeesite.modules.mt.entity.TUser;
 import com.thinkgem.jeesite.modules.mt.dao.TMobileTaskDao;
 
 /**
@@ -48,8 +49,13 @@ public class TMobileTaskService extends CrudService<TMobileTaskDao, TMobileTask>
 	}
 
 	public List<Map<Object, Object>> findTaskList() {
-		// TODO Auto-generated method stub
 		return tMobileTaskDao.findTaskList();
 	}
+
+	@Transactional(readOnly = false)
+	public void toaddoneview(String id) {
+		tMobileTaskDao.toaddoneview(id);
+	}
+
 	
 }

@@ -33,7 +33,7 @@ img{ display: block; }
 
 <%-- 		<img src="${pageContext.request.contextPath}${url}" class="img1"> --%>
 <div>
-<img src="${ctxStatic}/reg-login/images/mycenter/erweimabg${id}.png" style="width: 100%;height: 100%;">
+<img src="${ctxStatic}/reg-login/images/mycenter/erweimadtl${id}.png" style="width: 100%;height: 100%;">
 <img class="pos" src="${pageContext.request.contextPath}${url}">
 <div>
 

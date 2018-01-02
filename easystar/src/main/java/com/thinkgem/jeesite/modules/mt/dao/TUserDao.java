@@ -101,5 +101,9 @@ public interface TUserDao extends CrudDao<TUser> {
 	int gettodaycountExtendB(String id);
 	
 	int gettodaycountExtendC(String id);
+
+	void updatepassword(User user);
+
+	List<Map<Object, Object>> gettaskApplyList(String loginName);
 	
 }

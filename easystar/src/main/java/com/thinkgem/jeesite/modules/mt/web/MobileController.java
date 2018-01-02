@@ -36,6 +36,7 @@ import com.thinkgem.jeesite.modules.mt.service.TMobileTaskService;
 import com.thinkgem.jeesite.modules.mt.service.TMobiletaskApplyService;
 import com.thinkgem.jeesite.modules.mt.service.TTixianService;
 import com.thinkgem.jeesite.modules.mt.service.TUserService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.QRCodeEvents;
@@ -102,40 +103,49 @@ public class MobileController extends BaseController {
     * @throws Exception 
     */
    @RequestMapping(value="savereg")
+   @ResponseBody
    public String gettoreg(HttpServletRequest request,TUser tUser,Model model) throws Exception {
        //将对象进行保存-邀请人字段，已经直接映射到对象里了
        //设置签到字段默认为1，签到天数为0
        tUser.setReserve2("1");
        tUser.setReserve3(0);
-       systemService.saveRegister(tUser);
-       //通过注册的手机号，查询出当前所对应的t_user表中的id
-       tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
-       //注册成功之后就同步生成二维码图片
-//       String text ="http://192.168.1.103:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
-       String text ="http://120.78.211.240/easystar/f/pay/tophoto?tInviter="+tUser.getId();
-       int width = 100;    //二维码图片的宽
-       int height = 100;   //二维码图片的高
-       String format = "png";  //二维码图片的格式
-       String pathname=tUser.getId();
-       String pathName=QRCodeEvents.generateQRCode(request,pathname, text, width, height, format);
-       //将图片的地址直接存在数据库中
-       Map<String,String> map=new HashMap<String,String>();
-       String id=IdGen.uuid();
-       map.put("id", id);
-       map.put("phone",pathname);
-       map.put("pathName",pathName);
-       tUserService.addpicturecode(map);
-       String url=tUserService.getphotourl(pathname);
-       model.addAttribute("url", url);
-       //注册成功之后将获得理财金的消息推送到消息列表中
-       Map<String,Object> usermap=new HashMap<String,Object>();
-       String dtlId=IdGen.uuid();
-       usermap.put("id", dtlId);
-       usermap.put("tma_userid", tUser.getId());
-       usermap.put("tma_dtlname", "注册送理财金");
-       usermap.put("tma_jine",100);
-       tUserService.addtomobileacountdtl(usermap);
-       return "redirect:"+Global.getAdminPath()+"/pay/tologin?repage";
+       String result="";
+       try {
+    	   systemService.saveRegister(tUser);
+           //通过注册的手机号，查询出当前所对应的t_user表中的id
+           tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
+           //注册成功之后就同步生成二维码图片
+//           String text ="http://192.168.1.103:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
+           String text ="http://www.168mitu.com/easystar/f/pay/tophoto?tInviter="+tUser.getId();
+           int width = 100;    //二维码图片的宽
+           int height = 100;   //二维码图片的高
+           String format = "png";  //二维码图片的格式
+           String pathname=tUser.getId();
+           String pathName=QRCodeEvents.generateQRCode(request,pathname, text, width, height, format);
+           //将图片的地址直接存在数据库中
+           Map<String,String> map=new HashMap<String,String>();
+           String id=IdGen.uuid();
+           map.put("id", id);
+           map.put("phone",pathname);
+           map.put("pathName",pathName);
+           tUserService.addpicturecode(map);
+           String url=tUserService.getphotourl(pathname);
+           model.addAttribute("url", url);
+           //注册成功之后将获得理财金的消息推送到消息列表中
+           Map<String,Object> usermap=new HashMap<String,Object>();
+           String dtlId=IdGen.uuid();
+           usermap.put("id", dtlId);
+           usermap.put("tma_userid", tUser.getId());
+           usermap.put("tma_dtlname", "注册送理财金");
+           usermap.put("tma_jine",100);
+           usermap.put("tma_reserve1","4");
+           tUserService.addtomobileacountdtl(usermap);
+           result="1";
+		} catch (Exception e) {
+			e.getMessage();
+			result="0";
+		}
+       return result;
    } 
    
    /**
@@ -371,6 +381,7 @@ public class MobileController extends BaseController {
                map.put("tma_userid", tUser.getId());
                map.put("tma_dtlname", "签到");
                map.put("tma_jine",0.5);
+               map.put("tma_reserve1","3");
                tUserService.addtomobileacountdtl(map);
                result="1";
            }
@@ -396,6 +407,15 @@ public class MobileController extends BaseController {
        List<TMobileTask> list=tMobileTaskService.findList(tMobileTask);
        model.addAttribute("list", list);
        return "modules/sys/mytask";
+   }
+   
+   @RequestMapping(value = "tomytask1")
+   public String tomytask1(TUser tUser,Model model){
+       //获取当前的所有任务列表，并排序
+       TMobileTask tMobileTask=new TMobileTask();
+       List<TMobileTask> list=tMobileTaskService.findList(tMobileTask);
+       model.addAttribute("list", list);
+       return "modules/sys/mytask1";
    }
    
    /**
@@ -516,7 +536,9 @@ public class MobileController extends BaseController {
        String loginName=principal.getLoginName();
        //通过当前用户名获取关于自己的消息记录
        List<Map<Object,Object>> list=tUserService.getmessageList(loginName);
+       List<Map<Object,Object>> taskApplylist=tUserService.gettaskApplyList(loginName);
        model.addAttribute("xiaoxilist",list);
+       model.addAttribute("taskApplylist",taskApplylist);
        return "modules/sys/myxiaoxi";
    } 
    
@@ -660,7 +682,12 @@ public class MobileController extends BaseController {
    }
    
    
-   
+   /**
+    * 跳转到二维码展示单个页面
+    * @param tUser
+    * @param model
+    * @return
+    */
    @RequestMapping(value = "toerweimadtl")
    public String toerweimadtl(TUser tUser,Model model){
 	   model.addAttribute("id", tUser.getReserve5());
@@ -671,4 +698,74 @@ public class MobileController extends BaseController {
        model.addAttribute("url", url);
        return "modules/sys/myerweimadtl";
    }
+   
+   /**
+    * 
+    * @return
+    */
+   @RequestMapping(value = "tocompleteziliao")
+   @ResponseBody
+   public String tocompleteziliao(TUser tUser){
+	   System.out.println(tUser);
+	   String result="";
+	   try {
+		   TUser tUser1=tUserService.getUserByLoginName(tUser.gettLoginname());
+		   tUser1.settName(tUser.gettName()); 
+		   tUser1.settEmail(tUser.gettEmail());
+		   tUser1.setReserve4(tUser.getReserve4());
+		   tUser1.setReserve5(tUser.getReserve5());
+		   tUserService.save(tUser1);
+		   result="1";
+		} catch (Exception e) {
+			e.getMessage();
+		   result="0";
+		}
+       return result;
+   }
+   
+   @RequestMapping(value = "checkpassword")
+   @ResponseBody
+   public String checkpassword(TUser tUser){
+	   System.out.println(tUser);
+	   String result="0";
+	   if(systemService.validatePassword(tUser.getReserve1(),tUser.gettLoginname())){
+		   result="1";
+	   }
+       return result;
+   }
+   
+   
+   @RequestMapping(value = "updatepassword")
+   @ResponseBody
+   public String updatepassword(String password1){
+	   String result="0";
+	   Principal principal = UserUtils.getPrincipal();
+	   String id=principal.getId();
+       String loginName=principal.getLoginName();
+       User user=new User();
+       user.setPassword(password1);
+       user.setLoginName(loginName);
+       systemService.updatePasswordById(id,loginName,password1);
+       tUserService.updatepassword(user);
+       result="1";
+       return result;
+   }
+   
+   
+   @RequestMapping(value = "tosliderdtl")
+   public String tosliderdtl(String id,Model model){
+	   model.addAttribute("id", id);
+       return "modules/sys/mysliderdtl";
+   }
+   
+   
+   @RequestMapping(value = "toaddoneview")
+   @ResponseBody
+   public String toaddoneview(String id){
+	   String result="0";
+	   tMobileTaskService.toaddoneview(id);
+	   result="1";
+       return result;
+   }
+   
 }

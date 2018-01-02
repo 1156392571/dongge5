@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="list">
-			<a class="item">
+			<a href="tel:${phonenumber}" class="item">
 				<div class="left">
 					<img src="${ctxStatic}/reg-login/images/mycenter/one1.png">
 					<span>推荐人</span>

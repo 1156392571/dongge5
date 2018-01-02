@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no" />
 <link href="${ctxStatic}/reg-login/css/reg.css" rel="stylesheet"
 	type="text/css" />
-<script src="${ctxStatic}/reg-login/js/jquery-1.8.2.min.js"></script>
+<script src="${ctxStatic}/reg-login/js/jquery.js"></script>
 <meta name="viewport"
 	content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0,  maximum-scale=1.0" />
 <meta name="format-detection" content="telephone=no" />
@@ -93,32 +93,49 @@
   
   
     function zhuce(){
+    	var tInviter=$("#tInviter").val();
     	var userName=$("#userName").val();
     	var password=$("#pwd").val();
     	var mobile=$("#mobile").val();
     	if(userName==""){
     		$("#userName").focus();
-    		return false;
+    		alert("用户名不能为空");
+    		return ;
     	}
     	if(password==""){
     		$("#pwd").focus();
-    		return false;
+    		alert("密码不能为空");
+    		return ;
     	}
     	if(mobile==""){
     		$("#mobile").focus();
-    		return false;
+    		alert("手机号不能为空");
+    		return ;
     	}
     	if(!checksmscode()){
     		alert("验证码错误");
-    		return false;
+    		return ;
     	}
-    	$("#touchForm").submit();
+    	$.ajax({
+    		url:'${ctx}/pay/savereg',
+    		type:'post',
+    		data:{tInviter:tInviter,tLoginname:userName,
+    			reserve1:password,tPhone:mobile
+    		},
+    		success:function(data){
+    			if(data=="1"){
+    				alert("成功");
+    				window.location.href="${pageContext.request.contextPath}/a/login"
+    			}
+    		}
+    	})
+    	
     }
     </script>
+    
 </head>
 <body>
-<form id="touchForm" action="${ctx}/pay/savereg" method="post">
-	<input type="hidden" name="tInviter" value="${tUser.tInviter}">
+	<input type="hidden" id="tInviter" value="${tUser.tInviter}">
 	<div class="m-zhuce">
 		<div class="inputbox" style="margin-top: 10px;">
 			<label for="yonghu">用户名:</label>
@@ -138,10 +155,10 @@
 			<input id="code" name="code" type="text">
 			<button class="yanzheng" id="btnSendCode">获取验证码</button>
 		</div>
-		<button type="submit" class="bt_zc" onclick="zhuce()">注册</button>
+		<button  class="bt_zc" onclick="zhuce()">注册</button>
 		<div class="m-nav" style="margin-top: 10px;">
 			<div class="text"></div>
-			<a class="right">已有账号，立即登录</a>
+			<a href="${pageContext.request.contextPath}/a/login" class="right">已有账号，立即登录</a>
 		</div>
 		<div class="tishi">
 			<div class="title">
@@ -152,15 +169,15 @@
 		</div>
 		<div class="banquan" style="font-size: 9px">Copyright © 米兔平台All Rights Reserved(2017-2020)版权所有。</div>
 	</div>
-</form>
-	<script type="text/javascript">
+
+<script type="text/javascript">
 	 var click = true; 		
 	 var content = document.querySelector(".yanzheng");  
 		 content.addEventListener("touchstart", function(){  
 		 	if(click){
 		 		click = false;
-		 		doGetSmsCode();
 		 		sendMessage();
+		 		doGetSmsCode();
 		 	}
 		 }); 
 

@@ -50,7 +50,6 @@ width: 40px;height: 40px;
 				</div>
 			</div>
 			</c:when>
-			
 			<c:when test="${list.tma_reserve1=='1'}">
 			<div class="item">
 				<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money2.png">
@@ -65,7 +64,7 @@ width: 40px;height: 40px;
 				</div>
 			</div>
 			</c:when>
-			<c:otherwise>
+			<c:when test="${list.tma_reserve1=='3'}">
 			<div class="item">
 				<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money1.png">
 				<div class="info" style="width: 76%;">
@@ -74,7 +73,21 @@ width: 40px;height: 40px;
 						<div class="time"><fmt:formatDate value="${list.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
 					</div>
 					<div class="bottom">
-						恭喜您：${list.tma_dtlname}领取了${list.tma_jine}元，请继续努力。
+						恭喜您：${list.tma_dtlname}${list.tma_jine}元，请继续努力。
+					</div>
+				</div>
+			</div>
+			</c:when>
+			<c:otherwise>
+			<div class="item">
+				<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money6.png">
+				<div class="info" style="width: 76%;">
+					<div class="top">
+						<div class="text">理财金奖励</div>
+						<div class="time"><fmt:formatDate value="${list.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+					</div>
+					<div class="bottom">
+						恭喜您：${list.tma_dtlname}${list.tma_jine}元，请继续努力。
 					</div>
 				</div>
 			</div>
@@ -82,6 +95,45 @@ width: 40px;height: 40px;
 			</c:choose>
 			</c:forEach>
 		</div>
+		
+		<!-- 这里是显示系统消息 -->
+		<div  class="list" :visible="!@show">
+		<c:forEach items="${taskApplylist}" var="taskApplylist">
+			<div class="item">
+				<c:if test="${taskApplylist.tma_status=='3'}">
+					<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money4.png">
+				</c:if>
+				<c:if test="${taskApplylist.tma_status=='1'}">
+					<img class="money" src="${ctxStatic}/reg-login/images/mycenter/money5.png">
+				</c:if>
+				<div class="info" style="width: 76%;">
+					<div class="top">
+						<div class="text">任务通知</div>
+						<div class="time"><fmt:formatDate value="${taskApplylist.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+					</div>
+					<div class="bottom">
+						
+						<c:if test="${taskApplylist.tma_status=='1'}">
+							恭喜：
+						</c:if>
+						<c:if test="${taskApplylist.tma_status=='3'}">
+							很遗憾：
+						</c:if>
+						您提交了${taskApplylist.tmt_name}任务，
+						任务金额${taskApplylist.tmt_price}元，
+						<c:if test="${taskApplylist.tma_status=='1'}">
+							<span style="color: red">正在审核中，</span>
+						</c:if>
+						<c:if test="${taskApplylist.tma_status=='3'}">
+							<span style="color: red">审核失败，</span>
+						</c:if>
+						，请继续努力。
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+		
 	</div>
 </body>
 </html>

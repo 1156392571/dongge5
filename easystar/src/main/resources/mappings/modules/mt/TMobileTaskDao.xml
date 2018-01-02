@@ -83,6 +83,8 @@
 				AND a.tmt_enddate = #{tmtEnddate}
 			</if>
 		</where>
+		order by a.createtime,a.tmt_viewtime desc 
+		<!-- 
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
@@ -91,6 +93,7 @@
 				ORDER BY a.update_date DESC
 			</otherwise>
 		</choose>
+		 -->
 	</select>
 	
 	<select id="findAllList" resultType="TMobileTask">
@@ -194,9 +197,13 @@
 	</update>
 	
 	<select id="findTaskList" resultType="java.util.Map">
-	select a.tmt_price as 'money','' as 'back',a.id,a.tmt_name as 'title',SUBSTR(a.tmt_ask,1,20) as 'text',
-	(TO_DAYS(a.tmt_enddate)-TO_DAYS(now())) as 'time',(50+count(a.id))as 'see' from t_mobile_task a,
-	t_mobiletask_apply b where a.id=b.tma_taskid
-	 and a.del_flag='0' GROUP BY a.id limit 30
+	select a.tmt_price as 'money','' as 'back',a.id,a.tmt_name as 'title',
+	SUBSTR(a.tmt_ask,1,20) as 'text', (TO_DAYS(a.tmt_enddate)-TO_DAYS(now())) as 'time',
+	(50+count(a.id))as 'see' from t_mobile_task a where 
+	a.del_flag='0' GROUP BY a.id limit 30 
 	</select>
+	
+	<update id="toaddoneview" parameterType="java.lang.String">
+		update t_mobile_task set tmt_viewtime=tmt_viewtime+1 where id=#{id}
+	</update>
 </mapper>

@@ -16,7 +16,7 @@
 </head>
 <body style="background-color: #f3f4f4">
 		<div class="m-tuiguang">
-			<a class="item" href="fenxiang.html">
+			<a class="item" href="${ctx}/pay/tomyerweimaList?type=1">
 				<div class="left">
 					<img src="${ctxStatic}/reg-login/images/mycenter/ewm.png">
 				</div>
@@ -25,7 +25,7 @@
 					<div class="text">拒绝审美疲劳，每一次分享都是新的视觉体验！</div>
 				</div>
 			</a>
-			<a class="item" href="">
+			<a class="item" href="${ctx}/pay/tomyerweimaList?type=1">
 				<div class="left">
 					<img src="${ctxStatic}/reg-login/images/mycenter/tw.png">
 				</div>

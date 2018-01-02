@@ -19,5 +19,7 @@ import com.thinkgem.jeesite.modules.mt.entity.TMobileTask;
 public interface TMobileTaskDao extends CrudDao<TMobileTask> {
 
 	List<Map<Object, Object>> findTaskList();
+
+	void toaddoneview(String id);
 	
 }

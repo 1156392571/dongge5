@@ -11,84 +11,62 @@
 <meta name="format-detection" content="address=no" />
 <meta name="format-detection" content="telephone=no" />
 <link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
-<script type="text/javascript" src="${ctxStatic}/reg-login/js/time_js.js"></script>
+<script type="text/javascript" src="${ctxStatic}/reg-login/js/time_js_1.js"></script>
 <link href="${ctxStatic}/reg-login/css/time_css.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
-		.swiper-container {
+		.swiper-slide {
 			position: absolute;
 		    width: 100%;
 		    height: 100%;
+		    background-image: url(${ctxStatic}/reg-login/images/mycenter/fxb3.png);
+ 			background-size: 100% 100%; 
 		}
 		.swiper-slide img{
 			width: 100%;
 			height: 100%;
 		}  
 	</style>
+	<script type="text/javascript">
+	var start1 = function(){
+		// i = i + 0.2;
+		i = i + 360/((gameTime)*10);  //旋转的角度  90s 为 0.4  60s为0.6
+		count = count + 1;
+		if(count <= (gameTime/2*10)){  // 一半的角度  90s 为 450
+			$(".pie1").css("-o-transform","rotate(" + i + "deg)");
+			$(".pie1").css("-moz-transform","rotate(" + i + "deg)");
+			$(".pie1").css("-webkit-transform","rotate(" + i + "deg)");
+		}else{
+			$(".pie2").css("backgroundColor", "#4abfef");
+			$(".pie2").css("-o-transform","rotate(" + i + "deg)");
+			$(".pie2").css("-moz-transform","rotate(" + i + "deg)");
+			$(".pie2").css("-webkit-transform","rotate(" + i + "deg)");
+	        if(count === 29){
+	            setInterval(function(){
+	                $(".pie2").css("backgroundColor", "#4abfef");
+	                $(".pie2").css("-o-transform","rotate(" + 360 + "deg)");
+	                $(".pie2").css("-moz-transform","rotate(" + 360 + "deg)");
+	                $(".pie2").css("-webkit-transform","rotate(" + 360 + "deg)");
+	                window.location.href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}";  
+	            }, 100);
+	        }
+		}
+	};
+	</script>
 </head>
 <body>
     <div>
-		<div class="swiper-container">
-		    <div class="swiper-wrapper">
-		        <div class="swiper-slide">
-
-		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
-						<div class="hold">
-							<div class="pie pie1"></div>
-						</div>
-						<div class="hold">
-							<div class="pie pie2"></div>
-						</div>
-						<div class="bg"> </div>
-						<div class="time"></div>
-					</a>
-					
-
-		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb1.png">
-		        </div>
-		        <div class="swiper-slide">
-		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
-						<div class="hold">
-							<div class="pie pie1"></div>
-						</div>
-						<div class="hold">
-							<div class="pie pie2"></div>
-						</div>
-						<div class="bg"> </div>
-						<div class="time"></div>
-					</a>
-		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb2.png">
-		        </div>
-		        <div class="swiper-slide">
-		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
-						<div class="hold">
-							<div class="pie pie1"></div>
-						</div>
-						<div class="hold">
-							<div class="pie pie2"></div>
-						</div>
-						<div class="bg"> </div>
-						<div class="time"></div>
-					</a>
-		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb3.png">
-		        </div>
-		        <div class="swiper-slide">
-		        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
-						<div class="hold">
-							<div class="pie pie1"></div>
-						</div>
-						<div class="hold">
-							<div class="pie pie2"></div>
-						</div>
-						<div class="bg"> </div>
-						<div class="time"></div>
-					</a>
-		        	<img src="${ctxStatic}/reg-login/images/mycenter/fxb4.png">
-		        </div>
-		    </div>
-		    <!-- 如果需要分页器 -->
-		    <div class="swiper-pagination"></div>
-		</div>
-	</div>
+        <div class="swiper-slide">
+        	<a href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}" class="game_time">
+				<div class="hold">
+					<div class="pie pie1"></div>
+				</div>
+				<div class="hold">
+					<div class="pie pie2"></div>
+				</div>
+				<div class="bg"> </div>
+				<div class="time"></div>
+			</a>
+        </div>	
 </body>
 <script type="text/javascript">
 	countDown();
@@ -96,22 +74,7 @@
 <!--效果html结束-->
 <script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
 <script>       
-  var mySwiper = new Swiper ('.swiper-container', {
-    direction: 'horizontal',
-    // effect : 'fade',
-    // speed:1000,
-    width: window.innerWidth,
-    height : window.innerHeight,
-    // 如果需要分页器
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    autoplay: {
-    delay: 2000,
-    stopOnLastSlide: true,
-    disableOnInteraction: false,
-    },
-  })        
+countDown();   
   </script>
 </body>
 </html>

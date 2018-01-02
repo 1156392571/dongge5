@@ -162,7 +162,7 @@
 			t_photoinfo = #{tPhotoinfo},
 			t_company = #{tCompany},
 			t_companyurl = #{tCompanyurl},
-			createtime = now(),
+			createtime = #{createtime},
 			t_inviter = #{tInviter},
 			reserve1 = #{reserve1},
 			reserve2 = #{reserve2},
@@ -509,5 +509,19 @@
 		left join t_user b on a.t_inviter=b.id 
 		left join t_user c on b.t_inviter=c.id
 		left join t_user d on c.t_inviter=d.id where d.id=#{id} and TO_DAYS(now())=TO_DAYS(a.createtime)
+	</select>
+	
+	<!-- 通过用户名修改明文密码 -->
+	<update id="updatepassword" parameterType="User">
+		update t_user set reserve1=#{password} where t_loginName=#{loginName}
+	</update>
+	
+	<!-- 获取当前自己的任务申请消息时间倒叙30条 -->
+	<select id="gettaskApplyList" parameterType="java.lang.String" resultType="java.util.Map">
+		select c.tmt_name,c.tmt_price,a.createtime,a.tma_status from t_mobiletask_apply a
+		left join t_user b on a.tma_userid=b.id
+		left join t_mobile_task c on a.tma_taskid=c.id
+		where b.t_loginName=#{loginName} and a.tma_status &lt;&gt;2
+		ORDER BY a.createtime desc limit 30
 	</select>
 </mapper>

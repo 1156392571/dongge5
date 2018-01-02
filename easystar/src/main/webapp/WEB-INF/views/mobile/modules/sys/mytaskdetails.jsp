@@ -62,7 +62,7 @@
 }
 	.channel_main {
 	margin: 10px auto;
-	font-size: 14px;
+/* 	font-size: 14px; */
 	line-height: 30px;
 }
 
@@ -311,13 +311,13 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 			</div>
 			<div class="channel_contact">
 				<div>
-					<c:if test="${tMobileTask.tmtRebatec!=0}">
+					<c:if test="${tMobileTask.tmtRebatec ne '0.00'}">
 						<p><span class="datecreate">推广员A：${tMobileTask.tmtRebatec}元</span></p>
 					</c:if>
-					<c:if test="${tMobileTask.tmtRebateb!=0}">
+					<c:if test="${tMobileTask.tmtRebateb ne '0.00'}">
 						<p><span class="datecreate">推广员B：${tMobileTask.tmtRebateb}元</span></p>
 					</c:if>
-					<c:if test="${tMobileTask.tmtRebatea!=0}">
+					<c:if test="${tMobileTask.tmtRebatea ne '0.00'}">
 						<p><span class="datecreate">推广员C：${tMobileTask.tmtRebatea}元</span></p>
 					</c:if>
 				</div>
@@ -328,14 +328,14 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 				<h3>任务要求</h3>
 			</div>
 			<div class="channel_contact">
-				<div class="innertext">
-					<pre class="textsize">
+<!-- 				<div class="innertext"> -->
+					<pre class="textsize" style="word-break: normal;padding-top: 0">
 					${tMobileTask.tmtAsk}
 					</pre>
-				</div>
+<!-- 				</div> -->
 			</div>
 			<div align="center">
-				<img src="${pageContext.request.contextPath}/${tMobileTask.tmtPhotourl}">
+				<img src="${tMobileTask.tmtPhotourl}">
 			</div>
 		</div>
 	</div>
@@ -465,6 +465,7 @@ function txcommit(){
 	$.ajax({
 		url:'${ctx}/pay/tohandApply',
 		type:'post',
+		async:false,
 		data:{tmaTaskid:id,tmaName:tmaName,tmaCardid:tmaCardid,tmaPhone:tmaPhone,tetReserve1:tetReserve1,tmaStatus:'1'},
 		success:function(data){
 			if(data=="1"){
@@ -476,7 +477,6 @@ function txcommit(){
 		}
 	})
 }
-
 
 </script>
 </body>

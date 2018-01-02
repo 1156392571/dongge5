@@ -436,7 +436,7 @@ a {
 					<p>签到</p>
 				</div>
 				<div class="col-3 t5">
-					<img src="${ctxStatic}/reg-login/images/img/licaijin1.png" width=40%;height=40%>
+					<img src="${ctxStatic}/reg-login/images/img/licai.png" width=40%;height=40%>
 					<p>理财金</p>
 				</div>
 				<div class="col-3 t6">
@@ -458,11 +458,10 @@ a {
 			</div>
 			<div class="main_image">
 				<ul>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle1.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle2.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle3.png" /></a></li>
-					<li><a href="#"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle4.png" /></a></li>
-<%-- 					<li><a href="#"><img src="${ctxStatic}/reg-login/images/img/BanInd05.jpg" /></a></li> --%>
+					<li><a href="${ctx}/pay/tosliderdtl?id=1"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle1.png" /></a></li>
+					<li><a href="${ctx}/pay/tosliderdtl?id=3"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle2.png" /></a></li>
+					<li><a href="${ctx}/pay/tosliderdtl?id=2"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle3.png" /></a></li>
+					<li><a href="${ctx}/pay/tosliderdtl?id=4"><img src="${ctxStatic}/reg-login/images/slider/mobilecicle5.png" /></a></li>
 				</ul>
 				<a href="javascript:;" id="btn_prev"></a>
 				<a href="javascript:;" id="btn_next"></a>

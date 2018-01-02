@@ -200,40 +200,48 @@ public class PayController extends BaseController {
 	 * @throws Exception 
      */
     @RequestMapping(value="savereg")
+    @ResponseBody
     public String gettoreg(HttpServletRequest request,TUser tUser,Model model) throws Exception {
         //将对象进行保存-邀请人字段，已经直接映射到对象里了
-    	//设置签到字段默认为1，签到天数为0
-    	tUser.setReserve2("1");
-    	tUser.setReserve3(0);
-    	systemService.saveRegister(tUser);
-        //通过注册的手机号，查询出当前所对应的t_user表中的id
-        tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
-        //注册成功之后就同步生成二维码图片
-//        String text ="http://192.168.1.103:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
-        String text ="http://120.78.211.240/easystar/f/pay/tophoto?tInviter="+tUser.getId();
-        int width = 100;    //二维码图片的宽
-        int height = 100;   //二维码图片的高
-        String format = "png";  //二维码图片的格式
-        String pathname=tUser.getId();
-        String pathName=QRCodeEvents.generateQRCode(request,pathname, text, width, height, format);
-        //将图片的地址直接存在数据库中
-        Map<String,String> map=new HashMap<String,String>();
-        String id=IdGen.uuid();
-        map.put("id", id);
-        map.put("phone",pathname);
-        map.put("pathName",pathName);
-        tUserService.addpicturecode(map);
-        String url=tUserService.getphotourl(pathname);
-	    model.addAttribute("url", url);
-	    //注册成功之后将获得理财金的消息推送到消息列表中
-	    Map<String,Object> usermap=new HashMap<String,Object>();
-        String dtlId=IdGen.uuid();
-        usermap.put("id", dtlId);
-        usermap.put("tma_userid", tUser.getId());
-        usermap.put("tma_dtlname", "注册送理财金");
-        usermap.put("tma_jine",100);
-        tUserService.addtomobileacountdtl(usermap);
-        return "redirect:"+Global.getFrontPath()+"/pay/tologin?repage";
+        //设置签到字段默认为1，签到天数为0
+        tUser.setReserve2("1");
+        tUser.setReserve3(0);
+        String result="";
+        try {
+     	   systemService.saveRegister(tUser);
+            //通过注册的手机号，查询出当前所对应的t_user表中的id
+            tUser=tUserService.getUserByLoginName(tUser.gettLoginname());
+            //注册成功之后就同步生成二维码图片
+//            String text ="http://192.168.1.103:8181/easystar/f/pay/toreg?tInviter="+tUser.getId();
+            String text ="http://www.168mitu.com/easystar/f/pay/tophoto?tInviter="+tUser.getId();
+            int width = 100;    //二维码图片的宽
+            int height = 100;   //二维码图片的高
+            String format = "png";  //二维码图片的格式
+            String pathname=tUser.getId();
+            String pathName=QRCodeEvents.generateQRCode(request,pathname, text, width, height, format);
+            //将图片的地址直接存在数据库中
+            Map<String,String> map=new HashMap<String,String>();
+            String id=IdGen.uuid();
+            map.put("id", id);
+            map.put("phone",pathname);
+            map.put("pathName",pathName);
+            tUserService.addpicturecode(map);
+            String url=tUserService.getphotourl(pathname);
+            model.addAttribute("url", url);
+            //注册成功之后将获得理财金的消息推送到消息列表中
+            Map<String,Object> usermap=new HashMap<String,Object>();
+            String dtlId=IdGen.uuid();
+            usermap.put("id", dtlId);
+            usermap.put("tma_userid", tUser.getId());
+            usermap.put("tma_dtlname", "注册送理财金");
+            usermap.put("tma_jine",100);
+            tUserService.addtomobileacountdtl(usermap);
+            result="1";
+ 		} catch (Exception e) {
+ 			e.getMessage();
+ 			result="0";
+ 		}
+        return result;
     } 
 	
     /**
