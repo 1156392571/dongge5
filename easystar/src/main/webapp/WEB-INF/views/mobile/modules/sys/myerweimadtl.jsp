@@ -29,11 +29,8 @@ img{ display: block; }
 </style>
 </head>
 <body>
-<%-- 	<img src="${ctxStatic}/reg-login/images/mycenter/二维码背景2.png" style="width: 100%;height: 100%;"> --%>
-
-<%-- 		<img src="${pageContext.request.contextPath}${url}" class="img1"> --%>
 <div>
-<img src="${ctxStatic}/reg-login/images/mycenter/erweimadtl${id}.png" style="width: 100%;height: 100%;">
+<img src="${ctxStatic}/reg-login/images/mycenter/erweimacode${id}.png" style="width: 100%;height: 100%;">
 <img class="pos" src="${pageContext.request.contextPath}${url}">
 <div>
 

@@ -14,7 +14,7 @@
 <script src="${ctxStatic}/reg-login/js/jquery.js"></script>
 <link rel="stylesheet" href="${ctxStatic}/reg-login/css/myziliao.css">
 <script src="${ctxStatic}/reg-login/js/avalon.js" type="text/javascript"></script>
-<title>我的返现</title>
+<title>我的赏金</title>
 <script type="text/javascript">
 			avalon.define({
 	                $id: 'test',
@@ -79,6 +79,7 @@ width: 35px;height: 35px;
 		</div>
 		<div class="list" :visible="@show === 2">
 			<c:forEach items="${listB}" var="listb">
+			<c:if test="${listb.moneyway ne '0.00'}">
 			<div class="item">
 				<div class="tiem">
 					<fmt:formatDate value="${listb.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
@@ -94,6 +95,7 @@ width: 35px;height: 35px;
 					</div>
 				</div>
 			</div>
+			</c:if>
 			</c:forEach>
 		</div>
 		<div class="list" :visible="@show === 3">

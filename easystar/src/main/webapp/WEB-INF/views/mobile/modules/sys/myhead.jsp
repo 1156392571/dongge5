@@ -357,18 +357,19 @@ a {
     
     
 </style>
+
 </head>
 <body>
 <input type="hidden" id="eyevalue" value="1">
 <input type="hidden" id="totalcount" value="${tUser.tAcount+tUser.reserve3*0.5+100+day*0.5}">
-<input type="hidden" id="tixiancount" value="${tUser.tAcount+tUser.reserve3*0.5}">
+<input type="hidden" id="tixiancount" value="${tUser.tAcount+tUser.reserve3*0.5+0.5}">
 <div class = "content">
 <div class = "md1">
     <img class= "eye" src="${ctxStatic}/reg-login/images/mycenter/eye.png" alt="wutu" onclick="showeye()"/>
 </div>
 <div class = "md2">
         <p style = "font-size:14px">总资产</p>
-        <p style = "font-size:30px" id="allmoney">${tUser.tAcount+tUser.reserve3*0.5+100+day*0.5}</p>
+        <p style = "font-size:30px" id="allmoney">${tUser.tAcount+tUser.reserve3*0.5+day*0.5+0.5}</p>
         <p style = "font-size:14px">今日最新收益 ${count}</p>
 </div>
 <div class = "md3">
@@ -380,39 +381,10 @@ a {
     <div><img src="${ctxStatic}/reg-login/images/mycenter/3.png" alt="" /><span style= "font-size: 15px;
     line-height: 25px">赏金</span><p class ="pm">￥${tUser.tAcount}</p></div>
     <div class="tixian"><img src="${ctxStatic}/reg-login/images/mycenter/3.png" alt="" /><span style= "font-size: 15px;
-    line-height: 25px">提现</span><p class ="pm">￥${tUser.tAcount+tUser.reserve3*0.5}</p></div>
+    line-height: 25px">提现</span><p class ="pm">￥${tUser.tAcount+tUser.reserve3*0.5+0.5}</p></div>
 </div>
 
 </div>
-
-
-<div class="cover-bg" aria-label="关闭弹层" style="display: none;"></div>
-	<div class="mui-popup mui-popup-in paymethod" style="display: none;">
-		<div class="mui-popup-inner">
-			<div class="mui-popup-title" style="text-align: center;">提现金额</div>
-			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
-				<div class="form-text-login">
-					<input type="text" id="txzhifubao" name="txzhifubao" class="form-text" placeholder="提现支付宝账号" value="" style="padding: 0px;">
-				</div>
-			</div>
-			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
-				<div class="form-text-login">
-					<input type="text" id="txjine" name="txjine" class="form-text" placeholder="请输入提现金额" value="" style="padding: 0px;">
-				</div>
-			</div>
-			<div class="mui-popup-text" style="text-align: left;"><laberl style="font-size: 12px;text-align: left;color: #bbb;">*当前可提现金额为${tUser.tAcount+tUser.reserve3*0.5}元</laberl></div>
-			
-			
-		</div>
-		<div class="mui-popup-buttons poperbutton">
-			<span class="mui-popup-button txcommit">确定</span>
-			<span class="mui-popup-button txcancel">取消</span>
-		</div>
-	</div>
-
-
-
-
 
 <div style="height: 30%;">
 	<ul class="centerbox">
@@ -435,7 +407,7 @@ a {
 					<img src="${ctxStatic}/reg-login/images/img/qiandao.png" width=40%;height=40%>
 					<p>签到</p>
 				</div>
-				<div class="col-3 t5">
+				<div class="col-3 t5" >
 					<img src="${ctxStatic}/reg-login/images/img/licai.png" width=40%;height=40%>
 					<p>理财金</p>
 				</div>
@@ -511,10 +483,6 @@ a {
 				if(tixiancount<100){
 					alert("可提现金额小于100，暂不可提现，请继续努力");
 				}else{
-					/*
-					$(".cover-bg").show();
-					$(".paymethod").show();
-					*/
 					window.location.href="${ctx}/pay/tomytixian";
 				}
 			})

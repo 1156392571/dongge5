@@ -449,7 +449,7 @@
 		left join t_user b on a.tma_userid=b.id
 		left join t_user c on c.id=b.t_inviter
 		left join t_user e on e.id=c.t_inviter
-		left join t_user f on e.id=e.t_inviter
+		left join t_user f on f.id=e.t_inviter
 		left join t_mobile_task d on a.tma_taskid=d.id
 		where a.tma_status='1'
 		and f.id=#{id}
@@ -476,7 +476,7 @@
 		left join t_user b on a.tma_userid=b.id
 		left join t_user c on c.id=b.t_inviter
 		left join t_user e on e.id=c.t_inviter
-		left join t_user f on e.id=e.t_inviter
+		left join t_user f on f.id=e.t_inviter
 		left join t_mobile_task d on a.tma_taskid=d.id
 		where a.tma_status='3'
 		and f.id=#{id}

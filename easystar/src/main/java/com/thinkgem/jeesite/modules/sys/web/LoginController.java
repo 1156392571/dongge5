@@ -197,6 +197,9 @@ public class LoginController extends BaseController{
 		  //获取理财金的天数
 	        int day=tUserService.getLCdaysByLoginName(principal.getLoginName());
 	        model.addAttribute("day", day);
+	      //获取今日收益
+	        String count=tUserService.gettodayMoney(tUser.getId());
+	        model.addAttribute("count", count);
 		    return "modules/sys/myhead";
 		}
 		

@@ -323,7 +323,7 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 				</div>
 			</div>
 		</div>
-		<div class="channel_main" style="margin: 0">
+		<div class="channel_main" style="margin-bottom: 30px">
 			<div class="module_title">
 				<h3>任务要求</h3>
 			</div>
@@ -360,7 +360,7 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 			</div>
 			<div class="mui-popup-text" style="text-align: left;font-size: 14px;">
 				<div class="form-text-login">
-					<input type="text" id="tmaPhone" name="txjine" class="form-text" placeholder="手机号码" value="${tUser.tPhone}" style="padding: 0px;">
+					<input type="text" id="tmaPhone" name="txjine" class="form-text" placeholder="手机号码" value="" style="padding: 0px;">
 				</div>
 			</div>
 		</div>

@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
-	<title></title>
+	<title>任务列表</title>
 	 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	<link rel="stylesheet" href="${ctxStatic}/reg-login/css/mytask.css">
 	<link rel="stylesheet" href="${ctxStatic}/reg-login/css/photoSwipe.css">
