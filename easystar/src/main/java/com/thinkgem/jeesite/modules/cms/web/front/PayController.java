@@ -236,6 +236,38 @@ public class PayController extends BaseController {
             usermap.put("tma_dtlname", "注册送理财金");
             usermap.put("tma_jine",100);
             tUserService.addtomobileacountdtl(usermap);
+            //注册成功之后，将你的上面的人，增加对应的理财金，同时增加对应的理财金消息
+            //1.获取自己的上级A,B,C
+            String Auserid=tUser.gettInviter();
+            String Buserid=tUserService.get(Auserid).gettInviter();
+            String Cuserid=tUserService.get(Buserid).gettInviter();
+            //-------------------------------------------
+            Map<String,Object> Ausermap=new HashMap<String,Object>();
+            String Aid=IdGen.uuid();
+            Ausermap.put("id", Aid);
+            Ausermap.put("tma_userid", Auserid);
+            Ausermap.put("tma_dtlname", "推广用户"+tUser.gettPhone()+"成功，赚取理财金");
+            Ausermap.put("tma_jine",50);
+            map.put("tma_reserve1","3");
+            tUserService.addtomobileacountdtl(Ausermap);
+          //-------------------------------------------
+            Map<String,Object> Busermap=new HashMap<String,Object>();
+            String Bid=IdGen.uuid();
+            Busermap.put("id", Bid);
+            Busermap.put("tma_userid", Buserid);
+            Busermap.put("tma_dtlname", "推广用户"+tUser.gettPhone()+"成功，赚取理财金");
+            Busermap.put("tma_jine",20);
+            tUserService.addtomobileacountdtl(Busermap);
+          //-------------------------------------------
+            Map<String,Object> Cusermap=new HashMap<String,Object>();
+            String Cid=IdGen.uuid();
+            Cusermap.put("id", Cid);
+            Cusermap.put("tma_userid", Cuserid);
+            Cusermap.put("tma_dtlname", "推广用户"+tUser.gettPhone()+"成功，赚取理财金");
+            Cusermap.put("tma_jine",10);
+            tUserService.addtomobileacountdtl(Cusermap);
+            //增加了对应的消息记录之后，再给对应的账户加上理财金金额
+            
             result="1";
  		} catch (Exception e) {
  			e.getMessage();

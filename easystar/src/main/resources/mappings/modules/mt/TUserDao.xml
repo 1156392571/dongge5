@@ -524,4 +524,6 @@
 		where b.t_loginName=#{loginName} and a.tma_status &lt;&gt;2
 		ORDER BY a.createtime desc limit 30
 	</select>
+	
+	<!-- 查看自己的上B级 -->
 </mapper>

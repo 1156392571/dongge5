@@ -10,8 +10,7 @@
 <meta name="format-detection" content="email=no" />
 <meta name="format-detection" content="address=no" />
 <meta name="format-detection" content="telephone=no" />
-<link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
-<script type="text/javascript" src="${ctxStatic}/reg-login/js/time_js_1.js"></script>
+<script type="text/javascript" src="${ctxStatic}/reg-login/js/time_js_2.js"></script>
 <link href="${ctxStatic}/reg-login/css/time_css.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		.swiper-slide {
@@ -41,11 +40,12 @@
 			$(".pie2").css("-moz-transform","rotate(" + i + "deg)");
 			$(".pie2").css("-webkit-transform","rotate(" + i + "deg)");
 	        if(count === 29){
-	            setInterval(function(){
+	            setTimeout(function(){
 	                $(".pie2").css("backgroundColor", "#4abfef");
 	                $(".pie2").css("-o-transform","rotate(" + 360 + "deg)");
 	                $(".pie2").css("-moz-transform","rotate(" + 360 + "deg)");
 	                $(".pie2").css("-webkit-transform","rotate(" + 360 + "deg)");
+	                clearInterval(t1);
 	                window.location.href="${ctx}/pay/toreg?tInviter=${tUser.tInviter}";  
 	            }, 100);
 	        }
@@ -72,7 +72,6 @@
 	countDown();
 </script>
 <!--效果html结束-->
-<script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
 <script>       
 countDown();   
   </script>
