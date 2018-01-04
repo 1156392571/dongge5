@@ -72,8 +72,6 @@
 	countDown();
 </script>
 <!--效果html结束-->
-<script>       
-countDown();   
-  </script>
+
 </body>
 </html>

@@ -329,9 +329,7 @@ pre {white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;whi
 			</div>
 			<div class="channel_contact">
 <!-- 				<div class="innertext"> -->
-					<pre class="textsize" style="word-break: normal;padding-top: 0">
-					${tMobileTask.tmtAsk}
-					</pre>
+					<pre class="textsize">${tMobileTask.tmtAsk}</pre>
 <!-- 				</div> -->
 			</div>
 			<div align="center">

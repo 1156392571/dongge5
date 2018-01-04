@@ -105,5 +105,11 @@ public interface TUserDao extends CrudDao<TUser> {
 	void updatepassword(User user);
 
 	List<Map<Object, Object>> gettaskApplyList(String loginName);
+
+	void addtomanageacountdtl(Map<String, Object> ausermap);
+
+	void addmanageacount(Map<String, Object> ausermap);
+
+	List<Map<Object, Object>> tomymanageracount(TUser tUser);
 	
 }

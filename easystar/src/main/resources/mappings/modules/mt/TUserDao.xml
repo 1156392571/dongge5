@@ -17,6 +17,7 @@
 		a.t_companyurl AS "tCompanyurl",
 		a.createtime AS "createtime",
 		a.t_acount AS "tAcount",
+		a.t_manageacount AS "tManageracount",
 		a.t_inviter AS "tInviter",
 		a.reserve1 AS "reserve1",
 		a.reserve2 AS "reserve2",
@@ -525,5 +526,30 @@
 		ORDER BY a.createtime desc limit 30
 	</select>
 	
-	<!-- 查看自己的上B级 -->
+	<!-- 将理财金各级推广员赚的钱插入到数据库 -->
+	<select id="addtomanageacountdtl" parameterType="java.util.Map">
+		insert into t_manager_acountdtl(id,
+		tma_userid,
+		tma_dtlname,
+		tma_jine,
+		createtime,
+		tma_comeuserid
+		)values(
+		#{id},
+		#{tma_userid},
+		#{tma_dtlname},
+		#{tma_jine},
+		now(),
+		#{tma_comeuserid}
+		)
+	</select>
+	<!-- 给对应的用户的账户 -->
+	<update id="addmanageacount">
+		update t_user set t_manageacount=t_manageacount+#{tma_jine} where id=#{tma_userid}
+	</update>
+	
+	<!-- 查看自己的理财金消息 -->
+	<select id="tomymanageracount" parameterType="TUser" resultType="java.util.Map">
+		select * from t_manager_acountdtl where tma_userid=#{id} order by createtime desc limit 30
+	</select>
 </mapper>

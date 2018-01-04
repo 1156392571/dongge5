@@ -244,4 +244,18 @@ public class TUserService extends CrudService<TUserDao, TUser> {
 		return tUserDao.gettaskApplyList(loginName);
 	}
 
+	@Transactional(readOnly = false)
+	public void addtomanageacountdtl(Map<String, Object> ausermap) {
+		tUserDao.addtomanageacountdtl(ausermap);
+	}
+
+	@Transactional(readOnly = false)
+	public void addmanageacount(Map<String, Object> ausermap) {
+		tUserDao.addmanageacount(ausermap);
+	}
+
+	public List<Map<Object, Object>> tomymanageracount(TUser tUser) {
+		return tUserDao.tomymanageracount(tUser);
+	}
+
 }

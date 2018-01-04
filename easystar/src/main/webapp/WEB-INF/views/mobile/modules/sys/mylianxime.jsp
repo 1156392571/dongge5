@@ -28,9 +28,7 @@
 				</div>
 				<span>微信客服</span>
 			</button>
-			<a href="mqqwpa://im/chat?chat_type=wpa&uin=1810500030&version=1&src_type=web&web_src=bjhuli.com 
-
-" target="_blank" class="item">
+			<a href="mqqwpa://im/chat?chat_type=wpa&uin=1810500030&version=1&src_type=web&web_src=www.chinesestack.com" target="_blank" class="item">
 				<div class="info">
 					<img src="${ctxStatic}/reg-login/images/mycenter/tx.png">
 				</div>

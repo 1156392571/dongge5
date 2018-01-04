@@ -241,33 +241,40 @@ public class PayController extends BaseController {
             String Auserid=tUser.gettInviter();
             String Buserid=tUserService.get(Auserid).gettInviter();
             String Cuserid=tUserService.get(Buserid).gettInviter();
+            System.out.println(Auserid+Buserid+Cuserid);
             //-------------------------------------------
             Map<String,Object> Ausermap=new HashMap<String,Object>();
             String Aid=IdGen.uuid();
             Ausermap.put("id", Aid);
             Ausermap.put("tma_userid", Auserid);
-            Ausermap.put("tma_dtlname", "推广用户"+tUser.gettPhone()+"成功，赚取理财金");
+            Ausermap.put("tma_dtlname", tUser.gettPhone());
             Ausermap.put("tma_jine",50);
-            map.put("tma_reserve1","3");
-            tUserService.addtomobileacountdtl(Ausermap);
+            Ausermap.put("tma_comeuserid",tUser.getId());
+            tUserService.addtomanageacountdtl(Ausermap);
+            //通过用户id以及金额给对应的理财金账户加钱
+            tUserService.addmanageacount(Ausermap);
           //-------------------------------------------
             Map<String,Object> Busermap=new HashMap<String,Object>();
             String Bid=IdGen.uuid();
             Busermap.put("id", Bid);
             Busermap.put("tma_userid", Buserid);
-            Busermap.put("tma_dtlname", "推广用户"+tUser.gettPhone()+"成功，赚取理财金");
-            Busermap.put("tma_jine",20);
-            tUserService.addtomobileacountdtl(Busermap);
+            Busermap.put("tma_dtlname", tUser.gettPhone());
+            Busermap.put("tma_jine",30);
+            Busermap.put("tma_comeuserid",tUser.getId());
+            tUserService.addtomanageacountdtl(Busermap);
+          //通过用户id以及金额给对应的理财金账户加钱
+            tUserService.addmanageacount(Busermap);
           //-------------------------------------------
             Map<String,Object> Cusermap=new HashMap<String,Object>();
             String Cid=IdGen.uuid();
             Cusermap.put("id", Cid);
             Cusermap.put("tma_userid", Cuserid);
-            Cusermap.put("tma_dtlname", "推广用户"+tUser.gettPhone()+"成功，赚取理财金");
-            Cusermap.put("tma_jine",10);
-            tUserService.addtomobileacountdtl(Cusermap);
-            //增加了对应的消息记录之后，再给对应的账户加上理财金金额
-            
+            Cusermap.put("tma_dtlname", tUser.gettPhone());
+            Cusermap.put("tma_jine",20);
+            Cusermap.put("tma_comeuserid",tUser.getId());
+            tUserService.addtomanageacountdtl(Cusermap);
+          //通过用户id以及金额给对应的理财金账户加钱
+            tUserService.addmanageacount(Cusermap);
             result="1";
  		} catch (Exception e) {
  			e.getMessage();
@@ -288,6 +295,15 @@ public class PayController extends BaseController {
     @RequestMapping(value = "tologin")
     public String login(TUser tUser,Model model){
         return "modules/sys/login";
+    }
+    
+    /**
+     * 注册成功之后跳转到扫公众号页面
+     * @return
+     */
+    @RequestMapping(value = "tomygongzhonghao")
+    public String tomygongzhonghao(){
+        return "modules/sys/mygongzhonghao";
     }
     
     /**

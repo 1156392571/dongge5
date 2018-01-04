@@ -27,12 +27,12 @@
 		show : true,
 		fn1:function (el) {
 			document.ontouchstart=function(){
-				return true;
+				return false;
 			}
         },
         fn2:function (el) {
 			document.ontouchstart=function(){
-				return false;
+				return true;
 			}
         },
 	})
@@ -84,9 +84,6 @@
               
 	})
 	
-	document.ontouchstart=function(){
-		return false;
-	}
 
 </script>
 <style type="text/css">
@@ -98,10 +95,10 @@
 <body id="body">
 	<div class="m-list ms-controller" ms-controller="test">
 		<div class="nav">
-			<div :class="['items',@show?'color':'']" ms-on-tap="@show = true" ms-on-tap-1="@fn2()">图文</div>
-			<div :class="['items',!@show?'color':'']" ms-on-tap="@show = false" ms-on-tap-1="@fn1()">列表</div>
+			<div :class="['items',@show?'color':'']" ms-on-tap="@show = true" ms-on-tap-1="@fn2()">列表</div>
+			<div :class="['items',!@show?'color':'']" ms-on-tap="@show = false" ms-on-tap-1="@fn1()">图文</div>
 		</div>
-		<div class="box2" :visible="@show" >
+		<div class="box2" :visible="!@show" >
 			<div id="photo_box" ms-important='item'>
 				<div>
 					<div>
@@ -123,7 +120,7 @@
 				</div>
 			</div>
 		</div>
-		<div  class="box1" :visible="!@show" >
+		<div  class="box1" :visible="@show" >
 			<c:forEach items="${list}" var="mobiletask">
 		<!-- href="${ctx}/pay/totaskdetails?id=${mobiletask.id}" -->
 			<a  ms-on-tap="@fn('${mobiletask.id}')" class="item" ms-important='item'>

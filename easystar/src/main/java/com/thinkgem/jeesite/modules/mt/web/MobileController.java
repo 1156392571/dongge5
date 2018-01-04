@@ -768,4 +768,15 @@ public class MobileController extends BaseController {
        return result;
    }
    
+   @RequestMapping(value = "tomymanageracount")
+   public String tomymanageracount(TUser tUser,Model model){
+	   Principal principal=UserUtils.getPrincipal();
+       String loginName=principal.getLoginName();
+       //通过当前用户名获取登录状态
+       tUser=tUserService.getUserByLoginName(loginName);
+	   List<Map<Object,Object>> manageracountList=tUserService.tomymanageracount(tUser);
+	   model.addAttribute("manageracountList", manageracountList);
+       return "modules/sys/mymanageracount";
+   }
+   
 }

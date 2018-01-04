@@ -134,7 +134,7 @@
     width: 50%;
     height: 40px;
     line-height: 40px;
-    border-bottom: 5px solid white;
+    border-bottom: 2px solid white;
 }
 .m-denglu .m-nav .color{
  	color: #5a9fd9;

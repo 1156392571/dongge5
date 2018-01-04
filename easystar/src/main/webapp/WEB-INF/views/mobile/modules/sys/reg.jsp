@@ -124,8 +124,7 @@
     		},
     		success:function(data){
     			if(data=="1"){
-    				alert("成功");
-    				window.location.href="${pageContext.request.contextPath}/a/login"
+    				window.location.href="${ctx}/pay/tomygongzhonghao"
     			}
     		}
     	})
